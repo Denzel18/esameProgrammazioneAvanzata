@@ -1,0 +1,14 @@
+-------------------------------------------------------------------------------
+Test set: it.univpm.advancedcode.cri.test.unit.TestUserDao
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 2.678 sec <<< FAILURE! - in it.univpm.advancedcode.cri.test.unit.TestUserDao
+createAndDelete  Time elapsed: 2.668 sec  <<< ERROR!
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'allegatoDao': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sessionFactory' defined in it.univpm.advancedcode.cri.test.DataServiceConfigTest: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method 'sessionFactory' threw exception; nested exception is java.lang.NullPointerException: Cannot read field "value" because "s1" is null
+	at it.univpm.advancedcode.cri.test.unit.TestUserDao.createAndDelete(TestUserDao.java:21)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sessionFactory' defined in it.univpm.advancedcode.cri.test.DataServiceConfigTest: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method 'sessionFactory' threw exception; nested exception is java.lang.NullPointerException: Cannot read field "value" because "s1" is null
+	at it.univpm.advancedcode.cri.test.unit.TestUserDao.createAndDelete(TestUserDao.java:21)
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method 'sessionFactory' threw exception; nested exception is java.lang.NullPointerException: Cannot read field "value" because "s1" is null
+	at it.univpm.advancedcode.cri.test.unit.TestUserDao.createAndDelete(TestUserDao.java:21)
+Caused by: java.lang.NullPointerException: Cannot read field "value" because "s1" is null
+	at it.univpm.advancedcode.cri.test.unit.TestUserDao.createAndDelete(TestUserDao.java:21)
+
