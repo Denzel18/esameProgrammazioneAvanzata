@@ -54,92 +54,92 @@ public class TestPrenotazioneService {
 		ctx.close();
 	}
 
-//	@Test
-//	public void createAndDelete() throws java.text.ParseException {
-//		User user1 = userService.create("mario98", "12345678", "Mario", "Rossi", "admin");			
-//		String dataS1= "07/08/2023";
-//		Date data1 = new SimpleDateFormat("dd/MM/yyyy").parse(dataS1);
-//
-//		String dataS2= "07/08/2023";
-//		Date data2 = new SimpleDateFormat("dd/MM/yyyy").parse(dataS2);
-//
-//
-//		Time t1 = Time.valueOf("20:45:20");
-//		Time t2 = Time.valueOf("19:45:20");
-//
-//		Prenotazione p = prenotazioneService.create(1, data1, data2, t1, t2, "DESCRIZIONE", user1);
-//		try {
-//			assertEquals(prenotazioneService.getAll().size(),1);
-//		} catch(Exception e) {
-//			fail("Exception not excepted: "+e.getMessage());
-//		}
-//
-//
-//		prenotazioneService.delete(p);
-//
-//		try {
-//			assertEquals(prenotazioneService.getAll().size(),0);
-//			assertNull(prenotazioneService.getById(1));
-//		} catch(Exception e) {
-//			fail("Exception not excepted: "+e.getMessage());
-//		}
-//	}
-//
-//	@Test
-//	public void createAndFind() throws java.text.ParseException {
-//
-//		User user1 = userService.create("mario98", "12345678", "Mario", "Rossi", "admin");			
-//		String dataS1= "07/08/2023";
-//		Date data1 = new SimpleDateFormat("dd/MM/yyyy").parse(dataS1);
-//
-//		String dataS2= "07/08/2023";
-//		Date data2 = new SimpleDateFormat("dd/MM/yyyy").parse(dataS2);
-//
-//		String time = "10:30";
-//		@SuppressWarnings("deprecation")
-//		Time t1 = new Time(20,30, 0);
-//		Time t2 = new Time(20,50, 0);
-//
-//		Prenotazione p = prenotazioneService.create(1, data1, data2, t1, t2, "DESCRIZIONE", user1);
-//
-//
-//		try {
-//			prenotazioneService.getById(p.getId());
-//		} catch(Exception e) {
-//			fail("Exception not expected: " + e.getMessage());
-//		}
-//		try {
-//			Prenotazione notFound=prenotazioneService.getById(999);
-//			assertNull(notFound);
-//		} catch(Exception e) {
-//			assertTrue(true);
-//		}
-//		List<Prenotazione> allDocuments=prenotazioneService.getAll();
-//		assertEquals(allDocuments.size(), 1);
-//	}
-//
-//	@Test
-//	public void createAndUpdate() throws java.text.ParseException {
-//		User user1 = userService.create("mario98", "12345678", "Mario", "Rossi", "admin");			
-//		String dataS1= "07/08/2023";
-//		Date data1 = new SimpleDateFormat("dd/MM/yyyy").parse(dataS1);
-//
-//		String dataS2= "07/08/2023";
-//		Date data2 = new SimpleDateFormat("dd/MM/yyyy").parse(dataS2);
-//
-//		String time = "10:30";
-//		@SuppressWarnings("deprecation")
-//		Time t1 = new Time(20,30, 0);
-//		Time t2 = new Time(20,50, 0);
-//
-//		Prenotazione p = prenotazioneService.create(1, data1, data2, t1, t2, "DESCRIZIONE", user1);
-//
-//		assertEquals(prenotazioneService.getAll().size(),1);
-//
-//		p.setDescrizione("DESCRIZIONE NUOVA");
-//		prenotazioneService.update(p);
-//		assertEquals(p.getDescrizione(),"DESCRIZIONE NUOVA");
-//	}
+	@Test
+	public void createAndDelete() throws java.text.ParseException {
+		User user1 = userService.create("mario98", "12345678", "Mario", "Rossi", "admin");			
+		String dataS1= "07/08/2023";
+		Date data1 = new SimpleDateFormat("dd/MM/yyyy").parse(dataS1);
+
+		String dataS2= "07/08/2023";
+		Date data2 = new SimpleDateFormat("dd/MM/yyyy").parse(dataS2);
+
+
+		Time t1 = Time.valueOf("20:45:20");
+		Time t2 = Time.valueOf("19:45:20");
+
+		Prenotazione p = prenotazioneService.create(1, data1, data2, t1, t2, "DESCRIZIONE", user1);
+		try {
+			assertEquals(prenotazioneService.getAll().size(),1);
+		} catch(Exception e) {
+			fail("Exception not excepted: "+e.getMessage());
+		}
+
+
+		prenotazioneService.delete(p);
+
+		try {
+			assertEquals(prenotazioneService.getAll().size(),0);
+			assertNull(prenotazioneService.getById(1));
+		} catch(Exception e) {
+			fail("Exception not excepted: "+e.getMessage());
+		}
+	}
+
+	@Test
+	public void createAndFind() throws java.text.ParseException {
+
+		User user1 = userService.create("mario98", "12345678", "Mario", "Rossi", "admin");			
+		String dataS1= "07/08/2023";
+		Date data1 = new SimpleDateFormat("dd/MM/yyyy").parse(dataS1);
+
+		String dataS2= "07/08/2023";
+		Date data2 = new SimpleDateFormat("dd/MM/yyyy").parse(dataS2);
+
+		String time = "10:30";
+		@SuppressWarnings("deprecation")
+		Time t1 = new Time(20,30, 0);
+		Time t2 = new Time(20,50, 0);
+
+		Prenotazione p = prenotazioneService.create(1, data1, data2, t1, t2, "DESCRIZIONE", user1);
+
+
+		try {
+			prenotazioneService.getById(p.getId());
+		} catch(Exception e) {
+			fail("Exception not expected: " + e.getMessage());
+		}
+		try {
+			Prenotazione notFound=prenotazioneService.getById(999);
+			assertNull(notFound);
+		} catch(Exception e) {
+			assertTrue(true);
+		}
+		List<Prenotazione> allDocuments=prenotazioneService.getAll();
+		assertEquals(allDocuments.size(), 1);
+	}
+
+	@Test
+	public void createAndUpdate() throws java.text.ParseException {
+		User user1 = userService.create("mario98", "12345678", "Mario", "Rossi", "admin");			
+		String dataS1= "07/08/2023";
+		Date data1 = new SimpleDateFormat("dd/MM/yyyy").parse(dataS1);
+
+		String dataS2= "07/08/2023";
+		Date data2 = new SimpleDateFormat("dd/MM/yyyy").parse(dataS2);
+
+		String time = "10:30";
+		@SuppressWarnings("deprecation")
+		Time t1 = new Time(20,30, 0);
+		Time t2 = new Time(20,50, 0);
+
+		Prenotazione p = prenotazioneService.create(1, data1, data2, t1, t2, "DESCRIZIONE", user1);
+
+		assertEquals(prenotazioneService.getAll().size(),1);
+
+		p.setDescrizione("DESCRIZIONE NUOVA");
+		prenotazioneService.update(p);
+		assertEquals(p.getDescrizione(),"DESCRIZIONE NUOVA");
+	}
 
 
 

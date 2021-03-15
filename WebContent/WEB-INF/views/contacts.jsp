@@ -28,31 +28,23 @@
         <b> E-mail:</b>
         </div>
         <div>
-        <i> advprogcommunity@gmail.com</i>
+        <i> Advancedcode@gmail.com</i>
         </div>
         <div style='margin-top:20px'>
         <b>Seguici anche sui nostri social</b>
         </div>
         <div style='margin-top:5px'>
         <img class="img-fluid rounded mb-4 mb-lg-0" src="<c:url value="/immagini/facebook.png"/>" width="33" height="33" style="float:left;margin:5px" >
-        <p>AdvProgCommunity</p>
+        <p>Advancedcode</p>
         </div>
         <div>
         <img class="img-fluid rounded mb-4 mb-lg-0" src="<c:url value="/immagini/instagram.jpg"/>" width="40" height="40" style="float:left;margin:3px" >
-        <p>AdvProgCommunity</p>
+        <p>Advancedcode</p>
         </div>
         </div>
       </div>
       <!-- /.col-md-4 -->
     </div>
-    <!-- /.row -->
-
-    <!-- Call to Action Well -->
-<%--    <div class="card text-white bg-secondary my-5 py-4 text-center">--%>
-<%--      <div class="card-body">--%>
-<%--        <p class="text-white m-0">Qualcosa qui in mezzo ci si metterà</p>--%>
-<%--      </div>--%>
-<%--    </div>--%>
     </div>
   <!-- /.container -->
 </body>

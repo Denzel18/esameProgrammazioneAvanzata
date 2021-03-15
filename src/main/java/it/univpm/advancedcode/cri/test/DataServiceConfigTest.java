@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import java.util.Properties;
 
 @Configuration
-@ComponentScan(basePackages = {" it.univpm.advancedcode.cri.model"})
+@ComponentScan(basePackages = {"it.univpm.advancedcode.cri.model"})
 @EnableTransactionManagement
 public class DataServiceConfigTest extends DataServiceConfig {
 

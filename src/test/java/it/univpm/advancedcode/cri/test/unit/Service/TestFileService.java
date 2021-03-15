@@ -66,76 +66,76 @@ public class TestFileService {
 		ctx.close();
 	}
 
-//	@Test
-//	void createAndDelete() throws ParseException {
-//		Car c1 = carService.create("AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
-//		Set<Car> cars = new HashSet<Car>(); 
-//		cars.add(c1);
-//		String dataS1= "07/08/2023";
-//        Date data1 = new SimpleDateFormat("dd/MM/yyyy").parse(dataS1); 
-//		User user1 = userService.create("mario98", "12345678", "Mario", "Rossi", "admin");
-//		Documentazione doc1 = documentazioneService.create("TITOLO", user1, "DESCRIZIONE", data1, (float) 900.10, cars);
-//		File a=fileService.create("DESCRIZIONE", doc1, "file1.jpg",true);
-//
-//		assertEquals(fileService.getAll().size(),1);
-//
-//		fileService.delete(a);
-//
-//		assertEquals(fileService.getAll().size(),0);
-//		try {
-//			File notFound=fileService.getById(1);
-//			assertEquals(notFound,null);
-//		} catch(Exception e) {
-//			assertTrue(true);
-//		}
-//
-//	}
-//
-//	@Test
-//	void createAndFind() throws ParseException {
-//
-//		Car c1 = carService.create("AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
-//		Set<Car> cars = new HashSet<Car>(); 
-//		cars.add(c1);
-//		String dataS1= "07/08/2023";
-//        Date data1 = new SimpleDateFormat("dd/MM/yyyy").parse(dataS1); 
-//		User user1 = userService.create("mario98", "12345678", "Mario", "Rossi", "admin");
-//		Documentazione doc1 = documentazioneService.create("TITOLO", user1, "DESCRIZIONE", data1, (float) 900.10,
-//	    	    null, cars);
-//		File a=fileService.create("DESCRIZIONE", doc1, "file1.jpg",true);
-//		
-//		try {
-//			fileService.getById(a.getId());
-//			assertEquals(fileService.getById(a.getId()).isNoDownloadable(),true);
-//		} catch(Exception e) {
-//			fail("Exception not expected: " + e.getMessage());
-//		}
-//		List<File> allFiles=fileService.getAll();
-//		assertEquals(allFiles.size(), 1);
-//	}
-//
-//	@Test
-//	void createAndUpdate() throws ParseException {
-//
-//		Car c1 = carService.create("AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
-//		Set<Car> cars = new HashSet<Car>(); 
-//		cars.add(c1);
-//		String dataS1= "07/08/2023";
-//        Date data1 = new SimpleDateFormat("dd/MM/yyyy").parse(dataS1); 
-//		User user1 = userService.create("mario98", "12345678", "Mario", "Rossi", "admin");
-//		Documentazione doc1 = documentazioneService.create("TITOLO", user1, "DESCRIZIONE", data1, (float) 900.10, cars);
-//		File a=fileService.create("DESCRIZIONE", doc1, "file1.jpg",true);
-//
-//
-//		assertEquals(fileService.getAll().size(),1);
-//		assertEquals(fileService.getByName("post1_file1.jpg").getName(),"post1_file1.jpg");
-//
-//		a.setName("post1_modifica.jpg");
-//		fileService.update(a);
-//
-//		assertEquals(fileService.getAll().size(),1);
-//		assertEquals(fileService.getByName("post1_modifica.jpg").getName(),"post1_modifica.jpg");
-//	}
+	@Test
+	void createAndDelete() throws ParseException {
+		Car c1 = carService.create("AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
+		Set<Car> cars = new HashSet<Car>(); 
+		cars.add(c1);
+		String dataS1= "07/08/2023";
+        Date data1 = new SimpleDateFormat("dd/MM/yyyy").parse(dataS1); 
+		User user1 = userService.create("mario98", "12345678", "Mario", "Rossi", "admin");
+		Documentazione doc1 = documentazioneService.create("TITOLO", user1, "DESCRIZIONE", data1, (float) 900.10, cars);
+		File a=fileService.create("DESCRIZIONE", doc1, "file1.jpg",true);
+
+		assertEquals(fileService.getAll().size(),1);
+
+		fileService.delete(a);
+
+		assertEquals(fileService.getAll().size(),0);
+		try {
+			File notFound=fileService.getById(1);
+			assertEquals(notFound,null);
+		} catch(Exception e) {
+			assertTrue(true);
+		}
+
+	}
+
+	@Test
+	void createAndFind() throws ParseException {
+
+		Car c1 = carService.create("AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
+		Set<Car> cars = new HashSet<Car>(); 
+		cars.add(c1);
+		String dataS1= "07/08/2023";
+        Date data1 = new SimpleDateFormat("dd/MM/yyyy").parse(dataS1); 
+		User user1 = userService.create("mario98", "12345678", "Mario", "Rossi", "admin");
+		Documentazione doc1 = documentazioneService.create("TITOLO", user1, "DESCRIZIONE", data1, (float) 900.10,
+	    	    null, cars);
+		File a=fileService.create("DESCRIZIONE", doc1, "file1.jpg",true);
+		
+		try {
+			fileService.getById(a.getId());
+			assertEquals(fileService.getById(a.getId()).isNoDownloadable(),true);
+		} catch(Exception e) {
+			fail("Exception not expected: " + e.getMessage());
+		}
+		List<File> allFiles=fileService.getAll();
+		assertEquals(allFiles.size(), 1);
+	}
+
+	@Test
+	void createAndUpdate() throws ParseException {
+
+		Car c1 = carService.create("AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
+		Set<Car> cars = new HashSet<Car>(); 
+		cars.add(c1);
+		String dataS1= "07/08/2023";
+        Date data1 = new SimpleDateFormat("dd/MM/yyyy").parse(dataS1); 
+		User user1 = userService.create("mario98", "12345678", "Mario", "Rossi", "admin");
+		Documentazione doc1 = documentazioneService.create("TITOLO", user1, "DESCRIZIONE", data1, (float) 900.10, cars);
+		File a=fileService.create("DESCRIZIONE", doc1, "file1.jpg",true);
+
+
+		assertEquals(fileService.getAll().size(),1);
+		assertEquals(fileService.getByName("post1_file1.jpg").getName(),"post1_file1.jpg");
+
+		a.setName("post1_modifica.jpg");
+		fileService.update(a);
+
+		assertEquals(fileService.getAll().size(),1);
+		assertEquals(fileService.getByName("post1_modifica.jpg").getName(),"post1_modifica.jpg");
+	}
 
 
 

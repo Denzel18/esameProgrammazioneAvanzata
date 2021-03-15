@@ -44,7 +44,7 @@ public class PrenotazioneDaoDefault extends DefaultDao implements PrenotazioneDa
 	@Override
 	public List<Prenotazione> getAll() {
 		 return getSession().
-	                createQuery("from Prenotazione", Prenotazione.class).
+	                createQuery("from Prenotazioni", Prenotazione.class).
 	                getResultList();
 	}
 
@@ -63,7 +63,7 @@ public class PrenotazioneDaoDefault extends DefaultDao implements PrenotazioneDa
 		return getSession().
                 createQuery(
                 		"select c.* "
-                		+ "from Prenotazione p, User u "
+                		+ "from Prenotazioni p, User u "
                 		+ "where p.user = u.username"
                 		+ "order by p.id desc", Prenotazione.class).
                 getResultList();

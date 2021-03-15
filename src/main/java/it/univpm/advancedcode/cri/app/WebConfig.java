@@ -32,7 +32,7 @@ import javax.servlet.MultipartConfigElement;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = { "it.univpm.advprog.blog" },
+@ComponentScan(basePackages = { "it.univpm.advancedcode.cri" },
 		excludeFilters  = {@ComponentScan.Filter(
 		type = FilterType.ASSIGNABLE_TYPE, classes = {it.univpm.advancedcode.cri.test.DataServiceConfigTest.class})})
 
@@ -41,7 +41,7 @@ public class WebConfig implements WebMvcConfigurer {
 	
 	@Bean
 	public String appName() {
-		return "Blog App";
+		return "Cri App";
 	}
 	
 	@Override

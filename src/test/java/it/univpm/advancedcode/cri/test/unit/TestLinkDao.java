@@ -30,142 +30,142 @@ import it.univpm.advancedcode.cri.test.DataServiceConfigTest;
 
 public class TestLinkDao {
 
-//	@Test
-//	void createAndDelete() throws ParseException {
-//		try (AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(DataServiceConfigTest.class)) {
-//			SessionFactory sf = ctx.getBean("sessionFactory", SessionFactory.class);
-//			LinkDao linkDao=ctx.getBean("linkDao",LinkDao.class);
-//			DocumentazioneDao documentazioneDao=ctx.getBean("documentazioneDao",DocumentazioneDao.class);
-//			UserDao userDao=ctx.getBean("userDao",UserDao.class);
-//			CarDao carDao=ctx.getBean("carDao",CarDao.class);
-//
-//			Session s=sf.openSession();
-//			linkDao.setSession(s);
-//			documentazioneDao.setSession(s);
-//			userDao.setSession(s);
-//			carDao.setSession(s);
-//
-//			s.beginTransaction();
-//			User user1 = userDao.create("mario98", "12345678", "Mario", "Rossi", "admin");
-//			String dataS1= "07/08/2023";
-//			Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(dataS1); 
-//
-//            
-//            Car c1 = carDao.create("AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
-//			Set<Car> cars = new HashSet<Car>(); 
-//			cars.add(c1);
-//			
-//			Documentazione doc1 = documentazioneDao.create("TITOLO", user1, "DESCRIZIONE", date1, 90, null, cars);
-//			Link link1=linkDao.create("DESCRIZIONE", doc1, "https://www.univpmLink.it");
-//			s.getTransaction().commit();
-//
-//			assertEquals(linkDao.getAll().size(),1);
-//
-//			s.beginTransaction();
-//			linkDao.delete(link1);
-//			s.getTransaction().commit();
-//
-//			assertEquals(linkDao.getAll().size(),0);
-//		}
-//	}
-//
-//	@Test
-//	void createAndFind() throws ParseException {
-//		try (AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(DataServiceConfigTest.class)) {
-//			SessionFactory sf = ctx.getBean("sessionFactory", SessionFactory.class);
-//			LinkDao linkDao=ctx.getBean("linkDao",LinkDao.class);
-//			DocumentazioneDao documentazioneDao=ctx.getBean("documentazioneDao",DocumentazioneDao.class);
-//			UserDao userDao=ctx.getBean("userDao",UserDao.class);
-//			CarDao carDao=ctx.getBean("carDao",CarDao.class);
-//
-//			Session s=sf.openSession();
-//			linkDao.setSession(s);
-//			documentazioneDao.setSession(s);
-//			userDao.setSession(s);
-//			carDao.setSession(s);
-//
-//			s.beginTransaction();
-//			User user1 = userDao.create("mario98", "12345678", "Mario", "Rossi", "admin");
-//			String dataS1= "07/08/2023";
-//			Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(dataS1); 
-//
-//            
-//            Car c1 = carDao.create("AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
-//			Set<Car> cars = new HashSet<Car>(); 
-//			cars.add(c1);
-//			
-//			Documentazione doc1 = documentazioneDao.create("TITOLO", user1, "DESCRIZIONE", date1, 90, null, cars);
-//			Link link1=linkDao.create("DESCRIZIONE", doc1, "https://www.univpmLink.it");
-//			s.getTransaction().commit();
-//
-//			try {
-//				linkDao.getById(link1.getId());
-//			} catch(Exception e) {
-//				fail("Exception not expected: " + e.getMessage());
-//			}
-//			try {
-//				Link notFound=linkDao.getById(999);
-//				assertEquals(notFound,null);
-//			} catch(Exception e) {
-//				assertTrue(true);
-//			}
-//			List<Link> allFiles=linkDao.getAll();
-//			assertEquals(allFiles.size(), 1);
-//		}
-//	}
-//
-//	@Test
-//	void createAndUpdate() throws ParseException {
-//		try (AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(DataServiceConfigTest.class)) {
-//			SessionFactory sf = ctx.getBean("sessionFactory", SessionFactory.class);
-//			LinkDao linkDao=ctx.getBean("linkDao",LinkDao.class);
-//			DocumentazioneDao documentazioneDao=ctx.getBean("documentazioneDao",DocumentazioneDao.class);
-//			UserDao userDao=ctx.getBean("userDao",UserDao.class);
-//			CarDao carDao=ctx.getBean("carDao",CarDao.class);
-//
-//			Session s=sf.openSession();
-//			linkDao.setSession(s);
-//			documentazioneDao.setSession(s);
-//			userDao.setSession(s);
-//			carDao.setSession(s);
-//
-//			s.beginTransaction();
-//			User user1 = userDao.create("mario98", "12345678", "Mario", "Rossi", "admin");
-//			String dataS1= "07/08/2023";
-//			Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(dataS1); 
-//
-//            
-//            Car c1 = carDao.create("AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
-//			Set<Car> cars = new HashSet<Car>(); 
-//			cars.add(c1);
-//			
-//			Documentazione doc1 = documentazioneDao.create("TITOLO", user1, "DESCRIZIONE", date1, 90, null, cars);
-//			Link link1=linkDao.create("DESCRIZIONE", doc1, "https://www.univpmLink.it");
-//			s.getTransaction().commit();
-//
-//			assertEquals(linkDao.getAll().size(),1);
-//
-//			s.beginTransaction();
-//			link1.setLink("https://www.google.com");
-//			linkDao.update(link1);
-//			s.getTransaction().commit();
-//
-//			assertEquals(linkDao.getAll().size(),1);
-//			assertEquals(linkDao.getById(1).getLink(),"https://www.google.com");
-//			assertEquals(linkDao.getById(1),link1);
-//		}
-//	}
-//
-//	@Test
-//	void noLinksAtBeginning() {
-//		try (AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(DataServiceConfigTest.class)) {
-//			SessionFactory sf = ctx.getBean("sessionFactory", SessionFactory.class);
-//			LinkDao linkDao=ctx.getBean("linkDao",LinkDao.class);
-//			Session s  = sf.openSession();
-//			linkDao.setSession(s);
-//			assertEquals(linkDao.getAll().size(), 0);
-//		}
-//	}
+	@Test
+	void createAndDelete() throws ParseException {
+		try (AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(DataServiceConfigTest.class)) {
+			SessionFactory sf = ctx.getBean("sessionFactory", SessionFactory.class);
+			LinkDao linkDao=ctx.getBean("linkDao",LinkDao.class);
+			DocumentazioneDao documentazioneDao=ctx.getBean("documentazioneDao",DocumentazioneDao.class);
+			UserDao userDao=ctx.getBean("userDao",UserDao.class);
+			CarDao carDao=ctx.getBean("carDao",CarDao.class);
+
+			Session s=sf.openSession();
+			linkDao.setSession(s);
+			documentazioneDao.setSession(s);
+			userDao.setSession(s);
+			carDao.setSession(s);
+
+			s.beginTransaction();
+			User user1 = userDao.create("mario98", "12345678", "Mario", "Rossi", "admin");
+			String dataS1= "07/08/2023";
+			Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(dataS1); 
+
+            
+            Car c1 = carDao.create("AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
+			Set<Car> cars = new HashSet<Car>(); 
+			cars.add(c1);
+			
+			Documentazione doc1 = documentazioneDao.create("TITOLO", user1, "DESCRIZIONE", date1, 90, null, cars);
+			Link link1=linkDao.create("DESCRIZIONE", doc1, "https://www.univpmLink.it");
+			s.getTransaction().commit();
+
+			assertEquals(linkDao.getAll().size(),1);
+
+			s.beginTransaction();
+			linkDao.delete(link1);
+			s.getTransaction().commit();
+
+			assertEquals(linkDao.getAll().size(),0);
+		}
+	}
+
+	@Test
+	void createAndFind() throws ParseException {
+		try (AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(DataServiceConfigTest.class)) {
+			SessionFactory sf = ctx.getBean("sessionFactory", SessionFactory.class);
+			LinkDao linkDao=ctx.getBean("linkDao",LinkDao.class);
+			DocumentazioneDao documentazioneDao=ctx.getBean("documentazioneDao",DocumentazioneDao.class);
+			UserDao userDao=ctx.getBean("userDao",UserDao.class);
+			CarDao carDao=ctx.getBean("carDao",CarDao.class);
+
+			Session s=sf.openSession();
+			linkDao.setSession(s);
+			documentazioneDao.setSession(s);
+			userDao.setSession(s);
+			carDao.setSession(s);
+
+			s.beginTransaction();
+			User user1 = userDao.create("mario98", "12345678", "Mario", "Rossi", "admin");
+			String dataS1= "07/08/2023";
+			Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(dataS1); 
+
+            
+            Car c1 = carDao.create("AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
+			Set<Car> cars = new HashSet<Car>(); 
+			cars.add(c1);
+			
+			Documentazione doc1 = documentazioneDao.create("TITOLO", user1, "DESCRIZIONE", date1, 90, null, cars);
+			Link link1=linkDao.create("DESCRIZIONE", doc1, "https://www.univpmLink.it");
+			s.getTransaction().commit();
+
+			try {
+				linkDao.getById(link1.getId());
+			} catch(Exception e) {
+				fail("Exception not expected: " + e.getMessage());
+			}
+			try {
+				Link notFound=linkDao.getById(999);
+				assertEquals(notFound,null);
+			} catch(Exception e) {
+				assertTrue(true);
+			}
+			List<Link> allFiles=linkDao.getAll();
+			assertEquals(allFiles.size(), 1);
+		}
+	}
+
+	@Test
+	void createAndUpdate() throws ParseException {
+		try (AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(DataServiceConfigTest.class)) {
+			SessionFactory sf = ctx.getBean("sessionFactory", SessionFactory.class);
+			LinkDao linkDao=ctx.getBean("linkDao",LinkDao.class);
+			DocumentazioneDao documentazioneDao=ctx.getBean("documentazioneDao",DocumentazioneDao.class);
+			UserDao userDao=ctx.getBean("userDao",UserDao.class);
+			CarDao carDao=ctx.getBean("carDao",CarDao.class);
+
+			Session s=sf.openSession();
+			linkDao.setSession(s);
+			documentazioneDao.setSession(s);
+			userDao.setSession(s);
+			carDao.setSession(s);
+
+			s.beginTransaction();
+			User user1 = userDao.create("mario98", "12345678", "Mario", "Rossi", "admin");
+			String dataS1= "07/08/2023";
+			Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(dataS1); 
+
+            
+            Car c1 = carDao.create("AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
+			Set<Car> cars = new HashSet<Car>(); 
+			cars.add(c1);
+			
+			Documentazione doc1 = documentazioneDao.create("TITOLO", user1, "DESCRIZIONE", date1, 90, null, cars);
+			Link link1=linkDao.create("DESCRIZIONE", doc1, "https://www.univpmLink.it");
+			s.getTransaction().commit();
+
+			assertEquals(linkDao.getAll().size(),1);
+
+			s.beginTransaction();
+			link1.setLink("https://www.google.com");
+			linkDao.update(link1);
+			s.getTransaction().commit();
+
+			assertEquals(linkDao.getAll().size(),1);
+			assertEquals(linkDao.getById(1).getLink(),"https://www.google.com");
+			assertEquals(linkDao.getById(1),link1);
+		}
+	}
+
+	@Test
+	void noLinksAtBeginning() {
+		try (AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(DataServiceConfigTest.class)) {
+			SessionFactory sf = ctx.getBean("sessionFactory", SessionFactory.class);
+			LinkDao linkDao=ctx.getBean("linkDao",LinkDao.class);
+			Session s  = sf.openSession();
+			linkDao.setSession(s);
+			assertEquals(linkDao.getAll().size(), 0);
+		}
+	}
 
 	@BeforeEach
 	void setUp() throws Exception {

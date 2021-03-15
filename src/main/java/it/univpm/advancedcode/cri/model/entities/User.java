@@ -5,8 +5,8 @@ import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
 
-@Entity(name = "User")
-@Table(name = "Users")
+@Entity
+@Table(name = "users")
 public class User implements Serializable {
 
 	

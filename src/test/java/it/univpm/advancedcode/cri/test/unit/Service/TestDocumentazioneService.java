@@ -53,74 +53,74 @@ public class TestDocumentazioneService {
 	}
 
 
-//	@Test
-//	public void createAndDelete() throws java.text.ParseException {
-//		User user1 = userService.create("mario98", "12345678", "Mario", "Rossi", "admin");
-//		String dataS1= "07/08/2023";
-//		Date data1 = new SimpleDateFormat("dd/MM/yyyy").parse(dataS1); 
-//		Car c1 = carService.create("AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
-//		Set<Car> cars = new HashSet<Car>(); 
-//		cars.add(c1);
-//		
-//		Documentazione doc1 = documentazioneService.create("TITOLO", user1, "DESCRIZIONE", data1, (float) 900.10, cars);
-//		try {
-//			assertEquals(documentazioneService.getAll().size(),1);
-//		} catch(Exception e) {
-//			fail("Exception not excepted: "+e.getMessage());
-//		}
-//
-//
-//		documentazioneService.delete(doc1);
-//
-//		try {
-//			assertEquals(documentazioneService.getAll().size(),0);
-//			assertNull(documentazioneService.getById(1));
-//		} catch(Exception e) {
-//			fail("Exception not excepted: "+e.getMessage());
-//		}
-//	}
-//
-//	@Test
-//	public void createAndFind() throws java.text.ParseException {
-//		User user1 = userService.create("mario98", "12345678", "Mario", "Rossi", "admin");	
-//		String dataS1= "07/08/2023";
-//		Date data1 = new SimpleDateFormat("dd/MM/yyyy").parse(dataS1); 
-//		Car c1 = carService.create("AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
-//		Set<Car> cars = new HashSet<Car>(); 
-//		cars.add(c1);
-//		Documentazione doc1 = documentazioneService.create("TITOLO", user1, "DESCRIZIONE", data1, (float) 900.10,cars);
-//
-//		try {
-//			documentazioneService.getById(doc1.getDocumento_id()); 
-//		} catch(Exception e) {
-//			fail("Exception not expected: " + e.getMessage());
-//		}
-//		try {
-//			Documentazione notFound=documentazioneService.getById(999);
-//			assertNull(notFound);
-//		} catch(Exception e) {
-//			assertTrue(true);
-//		}
-//		List<Documentazione> allDocuments=documentazioneService.getAll();
-//		assertEquals(allDocuments.size(), 1);
-//	}
-//
-//	@Test
-//	public void createAndUpdate() throws java.text.ParseException {
-//		User user1 = userService.create("mario98", "12345678", "Mario", "Rossi", "admin");
-//		User user2 = userService.create("mario18", "12345678", "Mario2", "Rossi", "driver");
-//		String dataS1= "07/08/2023";
-//		Date data1 = new SimpleDateFormat("dd/MM/yyyy").parse(dataS1); 
-//		Car c1 = carService.create("AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
-//		Set<Car> cars = new HashSet<Car>(); 
-//		cars.add(c1);
-//		Documentazione doc1 = documentazioneService.create("TITOLO", user1, "DESCRIZIONE", data1, (float) 900.10,cars);
-//		assertEquals(documentazioneService.getAll().size(),1);
-//
-//		doc1.setAutoreUtente(user2);
-//		documentazioneService.update(doc1);
-//		assertEquals(doc1.getAutoreUtente(),user2);
-//	}
+	@Test
+	public void createAndDelete() throws java.text.ParseException {
+		User user1 = userService.create("mario98", "12345678", "Mario", "Rossi", "admin");
+		String dataS1= "07/08/2023";
+		Date data1 = new SimpleDateFormat("dd/MM/yyyy").parse(dataS1); 
+		Car c1 = carService.create("AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
+		Set<Car> cars = new HashSet<Car>(); 
+		cars.add(c1);
+		
+		Documentazione doc1 = documentazioneService.create("TITOLO", user1, "DESCRIZIONE", data1, (float) 900.10, cars);
+		try {
+			assertEquals(documentazioneService.getAll().size(),1);
+		} catch(Exception e) {
+			fail("Exception not excepted: "+e.getMessage());
+		}
+
+
+		documentazioneService.delete(doc1);
+
+		try {
+			assertEquals(documentazioneService.getAll().size(),0);
+			assertNull(documentazioneService.getById(1));
+		} catch(Exception e) {
+			fail("Exception not excepted: "+e.getMessage());
+		}
+	}
+
+	@Test
+	public void createAndFind() throws java.text.ParseException {
+		User user1 = userService.create("mario98", "12345678", "Mario", "Rossi", "admin");	
+		String dataS1= "07/08/2023";
+		Date data1 = new SimpleDateFormat("dd/MM/yyyy").parse(dataS1); 
+		Car c1 = carService.create("AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
+		Set<Car> cars = new HashSet<Car>(); 
+		cars.add(c1);
+		Documentazione doc1 = documentazioneService.create("TITOLO", user1, "DESCRIZIONE", data1, (float) 900.10,cars);
+
+		try {
+			documentazioneService.getById(doc1.getDocumento_id()); 
+		} catch(Exception e) {
+			fail("Exception not expected: " + e.getMessage());
+		}
+		try {
+			Documentazione notFound=documentazioneService.getById(999);
+			assertNull(notFound);
+		} catch(Exception e) {
+			assertTrue(true);
+		}
+		List<Documentazione> allDocuments=documentazioneService.getAll();
+		assertEquals(allDocuments.size(), 1);
+	}
+
+	@Test
+	public void createAndUpdate() throws java.text.ParseException {
+		User user1 = userService.create("mario98", "12345678", "Mario", "Rossi", "admin");
+		User user2 = userService.create("mario18", "12345678", "Mario2", "Rossi", "driver");
+		String dataS1= "07/08/2023";
+		Date data1 = new SimpleDateFormat("dd/MM/yyyy").parse(dataS1); 
+		Car c1 = carService.create("AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
+		Set<Car> cars = new HashSet<Car>(); 
+		cars.add(c1);
+		Documentazione doc1 = documentazioneService.create("TITOLO", user1, "DESCRIZIONE", data1, (float) 900.10,cars);
+		assertEquals(documentazioneService.getAll().size(),1);
+
+		doc1.setAutoreUtente(user2);
+		documentazioneService.update(doc1);
+		assertEquals(doc1.getAutoreUtente(),user2);
+	}
 
 
 }

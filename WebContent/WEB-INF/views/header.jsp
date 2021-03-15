@@ -30,7 +30,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="${home_url}">AdvProgCommunity</a>
+            <a class="navbar-brand" href="${home_url}">Advanced CODE</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive1"
                     aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -63,8 +63,7 @@
     </nav>
     <hr/>
 </c:if>
-
-<c:if test="${isUser}">
+<c:if test="${isDriver}">
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
@@ -111,9 +110,76 @@
         </div>
     </nav>
     <hr/>
+</c:if>  
+<c:if test="${isAdmin}">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="${home_url}">AdvProgCommunity</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive3"
+                    aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive3">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="${home_url}">Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="${about_us_url}">Su di noi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="${contacts_us_url}">Contatti</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="${disclaimer_url}">Disclaimer</a>
+                    </li>
+                    <li class="navbar-item">
+                        <div class="btn-group">
+                            <a role="button" href="" class="btn nav-link dropdown-toggle"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">I tuoi contenuti</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="${my_comments_url}">I tuoi commenti</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="${my_posts_url}">I tuoi post</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="navbar-item">
+                        <div class="btn-group">
+                            <a role="button" href="" class="btn nav-link dropdown-toggle"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Gestisci</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="${attachments_url}">Gestisci Allegati</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="${archives_url}">Gestisci Archivi</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="${all_comments_url}">Gestisci Commenti</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="${all_posts_url}">Gestisci Post</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="${tags_url}">Gestisci Tag</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="${users_url}">Gestisci Utenti</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="${profile_url}"><sec:authentication property="principal.username"/></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="${logout_url}">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <hr/>
 </c:if>
 
-<c:if test="${isAdmin}">
+<c:if test="${isAccount}">
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">

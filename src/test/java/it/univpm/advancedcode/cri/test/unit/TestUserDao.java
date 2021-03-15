@@ -50,59 +50,59 @@ public class TestUserDao {
 			System.out.println(" FINE TEST _ CREATE & DELETE");
 	}
 
-//		@Test public void createAndUpdate() { try (AnnotationConfigApplicationContext
-//				ctx = new AnnotationConfigApplicationContext(DataServiceConfigTest.class)) {
-//			SessionFactory sf = ctx.getBean("sessionFactory", SessionFactory.class);
-//			UserDao userDao=ctx.getBean("userDao",UserDao.class);
-//	
-//			Session s=sf.openSession(); userDao.setSession(s);
-//	
-//	
-//			s.beginTransaction(); 
-//			User user1 = userDao.create("mario98", "12345678","Mario", "Rossi", "admin"); 
-//			s.getTransaction().commit();
-//	
-//			assertEquals(userDao.findAll().size(),1);
-//	
-//			s.beginTransaction(); user1.setFirstName("Roberto"); userDao.update(user1);
-//			s.getTransaction().commit();
-//	
-//			assertEquals(userDao.findAll().size(),1);
-//			assertEquals(user1.getFirstName(),"Roberto"); } }
-//	
-//		@Test
-//		public void noUsersAtBeginning() {
-//			try (AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(DataServiceConfigTest.class)) {
-//				SessionFactory sf = ctx.getBean("sessionFactory", SessionFactory.class);
-//				UserDao userDao=ctx.getBean("userDao",UserDao.class);
-//				Session s  = sf.openSession();
-//				userDao.setSession(s);
-//				assertEquals(userDao.findAll().size(), 0);
-//			}
-//		}
-//
-//		@Test
-//			public void testFindUserByUsername() {
-//				try (AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(DataServiceConfigTest.class)) {
-//					SessionFactory sf = ctx.getBean("sessionFactory", SessionFactory.class);
-//					UserDao userDao=ctx.getBean("userDao",UserDao.class);
-//		
-//					Session s=sf.openSession();
-//					userDao.setSession(s);
-//		
-//					s.beginTransaction();
-//					User user1 = userDao.create("mario98", "12345678", "Mario", "Rossi", "driver");
-//					User user2 = userDao.create("paolo97", "12345678", "Paolo", "Baggio", "admin");
-//					s.getTransaction().commit();
-//		
-//					try {
-//						assertEquals(userDao.findUserByUsername("mario98"),user1);
-//						assertEquals(userDao.findUserByUsername("paolo97"),user2);
-//					} catch(Exception e) {
-//						fail("Exception not excepted: "+e.getMessage());
-//					}
-//				}
-//			}
+		@Test public void createAndUpdate() { try (AnnotationConfigApplicationContext
+				ctx = new AnnotationConfigApplicationContext(DataServiceConfigTest.class)) {
+			SessionFactory sf = ctx.getBean("sessionFactory", SessionFactory.class);
+			UserDao userDao=ctx.getBean("userDao",UserDao.class);
+	
+			Session s=sf.openSession(); userDao.setSession(s);
+	
+	
+			s.beginTransaction(); 
+			User user1 = userDao.create("mario98", "12345678","Mario", "Rossi", "admin"); 
+			s.getTransaction().commit();
+	
+			assertEquals(userDao.findAll().size(),1);
+	
+			s.beginTransaction(); user1.setFirstName("Roberto"); userDao.update(user1);
+			s.getTransaction().commit();
+	
+			assertEquals(userDao.findAll().size(),1);
+			assertEquals(user1.getFirstName(),"Roberto"); } }
+	
+		@Test
+		public void noUsersAtBeginning() {
+			try (AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(DataServiceConfigTest.class)) {
+				SessionFactory sf = ctx.getBean("sessionFactory", SessionFactory.class);
+				UserDao userDao=ctx.getBean("userDao",UserDao.class);
+				Session s  = sf.openSession();
+				userDao.setSession(s);
+				assertEquals(userDao.findAll().size(), 0);
+			}
+		}
+
+		@Test
+			public void testFindUserByUsername() {
+				try (AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(DataServiceConfigTest.class)) {
+					SessionFactory sf = ctx.getBean("sessionFactory", SessionFactory.class);
+					UserDao userDao=ctx.getBean("userDao",UserDao.class);
+		
+					Session s=sf.openSession();
+					userDao.setSession(s);
+		
+					s.beginTransaction();
+					User user1 = userDao.create("mario98", "12345678", "Mario", "Rossi", "driver");
+					User user2 = userDao.create("paolo97", "12345678", "Paolo", "Baggio", "admin");
+					s.getTransaction().commit();
+		
+					try {
+						assertEquals(userDao.findUserByUsername("mario98"),user1);
+						assertEquals(userDao.findUserByUsername("paolo97"),user2);
+					} catch(Exception e) {
+						fail("Exception not excepted: "+e.getMessage());
+					}
+				}
+			}
 
 	@BeforeEach
 	void setUp() throws Exception {

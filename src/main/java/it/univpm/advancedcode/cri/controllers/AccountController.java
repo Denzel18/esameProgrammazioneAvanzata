@@ -125,7 +125,7 @@ public class AccountController {
      * @param uiModel modello associato
      * @return nome della vista
      */
-    @GetMapping(value = "/cars/new")
+    @GetMapping(value = "/car/new")
     public String newCar(Model uiModel) {
         logger.info("Creating a new car...");
         uiModel.addAttribute("car", new Car());
@@ -222,7 +222,7 @@ public class AccountController {
      * @param uiModel modello associato
      * @return nome della vista
      */
-    @GetMapping(value = "/documentazioni/new")
+    @GetMapping(value = "/documentazione/new")
     public String newDocumentazione(Model uiModel) {
         logger.info("Creating a new documentazioene...");
         uiModel.addAttribute("documentazione", new Documentazione());

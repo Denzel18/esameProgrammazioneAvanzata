@@ -30,7 +30,7 @@ public class LoadDataTest {
 
 			UserDao userDao = ctx.getBean("userDao", UserDao.class);
 			DocumentazioneDao documentazioneDao = ctx.getBean("documentazioneDao", DocumentazioneDao.class);
-			AllegatoDao allegatoDao = ctx.getBean("allegatoDao", AllegatoDao.class);
+			//AllegatoDao allegatoDao = ctx.getBean("allegatoDao", AllegatoDao.class);
 			CarDao carDao = ctx.getBean("carDao", CarDao.class);
 			ManutenzioneDao manutenzioneDao = ctx.getBean("manutenzioneDao", ManutenzioneDao.class);
 			FileDao fileDao = ctx.getBean("fileDao", FileDao.class);
@@ -42,7 +42,7 @@ public class LoadDataTest {
 
 				userDao.setSession(session);
 				documentazioneDao.setSession(session);
-				allegatoDao.setSession(session);
+				//allegatoDao.setSession(session);
 				carDao.setSession(session);
 				manutenzioneDao.setSession(session);
 				fileDao.setSession(session);
@@ -121,7 +121,7 @@ public class LoadDataTest {
 
 				session.getTransaction().commit();
 
-				assert allegatoDao.getAll().size() == 10;
+				//assert allegatoDao.getAll().size() == 10;
 
 
 

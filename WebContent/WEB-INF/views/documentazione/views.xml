@@ -1,0 +1,18 @@
+<?xml  version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE tiles-definitions PUBLIC  "-//Apache  Software
+   Foundation//DTD Tiles  Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+    <definition extends="default" name="documentazioni.list">
+        <put-attribute name="body" value="/WEB-INF/views/documentazione/list.jsp"/>
+        <put-attribute name="pageTitle" value="Lista Documentazione"/>
+    </definition>
+    <definition extends="default" name="documentazione.new">
+        <put-attribute name="body" value="/WEB-INF/views/documentazione/form.jsp"/>
+        <put-attribute name="pageTitle" value="Nuovo Documento"/>
+    </definition>
+    <definition extends="default" name="posts.edit">
+        <put-attribute name="body" value="/WEB-INF/views/documentazione/form.jsp"/>
+        <put-attribute name="pageTitle" value="Modifica documentazione"/>
+    </definition>
+</tiles-definitions>

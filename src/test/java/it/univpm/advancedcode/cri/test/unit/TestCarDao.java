@@ -17,61 +17,61 @@ import it.univpm.advancedcode.cri.test.DataServiceConfigTest;
 
 public class TestCarDao {
 
-//	@Test
-//	public void createAndDeleteByTarga() {
-//		try (AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(DataServiceConfigTest.class)) {
-//			SessionFactory sf = ctx.getBean("sessionFactory", SessionFactory.class);
-//			CarDao carDao=ctx.getBean("carDao",CarDao.class);
-//
-//			Session s=sf.openSession();
-//			carDao.setSession(s);
-//
-//			s.beginTransaction();
-//			Car c1 = carDao.create("AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
-//			s.getTransaction().commit();
-//
-//			assertEquals(carDao.getParcoMezzi().size(),1);
-//			assertEquals(carDao.getByTarga("AX311TY").getTarga(),"AX311TY");
-//
-//			s.beginTransaction();
-//			carDao.delete(c1);
-//			s.getTransaction().commit();
-//
-//			assertEquals(carDao.getParcoMezzi().size(),0);
-//			assertNull(carDao.getByTarga("AX311TY"));
-//		}
-//	}
-//
-//	@Test
-//	public void noCarsAtBeginning() {
-//		try (AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(DataServiceConfigTest.class)) {
-//			SessionFactory sf = ctx.getBean("sessionFactory", SessionFactory.class);
-//			CarDao carDao=ctx.getBean("carDao",CarDao.class);
-//			Session s  = sf.openSession();
-//			carDao.setSession(s);
-//			assertEquals(carDao.getParcoMezzi().size(), 0);
-//		}
-//	}
-//
-//	@Test public void testGetByTarga() { 
-//		try (AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(DataServiceConfigTest.class)) {
-//			SessionFactory sf = ctx.getBean("sessionFactory", SessionFactory.class);
-//			CarDao carDao=ctx.getBean("carDao",CarDao.class);
-//
-//
-//			Session s=sf.openSession(); carDao.setSession(s);
-//
-//			s.beginTransaction(); 
-//			Car c1 = carDao.create("AX311TY", "FIAT", "DUCATO",
-//					"X1LS22111", 3000, "Emergenza", 2, "DIESEL"); s.getTransaction().commit();
-//
-//					try { 
-//						assertEquals(carDao.getParcoMezzi().size(),1);
-//						assertEquals(carDao.getByTarga("AX311TY"),c1); 
-//					} catch(Exception e) {
-//						fail("Exception not excepted: COGLIONEEEE 222"+e.getMessage()); } 
-//		} 
-//	}
+	@Test
+	public void createAndDeleteByTarga() {
+		try (AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(DataServiceConfigTest.class)) {
+			SessionFactory sf = ctx.getBean("sessionFactory", SessionFactory.class);
+			CarDao carDao=ctx.getBean("carDao",CarDao.class);
+
+			Session s=sf.openSession();
+			carDao.setSession(s);
+
+			s.beginTransaction();
+			Car c1 = carDao.create("AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
+			s.getTransaction().commit();
+
+			assertEquals(carDao.getParcoMezzi().size(),1);
+			assertEquals(carDao.getByTarga("AX311TY").getTarga(),"AX311TY");
+
+			s.beginTransaction();
+			carDao.delete(c1);
+			s.getTransaction().commit();
+
+			assertEquals(carDao.getParcoMezzi().size(),0);
+			assertNull(carDao.getByTarga("AX311TY"));
+		}
+	}
+
+	@Test
+	public void noCarsAtBeginning() {
+		try (AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(DataServiceConfigTest.class)) {
+			SessionFactory sf = ctx.getBean("sessionFactory", SessionFactory.class);
+			CarDao carDao=ctx.getBean("carDao",CarDao.class);
+			Session s  = sf.openSession();
+			carDao.setSession(s);
+			assertEquals(carDao.getParcoMezzi().size(), 0);
+		}
+	}
+
+	@Test public void testGetByTarga() { 
+		try (AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(DataServiceConfigTest.class)) {
+			SessionFactory sf = ctx.getBean("sessionFactory", SessionFactory.class);
+			CarDao carDao=ctx.getBean("carDao",CarDao.class);
+
+
+			Session s=sf.openSession(); carDao.setSession(s);
+
+			s.beginTransaction(); 
+			Car c1 = carDao.create("AX311TY", "FIAT", "DUCATO",
+					"X1LS22111", 3000, "Emergenza", 2, "DIESEL"); s.getTransaction().commit();
+
+					try { 
+						assertEquals(carDao.getParcoMezzi().size(),1);
+						assertEquals(carDao.getByTarga("AX311TY"),c1); 
+					} catch(Exception e) {
+						fail("Exception not excepted: COGLIONEEEE 222"+e.getMessage()); } 
+		} 
+	}
 
 	@BeforeEach
 	void setUp() throws Exception {

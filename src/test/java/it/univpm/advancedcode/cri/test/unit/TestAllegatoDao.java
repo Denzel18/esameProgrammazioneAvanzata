@@ -33,120 +33,120 @@ public class TestAllegatoDao {
 	private final static String DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras " +
 			"tempus magna vel posuere cursus.";
 
-//	@Test
-//	void deleteAllegato() throws ParseException {
-//		try (AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(DataServiceConfigTest.class)) {
-//			SessionFactory sf = ctx.getBean("sessionFactory", SessionFactory.class);
-//			LinkDao linkDao=ctx.getBean("linkDao",LinkDao.class);
-//			DocumentazioneDao documentazioneDao=ctx.getBean("documentazioneDao",DocumentazioneDao.class);
-//			FileDao fileDao=ctx.getBean("fileDao",FileDao.class);
-//			UserDao userDao=ctx.getBean("userDao",UserDao.class);
-//			AllegatoDao allegatoDao=ctx.getBean("allegatoDao",AllegatoDao.class);
-//			CarDao carDao=ctx.getBean("carDao",CarDao.class);
-//
-//			Session s=sf.openSession();
-//			linkDao.setSession(s);
-//			documentazioneDao.setSession(s);
-//			fileDao.setSession(s);
-//			userDao.setSession(s);
-//			allegatoDao.setSession(s);
-//
-//			s.beginTransaction();
-//
-//			User user1 = userDao.create("mario98", "12345678", "Mario", "Rossi", "admin");
-//			String dataS1= "07/08/2023";
-//			Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(dataS1); 
-//
-//			Car c1 = carDao.create("AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
-//			
-//			Set<Car> cars = new HashSet<Car>(); 
-//			cars.add(c1);
-//
-//			Documentazione doc1 = documentazioneDao.create("TITOLO", user1, DESCRIPTION, date1, 90, null, cars);
-//
-//			Link link1=linkDao.create(DESCRIPTION, doc1, "https://www.univpm.it");
-//			File file1=fileDao.create(DESCRIPTION, doc1, "file1.jpg", true);
-//			s.getTransaction().commit();
-//
-//			try {
-//				assertEquals(allegatoDao.getAll().size(),2);
-//				assertEquals(allegatoDao.getById(1),link1);
-//				assertEquals(allegatoDao.getById(2),file1);
-//			} catch(Exception e) {
-//				fail("Exception not excepted: "+e.getMessage());
-//			}
-//
-//			s.beginTransaction();
-//			allegatoDao.delete(file1);
-//			allegatoDao.delete(link1);
-//			s.getTransaction().commit();
-//
-//			try {
-//				assertEquals(allegatoDao.getAll().size(),0);
-//				assertEquals(allegatoDao.getById(1),null);
-//				assertEquals(allegatoDao.getById(2),null);
-//			} catch(Exception e) {
-//				fail("Exception not excepted: "+e.getMessage());
-//			}
-//		}
-//	}
-//
-//	@Test
-//	void findAllegatoById() throws ParseException {
-//		try (AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(DataServiceConfigTest.class)) {
-//			SessionFactory sf = ctx.getBean("sessionFactory", SessionFactory.class);
-//			LinkDao linkDao=ctx.getBean("linkDao",LinkDao.class);
-//			DocumentazioneDao documentazioneDao=ctx.getBean("documentazioneDao",DocumentazioneDao.class);
-//			FileDao fileDao=ctx.getBean("fileDao",FileDao.class);
-//			UserDao userDao=ctx.getBean("userDao",UserDao.class);
-//			AllegatoDao allegatoDao=ctx.getBean("allegatoDao",AllegatoDao.class);
-//			CarDao carDao=ctx.getBean("carDao",CarDao.class);
-//
-//			Session s=sf.openSession();
-//			linkDao.setSession(s);
-//			documentazioneDao.setSession(s);
-//			fileDao.setSession(s);
-//			userDao.setSession(s);
-//			allegatoDao.setSession(s);
-//
-//			s.beginTransaction();
-//
-//			User user1 = userDao.create("mario98", "12345678", "Mario", "Rossi","admin");
-//			String dataS1= "07/08/2023";
-//			Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(dataS1); 
-//
-//			Car c1 = carDao.create("AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
-//			
-//			Set<Car> cars = new HashSet<Car>(); 
-//			cars.add(c1);
-//
-//
-//			Documentazione doc1 = documentazioneDao.create("TITOLO", user1, DESCRIPTION, date1, 90, null, cars);
-//
-//			Link link1=linkDao.create(DESCRIPTION, doc1, "https://www.univpm.it");
-//			File file1=fileDao.create(DESCRIPTION, doc1, "file1.jpg", true);
-//			s.getTransaction().commit();
-//
-//			try {
-//				assertEquals(allegatoDao.getAll().size(),2);
-//				assertEquals(allegatoDao.getById(1),link1);
-//				assertEquals(allegatoDao.getById(2),file1);
-//			} catch(Exception e) {
-//				fail("Exception not excepted: "+e.getMessage());
-//			}
-//		}
-//	}
-//
-//	@Test
-//	void noAllegatoAtBeginning() {
-//		try (AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(DataServiceConfigTest.class)) {
-//			SessionFactory sf = ctx.getBean("sessionFactory", SessionFactory.class);
-//			AllegatoDao allegatoDao=ctx.getBean("allegatoDao",AllegatoDao.class);
-//			Session s  = sf.openSession();
-//			allegatoDao.setSession(s);
-//			assertEquals(allegatoDao.getAll().size(), 0);
-//		}
-//	}
+	@Test
+	void deleteAllegato() throws ParseException {
+		try (AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(DataServiceConfigTest.class)) {
+			SessionFactory sf = ctx.getBean("sessionFactory", SessionFactory.class);
+			LinkDao linkDao=ctx.getBean("linkDao",LinkDao.class);
+			DocumentazioneDao documentazioneDao=ctx.getBean("documentazioneDao",DocumentazioneDao.class);
+			FileDao fileDao=ctx.getBean("fileDao",FileDao.class);
+			UserDao userDao=ctx.getBean("userDao",UserDao.class);
+			AllegatoDao allegatoDao=ctx.getBean("allegatoDao",AllegatoDao.class);
+			CarDao carDao=ctx.getBean("carDao",CarDao.class);
+
+			Session s=sf.openSession();
+			linkDao.setSession(s);
+			documentazioneDao.setSession(s);
+			fileDao.setSession(s);
+			userDao.setSession(s);
+			allegatoDao.setSession(s);
+
+			s.beginTransaction();
+
+			User user1 = userDao.create("mario98", "12345678", "Mario", "Rossi", "admin");
+			String dataS1= "07/08/2023";
+			Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(dataS1); 
+
+			Car c1 = carDao.create("AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
+			
+			Set<Car> cars = new HashSet<Car>(); 
+			cars.add(c1);
+
+			Documentazione doc1 = documentazioneDao.create("TITOLO", user1, DESCRIPTION, date1, 90, null, cars);
+
+			Link link1=linkDao.create(DESCRIPTION, doc1, "https://www.univpm.it");
+			File file1=fileDao.create(DESCRIPTION, doc1, "file1.jpg", true);
+			s.getTransaction().commit();
+
+			try {
+				assertEquals(allegatoDao.getAll().size(),2);
+				assertEquals(allegatoDao.getById(1),link1);
+				assertEquals(allegatoDao.getById(2),file1);
+			} catch(Exception e) {
+				fail("Exception not excepted: "+e.getMessage());
+			}
+
+			s.beginTransaction();
+			allegatoDao.delete(file1);
+			allegatoDao.delete(link1);
+			s.getTransaction().commit();
+
+			try {
+				assertEquals(allegatoDao.getAll().size(),0);
+				assertEquals(allegatoDao.getById(1),null);
+				assertEquals(allegatoDao.getById(2),null);
+			} catch(Exception e) {
+				fail("Exception not excepted: "+e.getMessage());
+			}
+		}
+	}
+
+	@Test
+	void findAllegatoById() throws ParseException {
+		try (AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(DataServiceConfigTest.class)) {
+			SessionFactory sf = ctx.getBean("sessionFactory", SessionFactory.class);
+			LinkDao linkDao=ctx.getBean("linkDao",LinkDao.class);
+			DocumentazioneDao documentazioneDao=ctx.getBean("documentazioneDao",DocumentazioneDao.class);
+			FileDao fileDao=ctx.getBean("fileDao",FileDao.class);
+			UserDao userDao=ctx.getBean("userDao",UserDao.class);
+			AllegatoDao allegatoDao=ctx.getBean("allegatoDao",AllegatoDao.class);
+			CarDao carDao=ctx.getBean("carDao",CarDao.class);
+
+			Session s=sf.openSession();
+			linkDao.setSession(s);
+			documentazioneDao.setSession(s);
+			fileDao.setSession(s);
+			userDao.setSession(s);
+			allegatoDao.setSession(s);
+
+			s.beginTransaction();
+
+			User user1 = userDao.create("mario98", "12345678", "Mario", "Rossi","admin");
+			String dataS1= "07/08/2023";
+			Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(dataS1); 
+
+			Car c1 = carDao.create("AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
+			
+			Set<Car> cars = new HashSet<Car>(); 
+			cars.add(c1);
+
+
+			Documentazione doc1 = documentazioneDao.create("TITOLO", user1, DESCRIPTION, date1, 90, null, cars);
+
+			Link link1=linkDao.create(DESCRIPTION, doc1, "https://www.univpm.it");
+			File file1=fileDao.create(DESCRIPTION, doc1, "file1.jpg", true);
+			s.getTransaction().commit();
+
+			try {
+				assertEquals(allegatoDao.getAll().size(),2);
+				assertEquals(allegatoDao.getById(1),link1);
+				assertEquals(allegatoDao.getById(2),file1);
+			} catch(Exception e) {
+				fail("Exception not excepted: "+e.getMessage());
+			}
+		}
+	}
+
+	@Test
+	void noAllegatoAtBeginning() {
+		try (AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(DataServiceConfigTest.class)) {
+			SessionFactory sf = ctx.getBean("sessionFactory", SessionFactory.class);
+			AllegatoDao allegatoDao=ctx.getBean("allegatoDao",AllegatoDao.class);
+			Session s  = sf.openSession();
+			allegatoDao.setSession(s);
+			assertEquals(allegatoDao.getAll().size(), 0);
+		}
+	}
 
 	@BeforeEach
 	void setUp() throws Exception {
@@ -156,62 +156,62 @@ public class TestAllegatoDao {
 	void tearDown() throws Exception {
 	}
 
-//	@Test
-//	void updateAttachment() throws ParseException {
-//		try (AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(DataServiceConfigTest.class)) {
-//			SessionFactory sf = ctx.getBean("sessionFactory", SessionFactory.class);
-//			LinkDao linkDao=ctx.getBean("linkDao",LinkDao.class);
-//			DocumentazioneDao documentazioneDao=ctx.getBean("documentazioneDao",DocumentazioneDao.class);
-//			FileDao fileDao=ctx.getBean("fileDao",FileDao.class);
-//			UserDao userDao=ctx.getBean("userDao",UserDao.class);
-//			AllegatoDao allegatoDao=ctx.getBean("allegatoDao",AllegatoDao.class);
-//			CarDao carDao=ctx.getBean("carDao",CarDao.class);
-//
-//			Session s=sf.openSession();
-//			linkDao.setSession(s);
-//			documentazioneDao.setSession(s);
-//			fileDao.setSession(s);
-//			userDao.setSession(s);
-//			allegatoDao.setSession(s);
-//
-//			s.beginTransaction();
-//
-//			User user1 = userDao.create("mario98", "12345678", "Mario", "Rossi", "admin");
-//			String dataS1= "07/08/2023";
-//			Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(dataS1); 
-//
-//			Car c1 = carDao.create("AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
-//
-//			Set<Car> cars = new HashSet<Car>(); 
-//			cars.add(c1);
-//
-//
-//			Documentazione doc1 = documentazioneDao.create("TITOLO", user1, DESCRIPTION, date1, 90, null, cars);
-//
-//			Link link1=linkDao.create(DESCRIPTION, doc1, "https://www.univpm.it");
-//			File file1=fileDao.create(DESCRIPTION, doc1, "file1.jpg", true);
-//			s.getTransaction().commit();
-//
-//			try {
-//				assertEquals(allegatoDao.getAll().size(),2);
-//				assertEquals(allegatoDao.getById(1),link1);
-//				assertEquals(allegatoDao.getById(2),file1);
-//			} catch(Exception e) {
-//				fail("Exception not excepted: "+e.getMessage());
-//			}
-//
-//			s.beginTransaction();
-//			file1.setName("file2.jpg");
-//			allegatoDao.update(file1);
-//			s.getTransaction().commit();
-//
-//			try {
-//				assertEquals(allegatoDao.getAll().size(),2);
-//				assertEquals(allegatoDao.getById(1),link1);
-//				assertEquals(allegatoDao.getById(2),file1);
-//			} catch(Exception e) {
-//				fail("Exception not excepted: "+e.getMessage());
-//			}
-//		}
-//	}
+	@Test
+	void updateAttachment() throws ParseException {
+		try (AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(DataServiceConfigTest.class)) {
+			SessionFactory sf = ctx.getBean("sessionFactory", SessionFactory.class);
+			LinkDao linkDao=ctx.getBean("linkDao",LinkDao.class);
+			DocumentazioneDao documentazioneDao=ctx.getBean("documentazioneDao",DocumentazioneDao.class);
+			FileDao fileDao=ctx.getBean("fileDao",FileDao.class);
+			UserDao userDao=ctx.getBean("userDao",UserDao.class);
+			AllegatoDao allegatoDao=ctx.getBean("allegatoDao",AllegatoDao.class);
+			CarDao carDao=ctx.getBean("carDao",CarDao.class);
+
+			Session s=sf.openSession();
+			linkDao.setSession(s);
+			documentazioneDao.setSession(s);
+			fileDao.setSession(s);
+			userDao.setSession(s);
+			allegatoDao.setSession(s);
+
+			s.beginTransaction();
+
+			User user1 = userDao.create("mario98", "12345678", "Mario", "Rossi", "admin");
+			String dataS1= "07/08/2023";
+			Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(dataS1); 
+
+			Car c1 = carDao.create("AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
+
+			Set<Car> cars = new HashSet<Car>(); 
+			cars.add(c1);
+
+
+			Documentazione doc1 = documentazioneDao.create("TITOLO", user1, DESCRIPTION, date1, 90, null, cars);
+
+			Link link1=linkDao.create(DESCRIPTION, doc1, "https://www.univpm.it");
+			File file1=fileDao.create(DESCRIPTION, doc1, "file1.jpg", true);
+			s.getTransaction().commit();
+
+			try {
+				assertEquals(allegatoDao.getAll().size(),2);
+				assertEquals(allegatoDao.getById(1),link1);
+				assertEquals(allegatoDao.getById(2),file1);
+			} catch(Exception e) {
+				fail("Exception not excepted: "+e.getMessage());
+			}
+
+			s.beginTransaction();
+			file1.setName("file2.jpg");
+			allegatoDao.update(file1);
+			s.getTransaction().commit();
+
+			try {
+				assertEquals(allegatoDao.getAll().size(),2);
+				assertEquals(allegatoDao.getById(1),link1);
+				assertEquals(allegatoDao.getById(2),file1);
+			} catch(Exception e) {
+				fail("Exception not excepted: "+e.getMessage());
+			}
+		}
+	}
 }

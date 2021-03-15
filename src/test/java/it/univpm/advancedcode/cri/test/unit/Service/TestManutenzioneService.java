@@ -32,71 +32,71 @@ public class TestManutenzioneService {
 	}
 
 		
-//	@Test
-//	public void createAndDelete() {
-//		Car c1 = carService.create("AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
-//		Set<Car> cars = new HashSet<Car>(); 
-//		cars.add(c1);
-//		Manutenzione m1 = manutenzioneService.create(1, "STRAORDINARIA", (float)90.05 , cars);
-//		try {
-//			assertEquals(manutenzioneService.getAll().size(),1);
-//		} catch(Exception e) {
-//			fail("Exception not excepted: "+e.getMessage());
-//		}
-//
-//
-//		manutenzioneService.delete(m1);
-//
-//		try {
-//			assertEquals(manutenzioneService.getAll().size(),0);
-//			assertNull(manutenzioneService.getById(1));
-//		} catch(Exception e) {
-//			fail("Exception not excepted: "+e.getMessage());
-//		}
-//	}
-//
-//	@Test
-//	void createAndFind() {
-//		Car c1 = carService.create("AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
-//		Set<Car> cars = new HashSet<Car>(); 
-//		cars.add(c1);
-//		Manutenzione m1 = manutenzioneService.create(1, "STRAORDINARIA", (float)90.05 , cars);
-//
-//		try {
-//			manutenzioneService.getById(m1.getId());
-//		} catch(Exception e) {
-//			fail("Exception not expected: " + e.getMessage());
-//		}
-//		try {
-//			Manutenzione notFound=manutenzioneService.getById(999);
-//			assertNull(notFound);
-//		} catch(Exception e) {
-//			assertTrue(true);
-//		}
-//		List<Manutenzione> allcomments=manutenzioneService.getAll();
-//		assertEquals(allcomments.size(), 1);
-//	}
-//
-//	//
-//	@Test
-//	void findManutenzioneById() {
-//		Car c1 = carService.create("AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
-//		Set<Car> cars = new HashSet<Car>(); 
-//		cars.add(c1);
-//		Manutenzione m1 = manutenzioneService.create(1, "STRAORDINARIA", (float)90.05 , cars);
-//		try {
-//			assertEquals(manutenzioneService.getAll().size(),1);
-//		} catch(Exception e) {
-//			fail("Exception not excepted: "+e.getMessage());
-//		}
-//	}
-//	//
-//	@Test
-//	void noManutenzioniAtBeginning() {
-//
-//		assertEquals(manutenzioneService.getAll().size(), 0);
-//
-//	}
+	@Test
+	public void createAndDelete() {
+		Car c1 = carService.create("AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
+		Set<Car> cars = new HashSet<Car>(); 
+		cars.add(c1);
+		Manutenzione m1 = manutenzioneService.create(1, "STRAORDINARIA", (float)90.05 , cars);
+		try {
+			assertEquals(manutenzioneService.getAll().size(),1);
+		} catch(Exception e) {
+			fail("Exception not excepted: "+e.getMessage());
+		}
+
+
+		manutenzioneService.delete(m1);
+
+		try {
+			assertEquals(manutenzioneService.getAll().size(),0);
+			assertNull(manutenzioneService.getById(1));
+		} catch(Exception e) {
+			fail("Exception not excepted: "+e.getMessage());
+		}
+	}
+
+	@Test
+	void createAndFind() {
+		Car c1 = carService.create("AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
+		Set<Car> cars = new HashSet<Car>(); 
+		cars.add(c1);
+		Manutenzione m1 = manutenzioneService.create(1, "STRAORDINARIA", (float)90.05 , cars);
+
+		try {
+			manutenzioneService.getById(m1.getId());
+		} catch(Exception e) {
+			fail("Exception not expected: " + e.getMessage());
+		}
+		try {
+			Manutenzione notFound=manutenzioneService.getById(999);
+			assertNull(notFound);
+		} catch(Exception e) {
+			assertTrue(true);
+		}
+		List<Manutenzione> allcomments=manutenzioneService.getAll();
+		assertEquals(allcomments.size(), 1);
+	}
+
+	//
+	@Test
+	void findManutenzioneById() {
+		Car c1 = carService.create("AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
+		Set<Car> cars = new HashSet<Car>(); 
+		cars.add(c1);
+		Manutenzione m1 = manutenzioneService.create(1, "STRAORDINARIA", (float)90.05 , cars);
+		try {
+			assertEquals(manutenzioneService.getAll().size(),1);
+		} catch(Exception e) {
+			fail("Exception not excepted: "+e.getMessage());
+		}
+	}
+	//
+	@Test
+	void noManutenzioniAtBeginning() {
+
+		assertEquals(manutenzioneService.getAll().size(), 0);
+
+	}
 	
 	@BeforeEach
 	void openContext() {
@@ -117,28 +117,28 @@ public class TestManutenzioneService {
 	}
 	
 	
-//	@Test
-//	void updateComment() {
-//		Car c1 = carService.create("AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
-//		Set<Car> cars = new HashSet<Car>(); 
-//		cars.add(c1);
-//		Manutenzione m1 = manutenzioneService.create(1, "STRAORDINARIA", (float)90.05 , cars);
-//
-//		try {
-//			assertEquals(manutenzioneService.getAll().size(),1);
-//		} catch(Exception e) {
-//			fail("Exception not excepted: "+e.getMessage());
-//		}
-//
-//
-//		m1.setTipoManutenzione("Manutenzione Modificato");
-//		manutenzioneService.update(m1);
-//
-//		try {
-//			assertEquals(manutenzioneService.getAll().size(),1);
-//			assertEquals(manutenzioneService.getById(1).getTipoManutenzione(), "Manutenzione Modificato");
-//		} catch(Exception e) {
-//			fail("Exception not excepted: "+e.getMessage());
-//		}
-//	}
+	@Test
+	void updateComment() {
+		Car c1 = carService.create("AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
+		Set<Car> cars = new HashSet<Car>(); 
+		cars.add(c1);
+		Manutenzione m1 = manutenzioneService.create(1, "STRAORDINARIA", (float)90.05 , cars);
+
+		try {
+			assertEquals(manutenzioneService.getAll().size(),1);
+		} catch(Exception e) {
+			fail("Exception not excepted: "+e.getMessage());
+		}
+
+
+		m1.setTipoManutenzione("Manutenzione Modificato");
+		manutenzioneService.update(m1);
+
+		try {
+			assertEquals(manutenzioneService.getAll().size(),1);
+			assertEquals(manutenzioneService.getById(1).getTipoManutenzione(), "Manutenzione Modificato");
+		} catch(Exception e) {
+			fail("Exception not excepted: "+e.getMessage());
+		}
+	}
 }

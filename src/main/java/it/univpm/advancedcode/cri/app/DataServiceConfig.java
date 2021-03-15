@@ -70,7 +70,7 @@ public class DataServiceConfig {
     }
 
     @Bean
-    @Autowired
+  //  @Autowired
     public SessionFactory sessionFactory(DataSource dataSource, Properties hibernateProperties) throws IOException {
         LocalSessionFactoryBean sessionFactoryBean = new LocalSessionFactoryBean();
         sessionFactoryBean = new LocalSessionFactoryBean();
@@ -79,6 +79,7 @@ public class DataServiceConfig {
         sessionFactoryBean.setHibernateProperties(hibernateProperties);
         sessionFactoryBean.afterPropertiesSet();
         return sessionFactoryBean.getObject();
+        
     }
 
     @Bean

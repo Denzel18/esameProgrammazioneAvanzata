@@ -37,52 +37,45 @@ public class TestUserService {
 	}
 
 	@Test
-   	public void createAndUpdate() {
-   		
-			User user1 = userService.create("mario98", "12345678", "Mario", "Rossi", "admin");
-			
-			
-			assertEquals(userService.findAll().size(),1);
-			
-			
-			user1.setFirstName("Roberto");
-			userService.update(user1);
-			
-			
-			assertEquals(userService.findAll().size(),1);
-			assertEquals(user1.getFirstName(),"Roberto");
-   		}
-   	
-   	
-   	@Test 
-   	 void testFindAll() {
-   		
-   		assertEquals(userService.findAll().size(),0);
-   		int i;
-   		for (i=0; i < 10; i++) {
-   			
-   			userService.create("user"+i, "1234", "Utente"+i, "Prova"+i, "admin");
-   		}
-   		
-   		assertEquals(userService.findAll().size(),i);
-   		
-   		
-   	}
-   	
-   	@Test
-   	public void createAndDelete() {
-   		
-			User user1 = userService.create("mario98", "12345678", "Mario", "Rossi", "admin");
-			
-			
-			assertEquals(userService.findAll().size(),1);
-			
-			
-			userService.delete(user1);
-			
-			
-			assertEquals(userService.findAll().size(),0);
-   		}
+	public void createAndUpdate() {
+		User user1 = userService.create("mario98", "12345678", "Mario", "Rossi", "admin");
+		assertEquals(userService.findAll().size(),1);
+		user1.setFirstName("Roberto");
+		userService.update(user1);
+		assertEquals(userService.findAll().size(),1);
+		assertEquals(user1.getFirstName(),"Roberto");
+	}
+
+
+	@Test 
+	void testFindAll() {
+
+		assertEquals(userService.findAll().size(),0);
+		int i;
+		for (i=0; i < 10; i++) {
+
+			userService.create("user"+i, "1234", "Utente"+i, "Prova"+i, "admin");
+		}
+
+		assertEquals(userService.findAll().size(),i);
+
+
+	}
+
+	@Test
+	public void createAndDelete() {
+
+		User user1 = userService.create("mario98", "12345678", "Mario", "Rossi", "admin");
+
+
+		assertEquals(userService.findAll().size(),1);
+
+
+		userService.delete(user1);
+
+
+		assertEquals(userService.findAll().size(),0);
+	}
 
 }
 
