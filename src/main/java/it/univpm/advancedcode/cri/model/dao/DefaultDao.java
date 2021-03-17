@@ -5,13 +5,27 @@ import javax.annotation.Resource;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import javax.annotation.Resource;
 
 abstract class DefaultDao {
 
     private SessionFactory sessionFactory;
     private Session session;
-	
-	public Session getSession() {
+
+    public SessionFactory getSessionFactory() {
+        return sessionFactory;
+    }
+
+    @Resource(name = "sessionFactory")
+    public void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
+
+    public void setSession(Session session) {
+        this.session = session;
+    }
+
+    public Session getSession() {
         // shared session exists
         Session session = this.session;
         if (session == null) {
@@ -24,18 +38,6 @@ abstract class DefaultDao {
         }
         return session;
     }
-	
-	public SessionFactory getSessionFactory() {
-		return sessionFactory; 
-	}
-
-    public void setSession(Session session) {
-        this.session = session;
-    }
-
-    @Resource(name = "sessionFactory") // find a bean by name and inject it 
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory; 
-	}
 
 }
+

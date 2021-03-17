@@ -1,0 +1,1302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="it.univpm.advancedcode.cri.test.unit.TestPrenotazioneDao" time="1.953" tests="4" errors="4" skipped="0" failures="0">
+  <properties>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="java.vm.version" value="15.0.2+7-27"/>
+    <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk-15.0.2.jdk/Contents/Home/lib"/>
+    <property name="maven.multiModuleProjectDirectory" value="/Users/denisbernovschi/git/esameProgrammazioneAvanzata"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="java.vendor.url" value="https://java.oracle.com/"/>
+    <property name="guice.disable.misplaced.annotation.check" value="true"/>
+    <property name="path.separator" value=":"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="user.country" value="IT"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="user.dir" value="/Users/denisbernovschi/git/esameProgrammazioneAvanzata"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="java.runtime.version" value="15.0.2+7-27"/>
+    <property name="os.arch" value="x86_64"/>
+    <property name="java.io.tmpdir" value="/var/folders/3y/9p2nvb_x7cn1xtbxd0zbs_j40000gn/T/"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="os.name" value="Mac OS X"/>
+    <property name="classworlds.conf" value="/Users/denisbernovschi/.m2/wrapper/dists/apache-maven-3.5.3-bin/2c22a6s60afpuloj4v181qvild/apache-maven-3.5.3/bin/m2.conf"/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="java.library.path" value="/Users/denisbernovschi/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/>
+    <property name="maven.conf" value="/Users/denisbernovschi/.m2/wrapper/dists/apache-maven-3.5.3-bin/2c22a6s60afpuloj4v181qvild/apache-maven-3.5.3/conf"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="java.class.version" value="59.0"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="os.version" value="10.16"/>
+    <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="user.home" value="/Users/denisbernovschi"/>
+    <property name="user.timezone" value="Europe/Rome"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.specification.version" value="15"/>
+    <property name="user.name" value="denisbernovschi"/>
+    <property name="java.class.path" value="/Users/denisbernovschi/git/esameProgrammazioneAvanzata/.mvn/wrapper/maven-wrapper.jar"/>
+    <property name="java.vm.specification.version" value="15"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="sun.java.command" value="org.apache.maven.wrapper.MavenWrapperMain install"/>
+    <property name="java.home" value="/Library/Java/JavaVirtualMachines/jdk-15.0.2.jdk/Contents/Home"/>
+    <property name="user.language" value="it"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="java.version" value="15.0.2"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="maven.home" value="/Users/denisbernovschi/.m2/wrapper/dists/apache-maven-3.5.3-bin/2c22a6s60afpuloj4v181qvild/apache-maven-3.5.3"/>
+    <property name="file.separator" value="/"/>
+    <property name="java.version.date" value="2021-01-19"/>
+    <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+  </properties>
+  <testcase name="createAndDelete" classname="it.univpm.advancedcode.cri.test.unit.TestPrenotazioneDao" time="0.407">
+    <error message="Error creating bean with name &apos;allegatoDao&apos;: Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;sessionFactory&apos; defined in it.univpm.advancedcode.cri.test.DataServiceConfigTest: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method &apos;sessionFactory&apos; threw exception; nested exception is java.lang.NullPointerException" type="org.springframework.beans.factory.BeanCreationException">org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'allegatoDao': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sessionFactory' defined in it.univpm.advancedcode.cri.test.DataServiceConfigTest: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method 'sessionFactory' threw exception; nested exception is java.lang.NullPointerException
+	at it.univpm.advancedcode.cri.test.unit.TestPrenotazioneDao.createAndDelete(TestPrenotazioneDao.java:34)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sessionFactory' defined in it.univpm.advancedcode.cri.test.DataServiceConfigTest: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method 'sessionFactory' threw exception; nested exception is java.lang.NullPointerException
+	at it.univpm.advancedcode.cri.test.unit.TestPrenotazioneDao.createAndDelete(TestPrenotazioneDao.java:34)
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method 'sessionFactory' threw exception; nested exception is java.lang.NullPointerException
+	at it.univpm.advancedcode.cri.test.unit.TestPrenotazioneDao.createAndDelete(TestPrenotazioneDao.java:34)
+Caused by: java.lang.NullPointerException
+</error>
+    <system-out><![CDATA[Hibernate: 
+    
+    alter table Allegati 
+       drop 
+       foreign key FKefo4ijugq7pbqosvf8u6wol02
+Hibernate: 
+    
+    alter table cars_documentazioni 
+       drop 
+       foreign key FKmemt4ctult6rus8gevlcmlju7
+Hibernate: 
+    
+    alter table cars_documentazioni 
+       drop 
+       foreign key FKgqahxvn108yk7q56qekejgbgc
+Hibernate: 
+    
+    alter table cars_manutenzioni 
+       drop 
+       foreign key FKhs7i0utxcwa351og2uv21pnyr
+Hibernate: 
+    
+    alter table cars_manutenzioni 
+       drop 
+       foreign key FKqdorpikjv8fh4rbpi4u6qw43t
+Hibernate: 
+    
+    alter table cars_prenotazioni 
+       drop 
+       foreign key FKro3el415ooe1bcgjiaxvqvamy
+Hibernate: 
+    
+    alter table cars_prenotazioni 
+       drop 
+       foreign key FKaswpjxl97qaecthyfx7f37fjs
+Hibernate: 
+    
+    alter table cars_utenti 
+       drop 
+       foreign key FKkfgkih5oukkxy95328h2kobc9
+Hibernate: 
+    
+    alter table cars_utenti 
+       drop 
+       foreign key FK6aow3mhii88aae150grntenn9
+Hibernate: 
+    
+    alter table Documentazioni 
+       drop 
+       foreign key FK766pha2m4kbu1ovcsq9wbt6j
+Hibernate: 
+    
+    alter table Documentazioni 
+       drop 
+       foreign key FKg4nqx737cpapsbdq8f3kxnff7
+Hibernate: 
+    
+    alter table Files 
+       drop 
+       foreign key FKrilqsw1l5csq89yo3go3jtbot
+Hibernate: 
+    
+    alter table Links 
+       drop 
+       foreign key FK680sschlvnifafp833sv4cr2q
+Hibernate: 
+    
+    drop table if exists Allegati
+Hibernate: 
+    
+    drop table if exists Cars
+Hibernate: 
+    
+    drop table if exists cars_documentazioni
+Hibernate: 
+    
+    drop table if exists cars_manutenzioni
+Hibernate: 
+    
+    drop table if exists cars_prenotazioni
+Hibernate: 
+    
+    drop table if exists cars_utenti
+Hibernate: 
+    
+    drop table if exists Documentazioni
+Hibernate: 
+    
+    drop table if exists Files
+Hibernate: 
+    
+    drop table if exists Links
+Hibernate: 
+    
+    drop table if exists Manutenzioni
+Hibernate: 
+    
+    drop table if exists Prenotazioni
+Hibernate: 
+    
+    drop table if exists users
+Hibernate: 
+    
+    create table Allegati (
+       ALLEGATO_ID bigint not null auto_increment,
+        DESCRIZIONE varchar(100) not null,
+        DOCUMENTO_ID bigint not null,
+        primary key (ALLEGATO_ID)
+    ) engine=InnoDB
+Hibernate: 
+    
+    create table Cars (
+       TARGA varchar(7) not null,
+        ALIMENTAZIONE varchar(255) not null,
+        DESTINAZIONE_USO varchar(255) not null,
+        MARCA varchar(255) not null,
+        MASSA integer not null,
+        MODELLO varchar(255) not null,
+        NUMERO_ASSI integer not null,
+        NUMERO_TELAIO varchar(255) not null,
+        primary key (TARGA)
+    ) engine=InnoDB
+Hibernate: 
+    
+    create table cars_documentazioni (
+       cars_TARGA varchar(7) not null,
+        documentazioni_DOCUMENTO_ID bigint not null,
+        primary key (cars_TARGA, documentazioni_DOCUMENTO_ID)
+    ) engine=InnoDB
+Hibernate: 
+    
+    create table cars_manutenzioni (
+       cars_TARGA varchar(7) not null,
+        manutenzioni_MANUTENZIONE_ID bigint not null,
+        primary key (cars_TARGA, manutenzioni_MANUTENZIONE_ID)
+    ) engine=InnoDB
+Hibernate: 
+    
+    create table cars_prenotazioni (
+       cars_TARGA varchar(7) not null,
+        prenotazioni_PRENOTAZIONE_ID bigint not null,
+        primary key (cars_TARGA, prenotazioni_PRENOTAZIONE_ID)
+    ) engine=InnoDB
+Hibernate: 
+    
+    create table cars_utenti (
+       cars_TARGA varchar(7) not null,
+        utenti_USERNAME varchar(20) not null,
+        primary key (cars_TARGA, utenti_USERNAME)
+    ) engine=InnoDB
+Hibernate: 
+    
+    create table Documentazioni (
+       DOCUMENTO_ID bigint not null auto_increment,
+        COSTO float not null,
+        DATA_SCADENZA datetime(6) not null,
+        DESCRIZIONE varchar(300) not null,
+        TITOLO varchar(100) not null,
+        UTENTE varchar(20),
+        documentazioniUtente varchar(20),
+        primary key (DOCUMENTO_ID)
+    ) engine=InnoDB
+Hibernate: 
+    
+    create table Files (
+       NOME varchar(100) not null,
+        noDownloadable bit not null,
+        ALLEGATO_ID bigint not null,
+        primary key (ALLEGATO_ID)
+    ) engine=InnoDB
+Hibernate: 
+    
+    create table Links (
+       link varchar(300) not null,
+        ALLEGATO_ID bigint not null,
+        primary key (ALLEGATO_ID)
+    ) engine=InnoDB
+Hibernate: 
+    
+    create table Manutenzioni (
+       MANUTENZIONE_ID bigint not null auto_increment,
+        COSTO_MANUTENZIONE float,
+        TIPO_MANUTENZIONE varchar(255),
+        primary key (MANUTENZIONE_ID)
+    ) engine=InnoDB
+Hibernate: 
+    
+    create table Prenotazioni (
+       PRENOTAZIONE_ID bigint not null auto_increment,
+        DATA_FINE datetime(6),
+        DATA_INIZIO datetime(6),
+        DESCRIZIONE varchar(255),
+        ORA_FINE time,
+        ORA_INIZIO time,
+        utente tinyblob,
+        primary key (PRENOTAZIONE_ID)
+    ) engine=InnoDB
+Hibernate: 
+    
+    create table users (
+       USERNAME varchar(20) not null,
+        FIRSTNAME varchar(100) not null,
+        IMAGE_PROFILE varchar(100),
+        LASTNAME varchar(100) not null,
+        PASSWORD varchar(100) not null,
+        RUOLO varchar(255) not null,
+        primary key (USERNAME)
+    ) engine=InnoDB
+Hibernate: 
+    
+    alter table Documentazioni 
+       add constraint UK_cfir4uboidngebdaacqfw9exm unique (TITOLO)
+Hibernate: 
+    
+    alter table Files 
+       add constraint UK_ria3j4a5otgvr4u41764hb3ur unique (NOME)
+Hibernate: 
+    
+    alter table Allegati 
+       add constraint FKefo4ijugq7pbqosvf8u6wol02 
+       foreign key (DOCUMENTO_ID) 
+       references Documentazioni (DOCUMENTO_ID)
+Hibernate: 
+    
+    alter table cars_documentazioni 
+       add constraint FKmemt4ctult6rus8gevlcmlju7 
+       foreign key (documentazioni_DOCUMENTO_ID) 
+       references Documentazioni (DOCUMENTO_ID)
+Hibernate: 
+    
+    alter table cars_documentazioni 
+       add constraint FKgqahxvn108yk7q56qekejgbgc 
+       foreign key (cars_TARGA) 
+       references Cars (TARGA)
+Hibernate: 
+    
+    alter table cars_manutenzioni 
+       add constraint FKhs7i0utxcwa351og2uv21pnyr 
+       foreign key (manutenzioni_MANUTENZIONE_ID) 
+       references Manutenzioni (MANUTENZIONE_ID)
+Hibernate: 
+    
+    alter table cars_manutenzioni 
+       add constraint FKqdorpikjv8fh4rbpi4u6qw43t 
+       foreign key (cars_TARGA) 
+       references Cars (TARGA)
+Hibernate: 
+    
+    alter table cars_prenotazioni 
+       add constraint FKro3el415ooe1bcgjiaxvqvamy 
+       foreign key (prenotazioni_PRENOTAZIONE_ID) 
+       references Prenotazioni (PRENOTAZIONE_ID)
+Hibernate: 
+    
+    alter table cars_prenotazioni 
+       add constraint FKaswpjxl97qaecthyfx7f37fjs 
+       foreign key (cars_TARGA) 
+       references Cars (TARGA)
+Hibernate: 
+    
+    alter table cars_utenti 
+       add constraint FKkfgkih5oukkxy95328h2kobc9 
+       foreign key (utenti_USERNAME) 
+       references users (USERNAME)
+Hibernate: 
+    
+    alter table cars_utenti 
+       add constraint FK6aow3mhii88aae150grntenn9 
+       foreign key (cars_TARGA) 
+       references Cars (TARGA)
+Hibernate: 
+    
+    alter table Documentazioni 
+       add constraint FK766pha2m4kbu1ovcsq9wbt6j 
+       foreign key (UTENTE) 
+       references users (USERNAME)
+Hibernate: 
+    
+    alter table Documentazioni 
+       add constraint FKg4nqx737cpapsbdq8f3kxnff7 
+       foreign key (documentazioniUtente) 
+       references users (USERNAME)
+Hibernate: 
+    
+    alter table Files 
+       add constraint FKrilqsw1l5csq89yo3go3jtbot 
+       foreign key (ALLEGATO_ID) 
+       references Allegati (ALLEGATO_ID)
+Hibernate: 
+    
+    alter table Links 
+       add constraint FK680sschlvnifafp833sv4cr2q 
+       foreign key (ALLEGATO_ID) 
+       references Allegati (ALLEGATO_ID)
+]]></system-out>
+    <system-err><![CDATA[mar 17, 2021 10:10:03 AM org.hibernate.dialect.Dialect <init>
+INFO: HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
+mar 17, 2021 10:10:03 AM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
+INFO: HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[main] WARN org.springframework.context.annotation.AnnotationConfigApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'allegatoDao': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sessionFactory' defined in it.univpm.advancedcode.cri.test.DataServiceConfigTest: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method 'sessionFactory' threw exception; nested exception is java.lang.NullPointerException
+]]></system-err>
+  </testcase>
+  <testcase name="createAndUpdate" classname="it.univpm.advancedcode.cri.test.unit.TestPrenotazioneDao" time="0.554">
+    <error message="Error creating bean with name &apos;allegatoDao&apos;: Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;sessionFactory&apos; defined in it.univpm.advancedcode.cri.test.DataServiceConfigTest: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method &apos;sessionFactory&apos; threw exception; nested exception is java.lang.NullPointerException" type="org.springframework.beans.factory.BeanCreationException">org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'allegatoDao': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sessionFactory' defined in it.univpm.advancedcode.cri.test.DataServiceConfigTest: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method 'sessionFactory' threw exception; nested exception is java.lang.NullPointerException
+	at it.univpm.advancedcode.cri.test.unit.TestPrenotazioneDao.createAndUpdate(TestPrenotazioneDao.java:142)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sessionFactory' defined in it.univpm.advancedcode.cri.test.DataServiceConfigTest: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method 'sessionFactory' threw exception; nested exception is java.lang.NullPointerException
+	at it.univpm.advancedcode.cri.test.unit.TestPrenotazioneDao.createAndUpdate(TestPrenotazioneDao.java:142)
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method 'sessionFactory' threw exception; nested exception is java.lang.NullPointerException
+	at it.univpm.advancedcode.cri.test.unit.TestPrenotazioneDao.createAndUpdate(TestPrenotazioneDao.java:142)
+Caused by: java.lang.NullPointerException
+</error>
+    <system-out><![CDATA[Hibernate: 
+    
+    alter table Allegati 
+       drop 
+       foreign key FKefo4ijugq7pbqosvf8u6wol02
+Hibernate: 
+    
+    alter table cars_documentazioni 
+       drop 
+       foreign key FKmemt4ctult6rus8gevlcmlju7
+Hibernate: 
+    
+    alter table cars_documentazioni 
+       drop 
+       foreign key FKgqahxvn108yk7q56qekejgbgc
+Hibernate: 
+    
+    alter table cars_manutenzioni 
+       drop 
+       foreign key FKhs7i0utxcwa351og2uv21pnyr
+Hibernate: 
+    
+    alter table cars_manutenzioni 
+       drop 
+       foreign key FKqdorpikjv8fh4rbpi4u6qw43t
+Hibernate: 
+    
+    alter table cars_prenotazioni 
+       drop 
+       foreign key FKro3el415ooe1bcgjiaxvqvamy
+Hibernate: 
+    
+    alter table cars_prenotazioni 
+       drop 
+       foreign key FKaswpjxl97qaecthyfx7f37fjs
+Hibernate: 
+    
+    alter table cars_utenti 
+       drop 
+       foreign key FKkfgkih5oukkxy95328h2kobc9
+Hibernate: 
+    
+    alter table cars_utenti 
+       drop 
+       foreign key FK6aow3mhii88aae150grntenn9
+Hibernate: 
+    
+    alter table Documentazioni 
+       drop 
+       foreign key FK766pha2m4kbu1ovcsq9wbt6j
+Hibernate: 
+    
+    alter table Documentazioni 
+       drop 
+       foreign key FKg4nqx737cpapsbdq8f3kxnff7
+Hibernate: 
+    
+    alter table Files 
+       drop 
+       foreign key FKrilqsw1l5csq89yo3go3jtbot
+Hibernate: 
+    
+    alter table Links 
+       drop 
+       foreign key FK680sschlvnifafp833sv4cr2q
+Hibernate: 
+    
+    drop table if exists Allegati
+Hibernate: 
+    
+    drop table if exists Cars
+Hibernate: 
+    
+    drop table if exists cars_documentazioni
+Hibernate: 
+    
+    drop table if exists cars_manutenzioni
+Hibernate: 
+    
+    drop table if exists cars_prenotazioni
+Hibernate: 
+    
+    drop table if exists cars_utenti
+Hibernate: 
+    
+    drop table if exists Documentazioni
+Hibernate: 
+    
+    drop table if exists Files
+Hibernate: 
+    
+    drop table if exists Links
+Hibernate: 
+    
+    drop table if exists Manutenzioni
+Hibernate: 
+    
+    drop table if exists Prenotazioni
+Hibernate: 
+    
+    drop table if exists users
+Hibernate: 
+    
+    create table Allegati (
+       ALLEGATO_ID bigint not null auto_increment,
+        DESCRIZIONE varchar(100) not null,
+        DOCUMENTO_ID bigint not null,
+        primary key (ALLEGATO_ID)
+    ) engine=InnoDB
+Hibernate: 
+    
+    create table Cars (
+       TARGA varchar(7) not null,
+        ALIMENTAZIONE varchar(255) not null,
+        DESTINAZIONE_USO varchar(255) not null,
+        MARCA varchar(255) not null,
+        MASSA integer not null,
+        MODELLO varchar(255) not null,
+        NUMERO_ASSI integer not null,
+        NUMERO_TELAIO varchar(255) not null,
+        primary key (TARGA)
+    ) engine=InnoDB
+Hibernate: 
+    
+    create table cars_documentazioni (
+       cars_TARGA varchar(7) not null,
+        documentazioni_DOCUMENTO_ID bigint not null,
+        primary key (cars_TARGA, documentazioni_DOCUMENTO_ID)
+    ) engine=InnoDB
+Hibernate: 
+    
+    create table cars_manutenzioni (
+       cars_TARGA varchar(7) not null,
+        manutenzioni_MANUTENZIONE_ID bigint not null,
+        primary key (cars_TARGA, manutenzioni_MANUTENZIONE_ID)
+    ) engine=InnoDB
+Hibernate: 
+    
+    create table cars_prenotazioni (
+       cars_TARGA varchar(7) not null,
+        prenotazioni_PRENOTAZIONE_ID bigint not null,
+        primary key (cars_TARGA, prenotazioni_PRENOTAZIONE_ID)
+    ) engine=InnoDB
+Hibernate: 
+    
+    create table cars_utenti (
+       cars_TARGA varchar(7) not null,
+        utenti_USERNAME varchar(20) not null,
+        primary key (cars_TARGA, utenti_USERNAME)
+    ) engine=InnoDB
+Hibernate: 
+    
+    create table Documentazioni (
+       DOCUMENTO_ID bigint not null auto_increment,
+        COSTO float not null,
+        DATA_SCADENZA datetime(6) not null,
+        DESCRIZIONE varchar(300) not null,
+        TITOLO varchar(100) not null,
+        UTENTE varchar(20),
+        documentazioniUtente varchar(20),
+        primary key (DOCUMENTO_ID)
+    ) engine=InnoDB
+Hibernate: 
+    
+    create table Files (
+       NOME varchar(100) not null,
+        noDownloadable bit not null,
+        ALLEGATO_ID bigint not null,
+        primary key (ALLEGATO_ID)
+    ) engine=InnoDB
+Hibernate: 
+    
+    create table Links (
+       link varchar(300) not null,
+        ALLEGATO_ID bigint not null,
+        primary key (ALLEGATO_ID)
+    ) engine=InnoDB
+Hibernate: 
+    
+    create table Manutenzioni (
+       MANUTENZIONE_ID bigint not null auto_increment,
+        COSTO_MANUTENZIONE float,
+        TIPO_MANUTENZIONE varchar(255),
+        primary key (MANUTENZIONE_ID)
+    ) engine=InnoDB
+Hibernate: 
+    
+    create table Prenotazioni (
+       PRENOTAZIONE_ID bigint not null auto_increment,
+        DATA_FINE datetime(6),
+        DATA_INIZIO datetime(6),
+        DESCRIZIONE varchar(255),
+        ORA_FINE time,
+        ORA_INIZIO time,
+        utente tinyblob,
+        primary key (PRENOTAZIONE_ID)
+    ) engine=InnoDB
+Hibernate: 
+    
+    create table users (
+       USERNAME varchar(20) not null,
+        FIRSTNAME varchar(100) not null,
+        IMAGE_PROFILE varchar(100),
+        LASTNAME varchar(100) not null,
+        PASSWORD varchar(100) not null,
+        RUOLO varchar(255) not null,
+        primary key (USERNAME)
+    ) engine=InnoDB
+Hibernate: 
+    
+    alter table Documentazioni 
+       add constraint UK_cfir4uboidngebdaacqfw9exm unique (TITOLO)
+Hibernate: 
+    
+    alter table Files 
+       add constraint UK_ria3j4a5otgvr4u41764hb3ur unique (NOME)
+Hibernate: 
+    
+    alter table Allegati 
+       add constraint FKefo4ijugq7pbqosvf8u6wol02 
+       foreign key (DOCUMENTO_ID) 
+       references Documentazioni (DOCUMENTO_ID)
+Hibernate: 
+    
+    alter table cars_documentazioni 
+       add constraint FKmemt4ctult6rus8gevlcmlju7 
+       foreign key (documentazioni_DOCUMENTO_ID) 
+       references Documentazioni (DOCUMENTO_ID)
+Hibernate: 
+    
+    alter table cars_documentazioni 
+       add constraint FKgqahxvn108yk7q56qekejgbgc 
+       foreign key (cars_TARGA) 
+       references Cars (TARGA)
+Hibernate: 
+    
+    alter table cars_manutenzioni 
+       add constraint FKhs7i0utxcwa351og2uv21pnyr 
+       foreign key (manutenzioni_MANUTENZIONE_ID) 
+       references Manutenzioni (MANUTENZIONE_ID)
+Hibernate: 
+    
+    alter table cars_manutenzioni 
+       add constraint FKqdorpikjv8fh4rbpi4u6qw43t 
+       foreign key (cars_TARGA) 
+       references Cars (TARGA)
+Hibernate: 
+    
+    alter table cars_prenotazioni 
+       add constraint FKro3el415ooe1bcgjiaxvqvamy 
+       foreign key (prenotazioni_PRENOTAZIONE_ID) 
+       references Prenotazioni (PRENOTAZIONE_ID)
+Hibernate: 
+    
+    alter table cars_prenotazioni 
+       add constraint FKaswpjxl97qaecthyfx7f37fjs 
+       foreign key (cars_TARGA) 
+       references Cars (TARGA)
+Hibernate: 
+    
+    alter table cars_utenti 
+       add constraint FKkfgkih5oukkxy95328h2kobc9 
+       foreign key (utenti_USERNAME) 
+       references users (USERNAME)
+Hibernate: 
+    
+    alter table cars_utenti 
+       add constraint FK6aow3mhii88aae150grntenn9 
+       foreign key (cars_TARGA) 
+       references Cars (TARGA)
+Hibernate: 
+    
+    alter table Documentazioni 
+       add constraint FK766pha2m4kbu1ovcsq9wbt6j 
+       foreign key (UTENTE) 
+       references users (USERNAME)
+Hibernate: 
+    
+    alter table Documentazioni 
+       add constraint FKg4nqx737cpapsbdq8f3kxnff7 
+       foreign key (documentazioniUtente) 
+       references users (USERNAME)
+Hibernate: 
+    
+    alter table Files 
+       add constraint FKrilqsw1l5csq89yo3go3jtbot 
+       foreign key (ALLEGATO_ID) 
+       references Allegati (ALLEGATO_ID)
+Hibernate: 
+    
+    alter table Links 
+       add constraint FK680sschlvnifafp833sv4cr2q 
+       foreign key (ALLEGATO_ID) 
+       references Allegati (ALLEGATO_ID)
+]]></system-out>
+    <system-err><![CDATA[mar 17, 2021 10:10:03 AM org.hibernate.dialect.Dialect <init>
+INFO: HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
+mar 17, 2021 10:10:04 AM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
+INFO: HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[main] WARN org.springframework.context.annotation.AnnotationConfigApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'allegatoDao': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sessionFactory' defined in it.univpm.advancedcode.cri.test.DataServiceConfigTest: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method 'sessionFactory' threw exception; nested exception is java.lang.NullPointerException
+]]></system-err>
+  </testcase>
+  <testcase name="noPrenotazioneAtBeginning" classname="it.univpm.advancedcode.cri.test.unit.TestPrenotazioneDao" time="0.525">
+    <error message="Error creating bean with name &apos;allegatoDao&apos;: Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;sessionFactory&apos; defined in it.univpm.advancedcode.cri.test.DataServiceConfigTest: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method &apos;sessionFactory&apos; threw exception; nested exception is java.lang.NullPointerException" type="org.springframework.beans.factory.BeanCreationException">org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'allegatoDao': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sessionFactory' defined in it.univpm.advancedcode.cri.test.DataServiceConfigTest: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method 'sessionFactory' threw exception; nested exception is java.lang.NullPointerException
+	at it.univpm.advancedcode.cri.test.unit.TestPrenotazioneDao.noPrenotazioneAtBeginning(TestPrenotazioneDao.java:190)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sessionFactory' defined in it.univpm.advancedcode.cri.test.DataServiceConfigTest: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method 'sessionFactory' threw exception; nested exception is java.lang.NullPointerException
+	at it.univpm.advancedcode.cri.test.unit.TestPrenotazioneDao.noPrenotazioneAtBeginning(TestPrenotazioneDao.java:190)
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method 'sessionFactory' threw exception; nested exception is java.lang.NullPointerException
+	at it.univpm.advancedcode.cri.test.unit.TestPrenotazioneDao.noPrenotazioneAtBeginning(TestPrenotazioneDao.java:190)
+Caused by: java.lang.NullPointerException
+</error>
+    <system-out><![CDATA[Hibernate: 
+    
+    alter table Allegati 
+       drop 
+       foreign key FKefo4ijugq7pbqosvf8u6wol02
+Hibernate: 
+    
+    alter table cars_documentazioni 
+       drop 
+       foreign key FKmemt4ctult6rus8gevlcmlju7
+Hibernate: 
+    
+    alter table cars_documentazioni 
+       drop 
+       foreign key FKgqahxvn108yk7q56qekejgbgc
+Hibernate: 
+    
+    alter table cars_manutenzioni 
+       drop 
+       foreign key FKhs7i0utxcwa351og2uv21pnyr
+Hibernate: 
+    
+    alter table cars_manutenzioni 
+       drop 
+       foreign key FKqdorpikjv8fh4rbpi4u6qw43t
+Hibernate: 
+    
+    alter table cars_prenotazioni 
+       drop 
+       foreign key FKro3el415ooe1bcgjiaxvqvamy
+Hibernate: 
+    
+    alter table cars_prenotazioni 
+       drop 
+       foreign key FKaswpjxl97qaecthyfx7f37fjs
+Hibernate: 
+    
+    alter table cars_utenti 
+       drop 
+       foreign key FKkfgkih5oukkxy95328h2kobc9
+Hibernate: 
+    
+    alter table cars_utenti 
+       drop 
+       foreign key FK6aow3mhii88aae150grntenn9
+Hibernate: 
+    
+    alter table Documentazioni 
+       drop 
+       foreign key FK766pha2m4kbu1ovcsq9wbt6j
+Hibernate: 
+    
+    alter table Documentazioni 
+       drop 
+       foreign key FKg4nqx737cpapsbdq8f3kxnff7
+Hibernate: 
+    
+    alter table Files 
+       drop 
+       foreign key FKrilqsw1l5csq89yo3go3jtbot
+Hibernate: 
+    
+    alter table Links 
+       drop 
+       foreign key FK680sschlvnifafp833sv4cr2q
+Hibernate: 
+    
+    drop table if exists Allegati
+Hibernate: 
+    
+    drop table if exists Cars
+Hibernate: 
+    
+    drop table if exists cars_documentazioni
+Hibernate: 
+    
+    drop table if exists cars_manutenzioni
+Hibernate: 
+    
+    drop table if exists cars_prenotazioni
+Hibernate: 
+    
+    drop table if exists cars_utenti
+Hibernate: 
+    
+    drop table if exists Documentazioni
+Hibernate: 
+    
+    drop table if exists Files
+Hibernate: 
+    
+    drop table if exists Links
+Hibernate: 
+    
+    drop table if exists Manutenzioni
+Hibernate: 
+    
+    drop table if exists Prenotazioni
+Hibernate: 
+    
+    drop table if exists users
+Hibernate: 
+    
+    create table Allegati (
+       ALLEGATO_ID bigint not null auto_increment,
+        DESCRIZIONE varchar(100) not null,
+        DOCUMENTO_ID bigint not null,
+        primary key (ALLEGATO_ID)
+    ) engine=InnoDB
+Hibernate: 
+    
+    create table Cars (
+       TARGA varchar(7) not null,
+        ALIMENTAZIONE varchar(255) not null,
+        DESTINAZIONE_USO varchar(255) not null,
+        MARCA varchar(255) not null,
+        MASSA integer not null,
+        MODELLO varchar(255) not null,
+        NUMERO_ASSI integer not null,
+        NUMERO_TELAIO varchar(255) not null,
+        primary key (TARGA)
+    ) engine=InnoDB
+Hibernate: 
+    
+    create table cars_documentazioni (
+       cars_TARGA varchar(7) not null,
+        documentazioni_DOCUMENTO_ID bigint not null,
+        primary key (cars_TARGA, documentazioni_DOCUMENTO_ID)
+    ) engine=InnoDB
+Hibernate: 
+    
+    create table cars_manutenzioni (
+       cars_TARGA varchar(7) not null,
+        manutenzioni_MANUTENZIONE_ID bigint not null,
+        primary key (cars_TARGA, manutenzioni_MANUTENZIONE_ID)
+    ) engine=InnoDB
+Hibernate: 
+    
+    create table cars_prenotazioni (
+       cars_TARGA varchar(7) not null,
+        prenotazioni_PRENOTAZIONE_ID bigint not null,
+        primary key (cars_TARGA, prenotazioni_PRENOTAZIONE_ID)
+    ) engine=InnoDB
+Hibernate: 
+    
+    create table cars_utenti (
+       cars_TARGA varchar(7) not null,
+        utenti_USERNAME varchar(20) not null,
+        primary key (cars_TARGA, utenti_USERNAME)
+    ) engine=InnoDB
+Hibernate: 
+    
+    create table Documentazioni (
+       DOCUMENTO_ID bigint not null auto_increment,
+        COSTO float not null,
+        DATA_SCADENZA datetime(6) not null,
+        DESCRIZIONE varchar(300) not null,
+        TITOLO varchar(100) not null,
+        UTENTE varchar(20),
+        documentazioniUtente varchar(20),
+        primary key (DOCUMENTO_ID)
+    ) engine=InnoDB
+Hibernate: 
+    
+    create table Files (
+       NOME varchar(100) not null,
+        noDownloadable bit not null,
+        ALLEGATO_ID bigint not null,
+        primary key (ALLEGATO_ID)
+    ) engine=InnoDB
+Hibernate: 
+    
+    create table Links (
+       link varchar(300) not null,
+        ALLEGATO_ID bigint not null,
+        primary key (ALLEGATO_ID)
+    ) engine=InnoDB
+Hibernate: 
+    
+    create table Manutenzioni (
+       MANUTENZIONE_ID bigint not null auto_increment,
+        COSTO_MANUTENZIONE float,
+        TIPO_MANUTENZIONE varchar(255),
+        primary key (MANUTENZIONE_ID)
+    ) engine=InnoDB
+Hibernate: 
+    
+    create table Prenotazioni (
+       PRENOTAZIONE_ID bigint not null auto_increment,
+        DATA_FINE datetime(6),
+        DATA_INIZIO datetime(6),
+        DESCRIZIONE varchar(255),
+        ORA_FINE time,
+        ORA_INIZIO time,
+        utente tinyblob,
+        primary key (PRENOTAZIONE_ID)
+    ) engine=InnoDB
+Hibernate: 
+    
+    create table users (
+       USERNAME varchar(20) not null,
+        FIRSTNAME varchar(100) not null,
+        IMAGE_PROFILE varchar(100),
+        LASTNAME varchar(100) not null,
+        PASSWORD varchar(100) not null,
+        RUOLO varchar(255) not null,
+        primary key (USERNAME)
+    ) engine=InnoDB
+Hibernate: 
+    
+    alter table Documentazioni 
+       add constraint UK_cfir4uboidngebdaacqfw9exm unique (TITOLO)
+Hibernate: 
+    
+    alter table Files 
+       add constraint UK_ria3j4a5otgvr4u41764hb3ur unique (NOME)
+Hibernate: 
+    
+    alter table Allegati 
+       add constraint FKefo4ijugq7pbqosvf8u6wol02 
+       foreign key (DOCUMENTO_ID) 
+       references Documentazioni (DOCUMENTO_ID)
+Hibernate: 
+    
+    alter table cars_documentazioni 
+       add constraint FKmemt4ctult6rus8gevlcmlju7 
+       foreign key (documentazioni_DOCUMENTO_ID) 
+       references Documentazioni (DOCUMENTO_ID)
+Hibernate: 
+    
+    alter table cars_documentazioni 
+       add constraint FKgqahxvn108yk7q56qekejgbgc 
+       foreign key (cars_TARGA) 
+       references Cars (TARGA)
+Hibernate: 
+    
+    alter table cars_manutenzioni 
+       add constraint FKhs7i0utxcwa351og2uv21pnyr 
+       foreign key (manutenzioni_MANUTENZIONE_ID) 
+       references Manutenzioni (MANUTENZIONE_ID)
+Hibernate: 
+    
+    alter table cars_manutenzioni 
+       add constraint FKqdorpikjv8fh4rbpi4u6qw43t 
+       foreign key (cars_TARGA) 
+       references Cars (TARGA)
+Hibernate: 
+    
+    alter table cars_prenotazioni 
+       add constraint FKro3el415ooe1bcgjiaxvqvamy 
+       foreign key (prenotazioni_PRENOTAZIONE_ID) 
+       references Prenotazioni (PRENOTAZIONE_ID)
+Hibernate: 
+    
+    alter table cars_prenotazioni 
+       add constraint FKaswpjxl97qaecthyfx7f37fjs 
+       foreign key (cars_TARGA) 
+       references Cars (TARGA)
+Hibernate: 
+    
+    alter table cars_utenti 
+       add constraint FKkfgkih5oukkxy95328h2kobc9 
+       foreign key (utenti_USERNAME) 
+       references users (USERNAME)
+Hibernate: 
+    
+    alter table cars_utenti 
+       add constraint FK6aow3mhii88aae150grntenn9 
+       foreign key (cars_TARGA) 
+       references Cars (TARGA)
+Hibernate: 
+    
+    alter table Documentazioni 
+       add constraint FK766pha2m4kbu1ovcsq9wbt6j 
+       foreign key (UTENTE) 
+       references users (USERNAME)
+Hibernate: 
+    
+    alter table Documentazioni 
+       add constraint FKg4nqx737cpapsbdq8f3kxnff7 
+       foreign key (documentazioniUtente) 
+       references users (USERNAME)
+Hibernate: 
+    
+    alter table Files 
+       add constraint FKrilqsw1l5csq89yo3go3jtbot 
+       foreign key (ALLEGATO_ID) 
+       references Allegati (ALLEGATO_ID)
+Hibernate: 
+    
+    alter table Links 
+       add constraint FK680sschlvnifafp833sv4cr2q 
+       foreign key (ALLEGATO_ID) 
+       references Allegati (ALLEGATO_ID)
+]]></system-out>
+    <system-err><![CDATA[mar 17, 2021 10:10:04 AM org.hibernate.dialect.Dialect <init>
+INFO: HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
+mar 17, 2021 10:10:04 AM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
+INFO: HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[main] WARN org.springframework.context.annotation.AnnotationConfigApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'allegatoDao': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sessionFactory' defined in it.univpm.advancedcode.cri.test.DataServiceConfigTest: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method 'sessionFactory' threw exception; nested exception is java.lang.NullPointerException
+]]></system-err>
+  </testcase>
+  <testcase name="createAndFind" classname="it.univpm.advancedcode.cri.test.unit.TestPrenotazioneDao" time="0.467">
+    <error message="Error creating bean with name &apos;allegatoDao&apos;: Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;sessionFactory&apos; defined in it.univpm.advancedcode.cri.test.DataServiceConfigTest: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method &apos;sessionFactory&apos; threw exception; nested exception is java.lang.NullPointerException" type="org.springframework.beans.factory.BeanCreationException">org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'allegatoDao': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sessionFactory' defined in it.univpm.advancedcode.cri.test.DataServiceConfigTest: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method 'sessionFactory' threw exception; nested exception is java.lang.NullPointerException
+	at it.univpm.advancedcode.cri.test.unit.TestPrenotazioneDao.createAndFind(TestPrenotazioneDao.java:91)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sessionFactory' defined in it.univpm.advancedcode.cri.test.DataServiceConfigTest: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method 'sessionFactory' threw exception; nested exception is java.lang.NullPointerException
+	at it.univpm.advancedcode.cri.test.unit.TestPrenotazioneDao.createAndFind(TestPrenotazioneDao.java:91)
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method 'sessionFactory' threw exception; nested exception is java.lang.NullPointerException
+	at it.univpm.advancedcode.cri.test.unit.TestPrenotazioneDao.createAndFind(TestPrenotazioneDao.java:91)
+Caused by: java.lang.NullPointerException
+</error>
+    <system-out><![CDATA[Hibernate: 
+    
+    alter table Allegati 
+       drop 
+       foreign key FKefo4ijugq7pbqosvf8u6wol02
+Hibernate: 
+    
+    alter table cars_documentazioni 
+       drop 
+       foreign key FKmemt4ctult6rus8gevlcmlju7
+Hibernate: 
+    
+    alter table cars_documentazioni 
+       drop 
+       foreign key FKgqahxvn108yk7q56qekejgbgc
+Hibernate: 
+    
+    alter table cars_manutenzioni 
+       drop 
+       foreign key FKhs7i0utxcwa351og2uv21pnyr
+Hibernate: 
+    
+    alter table cars_manutenzioni 
+       drop 
+       foreign key FKqdorpikjv8fh4rbpi4u6qw43t
+Hibernate: 
+    
+    alter table cars_prenotazioni 
+       drop 
+       foreign key FKro3el415ooe1bcgjiaxvqvamy
+Hibernate: 
+    
+    alter table cars_prenotazioni 
+       drop 
+       foreign key FKaswpjxl97qaecthyfx7f37fjs
+Hibernate: 
+    
+    alter table cars_utenti 
+       drop 
+       foreign key FKkfgkih5oukkxy95328h2kobc9
+Hibernate: 
+    
+    alter table cars_utenti 
+       drop 
+       foreign key FK6aow3mhii88aae150grntenn9
+Hibernate: 
+    
+    alter table Documentazioni 
+       drop 
+       foreign key FK766pha2m4kbu1ovcsq9wbt6j
+Hibernate: 
+    
+    alter table Documentazioni 
+       drop 
+       foreign key FKg4nqx737cpapsbdq8f3kxnff7
+Hibernate: 
+    
+    alter table Files 
+       drop 
+       foreign key FKrilqsw1l5csq89yo3go3jtbot
+Hibernate: 
+    
+    alter table Links 
+       drop 
+       foreign key FK680sschlvnifafp833sv4cr2q
+Hibernate: 
+    
+    drop table if exists Allegati
+Hibernate: 
+    
+    drop table if exists Cars
+Hibernate: 
+    
+    drop table if exists cars_documentazioni
+Hibernate: 
+    
+    drop table if exists cars_manutenzioni
+Hibernate: 
+    
+    drop table if exists cars_prenotazioni
+Hibernate: 
+    
+    drop table if exists cars_utenti
+Hibernate: 
+    
+    drop table if exists Documentazioni
+Hibernate: 
+    
+    drop table if exists Files
+Hibernate: 
+    
+    drop table if exists Links
+Hibernate: 
+    
+    drop table if exists Manutenzioni
+Hibernate: 
+    
+    drop table if exists Prenotazioni
+Hibernate: 
+    
+    drop table if exists users
+Hibernate: 
+    
+    create table Allegati (
+       ALLEGATO_ID bigint not null auto_increment,
+        DESCRIZIONE varchar(100) not null,
+        DOCUMENTO_ID bigint not null,
+        primary key (ALLEGATO_ID)
+    ) engine=InnoDB
+Hibernate: 
+    
+    create table Cars (
+       TARGA varchar(7) not null,
+        ALIMENTAZIONE varchar(255) not null,
+        DESTINAZIONE_USO varchar(255) not null,
+        MARCA varchar(255) not null,
+        MASSA integer not null,
+        MODELLO varchar(255) not null,
+        NUMERO_ASSI integer not null,
+        NUMERO_TELAIO varchar(255) not null,
+        primary key (TARGA)
+    ) engine=InnoDB
+Hibernate: 
+    
+    create table cars_documentazioni (
+       cars_TARGA varchar(7) not null,
+        documentazioni_DOCUMENTO_ID bigint not null,
+        primary key (cars_TARGA, documentazioni_DOCUMENTO_ID)
+    ) engine=InnoDB
+Hibernate: 
+    
+    create table cars_manutenzioni (
+       cars_TARGA varchar(7) not null,
+        manutenzioni_MANUTENZIONE_ID bigint not null,
+        primary key (cars_TARGA, manutenzioni_MANUTENZIONE_ID)
+    ) engine=InnoDB
+Hibernate: 
+    
+    create table cars_prenotazioni (
+       cars_TARGA varchar(7) not null,
+        prenotazioni_PRENOTAZIONE_ID bigint not null,
+        primary key (cars_TARGA, prenotazioni_PRENOTAZIONE_ID)
+    ) engine=InnoDB
+Hibernate: 
+    
+    create table cars_utenti (
+       cars_TARGA varchar(7) not null,
+        utenti_USERNAME varchar(20) not null,
+        primary key (cars_TARGA, utenti_USERNAME)
+    ) engine=InnoDB
+Hibernate: 
+    
+    create table Documentazioni (
+       DOCUMENTO_ID bigint not null auto_increment,
+        COSTO float not null,
+        DATA_SCADENZA datetime(6) not null,
+        DESCRIZIONE varchar(300) not null,
+        TITOLO varchar(100) not null,
+        UTENTE varchar(20),
+        documentazioniUtente varchar(20),
+        primary key (DOCUMENTO_ID)
+    ) engine=InnoDB
+Hibernate: 
+    
+    create table Files (
+       NOME varchar(100) not null,
+        noDownloadable bit not null,
+        ALLEGATO_ID bigint not null,
+        primary key (ALLEGATO_ID)
+    ) engine=InnoDB
+Hibernate: 
+    
+    create table Links (
+       link varchar(300) not null,
+        ALLEGATO_ID bigint not null,
+        primary key (ALLEGATO_ID)
+    ) engine=InnoDB
+Hibernate: 
+    
+    create table Manutenzioni (
+       MANUTENZIONE_ID bigint not null auto_increment,
+        COSTO_MANUTENZIONE float,
+        TIPO_MANUTENZIONE varchar(255),
+        primary key (MANUTENZIONE_ID)
+    ) engine=InnoDB
+Hibernate: 
+    
+    create table Prenotazioni (
+       PRENOTAZIONE_ID bigint not null auto_increment,
+        DATA_FINE datetime(6),
+        DATA_INIZIO datetime(6),
+        DESCRIZIONE varchar(255),
+        ORA_FINE time,
+        ORA_INIZIO time,
+        utente tinyblob,
+        primary key (PRENOTAZIONE_ID)
+    ) engine=InnoDB
+Hibernate: 
+    
+    create table users (
+       USERNAME varchar(20) not null,
+        FIRSTNAME varchar(100) not null,
+        IMAGE_PROFILE varchar(100),
+        LASTNAME varchar(100) not null,
+        PASSWORD varchar(100) not null,
+        RUOLO varchar(255) not null,
+        primary key (USERNAME)
+    ) engine=InnoDB
+Hibernate: 
+    
+    alter table Documentazioni 
+       add constraint UK_cfir4uboidngebdaacqfw9exm unique (TITOLO)
+Hibernate: 
+    
+    alter table Files 
+       add constraint UK_ria3j4a5otgvr4u41764hb3ur unique (NOME)
+Hibernate: 
+    
+    alter table Allegati 
+       add constraint FKefo4ijugq7pbqosvf8u6wol02 
+       foreign key (DOCUMENTO_ID) 
+       references Documentazioni (DOCUMENTO_ID)
+Hibernate: 
+    
+    alter table cars_documentazioni 
+       add constraint FKmemt4ctult6rus8gevlcmlju7 
+       foreign key (documentazioni_DOCUMENTO_ID) 
+       references Documentazioni (DOCUMENTO_ID)
+Hibernate: 
+    
+    alter table cars_documentazioni 
+       add constraint FKgqahxvn108yk7q56qekejgbgc 
+       foreign key (cars_TARGA) 
+       references Cars (TARGA)
+Hibernate: 
+    
+    alter table cars_manutenzioni 
+       add constraint FKhs7i0utxcwa351og2uv21pnyr 
+       foreign key (manutenzioni_MANUTENZIONE_ID) 
+       references Manutenzioni (MANUTENZIONE_ID)
+Hibernate: 
+    
+    alter table cars_manutenzioni 
+       add constraint FKqdorpikjv8fh4rbpi4u6qw43t 
+       foreign key (cars_TARGA) 
+       references Cars (TARGA)
+Hibernate: 
+    
+    alter table cars_prenotazioni 
+       add constraint FKro3el415ooe1bcgjiaxvqvamy 
+       foreign key (prenotazioni_PRENOTAZIONE_ID) 
+       references Prenotazioni (PRENOTAZIONE_ID)
+Hibernate: 
+    
+    alter table cars_prenotazioni 
+       add constraint FKaswpjxl97qaecthyfx7f37fjs 
+       foreign key (cars_TARGA) 
+       references Cars (TARGA)
+Hibernate: 
+    
+    alter table cars_utenti 
+       add constraint FKkfgkih5oukkxy95328h2kobc9 
+       foreign key (utenti_USERNAME) 
+       references users (USERNAME)
+Hibernate: 
+    
+    alter table cars_utenti 
+       add constraint FK6aow3mhii88aae150grntenn9 
+       foreign key (cars_TARGA) 
+       references Cars (TARGA)
+Hibernate: 
+    
+    alter table Documentazioni 
+       add constraint FK766pha2m4kbu1ovcsq9wbt6j 
+       foreign key (UTENTE) 
+       references users (USERNAME)
+Hibernate: 
+    
+    alter table Documentazioni 
+       add constraint FKg4nqx737cpapsbdq8f3kxnff7 
+       foreign key (documentazioniUtente) 
+       references users (USERNAME)
+Hibernate: 
+    
+    alter table Files 
+       add constraint FKrilqsw1l5csq89yo3go3jtbot 
+       foreign key (ALLEGATO_ID) 
+       references Allegati (ALLEGATO_ID)
+Hibernate: 
+    
+    alter table Links 
+       add constraint FK680sschlvnifafp833sv4cr2q 
+       foreign key (ALLEGATO_ID) 
+       references Allegati (ALLEGATO_ID)
+]]></system-out>
+    <system-err><![CDATA[mar 17, 2021 10:10:04 AM org.hibernate.dialect.Dialect <init>
+INFO: HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
+mar 17, 2021 10:10:05 AM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
+INFO: HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[main] WARN org.springframework.context.annotation.AnnotationConfigApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'allegatoDao': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sessionFactory' defined in it.univpm.advancedcode.cri.test.DataServiceConfigTest: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method 'sessionFactory' threw exception; nested exception is java.lang.NullPointerException
+]]></system-err>
+  </testcase>
+</testsuite>

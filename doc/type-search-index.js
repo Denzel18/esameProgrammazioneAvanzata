@@ -1,0 +1,1 @@
+typeSearchIndex = [{"p":"it.univpm.advancedcode.cri.controllers","l":"AccountController"},{"l":"All Classes","u":"allclasses-index.html"}];updateSearchResults();

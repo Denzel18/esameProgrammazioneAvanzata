@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.Session;
 
 import it.univpm.advancedcode.cri.model.entities.Allegato;
+import it.univpm.advancedcode.cri.model.entities.Documentazione;
 
 public interface AllegatoDao {
 	void delete(Allegato attachment);

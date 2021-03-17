@@ -30,7 +30,6 @@ public class DriverController {
 	private final Logger logger = LoggerFactory.getLogger(DriverController.class);
 
 	private UserService userService;
-	
 	private LinkService linkService;
 	private FileService fileService;
 	

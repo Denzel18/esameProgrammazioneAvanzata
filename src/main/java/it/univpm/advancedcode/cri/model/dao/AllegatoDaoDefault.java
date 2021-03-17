@@ -34,8 +34,8 @@ public class AllegatoDaoDefault extends DefaultDao implements AllegatoDao {
 	}
 	
 	/**
-	 * Metodo per aggiornare un post
-	 * @param attachment: allegato da aggiornare
+	 * Metodo per aggiornare un allegato
+	 * @param allegato: allegato da aggiornare
 	 * 
 	 * @return allegato aggiornato
 	 */
@@ -46,7 +46,7 @@ public class AllegatoDaoDefault extends DefaultDao implements AllegatoDao {
 
 	/**
 	 * Metodo per eliminare un allegato
-	 * @param attachment: allegato da eliminare
+	 * @param allegato: allegato da eliminare
 	 * 
 	 */
 	@Override

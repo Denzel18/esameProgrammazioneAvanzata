@@ -107,6 +107,10 @@ public class UserServiceDefault implements UserService, UserDetailsService {
 			String role = "user";
 			if (user.getRuolo() == "admin") {
 				role = "admin";
+			}else if(user.getRuolo() == "driver") {
+				role = "driver";
+			}else {
+				role = "account";
 			}
 			builder.roles(role);
 		} else {
