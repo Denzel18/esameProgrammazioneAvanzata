@@ -258,7 +258,7 @@
 
 			<!-- Plugin per l'automatizzazione dell'esecuzione della classe Java LoadDataTest 
 				(per il popolamento dati) -->
-<!-- 		<plugin>
+	 		<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>exec-maven-plugin</artifactId>
 				<version>3.0.0</version>
@@ -275,7 +275,7 @@
 						</goals>
 					</execution>
 				</executions>
-			</plugin>-->
+			</plugin>
 
 		</plugins>
 		<finalName>${project.artifactId}</finalName>

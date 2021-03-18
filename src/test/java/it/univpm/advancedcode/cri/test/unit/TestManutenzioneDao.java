@@ -43,12 +43,9 @@ public class TestManutenzioneDao {
 			
 			s.beginTransaction();
 			
-            Car c1 = carDao.create("AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
-			Set<Car> cars = new HashSet<Car>(); 
-			cars.add(c1);
-				
+            Car c1 = carDao.create("AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");				
 			
-			Manutenzione manutenzione = manutenzioneDao.create(1,"STRAORDINARIA", (float) 900.00, cars);   
+			Manutenzione manutenzione = manutenzioneDao.create(1,"STRAORDINARIA", (float) 900.00, c1);   
 
 			s.getTransaction().commit();
 			
@@ -90,9 +87,8 @@ public class TestManutenzioneDao {
 			s.beginTransaction();
 			
             Car c1 = carDao.create("AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
-			Set<Car> cars = new HashSet<Car>(); 
-			cars.add(c1);
-			Manutenzione manutenzione = manutenzioneDao.create(1,"STRAORDINARIA", (float) 900.00, cars);   
+
+			Manutenzione manutenzione = manutenzioneDao.create(1,"STRAORDINARIA", (float) 900.00, c1);   
 
 			s.getTransaction().commit();
 			
@@ -128,9 +124,7 @@ public class TestManutenzioneDao {
 			s.beginTransaction();
 			
             Car c1 = carDao.create("AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
-			Set<Car> cars = new HashSet<Car>(); 
-			cars.add(c1);
-			Manutenzione manutenzione = manutenzioneDao.create(1,"STRAORDINARIA", (float) 900.00, cars);    
+			Manutenzione manutenzione = manutenzioneDao.create(1,"STRAORDINARIA", (float) 900.00, c1);    
 
 			s.getTransaction().commit();
 			

@@ -9,7 +9,7 @@ import javax.persistence.*;;
 
 
 @Entity(name = "Prenotazione")
-@Table(name = "Prenotazioni", uniqueConstraints = {
+@Table(name = "prenotazioni", uniqueConstraints = {
         @UniqueConstraint(columnNames = "PRENOTAZIONE_ID")})
 @NamedQueries({
     @NamedQuery(
@@ -26,19 +26,50 @@ public class Prenotazione implements Serializable {
     private Time oraInzio; 
     private Time oraFine; 
     private String descrizione;
+    
+    
     private User utente;
-    private Set<Car> cars = new HashSet<Car>();
+
+    private Car veicolo; 
     
 
-	void addCars(Car car) {
-		this.cars.add(car);
-		car.getPrenotazioni().add(this);
+    /**
+     * Getter veicolo che ha eseguito la prentoazione
+	 * @return the veicolo
+	 */
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "prenotazione_id")
+	public Car getVeicolo() {
+		return this.veicolo;
 	}
-	@ManyToMany(mappedBy="prenotazioni")
-	public Set<Car> getCars(){
-		return this.cars;
+	/**
+	 * Setter veicolo che ha eseguito la prenotazione
+	 * @param veicolo
+	 */
+	public void setVeicolo(Car veicolo) {
+		this.veicolo = veicolo;
+	}
+    
+	
+    /**
+     * Getter utente che ha eseguito la prenotazione
+	 * @return the User
+	 */
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "USERNAME")
+	public User getUtente() {
+		return this.utente;
+	}
+	/**
+	 * Setter utente che ha eseguito la prenotazione
+	 * @param utente
+	 */
+	public void setUtente(User utente) {
+		this.utente = utente;
 	}
 	
+	
+	//------ GETTER PRENOTAZIONE
 	/**
 	 * Getter Data di prenotazione fine 
 	 * @return dataFine
@@ -94,12 +125,8 @@ public class Prenotazione implements Serializable {
 	 * @return utente
 	 */
 	
-	public User getUtente() {
-		return utente;
-	}
-	public void setCars(Set<Car> cars) {
-		this.cars=cars;
-	}
+
+	//------- SETTER PRENOTAZIONE
 	/**
 	 * Setter Data di prenotazione (fine)
 	 * @param dataFine
@@ -144,12 +171,5 @@ public class Prenotazione implements Serializable {
 		this.oraInzio = oraInzio;
 	}
 	
-	/**
-	 * Setter Utente prenotazione
-	 * @param utente
-	 */
-	public void setUtente(User utente) {
-		this.utente = utente;
-	}
     
 }

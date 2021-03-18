@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
 
-@Entity
+@Entity(name = "User")
 @Table(name = "users")
 public class User implements Serializable {
 
@@ -18,52 +18,74 @@ public class User implements Serializable {
 	private String ruolo;
 
 	private Set<Car> carUsers = new HashSet<Car>(); 
-	private Set<Documentazione> documentazioniUtente = new HashSet<Documentazione>();
-
-
-	public void addCars(Car car) {
-		this.carUsers.add(car);
-		car.getUtenti().add(this);
-	}
-
-	/** 
-	 * Metodo per aggiungere documento 
-	 * 
-	 * @param documento: documento da aggiugnere al Set 
+	
+	private Documentazione documentazione;
+	
+	private Prenotazione prenotazione; 
+	
+	//------ PRENOTAZIONI--------
+	/**
+	 * Getter prenotazioni
+	 * @return prenotazioni 
 	 */
-	public void addDocumentazione(Documentazione documento) {
-		documento.setAutoreUtente(this);
-		this.documentazioniUtente.add(documento);
+
+	@OneToOne
+	public Prenotazione getPrenotazione() {
+		return this.prenotazione;
+	}
+	/**
+	 * Setter prenotazioni
+	 * @param prenotazioni 
+	 */
+	public void setPrenotazione(Prenotazione prenotazione) {
+		this.prenotazione = prenotazione;
+	}
+	
+	
+	//------- DOCUMENTAZIONE -----   
+
+	/**
+	 * Getter Documentazione Sottoscritta dall'utente
+	 * @return the documentazioneUtente
+	 */
+	@OneToOne
+	public Documentazione getDocumentazione() {
+		return this.documentazione;
 	}
 
 
+	/**
+	 * Setter Documentazione sottoscritta dall'utente
+	 * @param documentazioneUtente the documentazioneUtente to set
+	 */
+	public void setDocumentazione(Documentazione documentazione) {
+		this.documentazione = documentazione;
+	}
+
+
+	//VEICOLI 
+	
 	/** 
 	 * Getter veicolo
 	 *  
 	 * @return veicoli
 	 */	
 
-	@ManyToMany(mappedBy="utenti")
+	@ManyToMany(fetch = FetchType.EAGER, mappedBy="utenti")
 	public Set<Car> getCars(){
 		return this.carUsers;
 	}
 
-
-	/** 
-	 * Getter per la proprietà posts dell'User
-	 * @return posts dell'utente
-	 */	
-
-	@OneToMany
-    @JoinColumn(name = "documentazioniUtente")
-	public Set<Documentazione> getDocumentazione() {
-		return this.documentazioniUtente;
+	/**
+	 * Setter cars gestite dall'utente
+	 * @param cars
+	 */
+	public void setCars(Set<Car> cars) {
+		this.carUsers=cars;
 	}
 
-
 	/** 
-	 * Getter per la proprietà firstname dell'User 
-	 * 
+	 * Getter per la proprietà firstname dell'User
 	 * @return il nome dell'utente 
 	 */
 
@@ -72,6 +94,17 @@ public class User implements Serializable {
 		return this.firstname;
 	}
 
+	/** 
+	 * Getter per la proprietà lastname dell'User 
+	 * 
+	 * @return cognome dell'utente 
+	 */
+
+
+	@Column(name = "LASTNAME" , nullable = false, length = 100)
+	public String getLastName() {
+		return this.lastname;
+	}
 
 	/** 
 	 * Getter per la proprietà imageProfile dell'User 
@@ -84,17 +117,16 @@ public class User implements Serializable {
 		return this.imageProfile;
 	}
 
-
 	/** 
-	 * Getter per la proprietà lastname dell'User 
+	 * Getter per la proprietà username dell'User 
 	 * 
-	 * @return cognome dell'utente 
+	 * @return username dell'utente 
 	 */
 
-
-	@Column(name = "LASTNAME" , nullable = false, length = 100)
-	public String getLastName() {
-		return this.lastname;
+	@Id
+	@Column(name = "USERNAME", unique = true, nullable = false, length = 20)
+	public String getUsername() {
+		return this.username;
 	}
 
 
@@ -121,34 +153,9 @@ public class User implements Serializable {
 	}
 
 
-	/** 
-	 * Getter per la proprietà username dell'User 
-	 * 
-	 * @return username dell'utente 
-	 */
-
-	@Id
-	@Column(name = "USERNAME", unique = true, nullable = false, length = 20)
-	public String getUsername() {
-		return this.username;
-	}
 
 
-
-	public void setCars(Set<Car> cars) {
-		this.carUsers=cars;
-	}
-
-	/** 
-	 * Setter per la proprietà posts dell'User 
-	 * @param posts: post da associare all'utente 
-	 */
-	public void setDocumentazione(Set<Documentazione> documentazioniUtente) {
-		this.documentazioniUtente = documentazioniUtente;
-	}
-
-
-
+	
 	/** 
 	 * Setter per la proprietà firstname dell'User 
 	 * 

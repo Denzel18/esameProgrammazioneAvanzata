@@ -4,7 +4,7 @@ import java.util.Set;
 import javax.persistence.*;
 
 @Entity(name = "Allegato")
-@Table(name = "Allegati", uniqueConstraints = {
+@Table(name = "allegati", uniqueConstraints = {
         @UniqueConstraint(columnNames = "ALLEGATO_ID")})
 @Inheritance(strategy=InheritanceType.JOINED)
 public abstract class Allegato {
@@ -29,8 +29,7 @@ public abstract class Allegato {
 	 */
 
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "DOCUMENTO_ID", nullable = false)
+    @OneToOne(mappedBy = "allegatoDocumento")
 	public Documentazione getDocumento() {
 		return this.documento;
 	}

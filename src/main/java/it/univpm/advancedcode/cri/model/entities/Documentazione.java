@@ -8,7 +8,7 @@ import javax.persistence.*;
 
 
 @Entity(name = "Documentazione")
-@Table(name = "Documentazioni", uniqueConstraints = {
+@Table(name = "documentazioni", uniqueConstraints = {
         @UniqueConstraint(columnNames = "DOCUMENTO_ID")})
 @NamedQueries({
     @NamedQuery(
@@ -21,49 +21,78 @@ public class Documentazione implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private long id;
 	private String titolo;
-	private User utente;
 	private String descrizione;
 	private Date dataScadenza; 
 	private float costo; 
-	private Set<Allegato> allegatiDocumenti = new HashSet<>();
-	private Set<Car> cars = new HashSet<>();
+	
+	private Allegato allegatoDocumento; 
+	private Car veicolo;
+	private User utente;
 
-	/**
-	 * Metodo per aggiungere un allegato al documento
-	 *
-	 * @param allegato allegato da aggiungere
-	 */
-	public void addAllegati(Allegato allegato) {
-		allegato.setDocumento(this);
-		this.allegatiDocumenti.add(allegato);
-	}
-
-	void addCars(Car car) {
-		this.cars.add(car);
-		car.getDocumentazioni().add(this);
-	}
-
-
-	@OneToMany(fetch = FetchType.EAGER, orphanRemoval = true, mappedBy = "documento")
-	public Set<Allegato> getAllegati() {
-		return this.allegatiDocumenti;
-	}
-
+	//Autore UTENTE insirimento documentazione
+	
 	/**
 	 * Getter Autore inserimento del documento
 	 * @return autore 
 	 */
-
-	@ManyToOne(targetEntity = it.univpm.advancedcode.cri.model.entities.User.class)
-	@JoinColumn(name = "UTENTE", referencedColumnName = "USERNAME")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "USERNAME")
 	public User getAutoreUtente() {
 		return utente;
 	}
-
-	@ManyToMany(mappedBy="documentazioni")
-	public Set<Car> getCars(){
-		return this.cars;
+	/**
+	 * Setter Autore inserimento documento
+	 * @param autoreUtente
+	 */
+	public void setAutoreUtente(User utente) {
+		this.utente = utente;
 	}
+	
+	//ALLEGATO 
+
+	/**
+	 * Getter Allegato associato
+	 * @return the allegatoDocumento
+	 */
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "allegato_id", referencedColumnName = "ALLEGATO_ID")
+	public Allegato getAllegatoDocumento() {
+		return allegatoDocumento;
+	}
+	/**
+	 * Setter Allegato Associato
+	 * @param allegatoDocumento the allegatoDocumento to set
+	 */
+	public void setAllegatoDocumento(Allegato allegatoDocumento) {
+		this.allegatoDocumento = allegatoDocumento;
+	}
+
+
+	
+	//CAR -- DOCUMENTI RELATIVI AL VEICOLO 
+
+	/**
+	 * Getter car documentazione
+	 * @return car 
+	 */
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "documentazione_id")
+	public Car getCar(){
+		return this.veicolo;
+	}
+
+	/**
+	 * Setter Car
+	 * @param cars
+	 */
+	public void setCar(Car veicolo) {
+		this.veicolo=veicolo;
+	}
+	
+	
+	//----- GETTER DOCUMENTAZIONE
+
+
 	/**
 	 * Getter Costo documentazione
 	 * @return costo
@@ -110,30 +139,8 @@ public class Documentazione implements Serializable {
 	public String getTitolo() {
 		return this.titolo;
 	}
-	/**
-	 * Setter per la proprietà attachments.
-	 *
-	 * @param attachments allegati del post da settare
-	 */
-	public void setAllegati(Set<Allegato> allegatiDocumenti) {
-		this.allegatiDocumenti = allegatiDocumenti;
-	}
-	/**
-	 * Setter Autore inserimento documento
-	 * @param autoreUtente
-	 */
-	public void setAutoreUtente(User utente) {
-		this.utente = utente;
-	}
-	/**
-	 * Setter Cars 
-	 * @param cars
-	 */
 
-	public void setCars(Set<Car> cars) {
-		this.cars=cars;
-	}
-
+	//-----SETTER DOCUMENTAZIONE
 	/**
 	 * Setter Costo documentazione
 	 * @param costo

@@ -15,12 +15,12 @@ public class ManutenzioneDaoDefault extends DefaultDao implements ManutenzioneDa
 	 * 
 	 */
 	@Override
-	public Manutenzione create (long id, String tipoManutenzione, float costoManutenzione, Set<Car> cars) {
+	public Manutenzione create (long id, String tipoManutenzione, float costoManutenzione, Car car) {
 		Manutenzione man = new Manutenzione(); 
 		man.setId(id);
 		man.setTipoManutenzione(tipoManutenzione);
 		man.setCostoManutenzione(costoManutenzione);
-		man.setCars(cars);
+		man.setVeicolo(car);
         this.getSession().save(man);
 		return man; 
 	}

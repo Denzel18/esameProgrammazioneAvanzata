@@ -22,7 +22,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
-@ComponentScan(basePackages = {"it.univpm.advancedcode.cri.model.dao", "it.univpm.advancedcode.cri.model.entities", "it.univpm.advancedcode.cri.services"},
+@ComponentScan(basePackages = {"it.univpm.advancedcode.cri.model", "it.univpm.advancedcode.cri.services"},
         excludeFilters = {@ComponentScan.Filter(
                 type = FilterType.ASSIGNABLE_TYPE, classes = {DataServiceConfigTest.class})})
 
@@ -36,7 +36,7 @@ public class DataServiceConfig {
 
             DriverManagerDataSource ds = new DriverManagerDataSource();
             ds.setDriverClassName(com.mysql.cj.jdbc.Driver.class.getName());
-            ds.setUrl("jdbc:mysql://localhost:3306/CRI_DB?createDatabaseIfNotExist=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false");
+            ds.setUrl("jdbc:mysql://localhost:3306/cri_db?createDatabaseIfNotExist=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false");
             ds.setUsername("root");
             ds.setPassword("rootroot");
 

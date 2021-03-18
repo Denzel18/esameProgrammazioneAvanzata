@@ -7,19 +7,25 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import net.bytebuddy.asm.Advice.Return;
+
 
 @Entity(name = "Car")
-@Table(name = "Cars", uniqueConstraints = {
-        @UniqueConstraint(columnNames = "TARGA")})
+@Table(name = "cars", uniqueConstraints = {
+		@UniqueConstraint(columnNames = "VEICOLO_ID")})
 @NamedQueries({
 	@NamedQuery(
 			name = "Car.getByTarga",
@@ -28,7 +34,7 @@ import javax.persistence.UniqueConstraint;
 })
 public class Car implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+	private long veicoloID; 
 	private String targa;
 	private String marca; 
 	private String modello; 
@@ -40,46 +46,112 @@ public class Car implements Serializable {
 
 
 	private Set<Documentazione> documentazioni = new HashSet<Documentazione>();
-	private Set<Manutenzione> carManutenzioni = new HashSet<Manutenzione>();
-	private Set<Prenotazione> carPrenotazioni = new HashSet<Prenotazione>();
-	private Set<User> carUsers = new HashSet<User>();
+
+	private Set<Manutenzione> manutenzioni = new HashSet<Manutenzione>();
+
+	private Set<Prenotazione> prenotazioni = new HashSet<Prenotazione>();
+
+	private Set<User> utenti = new HashSet<User>();
+
+
+	//-----DOCUMENTAZIONE-----
+	/**
+	 * Getter documentazione
+	 * @return
+	 */
+
+	@OneToMany
+	@JoinColumn(name = "documentazione_id")
+	public Set<Documentazione> getDocumentazioni() {
+		return this.documentazioni;
+	}
+	/**
+	 * Setter per la proprietà documentazioni.
+	 *
+	 * @param documentazioni documentazioni del veicolo da settare
+	 */
+	public void setDocumentazioni(Set<Documentazione> documentazioni) {
+		this.documentazioni = documentazioni;
+	}	
+
+	//-----MANUTENZIONE-----
+	@OneToMany
+	@JoinColumn(name = "manutenzione_id")
+	public Set<Manutenzione> getManutenzioni() {
+		return this.manutenzioni;
+	}
+	/**
+	 * Setter per la proprietà documentazioni.
+	 *
+	 * @param documentazioni documentazioni del veicolo da settare
+	 */
+	public void setManutenzioni(Set<Manutenzione> manutenzioni) {
+		this.manutenzioni = manutenzioni;
+	}
+
+
+	//-----PRENOTAZIONI-----
+	/**
+	 * Getter prenotazioni
+	 * @return prenotazioni
+	 */
+	@OneToMany
+	@JoinColumn(name = "prenotazione_id")
+	public Set<Prenotazione> getPrenotazioni() {
+		return this.prenotazioni;
+	}
+	/**
+	 * Setter prenotazioni
+	 * @param prenotazioni
+	 */
+	public void setPrenotazioni(Set<Prenotazione> prenotazioni) {
+		this.prenotazioni = prenotazioni;
+	}
+
+
+	//---UTENTI
 
 	/**
-	 * Metodo per aggiungere un documento al veicolo.
-	 *
-	 * @param documento documento da aggiungere
+	 * Getter utenti
+	 * @return utenti 
 	 */
-	public void addDocumentazione(Documentazione documento) {
-		this.documentazioni.add(documento);
-		documento.getCars().add(this);
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinTable(name = "cars_users",
+	joinColumns = @JoinColumn(name = "VEICOLO_ID", nullable = false),
+	inverseJoinColumns = @JoinColumn(name = "USERNAME", nullable = false))
+	public Set<User> getUtenti(){
+		return this.utenti ; 
+	}
+
+	/**
+	 * Setter utenti
+	 * @param documentazioni documentazioni del veicolo da settare
+	 */
+	public void setUtenti(Set<User> carUsers) {
+		this.utenti = carUsers;
+	}
+
+	//----- ID VEICOLO -----
+	
+	/**
+	 * Getter ID Veicolo
+	 * @return the veicolo_id
+	 */
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "VEICOLO_ID", unique = true)
+	public long getVeicoloID() {
+		return veicoloID;
 	}
 	/**
-	 * Metodo per aggiungere un documento al veicolo.
-	 *
-	 * @param documento documento da aggiungere
+	 * Setter ID Veicolo
+	 * @param veicolo_id the veicolo_id to set
 	 */
-	public void addManutenzione(Manutenzione manutenzione) {
-		this.carManutenzioni.add(manutenzione);
-		manutenzione.getCars().add(this);
+	public void setVeicoloID(int veicolo_id) {
+		this.veicoloID = veicolo_id;
 	}
-	/**
-	 * Metodo per aggiungere un prenotazione al veicolo.
-	 *
-	 * @param prenotazione prenotazione da aggiungere
-	 */
-	public void addPrenotazione(Prenotazione prenotazione) {
-		this.carPrenotazioni.add(prenotazione);
-		prenotazione.getCars().add(this);
-	}
-	/**
-	 * Metodo per aggiungere un documento al veicolo.
-	 *
-	 * @param documento documento da aggiungere
-	 */
-	public void addUtente(User user) {
-		this.carUsers.add(user);
-		user.getCars().add(this);
-	}
+
+	//---- GETTER VEICOLO
 
 	/**
 	 * Getter Tipologia Alimentazione del veicolo
@@ -97,22 +169,7 @@ public class Car implements Serializable {
 	public String getDestinazioneUso() {
 		return destinazioneUso;
 	}
-	@ManyToMany
-	@JoinTable(name="cars_documentazioni", joinColumns={@JoinColumn(referencedColumnName="TARGA")}
-	, inverseJoinColumns={@JoinColumn(referencedColumnName="DOCUMENTO_ID")})
-	public Set<Documentazione> getDocumentazioni() {
-		return this.documentazioni;
-	}
-	/**
-	 * relation more to more car - manutenzioni
-	 * 
-	 */
-	@ManyToMany
-	@JoinTable(name="cars_manutenzioni", joinColumns={@JoinColumn(referencedColumnName="TARGA")}
-	, inverseJoinColumns={@JoinColumn(referencedColumnName="MANUTENZIONE_ID")})
-	public Set<Manutenzione> getManutenzioni() {
-		return this.carManutenzioni;
-	}
+
 	/**
 	 * Getter Marca del veicolo 
 	 * @return marca 
@@ -153,27 +210,18 @@ public class Car implements Serializable {
 	public String getNumeroTelaio() {
 		return numeroTelaio;
 	}
-	@ManyToMany
-	@JoinTable(name="cars_prenotazioni", joinColumns={@JoinColumn(referencedColumnName="TARGA")}
-	, inverseJoinColumns={@JoinColumn(referencedColumnName="PRENOTAZIONE_ID")})
-	public Set<Prenotazione> getPrenotazioni() {
-		return this.carPrenotazioni;
-	}
 	/**
 	 * Getter Targa del veicolo 
 	 * @return targa
 	 */
-	@Id
+
 	@Column(name="TARGA", nullable = false, length = 7, unique = true)
 	public String getTarga() {
 		return targa;
 	}
-	@ManyToMany
-	@JoinTable(name="cars_utenti", joinColumns={@JoinColumn(referencedColumnName="TARGA")}
-	, inverseJoinColumns={@JoinColumn(referencedColumnName="USERNAME")})
-	public Set<User> getUtenti() {
-		return this.carUsers;
-	}
+
+
+	//-----SETTER VEICOLO 
 
 	/**
 	 * Setter Tipologia Alimentazione del veicolo
@@ -189,23 +237,6 @@ public class Car implements Serializable {
 	 */
 	public void setDestinazioneUso(String destinazioneUso) {
 		this.destinazioneUso = destinazioneUso;
-	}
-
-	/**
-	 * Setter per la proprietà documentazioni.
-	 *
-	 * @param documentazioni documentazioni del veicolo da settare
-	 */
-	public void setDocumentazioni(Set<Documentazione> documentazioni) {
-		this.documentazioni = documentazioni;
-	}	
-	/**
-	 * Setter per la proprietà manutenzioni.
-	 *
-	 * @param manutenzioni manutenzioni del veicolo da settare
-	 */
-	public void setManutenzioni(Set<Manutenzione> carManutenzioni) {
-		this.carManutenzioni = carManutenzioni;
 	}
 
 	/**
@@ -250,15 +281,6 @@ public class Car implements Serializable {
 	}
 
 	/**
-	 * Setter per la proprietà prenotazioni.
-	 *
-	 * @param prenotazioni prenotazioni del veicolo da settare
-	 */
-	public void setPrenotazioni(Set<Prenotazione> carPrenotazioni) {
-		this.carPrenotazioni = carPrenotazioni;
-	}
-
-	/**
 	 * Setter Targa del veicolo
 	 * @param targa
 	 */
@@ -266,12 +288,5 @@ public class Car implements Serializable {
 		this.targa = targa;
 	}
 
-	/**
-	 * Setter per la proprietà documentazioni.
-	 *
-	 * @param documentazioni documentazioni del veicolo da settare
-	 */
-	public void setUtenti(Set<User> carUsers) {
-		this.carUsers = carUsers;
-	}
+
 }

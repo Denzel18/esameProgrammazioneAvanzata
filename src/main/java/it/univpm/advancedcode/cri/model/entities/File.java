@@ -5,7 +5,7 @@ import javax.persistence.*;
 
 
 @Entity(name = "File")
-@Table(name="Files")
+@Table(name="files")
 @NamedQueries({
 	@NamedQuery(
 			name="getFileByName",

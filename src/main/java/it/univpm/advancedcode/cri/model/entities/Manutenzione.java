@@ -6,7 +6,7 @@ import java.util.Set;
 import javax.persistence.*;
 
 @Entity(name = "Manutenzione")
-@Table(name = "Manutenzioni", uniqueConstraints = {
+@Table(name = "manutenzioni", uniqueConstraints = {
         @UniqueConstraint(columnNames = "MANUTENZIONE_ID")})
 @NamedQueries({
     @NamedQuery(
@@ -19,16 +19,26 @@ public class Manutenzione implements Serializable{
 	private long id;
     private String tipoManutenzione; // straordinaria o regolare
     private float costoManutenzione;
-    private Set<Car> cars = new HashSet<Car>();
     
-    public void addCars(Car car) {
-		this.cars.add(car);
-		car.getManutenzioni().add(this);
+    
+    private Car veicolo; 
+      
+
+    /**
+     * Getter veicolo che ha eseguito la manutenzione
+	 * @return the veicolo
+	 */
+	@ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "manutenzione_id")
+	public Car getVeicolo() {
+		return veicolo;
 	}
-    
-	@ManyToMany(mappedBy="manutenzioni")
-	public Set<Car> getCars(){
-		return this.cars;
+	/**
+	 * Setter veicolo che ha eseguito la manutenzione
+	 * @param veicolo
+	 */
+	public void setVeicolo(Car veicolo) {
+		this.veicolo = veicolo;
 	}
 	/**
 	 * Getter Costo Manutenzione 
@@ -56,10 +66,7 @@ public class Manutenzione implements Serializable{
 	public String getTipoManutenzione() {
 		return tipoManutenzione;
 	}
-	public void setCars(Set<Car> cars) {
-		this.cars=cars;
-	} 
-    
+
 	/**
 	 * Setter Costo Manutenzione
 	 * @param costoManutenzione
