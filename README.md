@@ -108,9 +108,9 @@ SHOW = LIST
 - /user/delete/${USERNAME} : DELETE user 
 
 ## DOCUMENTAZIONE 
-***Ancora in fase di sviluppo***
+**Fare il check della documentazione !!!***
 
-[Link alla documentazione](https://www.google.com)
+[Link alla documentazione](https://gitlab.com/bernovschi.denis/esameprogrammazioneavanzata/-/tree/master/doc)
 
 ***Ancora in fase di sviluppo***
 
