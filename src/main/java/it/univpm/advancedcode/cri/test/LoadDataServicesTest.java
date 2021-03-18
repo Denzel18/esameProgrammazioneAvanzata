@@ -75,7 +75,6 @@ public class LoadDataServicesTest {
             assert allegatoService.getAll().size() == 4;
 
         } catch (Exception e) {
-        	System.out.println("ERRORREEEE COGLIONE \n\n\n\n\n\n");
             e.printStackTrace(System.err);
         }
 

@@ -8,17 +8,9 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import it.univpm.advancedcode.cri.model.dao.AllegatoDao;
-import it.univpm.advancedcode.cri.model.dao.CarDao;
-import it.univpm.advancedcode.cri.model.dao.DocumentazioneDao;
-import it.univpm.advancedcode.cri.model.dao.FileDao;
-import it.univpm.advancedcode.cri.model.dao.LinkDao;
-import it.univpm.advancedcode.cri.model.dao.ManutenzioneDao;
-import it.univpm.advancedcode.cri.model.dao.PrenotazioneDao;
-import it.univpm.advancedcode.cri.model.dao.UserDao;
-import it.univpm.advancedcode.cri.model.entities.Car;
-import it.univpm.advancedcode.cri.model.entities.Documentazione;
-import it.univpm.advancedcode.cri.model.entities.User;
+import it.univpm.advancedcode.cri.model.dao.*;
+import it.univpm.advancedcode.cri.model.entities.*;
+
 
 public class LoadDataTest {
 	public static void main(String... args) {
@@ -30,7 +22,7 @@ public class LoadDataTest {
 
 			UserDao userDao = ctx.getBean("userDao", UserDao.class);
 			DocumentazioneDao documentazioneDao = ctx.getBean("documentazioneDao", DocumentazioneDao.class);
-			//AllegatoDao allegatoDao = ctx.getBean("allegatoDao", AllegatoDao.class);
+			AllegatoDao allegatoDao = ctx.getBean("allegatoDao", AllegatoDao.class);
 			CarDao carDao = ctx.getBean("carDao", CarDao.class);
 			ManutenzioneDao manutenzioneDao = ctx.getBean("manutenzioneDao", ManutenzioneDao.class);
 			FileDao fileDao = ctx.getBean("fileDao", FileDao.class);
@@ -42,7 +34,7 @@ public class LoadDataTest {
 
 				userDao.setSession(session);
 				documentazioneDao.setSession(session);
-				//allegatoDao.setSession(session);
+				allegatoDao.setSession(session);
 				carDao.setSession(session);
 				manutenzioneDao.setSession(session);
 				fileDao.setSession(session);
@@ -74,13 +66,17 @@ public class LoadDataTest {
 				assert carDao.getParcoMezzi().size() == 5;
 
 
-				//CREAZIONE DOCUMENTAZIONE 
+				//CREAZIONE DOCUMENTAZIONE
+				session.beginTransaction();
 				
 				Set<Car> carsDocumentazione =  new HashSet(); 
 				
 				carsDocumentazione.add(c1);
+				session.getTransaction().commit();
 
-				session.beginTransaction(); Documentazione d1 =
+				session.beginTransaction(); 
+				
+				Documentazione d1 =
 						documentazioneDao.create("REVISIONE -TX123TY", user5, "DESCRIZIONE",
 								Date.valueOf("20/09/2020"), (float)900.00, carsDocumentazione);
 
@@ -99,8 +95,8 @@ public class LoadDataTest {
 				Documentazione d3 = documentazioneDao.create("REVISIONE -TX123TY", user5,
 						"DESCRIZIONE", Date.valueOf("20/09/2020"), (float)900.00, carsDocumentazione);
 
-				session.getTransaction().commit(); assert documentazioneDao.getAll().size()
-				== 5;
+				session.getTransaction().commit(); 
+				assert documentazioneDao.getAll().size() == 5;
 
 
 				//LINK - FILE - ALLEGATI

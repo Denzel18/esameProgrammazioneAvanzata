@@ -10,6 +10,10 @@ import it.univpm.advancedcode.cri.model.entities.Car;
 @Repository("carDao")
 public class CarDaoDefault extends DefaultDao implements CarDao {
 
+	/**
+	 * Car creator 
+	 */
+	@Override 
 	public Car create (String targa,String marca, String modello, String numeroTelaio, int massa, 
 			String destinazioneUso, int numeroAssi, String alimentazione) {
 		Car car = new Car(); 

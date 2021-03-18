@@ -33,31 +33,31 @@ import javax.servlet.MultipartConfigElement;
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = { "it.univpm.advancedcode.cri" },
-		excludeFilters  = {@ComponentScan.Filter(
+excludeFilters  = {@ComponentScan.Filter(
 		type = FilterType.ASSIGNABLE_TYPE, classes = {it.univpm.advancedcode.cri.test.DataServiceConfigTest.class})})
 
 public class WebConfig implements WebMvcConfigurer {
 
-	
+
 	@Bean
 	public String appName() {
 		return "Cri App";
 	}
-	
+
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/css/**").addResourceLocations("/WEB-INF/css/")
-				.setCachePeriod(31556926);
+		.setCachePeriod(31556926);
 		registry.addResourceHandler("/media/**").addResourceLocations("/WEB-INF/media/")
 		.setCachePeriod(31556926);
 		registry.addResourceHandler("/js/**").addResourceLocations("/WEB-INF/js/")
 		.setCachePeriod(31556926);
 		registry.addResourceHandler("/files/cars_attachments/**")
-				.addResourceLocations("/WEB-INF/files/cars_attachments/").setCachePeriod(31556926);
+		.addResourceLocations("/WEB-INF/files/cars_attachments/").setCachePeriod(31556926);
 		registry.addResourceHandler("/files/profile_pictures/**")
-				.addResourceLocations("/WEB-INF/files/profile_pictures/").setCachePeriod(31556926);
+		.addResourceLocations("/WEB-INF/files/profile_pictures/").setCachePeriod(31556926);
 		registry.addResourceHandler("/immagini/**").addResourceLocations("/WEB-INF/immagini/")
-				.setCachePeriod(31556926);
+		.setCachePeriod(31556926);
 	}
 
 	@Bean
@@ -89,21 +89,21 @@ public class WebConfig implements WebMvcConfigurer {
 		tilesConfigurer.setCheckRefresh(true);
 		return tilesConfigurer;
 	}
-	
+
 	//Formattatore per le date
 	@Bean
 	public DateFormatter dateFormatter() {
 		return new DateFormatter("dd/MM/YYYY");
 	}
-	
-	
+
+
 
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(localeChangeInterceptor());
 		registry.addInterceptor(webChangeInterceptor());
 	}
-	
+
 	@Bean
 	LocaleChangeInterceptor localeChangeInterceptor() {
 		LocaleChangeInterceptor interceptor = new LocaleChangeInterceptor();
@@ -111,45 +111,36 @@ public class WebConfig implements WebMvcConfigurer {
 		return interceptor;
 	}
 
-	
+
 	//Componente che va a settare il Locale di default
-			@Bean
-			CookieLocaleResolver localeResolver() {
-				CookieLocaleResolver cookieLocaleResolver = new CookieLocaleResolver();
-				cookieLocaleResolver.setDefaultLocale(Locale.ITALIAN);
-				cookieLocaleResolver.setCookieMaxAge(3600);
-				cookieLocaleResolver.setCookieName("locale"); 
-				return cookieLocaleResolver;
-			}
-			
+	@Bean
+	CookieLocaleResolver localeResolver() {
+		CookieLocaleResolver cookieLocaleResolver = new CookieLocaleResolver();
+		cookieLocaleResolver.setDefaultLocale(Locale.ITALIAN);
+		cookieLocaleResolver.setCookieMaxAge(3600);
+		cookieLocaleResolver.setCookieName("locale"); 
+		return cookieLocaleResolver;
+	}
 
 
 	@Bean ResourceBundleThemeSource themeSource() {
 		return new ResourceBundleThemeSource();
 	}
 
+	@Bean
+	WebContentInterceptor webChangeInterceptor() {
+		// allow/disallow handling of http methods; prepare the request
+		WebContentInterceptor webContentInterceptor = new WebContentInterceptor();
+		webContentInterceptor.setCacheSeconds(0);
+		webContentInterceptor.setSupportedMethods("GET", "POST", "PUT", "DELETE");
+		return webContentInterceptor;
+	}
 
 
-		 
-		@Bean
-		WebContentInterceptor webChangeInterceptor() {
-			// allow/disallow handling of http methods; prepare the request
-			WebContentInterceptor webContentInterceptor = new WebContentInterceptor();
-			webContentInterceptor.setCacheSeconds(0);
-			webContentInterceptor.setSupportedMethods("GET", "POST", "PUT", "DELETE");
-			return webContentInterceptor;
-		}
-
-
-
-
-
-
-		// <=> <mvc:view-controller .../>
-		@Override
-		public void addViewControllers(ViewControllerRegistry registry) {
-			registry.addRedirectViewController("/", "/cri");
-		}
+	@Override
+	public void addViewControllers(ViewControllerRegistry registry) {
+		registry.addRedirectViewController("/", "/cri");
+	}
 
 
 	@Bean

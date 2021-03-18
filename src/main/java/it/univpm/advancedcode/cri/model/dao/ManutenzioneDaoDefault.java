@@ -10,7 +10,11 @@ import it.univpm.advancedcode.cri.model.entities.Manutenzione;
 
 @Repository("manutenzioneDao")
 public class ManutenzioneDaoDefault extends DefaultDao implements ManutenzioneDao {
-
+	
+	/**
+	 * 
+	 */
+	@Override
 	public Manutenzione create (long id, String tipoManutenzione, float costoManutenzione, Set<Car> cars) {
 		Manutenzione man = new Manutenzione(); 
 		man.setId(id);
@@ -23,7 +27,7 @@ public class ManutenzioneDaoDefault extends DefaultDao implements ManutenzioneDa
 
 	/**
 	 * Metodo per eliminare una manutenzione
-	 * @param manutenzione
+	 * @param manutenzione da eliminare
 	 * 
 	 */
 	@Override
