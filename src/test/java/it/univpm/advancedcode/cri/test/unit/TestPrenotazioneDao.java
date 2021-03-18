@@ -59,7 +59,7 @@ public class TestPrenotazioneDao {
             Time time1 = Time.valueOf("20:30");
             Time time2 = Time.valueOf("20:40");
             
-            Car c1 = carDao.create("AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
+            Car c1 = carDao.create((long)1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
 			
 			Prenotazione prenotazione = prenotazioneDao.create(1,date1, date2, time1, time2, "DESCRIZIONE",user1); 
 			
@@ -114,7 +114,7 @@ public class TestPrenotazioneDao {
             Time time1 = Time.valueOf("20:30");
             Time time2 = Time.valueOf("20:40");
             
-            Car c1 = carDao.create("AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
+            Car c1 = carDao.create((long)1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
 			
 			Prenotazione prenotazione = prenotazioneDao.create(1,date1, date2, time1, time2, "DESCRIZIONE",user1);  
 
@@ -167,7 +167,7 @@ public class TestPrenotazioneDao {
             Time time1 = Time.valueOf("20:30");
             Time time2 = Time.valueOf("20:40");
             
-            Car c1 = carDao.create("AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
+            Car c1 = carDao.create((long)1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
 			
 			Prenotazione prenotazione = prenotazioneDao.create(1,date1, date2, time1, time2, "DESCRIZIONE",user1); 
 			

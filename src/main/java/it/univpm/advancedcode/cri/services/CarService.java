@@ -6,7 +6,7 @@ import it.univpm.advancedcode.cri.model.entities.Car;
 
 public interface CarService {
 	
-		Car create(String targa,String marca, String modello, String numeroTelaio, int massa, 
+		Car create(long Veicolo_ID, String targa,String marca, String modello, String numeroTelaio, int massa, 
 				String destinazioneUso, int numeroAssi, String alimentazione);
 	    
 	    void delete(Car car);

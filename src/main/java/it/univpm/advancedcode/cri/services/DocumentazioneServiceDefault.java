@@ -33,8 +33,8 @@ public class DocumentazioneServiceDefault implements DocumentazioneService {
      */
     @Transactional
     @Override
-    public Documentazione create(String title, User autoreUtente, String descrizione, Date dataScadenza, float costo, Set<Car> cars) {
-    	return this.create(title, autoreUtente, descrizione, dataScadenza, costo, cars);
+    public Documentazione create(String title, User autoreUtente, String descrizione, Date dataScadenza, float costo, Car car) {
+    	return this.docRepository.create(title, autoreUtente, descrizione, dataScadenza, costo, car);
     }
 
 
@@ -53,8 +53,9 @@ public class DocumentazioneServiceDefault implements DocumentazioneService {
     @Transactional
     @Override
     public Documentazione create(String title, User autoreUtente, String descrizione, Date dataScadenza, float costo,
-    	    Set<Allegato> allegati, Set<Car> cars) {
-    	return this.create(title, autoreUtente, descrizione, dataScadenza, costo, allegati, cars);
+    	    Allegato allegato, Car car) {
+    	return this.docRepository.create(title, autoreUtente, descrizione, dataScadenza, costo, allegato, car);
+    			
     }
 
     /**

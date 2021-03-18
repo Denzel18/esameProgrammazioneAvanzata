@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import it.univpm.advancedcode.cri.model.entities.Car;
+import it.univpm.advancedcode.cri.model.entities.Documentazione;
 import it.univpm.advancedcode.cri.model.entities.Manutenzione;
 import it.univpm.advancedcode.cri.services.CarService;
 import it.univpm.advancedcode.cri.services.ManutenzioneService;
@@ -31,13 +32,11 @@ public class TestManutenzioneService {
 		ctx.close();
 	}
 
-		
+
 	@Test
 	public void createAndDelete() {
-		Car c1 = carService.create("AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
-		Set<Car> cars = new HashSet<Car>(); 
-		cars.add(c1);
-		Manutenzione m1 = manutenzioneService.create(1, "STRAORDINARIA", (float)90.05 , cars);
+		Car c1 = carService.create(1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
+		Manutenzione m1 = manutenzioneService.create(1, "STRAORDINARIA", (float)90.05 , c1);
 		try {
 			assertEquals(manutenzioneService.getAll().size(),1);
 		} catch(Exception e) {
@@ -57,10 +56,8 @@ public class TestManutenzioneService {
 
 	@Test
 	void createAndFind() {
-		Car c1 = carService.create("AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
-		Set<Car> cars = new HashSet<Car>(); 
-		cars.add(c1);
-		Manutenzione m1 = manutenzioneService.create(1, "STRAORDINARIA", (float)90.05 , cars);
+		Car c1 = carService.create(1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
+		Manutenzione m1 = manutenzioneService.create(1, "STRAORDINARIA", (float)90.05 , c1);
 
 		try {
 			manutenzioneService.getById(m1.getId());
@@ -80,10 +77,8 @@ public class TestManutenzioneService {
 	//
 	@Test
 	void findManutenzioneById() {
-		Car c1 = carService.create("AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
-		Set<Car> cars = new HashSet<Car>(); 
-		cars.add(c1);
-		Manutenzione m1 = manutenzioneService.create(1, "STRAORDINARIA", (float)90.05 , cars);
+		Car c1 = carService.create(1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
+		Manutenzione m1 = manutenzioneService.create(1, "STRAORDINARIA", (float)90.05 , c1);
 		try {
 			assertEquals(manutenzioneService.getAll().size(),1);
 		} catch(Exception e) {
@@ -97,7 +92,7 @@ public class TestManutenzioneService {
 		assertEquals(manutenzioneService.getAll().size(), 0);
 
 	}
-	
+
 	@BeforeEach
 	void openContext() {
 
@@ -115,14 +110,12 @@ public class TestManutenzioneService {
 	@AfterEach
 	void tearDown() throws Exception {
 	}
-	
-	
+
+
 	@Test
-	void updateComment() {
-		Car c1 = carService.create("AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
-		Set<Car> cars = new HashSet<Car>(); 
-		cars.add(c1);
-		Manutenzione m1 = manutenzioneService.create(1, "STRAORDINARIA", (float)90.05 , cars);
+	void createAndUpdate() {
+		Car c1 = carService.create(1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
+		Manutenzione m1 = manutenzioneService.create(1, "STRAORDINARIA", (float)90.05 , c1);
 
 		try {
 			assertEquals(manutenzioneService.getAll().size(),1);

@@ -58,11 +58,8 @@ public class TestDocumentazioneService {
 		User user1 = userService.create("mario98", "12345678", "Mario", "Rossi", "admin");
 		String dataS1= "07/08/2023";
 		Date data1 = new SimpleDateFormat("dd/MM/yyyy").parse(dataS1); 
-		Car c1 = carService.create("AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
-		Set<Car> cars = new HashSet<Car>(); 
-		cars.add(c1);
-		
-		Documentazione doc1 = documentazioneService.create("TITOLO", user1, "DESCRIZIONE", data1, (float) 900.10, cars);
+		Car c1 = carService.create(1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");		
+		Documentazione doc1 = documentazioneService.create("TITOLO", user1, "DESCRIZIONE", data1, (float) 900.10, c1);
 		try {
 			assertEquals(documentazioneService.getAll().size(),1);
 		} catch(Exception e) {
@@ -85,10 +82,8 @@ public class TestDocumentazioneService {
 		User user1 = userService.create("mario98", "12345678", "Mario", "Rossi", "admin");	
 		String dataS1= "07/08/2023";
 		Date data1 = new SimpleDateFormat("dd/MM/yyyy").parse(dataS1); 
-		Car c1 = carService.create("AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
-		Set<Car> cars = new HashSet<Car>(); 
-		cars.add(c1);
-		Documentazione doc1 = documentazioneService.create("TITOLO", user1, "DESCRIZIONE", data1, (float) 900.10,cars);
+		Car c1 = carService.create(1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
+		Documentazione doc1 = documentazioneService.create("TITOLO", user1, "DESCRIZIONE", data1, (float) 900.10,c1);
 
 		try {
 			documentazioneService.getById(doc1.getDocumento_id()); 
@@ -111,10 +106,8 @@ public class TestDocumentazioneService {
 		User user2 = userService.create("mario18", "12345678", "Mario2", "Rossi", "driver");
 		String dataS1= "07/08/2023";
 		Date data1 = new SimpleDateFormat("dd/MM/yyyy").parse(dataS1); 
-		Car c1 = carService.create("AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
-		Set<Car> cars = new HashSet<Car>(); 
-		cars.add(c1);
-		Documentazione doc1 = documentazioneService.create("TITOLO", user1, "DESCRIZIONE", data1, (float) 900.10,cars);
+		Car c1 = carService.create(1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
+		Documentazione doc1 = documentazioneService.create("TITOLO", user1, "DESCRIZIONE", data1, (float) 900.10,c1);
 		assertEquals(documentazioneService.getAll().size(),1);
 
 		doc1.setAutoreUtente(user2);

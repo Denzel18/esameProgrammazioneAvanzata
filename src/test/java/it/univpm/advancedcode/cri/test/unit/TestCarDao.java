@@ -27,7 +27,7 @@ public class TestCarDao {
 			carDao.setSession(s);
 
 			s.beginTransaction();
-			Car c1 = carDao.create("AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
+			Car c1 = carDao.create((long)1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
 			s.getTransaction().commit();
 
 			assertEquals(carDao.getParcoMezzi().size(),1);
@@ -62,14 +62,14 @@ public class TestCarDao {
 			Session s=sf.openSession(); carDao.setSession(s);
 
 			s.beginTransaction(); 
-			Car c1 = carDao.create("AX311TY", "FIAT", "DUCATO",
-					"X1LS22111", 3000, "Emergenza", 2, "DIESEL"); s.getTransaction().commit();
+			Car c1 = carDao.create((long)1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
+			s.getTransaction().commit();
 
-					try { 
-						assertEquals(carDao.getParcoMezzi().size(),1);
-						assertEquals(carDao.getByTarga("AX311TY"),c1); 
-					} catch(Exception e) {
-						fail("Exception not excepted: COGLIONEEEE 222"+e.getMessage()); } 
+			try { 
+				assertEquals(carDao.getParcoMezzi().size(),1);
+				assertEquals(carDao.getByTarga("AX311TY"),c1); 
+			} catch(Exception e) {
+				fail("Exception not excepted: COGLIONEEEE 222"+e.getMessage()); } 
 		} 
 	}
 

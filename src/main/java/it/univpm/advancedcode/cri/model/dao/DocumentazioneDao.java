@@ -13,10 +13,10 @@ import it.univpm.advancedcode.cri.model.entities.User;
 
 public interface DocumentazioneDao {
 	
-	Documentazione create(String title, User autoreUtente, String descrizione, Date dataScadenza, float costo, Set<Car> cars);
+	Documentazione create(String title, User autoreUtente, String descrizione, Date dataScadenza, float costo, Car car);
 
 	Documentazione create(String title, User autoreUtente, String descrizione, Date dataScadenza, float costo,
-                Set<Allegato> allegati, Set<Car> cars);
+                Allegato allegato, Car car);
 
     void delete(Documentazione documento);
 

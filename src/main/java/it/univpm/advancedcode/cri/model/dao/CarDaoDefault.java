@@ -14,9 +14,10 @@ public class CarDaoDefault extends DefaultDao implements CarDao {
 	 * Car creator 
 	 */
 	@Override 
-	public Car create (String targa,String marca, String modello, String numeroTelaio, int massa, 
+	public Car create (long Veicolo_ID, String targa,String marca, String modello, String numeroTelaio, int massa, 
 			String destinazioneUso, int numeroAssi, String alimentazione) {
-		Car car = new Car(); 
+		Car car = new Car();
+		car.setVeicoloID(Veicolo_ID);
 		car.setTarga(targa);
 		car.setMarca(marca);
 		car.setModello(modello);

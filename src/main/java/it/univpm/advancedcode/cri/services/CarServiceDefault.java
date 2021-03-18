@@ -22,10 +22,10 @@ public class CarServiceDefault implements CarService {
 
 	@Transactional
 	@Override
-	public Car create(String targa,String marca, String modello, String numeroTelaio, int massa, 
+	public Car create(long Veicolo_ID, String targa,String marca, String modello, String numeroTelaio, int massa, 
 			String destinazioneUso, int numeroAssi, String alimentazione) {
 		
-		return this.carRepository.create(targa, marca, modello, numeroTelaio, massa, destinazioneUso, numeroAssi, alimentazione);
+		return this.carRepository.create(Veicolo_ID, targa, marca, modello, numeroTelaio, massa, destinazioneUso, numeroAssi, alimentazione);
 	}
 
 	/**

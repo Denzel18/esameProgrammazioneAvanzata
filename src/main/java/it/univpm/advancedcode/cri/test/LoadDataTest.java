@@ -57,43 +57,33 @@ public class LoadDataTest {
 
 				//CREAZIONE VEICOLI 
 				session.beginTransaction();
-				Car c1 = carDao.create("TX123TY", "FIAT", "DOBLO", "11119090", 4000, "emergenza", 3, "diesel");
-				Car c2 = carDao.create("TX333TY", "FIAT", "CAMION", "22229090", 3800, "emergenza", 3, "elettrica");
-				Car c3 = carDao.create("TX444TY", "IVECO", "DAILER", "33339090", 2500, "soccorso", 2, "diesel");
-				Car c4 = carDao.create("TX555TY", "MERCEDES", "VAN", "44449090", 1400, "emergenza", 3, "benzina");
-				Car c5 = carDao.create("TX666TY", "MERCEDES", "VAN", "55559090", 1400, "trasporto", 2, "diesel");
+				Car c1 = carDao.create((long) 1, "TX123TY", "FIAT", "DOBLO", "11119090", 4000, "emergenza", 3, "diesel");
+				Car c2 = carDao.create((long) 12, "TX333TY", "FIAT", "CAMION", "22229090", 3800, "emergenza", 3, "elettrica");
+				Car c3 = carDao.create((long) 14, "TX444TY", "IVECO", "DAILER", "33339090", 2500, "soccorso", 2, "diesel");
+				Car c4 = carDao.create((long) 16, "TX555TY", "MERCEDES", "VAN", "44449090", 1400, "emergenza", 3, "benzina");
+				Car c5 = carDao.create((long) 19, "TX666TY", "MERCEDES", "VAN", "55559090", 1400, "trasporto", 2, "diesel");
 				session.getTransaction().commit();
 				assert carDao.getParcoMezzi().size() == 5;
 
 
 				//CREAZIONE DOCUMENTAZIONE
-				session.beginTransaction();
-				
-				Set<Car> carsDocumentazione =  new HashSet(); 
-				
-				carsDocumentazione.add(c1);
-				session.getTransaction().commit();
-
 				session.beginTransaction(); 
 				
 				Documentazione d1 =
 						documentazioneDao.create("REVISIONE -TX123TY", user5, "DESCRIZIONE",
-								Date.valueOf("20/09/2020"), (float)900.00, carsDocumentazione);
+								Date.valueOf("20/09/2020"), (float)900.00, c1);
 
 				Documentazione d4 = documentazioneDao.create("REVISIONE -TX444TY", user5,
-						"DESCRIZIONE", Date.valueOf("20/09/2020"), (float)900.00, carsDocumentazione);
+						"DESCRIZIONE", Date.valueOf("20/09/2020"), (float)900.00, c3);
 				
-				carsDocumentazione.remove(c1);
-				carsDocumentazione.add(c2);
-
 				Documentazione d5 = documentazioneDao.create("TAGLIANDO -TX123TY", user5,
-						"DESCRIZIONE", Date.valueOf("20/09/2020"), (float)900.00, carsDocumentazione);
+						"DESCRIZIONE", Date.valueOf("20/09/2020"), (float)900.00, c5);
 
 				Documentazione d2 = documentazioneDao.create("BOLLO  -TX123TY", user5,
-						"DESCRIZIONE", Date.valueOf("20/09/2020"), (float)900.00, carsDocumentazione);
+						"DESCRIZIONE", Date.valueOf("20/09/2020"), (float)900.00, c3);
 
 				Documentazione d3 = documentazioneDao.create("REVISIONE -TX123TY", user5,
-						"DESCRIZIONE", Date.valueOf("20/09/2020"), (float)900.00, carsDocumentazione);
+						"DESCRIZIONE", Date.valueOf("20/09/2020"), (float)900.00, c1);
 
 				session.getTransaction().commit(); 
 				assert documentazioneDao.getAll().size() == 5;

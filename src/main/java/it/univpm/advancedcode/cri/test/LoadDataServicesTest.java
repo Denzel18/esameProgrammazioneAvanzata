@@ -51,8 +51,8 @@ public class LoadDataServicesTest {
             
             //veicoli 
             
-            Car c1 = carService.create("AX311TY", "FIAT", "DUCATO", "X1LS22331", 3000, "Emergenza", 2, "DIESEL");
-            Car c5 = carService.create("AX335TY", "FIAT", "DUCATO", "X1LS11121", 3400, "SOCCORSO", 2, "DIESEL");
+            Car c1 = carService.create((long)1,  "AX311TY", "FIAT", "DUCATO", "X1LS22331", 3000, "Emergenza", 2, "DIESEL");
+            Car c5 = carService.create((long)3, "AX335TY", "FIAT", "DUCATO", "X1LS11121", 3400, "SOCCORSO", 2, "DIESEL");
             
             assert carService.getAll().size() == 2;
             
@@ -63,8 +63,8 @@ public class LoadDataServicesTest {
             
             String dataS2= "07/08/2023";
             Date date2 =new SimpleDateFormat("dd/MM/yyyy").parse(dataS2); 
-            Documentazione d1 = documentazioneService.create(TITLE, user1, DESCRIPTION, date1, 90, null);
-            Documentazione d2 = documentazioneService.create(TITLE, user5, DESCRIPTION, date2, 180, null);
+            Documentazione d1 = documentazioneService.create(TITLE, user1, DESCRIPTION, date1, 90, c1);
+            Documentazione d2 = documentazioneService.create(TITLE, user5, DESCRIPTION, date2, 180, c1);
             
             fileService.create(DESCRIPTION, d1, "file1.jpg", true);
             fileService.create(DESCRIPTION, d2, "file2.jpg", true);

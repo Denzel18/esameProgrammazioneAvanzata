@@ -24,12 +24,13 @@ public class DocumentazioneDaoDefault extends DefaultDao implements Documentazio
      * @param car 
      */
     @Override
-    public Documentazione create(String title, User autoreUtente, String descrizione, Date dataScadenza, float costo, Set<Car> cars) {
-        // create a new post
+    public Documentazione create(String title, User autoreUtente, String descrizione, Date dataScadenza, float costo, Car car) {
         Documentazione doc = new Documentazione();
-        // set params
         doc.setTitolo(title);
         doc.setDescrizione(descrizione);
+        doc.setCar(car);
+        doc.setDataScadenza(dataScadenza);
+        doc.setCosto(costo);
         this.getSession().save(doc);
         return doc;
     }
@@ -46,12 +47,15 @@ public class DocumentazioneDaoDefault extends DefaultDao implements Documentazio
      */
     @Override
     public Documentazione create(String title, User autoreUtente, String descrizione, Date dataScadenza, float costo,
-			Set<Allegato> allegati, Set<Car> cars) {
-        // create a new post
+    		Allegato allegato, Car car) {
+
         Documentazione doc = new Documentazione();
-        // set params
         doc.setTitolo(title);
         doc.setDescrizione(descrizione);
+        doc.setCar(car);
+        doc.setAllegatoDocumento(allegato);
+        doc.setDataScadenza(dataScadenza);
+        doc.setCosto(costo);
         this.getSession().save(doc);
         return doc;
     }

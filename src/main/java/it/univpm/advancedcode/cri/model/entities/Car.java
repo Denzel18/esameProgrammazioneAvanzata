@@ -147,7 +147,7 @@ public class Car implements Serializable {
 	 * Setter ID Veicolo
 	 * @param veicolo_id the veicolo_id to set
 	 */
-	public void setVeicoloID(int veicolo_id) {
+	public void setVeicoloID(long veicolo_id) {
 		this.veicoloID = veicolo_id;
 	}
 

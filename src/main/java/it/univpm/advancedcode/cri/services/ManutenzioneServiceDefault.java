@@ -30,8 +30,8 @@ public class ManutenzioneServiceDefault implements ManutenzioneService {
      */
     @Transactional
     @Override
-    public Manutenzione create(long id, String tipoManutenzione, float costoManutenzione, Set<Car> cars) {
-    	return this.create(id, tipoManutenzione, costoManutenzione, cars);
+    public Manutenzione create(long id, String tipoManutenzione, float costoManutenzione, Car car) {
+    	return this.manRepository.create(id, tipoManutenzione, costoManutenzione, car);
     }
 
 

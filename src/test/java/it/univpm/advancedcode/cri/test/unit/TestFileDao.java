@@ -50,11 +50,8 @@ public class TestFileDao {
             Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(dataS1); 
             
             
-            Car c1 = carDao.create("AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
-			Set<Car> cars = new HashSet<Car>(); 
-			cars.add(c1);
-			
-			Documentazione doc1 = documentazioneDao.create("TITOLO", user1, "DESCRIZIONE", date1, 90, null, cars);
+			Car c1 = carDao.create((long)1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
+			Documentazione doc1 = documentazioneDao.create("TITOLO", user1, "DESCRIZIONE", date1, 90, c1);
 
 			File a=fileDao.create("DESCRIZIONE", doc1, "file1.jpg",true);
 			s.getTransaction().commit();
@@ -97,11 +94,8 @@ public class TestFileDao {
             Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(dataS1); 
             
             
-            Car c1 = carDao.create("AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
-			Set<Car> cars = new HashSet<Car>(); 
-			cars.add(c1);
-			
-			Documentazione doc1 = documentazioneDao.create("TITOLO", user1, "DESCRIZIONE", date1, 90, null, cars);
+			Car c1 = carDao.create((long)1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
+			Documentazione doc1 = documentazioneDao.create("TITOLO", user1, "DESCRIZIONE", date1, 90, c1);
 
 			File a=fileDao.create("DESCRIZIONE", doc1, "file1.jpg",true);
 			s.getTransaction().commit();
@@ -142,11 +136,8 @@ public class TestFileDao {
             Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(dataS1); 
             
             
-            Car c1 = carDao.create("AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
-			Set<Car> cars = new HashSet<Car>(); 
-			cars.add(c1);
-			
-			Documentazione doc1 = documentazioneDao.create("TITOLO", user1, "DESCRIZIONE", date1, 90, null, cars);
+			Car c1 = carDao.create((long)1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
+			Documentazione doc1 = documentazioneDao.create("TITOLO", user1, "DESCRIZIONE", date1, 90, c1);
 
 			File a=fileDao.create("DESCRIZIONE", doc1, "file1.jpg",true);
 			s.getTransaction().commit();

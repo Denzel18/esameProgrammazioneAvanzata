@@ -7,7 +7,7 @@ import it.univpm.advancedcode.cri.model.entities.Car;
 import it.univpm.advancedcode.cri.model.entities.Manutenzione;
 
 public interface ManutenzioneService {
-    Manutenzione create(long id, String tipoManutenzione, float costoManutenzione, Set<Car> cars);
+    Manutenzione create(long id, String tipoManutenzione, float costoManutenzione, Car car);
 
     void delete(Manutenzione manutenzione);
 

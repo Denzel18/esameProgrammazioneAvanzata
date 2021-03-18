@@ -38,70 +38,63 @@ public class TestLinkService {
 		ctx.close();
 	}
 
-//	@Test
-//	void createAndDelete() throws ParseException {
-//		User user1 = userService.create("mario98", "12345678", "Mario", "Rossi", "admin");	
-//		String dataS1= "07/08/2023";
-//		Date data1 = new SimpleDateFormat("dd/MM/yyyy").parse(dataS1); 
-//		Car c1 = carService.create("AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
-//		Set<Car> cars = new HashSet<Car>(); 
-//		cars.add(c1);
-//		Documentazione doc1 = documentazioneService.create("TITOLO", user1, "DESCRIZIONE", data1, (float) 900.10, cars);
-//		Link link1=linkService.create("DESCRIZIONE", doc1, "https://www.univpm.it");
-//
-//		assertEquals(linkService.getAll().size(),1);
-//
-//		linkService.delete(link1);
-//
-//		assertEquals(linkService.getAll().size(),0);
-//	}
-//
-//	@Test
-//	void createAndFind() throws ParseException {
-//		User user1 = userService.create("mario98", "12345678", "Mario", "Rossi", "admin");	
-//		String dataS1= "07/08/2023";
-//		Date data1 = new SimpleDateFormat("dd/MM/yyyy").parse(dataS1); 
-//		Car c1 = carService.create("AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
-//		Set<Car> cars = new HashSet<Car>(); 
-//		cars.add(c1);
-//		Documentazione doc1 = documentazioneService.create("TITOLO", user1, "DESCRIZIONE", data1, (float) 900.10,
-//				null, cars);
-//		Link link1=linkService.create("DESCRIZIONE", doc1, "https://www.univpm.it");
-//
-//		try {
-//			linkService.getById(link1.getId());
-//		} catch(Exception e) {
-//			fail("Exception not expected: " + e.getMessage());
-//		}
-//		try {
-//			Link notFound=linkService.getById(999);
-//			assertEquals(notFound,null);
-//		} catch(Exception e) {
-//			assertTrue(true);
-//		}
-//		List<Link> allFiles=linkService.getAll();
-//		assertEquals(allFiles.size(), 1);
-//	}
-//
-//	@Test
-//	void createAndUpdate() throws ParseException {
-//		User user1 = userService.create("mario98", "12345678", "Mario", "Rossi", "admin");	
-//		String dataS1= "07/08/2023";
-//		Date data1 = new SimpleDateFormat("dd/MM/yyyy").parse(dataS1); 
-//		Car c1 = carService.create("AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
-//		Set<Car> cars = new HashSet<Car>(); 
-//		cars.add(c1);
-//		Documentazione doc1 = documentazioneService.create("TITOLO", user1, "DESCRIZIONE", data1, (float) 900.10, cars);
-//		Link link1=linkService.create("DESCRIZIONE", doc1, "https://www.univpm.it");
-//
-//		assertEquals(linkService.getAll().size(),1);
-//
-//		link1.setLink("https://www.google.com");
-//		linkService.update(link1);
-//
-//		assertEquals(linkService.getAll().size(),1);
-//		assertEquals(linkService.getById(1).getLink(),"https://www.google.com");
-//	}
+	@Test
+	void createAndDelete() throws ParseException {
+		User user1 = userService.create("mario98", "12345678", "Mario", "Rossi", "admin");	
+		String dataS1= "07/08/2023";
+		Date data1 = new SimpleDateFormat("dd/MM/yyyy").parse(dataS1); 
+		Car c1 = carService.create(1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
+		Documentazione doc1 = documentazioneService.create("TITOLO", user1, "DESCRIZIONE", data1, (float) 900.10, c1);
+		Link link1=linkService.create("DESCRIZIONE", doc1, "https://www.univpm.it");
+
+		assertEquals(linkService.getAll().size(),1);
+
+		linkService.delete(link1);
+
+		assertEquals(linkService.getAll().size(),0);
+	}
+
+	@Test
+	void createAndFind() throws ParseException {
+		User user1 = userService.create("mario98", "12345678", "Mario", "Rossi", "admin");	
+		String dataS1= "07/08/2023";
+		Date data1 = new SimpleDateFormat("dd/MM/yyyy").parse(dataS1); 
+		Car c1 = carService.create(1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
+		Documentazione doc1 = documentazioneService.create("TITOLO", user1, "DESCRIZIONE", data1, (float) 900.10, c1);
+		Link link1=linkService.create("DESCRIZIONE", doc1, "https://www.univpm.it");
+
+		try {
+			linkService.getById(link1.getId());
+		} catch(Exception e) {
+			fail("Exception not expected: " + e.getMessage());
+		}
+		try {
+			Link notFound=linkService.getById(999);
+			assertEquals(notFound,null);
+		} catch(Exception e) {
+			assertTrue(true);
+		}
+		List<Link> allFiles=linkService.getAll();
+		assertEquals(allFiles.size(), 1);
+	}
+
+	@Test
+	void createAndUpdate() throws ParseException {
+		User user1 = userService.create("mario98", "12345678", "Mario", "Rossi", "admin");	
+		String dataS1= "07/08/2023";
+		Date data1 = new SimpleDateFormat("dd/MM/yyyy").parse(dataS1); 
+		Car c1 = carService.create(1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
+		Documentazione doc1 = documentazioneService.create("TITOLO", user1, "DESCRIZIONE", data1, (float) 900.10, c1);
+		Link link1=linkService.create("DESCRIZIONE", doc1, "https://www.univpm.it");
+
+		assertEquals(linkService.getAll().size(),1);
+
+		link1.setLink("https://www.google.com");
+		linkService.update(link1);
+
+		assertEquals(linkService.getAll().size(),1);
+		assertEquals(linkService.getById(1).getLink(),"https://www.google.com");
+	}
 
 
 
