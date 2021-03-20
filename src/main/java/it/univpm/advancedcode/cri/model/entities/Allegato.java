@@ -28,7 +28,8 @@ public abstract class Allegato {
 	 */
 
 
-    @OneToOne(mappedBy = "allegatoDocumento")
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "documento_id", nullable = false)
 	public Documentazione getDocumento() {
 		return this.documento;
 	}
@@ -37,7 +38,6 @@ public abstract class Allegato {
 	 * @return id dell'allegato
 	 */
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="allegato_id", unique = true)
 	public long getId() {
 		return this.id;

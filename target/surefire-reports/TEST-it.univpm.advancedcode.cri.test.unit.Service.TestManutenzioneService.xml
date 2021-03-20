@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="it.univpm.advancedcode.cri.test.unit.Service.TestManutenzioneService" time="2.532" tests="5" errors="5" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="it.univpm.advancedcode.cri.test.unit.Service.TestManutenzioneService" time="3.01" tests="5" errors="5" skipped="0" failures="0">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="java.vm.version" value="15.0.1+9"/>
@@ -56,7 +56,7 @@
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
   </properties>
-  <testcase name="createAndDelete" classname="it.univpm.advancedcode.cri.test.unit.Service.TestManutenzioneService" time="0.448">
+  <testcase name="createAndDelete" classname="it.univpm.advancedcode.cri.test.unit.Service.TestManutenzioneService" time="0.539">
     <error message="Error creating bean with name &apos;allegatoDao&apos;: Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;sessionFactory&apos; defined in it.univpm.advancedcode.cri.test.DataServiceConfigTest: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method &apos;sessionFactory&apos; threw exception; nested exception is java.lang.NullPointerException" type="org.springframework.beans.factory.BeanCreationException">org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'allegatoDao': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sessionFactory' defined in it.univpm.advancedcode.cri.test.DataServiceConfigTest: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method 'sessionFactory' threw exception; nested exception is java.lang.NullPointerException
 	at it.univpm.advancedcode.cri.test.unit.Service.TestManutenzioneService.openContext(TestManutenzioneService.java:99)
 Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sessionFactory' defined in it.univpm.advancedcode.cri.test.DataServiceConfigTest: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method 'sessionFactory' threw exception; nested exception is java.lang.NullPointerException
@@ -67,19 +67,19 @@ Caused by: java.lang.NullPointerException
 </error>
     <system-out><![CDATA[Hibernate: 
     
-    alter table cars_users 
+    alter table allegati 
        drop 
-       foreign key FKggomnulika159908lmn7ge4kh
+       foreign key FKc1wqcbvdvsx0ibm4eqxyxwjig
 Hibernate: 
     
     alter table cars_users 
        drop 
-       foreign key FK1nkhcbr1dcu47h1iyj0ddpyct
+       foreign key FK3qgs6wtv8j0e16il4eymxswvw
 Hibernate: 
     
-    alter table documentazioni 
+    alter table cars_users 
        drop 
-       foreign key FKjg6nxhbxxvlcf5rxrh771peb3
+       foreign key FK4wumhf4rlwks00uj9w4xd49ov
 Hibernate: 
     
     alter table documentazioni 
@@ -89,7 +89,12 @@ Hibernate:
     
     alter table documentazioni 
        drop 
-       foreign key FK1fwr6ky43xofjc9sc4aygnted
+       foreign key FK1ao046ru696b761061qc7x93y
+Hibernate: 
+    
+    alter table documentazioni 
+       drop 
+       foreign key FKlb6lp2avjgp936h63n32qp5o8
 Hibernate: 
     
     alter table files 
@@ -155,8 +160,9 @@ Hibernate:
 Hibernate: 
     
     create table allegati (
-       allegato_id bigint not null auto_increment,
+       allegato_id bigint not null,
         descrizione varchar(100) not null,
+        documento_id bigint not null,
         primary key (allegato_id)
     ) engine=InnoDB
 Hibernate: 
@@ -176,9 +182,9 @@ Hibernate:
 Hibernate: 
     
     create table cars_users (
-       VEICOLO_ID bigint not null,
-        USERNAME varchar(20) not null,
-        primary key (VEICOLO_ID, USERNAME)
+       veicolo_id bigint not null,
+        username varchar(20) not null,
+        primary key (veicolo_id, username)
     ) engine=InnoDB
 Hibernate: 
     
@@ -188,9 +194,8 @@ Hibernate:
         dataScadenza date not null,
         descrizione varchar(300) not null,
         titolo varchar(100) not null,
-        allegato_id bigint,
         username varchar(20),
-        documentazioneVeicolo bigint,
+        car_veicolo_id bigint,
         primary key (documento_id)
     ) engine=InnoDB
 Hibernate: 
@@ -233,15 +238,15 @@ Hibernate:
 Hibernate: 
     
     create table users (
-       USERNAME varchar(20) not null,
-        FIRSTNAME varchar(100) not null,
-        IMAGE_PROFILE varchar(100),
-        LASTNAME varchar(100) not null,
-        PASSWORD varchar(100) not null,
-        RUOLO varchar(255) not null,
+       username varchar(20) not null,
+        firstname varchar(100) not null,
+        imageProfile varchar(100),
+        lastname varchar(100) not null,
+        password varchar(100) not null,
+        ruolo varchar(255) not null,
         documentazione_documento_id bigint,
         prenotazione_prenotazione_id bigint,
-        primary key (USERNAME)
+        primary key (username)
     ) engine=InnoDB
 Hibernate: 
     
@@ -257,33 +262,39 @@ Hibernate:
        add constraint UK_f3418aqnpup7nx93e9drml0uj unique (nome)
 Hibernate: 
     
-    alter table cars_users 
-       add constraint FKggomnulika159908lmn7ge4kh 
-       foreign key (USERNAME) 
-       references users (USERNAME)
+    alter table allegati 
+       add constraint FKc1wqcbvdvsx0ibm4eqxyxwjig 
+       foreign key (documento_id) 
+       references documentazioni (documento_id)
 Hibernate: 
     
     alter table cars_users 
-       add constraint FK1nkhcbr1dcu47h1iyj0ddpyct 
-       foreign key (VEICOLO_ID) 
+       add constraint FK3qgs6wtv8j0e16il4eymxswvw 
+       foreign key (username) 
+       references users (username)
+Hibernate: 
+    
+    alter table cars_users 
+       add constraint FK4wumhf4rlwks00uj9w4xd49ov 
+       foreign key (veicolo_id) 
        references cars (veicolo_id)
-Hibernate: 
-    
-    alter table documentazioni 
-       add constraint FKjg6nxhbxxvlcf5rxrh771peb3 
-       foreign key (allegato_id) 
-       references allegati (allegato_id)
 Hibernate: 
     
     alter table documentazioni 
        add constraint FKgud7iwa39rnehda6v42ggou4i 
        foreign key (username) 
-       references users (USERNAME)
+       references users (username)
 Hibernate: 
     
     alter table documentazioni 
-       add constraint FK1fwr6ky43xofjc9sc4aygnted 
-       foreign key (documentazioneVeicolo) 
+       add constraint FK1ao046ru696b761061qc7x93y 
+       foreign key (car_veicolo_id) 
+       references cars (veicolo_id)
+Hibernate: 
+    
+    alter table documentazioni 
+       add constraint FKlb6lp2avjgp936h63n32qp5o8 
+       foreign key (documento_id) 
        references cars (veicolo_id)
 Hibernate: 
     
@@ -308,7 +319,7 @@ Hibernate:
     alter table prenotazioni 
        add constraint FKmr8ps11ija508523b17qeyuv0 
        foreign key (username) 
-       references users (USERNAME)
+       references users (username)
 Hibernate: 
     
     alter table prenotazioni 
@@ -328,14 +339,14 @@ Hibernate:
        foreign key (prenotazione_prenotazione_id) 
        references prenotazioni (prenotazione_id)
 ]]></system-out>
-    <system-err><![CDATA[mar 20, 2021 2:27:32 AM org.hibernate.dialect.Dialect <init>
+    <system-err><![CDATA[mar 20, 2021 11:35:35 PM org.hibernate.dialect.Dialect <init>
 INFO: HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
-mar 20, 2021 2:27:33 AM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
+mar 20, 2021 11:35:36 PM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
 INFO: HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
 [main] WARN org.springframework.context.annotation.AnnotationConfigApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'allegatoDao': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sessionFactory' defined in it.univpm.advancedcode.cri.test.DataServiceConfigTest: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method 'sessionFactory' threw exception; nested exception is java.lang.NullPointerException
 ]]></system-err>
   </testcase>
-  <testcase name="noManutenzioniAtBeginning" classname="it.univpm.advancedcode.cri.test.unit.Service.TestManutenzioneService" time="0.524">
+  <testcase name="noManutenzioniAtBeginning" classname="it.univpm.advancedcode.cri.test.unit.Service.TestManutenzioneService" time="0.629">
     <error message="Error creating bean with name &apos;allegatoDao&apos;: Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;sessionFactory&apos; defined in it.univpm.advancedcode.cri.test.DataServiceConfigTest: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method &apos;sessionFactory&apos; threw exception; nested exception is java.lang.NullPointerException" type="org.springframework.beans.factory.BeanCreationException">org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'allegatoDao': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sessionFactory' defined in it.univpm.advancedcode.cri.test.DataServiceConfigTest: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method 'sessionFactory' threw exception; nested exception is java.lang.NullPointerException
 	at it.univpm.advancedcode.cri.test.unit.Service.TestManutenzioneService.openContext(TestManutenzioneService.java:99)
 Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sessionFactory' defined in it.univpm.advancedcode.cri.test.DataServiceConfigTest: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method 'sessionFactory' threw exception; nested exception is java.lang.NullPointerException
@@ -346,19 +357,19 @@ Caused by: java.lang.NullPointerException
 </error>
     <system-out><![CDATA[Hibernate: 
     
-    alter table cars_users 
+    alter table allegati 
        drop 
-       foreign key FKggomnulika159908lmn7ge4kh
+       foreign key FKc1wqcbvdvsx0ibm4eqxyxwjig
 Hibernate: 
     
     alter table cars_users 
        drop 
-       foreign key FK1nkhcbr1dcu47h1iyj0ddpyct
+       foreign key FK3qgs6wtv8j0e16il4eymxswvw
 Hibernate: 
     
-    alter table documentazioni 
+    alter table cars_users 
        drop 
-       foreign key FKjg6nxhbxxvlcf5rxrh771peb3
+       foreign key FK4wumhf4rlwks00uj9w4xd49ov
 Hibernate: 
     
     alter table documentazioni 
@@ -368,7 +379,12 @@ Hibernate:
     
     alter table documentazioni 
        drop 
-       foreign key FK1fwr6ky43xofjc9sc4aygnted
+       foreign key FK1ao046ru696b761061qc7x93y
+Hibernate: 
+    
+    alter table documentazioni 
+       drop 
+       foreign key FKlb6lp2avjgp936h63n32qp5o8
 Hibernate: 
     
     alter table files 
@@ -434,8 +450,9 @@ Hibernate:
 Hibernate: 
     
     create table allegati (
-       allegato_id bigint not null auto_increment,
+       allegato_id bigint not null,
         descrizione varchar(100) not null,
+        documento_id bigint not null,
         primary key (allegato_id)
     ) engine=InnoDB
 Hibernate: 
@@ -455,9 +472,9 @@ Hibernate:
 Hibernate: 
     
     create table cars_users (
-       VEICOLO_ID bigint not null,
-        USERNAME varchar(20) not null,
-        primary key (VEICOLO_ID, USERNAME)
+       veicolo_id bigint not null,
+        username varchar(20) not null,
+        primary key (veicolo_id, username)
     ) engine=InnoDB
 Hibernate: 
     
@@ -467,9 +484,8 @@ Hibernate:
         dataScadenza date not null,
         descrizione varchar(300) not null,
         titolo varchar(100) not null,
-        allegato_id bigint,
         username varchar(20),
-        documentazioneVeicolo bigint,
+        car_veicolo_id bigint,
         primary key (documento_id)
     ) engine=InnoDB
 Hibernate: 
@@ -512,15 +528,15 @@ Hibernate:
 Hibernate: 
     
     create table users (
-       USERNAME varchar(20) not null,
-        FIRSTNAME varchar(100) not null,
-        IMAGE_PROFILE varchar(100),
-        LASTNAME varchar(100) not null,
-        PASSWORD varchar(100) not null,
-        RUOLO varchar(255) not null,
+       username varchar(20) not null,
+        firstname varchar(100) not null,
+        imageProfile varchar(100),
+        lastname varchar(100) not null,
+        password varchar(100) not null,
+        ruolo varchar(255) not null,
         documentazione_documento_id bigint,
         prenotazione_prenotazione_id bigint,
-        primary key (USERNAME)
+        primary key (username)
     ) engine=InnoDB
 Hibernate: 
     
@@ -536,33 +552,39 @@ Hibernate:
        add constraint UK_f3418aqnpup7nx93e9drml0uj unique (nome)
 Hibernate: 
     
-    alter table cars_users 
-       add constraint FKggomnulika159908lmn7ge4kh 
-       foreign key (USERNAME) 
-       references users (USERNAME)
+    alter table allegati 
+       add constraint FKc1wqcbvdvsx0ibm4eqxyxwjig 
+       foreign key (documento_id) 
+       references documentazioni (documento_id)
 Hibernate: 
     
     alter table cars_users 
-       add constraint FK1nkhcbr1dcu47h1iyj0ddpyct 
-       foreign key (VEICOLO_ID) 
+       add constraint FK3qgs6wtv8j0e16il4eymxswvw 
+       foreign key (username) 
+       references users (username)
+Hibernate: 
+    
+    alter table cars_users 
+       add constraint FK4wumhf4rlwks00uj9w4xd49ov 
+       foreign key (veicolo_id) 
        references cars (veicolo_id)
-Hibernate: 
-    
-    alter table documentazioni 
-       add constraint FKjg6nxhbxxvlcf5rxrh771peb3 
-       foreign key (allegato_id) 
-       references allegati (allegato_id)
 Hibernate: 
     
     alter table documentazioni 
        add constraint FKgud7iwa39rnehda6v42ggou4i 
        foreign key (username) 
-       references users (USERNAME)
+       references users (username)
 Hibernate: 
     
     alter table documentazioni 
-       add constraint FK1fwr6ky43xofjc9sc4aygnted 
-       foreign key (documentazioneVeicolo) 
+       add constraint FK1ao046ru696b761061qc7x93y 
+       foreign key (car_veicolo_id) 
+       references cars (veicolo_id)
+Hibernate: 
+    
+    alter table documentazioni 
+       add constraint FKlb6lp2avjgp936h63n32qp5o8 
+       foreign key (documento_id) 
        references cars (veicolo_id)
 Hibernate: 
     
@@ -587,7 +609,7 @@ Hibernate:
     alter table prenotazioni 
        add constraint FKmr8ps11ija508523b17qeyuv0 
        foreign key (username) 
-       references users (USERNAME)
+       references users (username)
 Hibernate: 
     
     alter table prenotazioni 
@@ -607,14 +629,14 @@ Hibernate:
        foreign key (prenotazione_prenotazione_id) 
        references prenotazioni (prenotazione_id)
 ]]></system-out>
-    <system-err><![CDATA[mar 20, 2021 2:27:33 AM org.hibernate.dialect.Dialect <init>
+    <system-err><![CDATA[mar 20, 2021 11:35:36 PM org.hibernate.dialect.Dialect <init>
 INFO: HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
-mar 20, 2021 2:27:33 AM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
+mar 20, 2021 11:35:36 PM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
 INFO: HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
 [main] WARN org.springframework.context.annotation.AnnotationConfigApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'allegatoDao': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sessionFactory' defined in it.univpm.advancedcode.cri.test.DataServiceConfigTest: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method 'sessionFactory' threw exception; nested exception is java.lang.NullPointerException
 ]]></system-err>
   </testcase>
-  <testcase name="findManutenzioneById" classname="it.univpm.advancedcode.cri.test.unit.Service.TestManutenzioneService" time="0.514">
+  <testcase name="findManutenzioneById" classname="it.univpm.advancedcode.cri.test.unit.Service.TestManutenzioneService" time="0.605">
     <error message="Error creating bean with name &apos;allegatoDao&apos;: Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;sessionFactory&apos; defined in it.univpm.advancedcode.cri.test.DataServiceConfigTest: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method &apos;sessionFactory&apos; threw exception; nested exception is java.lang.NullPointerException" type="org.springframework.beans.factory.BeanCreationException">org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'allegatoDao': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sessionFactory' defined in it.univpm.advancedcode.cri.test.DataServiceConfigTest: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method 'sessionFactory' threw exception; nested exception is java.lang.NullPointerException
 	at it.univpm.advancedcode.cri.test.unit.Service.TestManutenzioneService.openContext(TestManutenzioneService.java:99)
 Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sessionFactory' defined in it.univpm.advancedcode.cri.test.DataServiceConfigTest: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method 'sessionFactory' threw exception; nested exception is java.lang.NullPointerException
@@ -625,19 +647,19 @@ Caused by: java.lang.NullPointerException
 </error>
     <system-out><![CDATA[Hibernate: 
     
-    alter table cars_users 
+    alter table allegati 
        drop 
-       foreign key FKggomnulika159908lmn7ge4kh
+       foreign key FKc1wqcbvdvsx0ibm4eqxyxwjig
 Hibernate: 
     
     alter table cars_users 
        drop 
-       foreign key FK1nkhcbr1dcu47h1iyj0ddpyct
+       foreign key FK3qgs6wtv8j0e16il4eymxswvw
 Hibernate: 
     
-    alter table documentazioni 
+    alter table cars_users 
        drop 
-       foreign key FKjg6nxhbxxvlcf5rxrh771peb3
+       foreign key FK4wumhf4rlwks00uj9w4xd49ov
 Hibernate: 
     
     alter table documentazioni 
@@ -647,7 +669,12 @@ Hibernate:
     
     alter table documentazioni 
        drop 
-       foreign key FK1fwr6ky43xofjc9sc4aygnted
+       foreign key FK1ao046ru696b761061qc7x93y
+Hibernate: 
+    
+    alter table documentazioni 
+       drop 
+       foreign key FKlb6lp2avjgp936h63n32qp5o8
 Hibernate: 
     
     alter table files 
@@ -713,8 +740,9 @@ Hibernate:
 Hibernate: 
     
     create table allegati (
-       allegato_id bigint not null auto_increment,
+       allegato_id bigint not null,
         descrizione varchar(100) not null,
+        documento_id bigint not null,
         primary key (allegato_id)
     ) engine=InnoDB
 Hibernate: 
@@ -734,9 +762,9 @@ Hibernate:
 Hibernate: 
     
     create table cars_users (
-       VEICOLO_ID bigint not null,
-        USERNAME varchar(20) not null,
-        primary key (VEICOLO_ID, USERNAME)
+       veicolo_id bigint not null,
+        username varchar(20) not null,
+        primary key (veicolo_id, username)
     ) engine=InnoDB
 Hibernate: 
     
@@ -746,9 +774,8 @@ Hibernate:
         dataScadenza date not null,
         descrizione varchar(300) not null,
         titolo varchar(100) not null,
-        allegato_id bigint,
         username varchar(20),
-        documentazioneVeicolo bigint,
+        car_veicolo_id bigint,
         primary key (documento_id)
     ) engine=InnoDB
 Hibernate: 
@@ -791,15 +818,15 @@ Hibernate:
 Hibernate: 
     
     create table users (
-       USERNAME varchar(20) not null,
-        FIRSTNAME varchar(100) not null,
-        IMAGE_PROFILE varchar(100),
-        LASTNAME varchar(100) not null,
-        PASSWORD varchar(100) not null,
-        RUOLO varchar(255) not null,
+       username varchar(20) not null,
+        firstname varchar(100) not null,
+        imageProfile varchar(100),
+        lastname varchar(100) not null,
+        password varchar(100) not null,
+        ruolo varchar(255) not null,
         documentazione_documento_id bigint,
         prenotazione_prenotazione_id bigint,
-        primary key (USERNAME)
+        primary key (username)
     ) engine=InnoDB
 Hibernate: 
     
@@ -815,33 +842,39 @@ Hibernate:
        add constraint UK_f3418aqnpup7nx93e9drml0uj unique (nome)
 Hibernate: 
     
-    alter table cars_users 
-       add constraint FKggomnulika159908lmn7ge4kh 
-       foreign key (USERNAME) 
-       references users (USERNAME)
+    alter table allegati 
+       add constraint FKc1wqcbvdvsx0ibm4eqxyxwjig 
+       foreign key (documento_id) 
+       references documentazioni (documento_id)
 Hibernate: 
     
     alter table cars_users 
-       add constraint FK1nkhcbr1dcu47h1iyj0ddpyct 
-       foreign key (VEICOLO_ID) 
+       add constraint FK3qgs6wtv8j0e16il4eymxswvw 
+       foreign key (username) 
+       references users (username)
+Hibernate: 
+    
+    alter table cars_users 
+       add constraint FK4wumhf4rlwks00uj9w4xd49ov 
+       foreign key (veicolo_id) 
        references cars (veicolo_id)
-Hibernate: 
-    
-    alter table documentazioni 
-       add constraint FKjg6nxhbxxvlcf5rxrh771peb3 
-       foreign key (allegato_id) 
-       references allegati (allegato_id)
 Hibernate: 
     
     alter table documentazioni 
        add constraint FKgud7iwa39rnehda6v42ggou4i 
        foreign key (username) 
-       references users (USERNAME)
+       references users (username)
 Hibernate: 
     
     alter table documentazioni 
-       add constraint FK1fwr6ky43xofjc9sc4aygnted 
-       foreign key (documentazioneVeicolo) 
+       add constraint FK1ao046ru696b761061qc7x93y 
+       foreign key (car_veicolo_id) 
+       references cars (veicolo_id)
+Hibernate: 
+    
+    alter table documentazioni 
+       add constraint FKlb6lp2avjgp936h63n32qp5o8 
+       foreign key (documento_id) 
        references cars (veicolo_id)
 Hibernate: 
     
@@ -866,7 +899,7 @@ Hibernate:
     alter table prenotazioni 
        add constraint FKmr8ps11ija508523b17qeyuv0 
        foreign key (username) 
-       references users (USERNAME)
+       references users (username)
 Hibernate: 
     
     alter table prenotazioni 
@@ -886,14 +919,14 @@ Hibernate:
        foreign key (prenotazione_prenotazione_id) 
        references prenotazioni (prenotazione_id)
 ]]></system-out>
-    <system-err><![CDATA[mar 20, 2021 2:27:33 AM org.hibernate.dialect.Dialect <init>
+    <system-err><![CDATA[mar 20, 2021 11:35:36 PM org.hibernate.dialect.Dialect <init>
 INFO: HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
-mar 20, 2021 2:27:34 AM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
+mar 20, 2021 11:35:37 PM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
 INFO: HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
 [main] WARN org.springframework.context.annotation.AnnotationConfigApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'allegatoDao': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sessionFactory' defined in it.univpm.advancedcode.cri.test.DataServiceConfigTest: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method 'sessionFactory' threw exception; nested exception is java.lang.NullPointerException
 ]]></system-err>
   </testcase>
-  <testcase name="createAndUpdate" classname="it.univpm.advancedcode.cri.test.unit.Service.TestManutenzioneService" time="0.516">
+  <testcase name="createAndUpdate" classname="it.univpm.advancedcode.cri.test.unit.Service.TestManutenzioneService" time="0.616">
     <error message="Error creating bean with name &apos;allegatoDao&apos;: Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;sessionFactory&apos; defined in it.univpm.advancedcode.cri.test.DataServiceConfigTest: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method &apos;sessionFactory&apos; threw exception; nested exception is java.lang.NullPointerException" type="org.springframework.beans.factory.BeanCreationException">org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'allegatoDao': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sessionFactory' defined in it.univpm.advancedcode.cri.test.DataServiceConfigTest: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method 'sessionFactory' threw exception; nested exception is java.lang.NullPointerException
 	at it.univpm.advancedcode.cri.test.unit.Service.TestManutenzioneService.openContext(TestManutenzioneService.java:99)
 Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sessionFactory' defined in it.univpm.advancedcode.cri.test.DataServiceConfigTest: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method 'sessionFactory' threw exception; nested exception is java.lang.NullPointerException
@@ -904,19 +937,19 @@ Caused by: java.lang.NullPointerException
 </error>
     <system-out><![CDATA[Hibernate: 
     
-    alter table cars_users 
+    alter table allegati 
        drop 
-       foreign key FKggomnulika159908lmn7ge4kh
+       foreign key FKc1wqcbvdvsx0ibm4eqxyxwjig
 Hibernate: 
     
     alter table cars_users 
        drop 
-       foreign key FK1nkhcbr1dcu47h1iyj0ddpyct
+       foreign key FK3qgs6wtv8j0e16il4eymxswvw
 Hibernate: 
     
-    alter table documentazioni 
+    alter table cars_users 
        drop 
-       foreign key FKjg6nxhbxxvlcf5rxrh771peb3
+       foreign key FK4wumhf4rlwks00uj9w4xd49ov
 Hibernate: 
     
     alter table documentazioni 
@@ -926,7 +959,12 @@ Hibernate:
     
     alter table documentazioni 
        drop 
-       foreign key FK1fwr6ky43xofjc9sc4aygnted
+       foreign key FK1ao046ru696b761061qc7x93y
+Hibernate: 
+    
+    alter table documentazioni 
+       drop 
+       foreign key FKlb6lp2avjgp936h63n32qp5o8
 Hibernate: 
     
     alter table files 
@@ -992,8 +1030,9 @@ Hibernate:
 Hibernate: 
     
     create table allegati (
-       allegato_id bigint not null auto_increment,
+       allegato_id bigint not null,
         descrizione varchar(100) not null,
+        documento_id bigint not null,
         primary key (allegato_id)
     ) engine=InnoDB
 Hibernate: 
@@ -1013,9 +1052,9 @@ Hibernate:
 Hibernate: 
     
     create table cars_users (
-       VEICOLO_ID bigint not null,
-        USERNAME varchar(20) not null,
-        primary key (VEICOLO_ID, USERNAME)
+       veicolo_id bigint not null,
+        username varchar(20) not null,
+        primary key (veicolo_id, username)
     ) engine=InnoDB
 Hibernate: 
     
@@ -1025,9 +1064,8 @@ Hibernate:
         dataScadenza date not null,
         descrizione varchar(300) not null,
         titolo varchar(100) not null,
-        allegato_id bigint,
         username varchar(20),
-        documentazioneVeicolo bigint,
+        car_veicolo_id bigint,
         primary key (documento_id)
     ) engine=InnoDB
 Hibernate: 
@@ -1070,15 +1108,15 @@ Hibernate:
 Hibernate: 
     
     create table users (
-       USERNAME varchar(20) not null,
-        FIRSTNAME varchar(100) not null,
-        IMAGE_PROFILE varchar(100),
-        LASTNAME varchar(100) not null,
-        PASSWORD varchar(100) not null,
-        RUOLO varchar(255) not null,
+       username varchar(20) not null,
+        firstname varchar(100) not null,
+        imageProfile varchar(100),
+        lastname varchar(100) not null,
+        password varchar(100) not null,
+        ruolo varchar(255) not null,
         documentazione_documento_id bigint,
         prenotazione_prenotazione_id bigint,
-        primary key (USERNAME)
+        primary key (username)
     ) engine=InnoDB
 Hibernate: 
     
@@ -1094,33 +1132,39 @@ Hibernate:
        add constraint UK_f3418aqnpup7nx93e9drml0uj unique (nome)
 Hibernate: 
     
-    alter table cars_users 
-       add constraint FKggomnulika159908lmn7ge4kh 
-       foreign key (USERNAME) 
-       references users (USERNAME)
+    alter table allegati 
+       add constraint FKc1wqcbvdvsx0ibm4eqxyxwjig 
+       foreign key (documento_id) 
+       references documentazioni (documento_id)
 Hibernate: 
     
     alter table cars_users 
-       add constraint FK1nkhcbr1dcu47h1iyj0ddpyct 
-       foreign key (VEICOLO_ID) 
+       add constraint FK3qgs6wtv8j0e16il4eymxswvw 
+       foreign key (username) 
+       references users (username)
+Hibernate: 
+    
+    alter table cars_users 
+       add constraint FK4wumhf4rlwks00uj9w4xd49ov 
+       foreign key (veicolo_id) 
        references cars (veicolo_id)
-Hibernate: 
-    
-    alter table documentazioni 
-       add constraint FKjg6nxhbxxvlcf5rxrh771peb3 
-       foreign key (allegato_id) 
-       references allegati (allegato_id)
 Hibernate: 
     
     alter table documentazioni 
        add constraint FKgud7iwa39rnehda6v42ggou4i 
        foreign key (username) 
-       references users (USERNAME)
+       references users (username)
 Hibernate: 
     
     alter table documentazioni 
-       add constraint FK1fwr6ky43xofjc9sc4aygnted 
-       foreign key (documentazioneVeicolo) 
+       add constraint FK1ao046ru696b761061qc7x93y 
+       foreign key (car_veicolo_id) 
+       references cars (veicolo_id)
+Hibernate: 
+    
+    alter table documentazioni 
+       add constraint FKlb6lp2avjgp936h63n32qp5o8 
+       foreign key (documento_id) 
        references cars (veicolo_id)
 Hibernate: 
     
@@ -1145,7 +1189,7 @@ Hibernate:
     alter table prenotazioni 
        add constraint FKmr8ps11ija508523b17qeyuv0 
        foreign key (username) 
-       references users (USERNAME)
+       references users (username)
 Hibernate: 
     
     alter table prenotazioni 
@@ -1165,14 +1209,14 @@ Hibernate:
        foreign key (prenotazione_prenotazione_id) 
        references prenotazioni (prenotazione_id)
 ]]></system-out>
-    <system-err><![CDATA[mar 20, 2021 2:27:34 AM org.hibernate.dialect.Dialect <init>
+    <system-err><![CDATA[mar 20, 2021 11:35:37 PM org.hibernate.dialect.Dialect <init>
 INFO: HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
-mar 20, 2021 2:27:34 AM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
+mar 20, 2021 11:35:38 PM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
 INFO: HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
 [main] WARN org.springframework.context.annotation.AnnotationConfigApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'allegatoDao': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sessionFactory' defined in it.univpm.advancedcode.cri.test.DataServiceConfigTest: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method 'sessionFactory' threw exception; nested exception is java.lang.NullPointerException
 ]]></system-err>
   </testcase>
-  <testcase name="createAndFind" classname="it.univpm.advancedcode.cri.test.unit.Service.TestManutenzioneService" time="0.526">
+  <testcase name="createAndFind" classname="it.univpm.advancedcode.cri.test.unit.Service.TestManutenzioneService" time="0.621">
     <error message="Error creating bean with name &apos;allegatoDao&apos;: Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;sessionFactory&apos; defined in it.univpm.advancedcode.cri.test.DataServiceConfigTest: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method &apos;sessionFactory&apos; threw exception; nested exception is java.lang.NullPointerException" type="org.springframework.beans.factory.BeanCreationException">org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'allegatoDao': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sessionFactory' defined in it.univpm.advancedcode.cri.test.DataServiceConfigTest: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method 'sessionFactory' threw exception; nested exception is java.lang.NullPointerException
 	at it.univpm.advancedcode.cri.test.unit.Service.TestManutenzioneService.openContext(TestManutenzioneService.java:99)
 Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sessionFactory' defined in it.univpm.advancedcode.cri.test.DataServiceConfigTest: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method 'sessionFactory' threw exception; nested exception is java.lang.NullPointerException
@@ -1183,19 +1227,19 @@ Caused by: java.lang.NullPointerException
 </error>
     <system-out><![CDATA[Hibernate: 
     
-    alter table cars_users 
+    alter table allegati 
        drop 
-       foreign key FKggomnulika159908lmn7ge4kh
+       foreign key FKc1wqcbvdvsx0ibm4eqxyxwjig
 Hibernate: 
     
     alter table cars_users 
        drop 
-       foreign key FK1nkhcbr1dcu47h1iyj0ddpyct
+       foreign key FK3qgs6wtv8j0e16il4eymxswvw
 Hibernate: 
     
-    alter table documentazioni 
+    alter table cars_users 
        drop 
-       foreign key FKjg6nxhbxxvlcf5rxrh771peb3
+       foreign key FK4wumhf4rlwks00uj9w4xd49ov
 Hibernate: 
     
     alter table documentazioni 
@@ -1205,7 +1249,12 @@ Hibernate:
     
     alter table documentazioni 
        drop 
-       foreign key FK1fwr6ky43xofjc9sc4aygnted
+       foreign key FK1ao046ru696b761061qc7x93y
+Hibernate: 
+    
+    alter table documentazioni 
+       drop 
+       foreign key FKlb6lp2avjgp936h63n32qp5o8
 Hibernate: 
     
     alter table files 
@@ -1271,8 +1320,9 @@ Hibernate:
 Hibernate: 
     
     create table allegati (
-       allegato_id bigint not null auto_increment,
+       allegato_id bigint not null,
         descrizione varchar(100) not null,
+        documento_id bigint not null,
         primary key (allegato_id)
     ) engine=InnoDB
 Hibernate: 
@@ -1292,9 +1342,9 @@ Hibernate:
 Hibernate: 
     
     create table cars_users (
-       VEICOLO_ID bigint not null,
-        USERNAME varchar(20) not null,
-        primary key (VEICOLO_ID, USERNAME)
+       veicolo_id bigint not null,
+        username varchar(20) not null,
+        primary key (veicolo_id, username)
     ) engine=InnoDB
 Hibernate: 
     
@@ -1304,9 +1354,8 @@ Hibernate:
         dataScadenza date not null,
         descrizione varchar(300) not null,
         titolo varchar(100) not null,
-        allegato_id bigint,
         username varchar(20),
-        documentazioneVeicolo bigint,
+        car_veicolo_id bigint,
         primary key (documento_id)
     ) engine=InnoDB
 Hibernate: 
@@ -1349,15 +1398,15 @@ Hibernate:
 Hibernate: 
     
     create table users (
-       USERNAME varchar(20) not null,
-        FIRSTNAME varchar(100) not null,
-        IMAGE_PROFILE varchar(100),
-        LASTNAME varchar(100) not null,
-        PASSWORD varchar(100) not null,
-        RUOLO varchar(255) not null,
+       username varchar(20) not null,
+        firstname varchar(100) not null,
+        imageProfile varchar(100),
+        lastname varchar(100) not null,
+        password varchar(100) not null,
+        ruolo varchar(255) not null,
         documentazione_documento_id bigint,
         prenotazione_prenotazione_id bigint,
-        primary key (USERNAME)
+        primary key (username)
     ) engine=InnoDB
 Hibernate: 
     
@@ -1373,33 +1422,39 @@ Hibernate:
        add constraint UK_f3418aqnpup7nx93e9drml0uj unique (nome)
 Hibernate: 
     
-    alter table cars_users 
-       add constraint FKggomnulika159908lmn7ge4kh 
-       foreign key (USERNAME) 
-       references users (USERNAME)
+    alter table allegati 
+       add constraint FKc1wqcbvdvsx0ibm4eqxyxwjig 
+       foreign key (documento_id) 
+       references documentazioni (documento_id)
 Hibernate: 
     
     alter table cars_users 
-       add constraint FK1nkhcbr1dcu47h1iyj0ddpyct 
-       foreign key (VEICOLO_ID) 
+       add constraint FK3qgs6wtv8j0e16il4eymxswvw 
+       foreign key (username) 
+       references users (username)
+Hibernate: 
+    
+    alter table cars_users 
+       add constraint FK4wumhf4rlwks00uj9w4xd49ov 
+       foreign key (veicolo_id) 
        references cars (veicolo_id)
-Hibernate: 
-    
-    alter table documentazioni 
-       add constraint FKjg6nxhbxxvlcf5rxrh771peb3 
-       foreign key (allegato_id) 
-       references allegati (allegato_id)
 Hibernate: 
     
     alter table documentazioni 
        add constraint FKgud7iwa39rnehda6v42ggou4i 
        foreign key (username) 
-       references users (USERNAME)
+       references users (username)
 Hibernate: 
     
     alter table documentazioni 
-       add constraint FK1fwr6ky43xofjc9sc4aygnted 
-       foreign key (documentazioneVeicolo) 
+       add constraint FK1ao046ru696b761061qc7x93y 
+       foreign key (car_veicolo_id) 
+       references cars (veicolo_id)
+Hibernate: 
+    
+    alter table documentazioni 
+       add constraint FKlb6lp2avjgp936h63n32qp5o8 
+       foreign key (documento_id) 
        references cars (veicolo_id)
 Hibernate: 
     
@@ -1424,7 +1479,7 @@ Hibernate:
     alter table prenotazioni 
        add constraint FKmr8ps11ija508523b17qeyuv0 
        foreign key (username) 
-       references users (USERNAME)
+       references users (username)
 Hibernate: 
     
     alter table prenotazioni 
@@ -1444,9 +1499,9 @@ Hibernate:
        foreign key (prenotazione_prenotazione_id) 
        references prenotazioni (prenotazione_id)
 ]]></system-out>
-    <system-err><![CDATA[mar 20, 2021 2:27:34 AM org.hibernate.dialect.Dialect <init>
+    <system-err><![CDATA[mar 20, 2021 11:35:38 PM org.hibernate.dialect.Dialect <init>
 INFO: HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
-mar 20, 2021 2:27:35 AM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
+mar 20, 2021 11:35:38 PM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
 INFO: HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
 [main] WARN org.springframework.context.annotation.AnnotationConfigApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'allegatoDao': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sessionFactory' defined in it.univpm.advancedcode.cri.test.DataServiceConfigTest: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method 'sessionFactory' threw exception; nested exception is java.lang.NullPointerException
 ]]></system-err>

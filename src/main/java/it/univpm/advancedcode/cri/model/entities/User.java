@@ -89,7 +89,7 @@ public class User implements Serializable {
 	 * @return il nome dell'utente 
 	 */
 
-	@Column(name = "FIRSTNAME" , nullable = false, length = 100)
+	@Column(name = "firstname" , nullable = false, length = 100)
 	public String getFirstName() {
 		return this.firstname;
 	}
@@ -101,7 +101,7 @@ public class User implements Serializable {
 	 */
 
 
-	@Column(name = "LASTNAME" , nullable = false, length = 100)
+	@Column(name = "lastname" , nullable = false, length = 100)
 	public String getLastName() {
 		return this.lastname;
 	}
@@ -112,7 +112,7 @@ public class User implements Serializable {
 	 * @return stringa relativa al nome del file che contiene l'immagine profilo
 	 */
 
-	@Column(name = "IMAGE_PROFILE" , nullable = true, length = 100)
+	@Column(name = "imageProfile" , nullable = true, length = 100)
 	public String getImageProfile() {
 		return this.imageProfile;
 	}
@@ -124,7 +124,7 @@ public class User implements Serializable {
 	 */
 
 	@Id
-	@Column(name = "USERNAME", unique = true, nullable = false, length = 20)
+	@Column(name = "username", unique = true, nullable = false, length = 20)
 	public String getUsername() {
 		return this.username;
 	}
@@ -136,7 +136,7 @@ public class User implements Serializable {
 	 * @return password dell'utente 
 	 */
 
-	@Column(name = "PASSWORD" , nullable = false, length = 100)
+	@Column(name = "password" , nullable = false, length = 100)
 	public String getPassword() {
 		return this.password;
 	}
@@ -147,7 +147,7 @@ public class User implements Serializable {
 	 *
 	 * @return se l'utente è un admin o meno
 	 */
-	@Column(name = "RUOLO" , nullable=false)
+	@Column(name = "ruolo" , nullable=false)
 	public String getRuolo() {
 		return this.ruolo;
 	}

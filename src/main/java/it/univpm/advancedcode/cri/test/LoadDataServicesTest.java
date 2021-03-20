@@ -31,7 +31,6 @@ public class LoadDataServicesTest {
 
 	private final static String TITLE = "Lorem ipsum dolor sit amet.";
 
-	@SuppressWarnings("deprecation")
 	public static void main(String... args) throws ParseException {
 
 		try (AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(

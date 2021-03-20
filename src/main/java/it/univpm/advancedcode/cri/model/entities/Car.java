@@ -3,25 +3,7 @@ package it.univpm.advancedcode.cri.model.entities;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
-
-import net.bytebuddy.asm.Advice.Return;
-
+import javax.persistence.*;
 
 @Entity
 @Table(name = "cars")
@@ -58,9 +40,8 @@ public class Car implements Serializable {
 	 * Getter documentazione
 	 * @return
 	 */
-
-	@OneToMany
-	@JoinColumn(name = "documentazioneVeicolo")
+	@OneToMany(cascade  = CascadeType.ALL, orphanRemoval = true, targetEntity = it.univpm.advancedcode.cri.model.entities.Documentazione.class)
+	@JoinColumn(name = "documento_id")
 	public Set<Documentazione> getDocumentazioni() {
 		return this.documentazioni;
 	}
@@ -116,8 +97,8 @@ public class Car implements Serializable {
 	 */
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "cars_users",
-	joinColumns = @JoinColumn(name = "VEICOLO_ID", nullable = false),
-	inverseJoinColumns = @JoinColumn(name = "USERNAME", nullable = false))
+	joinColumns = @JoinColumn(name = "veicolo_id", nullable = false),
+	inverseJoinColumns = @JoinColumn(name = "username", nullable = false))
 	public Set<User> getUtenti(){
 		return this.utenti ; 
 	}

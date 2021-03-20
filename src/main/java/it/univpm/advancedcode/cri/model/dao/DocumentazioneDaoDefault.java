@@ -1,6 +1,7 @@
 package it.univpm.advancedcode.cri.model.dao;
 
 import java.time.*;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -48,12 +49,15 @@ public class DocumentazioneDaoDefault extends DefaultDao implements Documentazio
     @Override
     public Documentazione create(String title, User autoreUtente, String descrizione, LocalDate dataScadenza, float costo,
     		Allegato allegato, Car car) {
+    	
+    	Set<Allegato> allegati = new HashSet();
+    	allegati.add(allegato);
 
         Documentazione doc = new Documentazione();
         doc.setTitolo(title);
         doc.setDescrizione(descrizione);
         doc.setCar(car);
-        doc.setAllegatoDocumento(allegato);
+        doc.setAllegati(allegati);
         doc.setDataScadenza(dataScadenza);
         doc.setCosto(costo);
         this.getSession().save(doc);

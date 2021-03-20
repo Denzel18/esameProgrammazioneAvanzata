@@ -24,7 +24,7 @@ public class Documentazione implements Serializable {
 	private LocalDate dataScadenza; 
 	private float costo; 
 	
-	private Allegato allegatoDocumento; 
+	private Set<Allegato> allegati = new HashSet(); 
 	private Car veicolo;
 	private User utente;
 
@@ -53,18 +53,30 @@ public class Documentazione implements Serializable {
 	 * Getter Allegato associato
 	 * @return the allegatoDocumento
 	 */
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "allegato_id", referencedColumnName = "allegato_id")
-	public Allegato getAllegatoDocumento() {
-		return allegatoDocumento;
-	}
-	/**
-	 * Setter Allegato Associato
-	 * @param allegatoDocumento the allegatoDocumento to set
-	 */
-	public void setAllegatoDocumento(Allegato allegatoDocumento) {
-		this.allegatoDocumento = allegatoDocumento;
-	}
+    @OneToMany(fetch = FetchType.EAGER, orphanRemoval = true, mappedBy = "documento")
+    public Set<Allegato> getAllegati() {
+        return this.allegati;
+    }
+
+    /**
+     * Setter per la proprietà attachments.
+     *
+     * @param attachments allegati del post da settare
+     */
+    public void setAllegati(Set<Allegato> allegati) {
+        this.allegati = allegati;
+    }
+
+    /**
+     * Metodo per aggiungere un allegato al documento.
+     *
+     * @param allegato allegato da aggiungere
+     */
+    public void addAllegati(Allegato allegato) {
+        allegato.setDocumento(this);
+        this.allegati.add(allegato);
+    }
+
 
 
 	
@@ -74,8 +86,7 @@ public class Documentazione implements Serializable {
 	 * Getter car documentazione
 	 * @return car 
 	 */
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "documentazioneVeicolo")
+	@ManyToOne(fetch = FetchType.LAZY)
 	public Car getCar(){
 		return this.veicolo;
 	}

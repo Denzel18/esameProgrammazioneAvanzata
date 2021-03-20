@@ -52,7 +52,7 @@ public class Manutenzione implements Serializable{
      * @return id 
      */
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="manutenzione_id", unique = true)
 	public long getId() {
 		return id;
