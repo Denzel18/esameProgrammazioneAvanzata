@@ -33,6 +33,7 @@ public class User implements Serializable {
 	public Prenotazione getPrenotazione() {
 		return this.prenotazione;
 	}
+
 	/**
 	 * Setter prenotazioni
 	 * @param prenotazioni 
@@ -72,7 +73,7 @@ public class User implements Serializable {
 	 */	
 
 	@ManyToMany(fetch = FetchType.EAGER, mappedBy="utenti")
-	public Set<Car> getCars(){
+	public Set<Car> getCarUsers(){
 		return this.carUsers;
 	}
 
@@ -80,7 +81,7 @@ public class User implements Serializable {
 	 * Setter cars gestite dall'utente
 	 * @param cars
 	 */
-	public void setCars(Set<Car> cars) {
+	public void setCarUsers(Set<Car> cars) {
 		this.carUsers=cars;
 	}
 
@@ -90,7 +91,7 @@ public class User implements Serializable {
 	 */
 
 	@Column(name = "firstname" , nullable = false, length = 100)
-	public String getFirstName() {
+	public String getFirstname() {
 		return this.firstname;
 	}
 
@@ -102,7 +103,7 @@ public class User implements Serializable {
 
 
 	@Column(name = "lastname" , nullable = false, length = 100)
-	public String getLastName() {
+	public String getLastname() {
 		return this.lastname;
 	}
 
@@ -162,7 +163,7 @@ public class User implements Serializable {
 	 * @param firstname: nome dell'utente da settare
 	 */
 
-	public void setFirstName(String firstname) {
+	public void setFirstname(String firstname) {
 		this.firstname = firstname;
 	}
 	
@@ -182,7 +183,7 @@ public class User implements Serializable {
 	 * @param lastname: cognome dell'utente da settare
 	 */
 
-	public void setLastName(String lastname) {
+	public void setLastname(String lastname) {
 		this.lastname = lastname;
 	}
 	

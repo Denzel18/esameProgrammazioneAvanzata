@@ -56,8 +56,8 @@ public class UserDaoDefault extends DefaultDao implements UserDao {
         User newUser = new User();
         newUser.setUsername(username);
         newUser.setPassword(passwordEncoder.encode(password));
-        newUser.setFirstName(firstName);
-        newUser.setLastName(lastName);
+        newUser.setFirstname(firstName);
+        newUser.setLastname(lastName);
         newUser.setRuolo(ruolo);
 
         this.getSession().save(newUser);

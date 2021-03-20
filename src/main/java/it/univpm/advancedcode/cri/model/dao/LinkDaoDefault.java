@@ -19,9 +19,9 @@ public class LinkDaoDefault extends DefaultDao implements LinkDao {
 	 * @return link creato 
 	 */
 	@Override
-	public Link create(String description, boolean hide, Documentazione documento, String link) {
+	public Link create(String descrizione, boolean hide, Documentazione documento, String link) {
 		Link newLink =new Link();
-		newLink.setDescription(description);
+		newLink.setDescrizione(descrizione);
 		newLink.setDocumento(documento);
 		newLink.setLink(link);
 		this.getSession().save(newLink);

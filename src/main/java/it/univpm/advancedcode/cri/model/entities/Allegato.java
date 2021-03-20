@@ -9,7 +9,7 @@ import javax.persistence.*;
 public abstract class Allegato {
     
 	private long id;
-	private String description;
+	private String descrizione;
 	private Documentazione documento;
 	
 	
@@ -18,8 +18,8 @@ public abstract class Allegato {
 	 * @return descrizione dell'allegato
 	 */
 	@Column(name = "descrizione" , nullable=false, length=100) 
-	public String getDescription() {
-		return this.description;
+	public String getDescrizione() {
+		return this.descrizione;
 	}
 	
 	/**
@@ -47,8 +47,8 @@ public abstract class Allegato {
 	 * Setter DESCRIPTION
 	 * @param description
 	 */
-	public void setDescription(String description) {
-		this.description=description;
+	public void setDescrizione(String descrizione) {
+		this.descrizione=descrizione;
 	}
 		
 	/**

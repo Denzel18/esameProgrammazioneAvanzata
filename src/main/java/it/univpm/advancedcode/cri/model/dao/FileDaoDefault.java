@@ -19,11 +19,11 @@ public class FileDaoDefault extends DefaultDao implements FileDao  {
 	 * @return file creato
 	 */
 	@Override
-	public File create(String description, Documentazione documento, String name, boolean noDownloadable) {
+	public File create(String descrizione, Documentazione documento, String name, boolean noDownloadable) {
 		File file=new File();
-		file.setDescription(description);
+		file.setDescrizione(descrizione);
 		file.setDocumento(documento);
-		file.setName("post" + documento.getDocumento_id() + "_" + name);
+		file.setName("post" + documento.getId() + "_" + name);
 		file.setNoDownloadable(noDownloadable);
 		this.getSession().save(file);
 		return file;

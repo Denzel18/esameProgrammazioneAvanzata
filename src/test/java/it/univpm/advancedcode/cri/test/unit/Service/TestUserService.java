@@ -40,10 +40,10 @@ public class TestUserService {
 	public void createAndUpdate() {
 		User user1 = userService.create("mario98", "12345678", "Mario", "Rossi", "admin");
 		assertEquals(userService.findAll().size(),1);
-		user1.setFirstName("Roberto");
+		user1.setFirstname("Roberto");
 		userService.update(user1);
 		assertEquals(userService.findAll().size(),1);
-		assertEquals(user1.getFirstName(),"Roberto");
+		assertEquals(user1.getFirstname(),"Roberto");
 	}
 
 

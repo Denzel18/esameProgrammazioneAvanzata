@@ -29,7 +29,7 @@ public class DocumentazioneDaoDefault extends DefaultDao implements Documentazio
         Documentazione doc = new Documentazione();
         doc.setTitolo(title);
         doc.setDescrizione(descrizione);
-        doc.setCar(car);
+        doc.setVeicolo(car);
         doc.setDataScadenza(dataScadenza);
         doc.setCosto(costo);
         this.getSession().save(doc);
@@ -56,7 +56,7 @@ public class DocumentazioneDaoDefault extends DefaultDao implements Documentazio
         Documentazione doc = new Documentazione();
         doc.setTitolo(title);
         doc.setDescrizione(descrizione);
-        doc.setCar(car);
+        doc.setVeicolo(car);
         doc.setAllegati(allegati);
         doc.setDataScadenza(dataScadenza);
         doc.setCosto(costo);
@@ -119,7 +119,7 @@ public class DocumentazioneDaoDefault extends DefaultDao implements Documentazio
     @Override
     public Documentazione update(Documentazione documento) {
          this.getSession().update(documento);
-         Documentazione updated_documento = this.getById(documento.getDocumento_id());
+         Documentazione updated_documento = this.getById(documento.getId());
          return updated_documento;
          
     }

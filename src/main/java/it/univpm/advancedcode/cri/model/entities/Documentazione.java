@@ -16,17 +16,16 @@ import javax.persistence.*;
     )
 })
 public class Documentazione implements Serializable {
-
-	private static final long serialVersionUID = 1L;
 	private long id;
 	private String titolo;
 	private String descrizione;
 	private LocalDate dataScadenza; 
 	private float costo; 
-	
 	private Set<Allegato> allegati = new HashSet(); 
 	private Car veicolo;
 	private User utente;
+
+
 
 	//Autore UTENTE insirimento documentazione
 	
@@ -36,14 +35,14 @@ public class Documentazione implements Serializable {
 	 */
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "username")
-	public User getAutoreUtente() {
+	public User getUtente() {
 		return utente;
 	}
 	/**
 	 * Setter Autore inserimento documento
 	 * @param autoreUtente
 	 */
-	public void setAutoreUtente(User utente) {
+	public void setUtente(User utente) {
 		this.utente = utente;
 	}
 	
@@ -76,9 +75,6 @@ public class Documentazione implements Serializable {
         allegato.setDocumento(this);
         this.allegati.add(allegato);
     }
-
-
-
 	
 	//CAR -- DOCUMENTI RELATIVI AL VEICOLO 
 
@@ -87,7 +83,7 @@ public class Documentazione implements Serializable {
 	 * @return car 
 	 */
 	@ManyToOne(fetch = FetchType.LAZY)
-	public Car getCar(){
+	public Car getVeicolo(){
 		return this.veicolo;
 	}
 
@@ -95,7 +91,7 @@ public class Documentazione implements Serializable {
 	 * Setter Car
 	 * @param cars
 	 */
-	public void setCar(Car veicolo) {
+	public void setVeicolo(Car veicolo) {
 		this.veicolo=veicolo;
 	}
 	
@@ -137,7 +133,7 @@ public class Documentazione implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "documento_id", unique = true)
-	public long getDocumento_id() {
+	public long getId() {
 		return id;
 	}
 
@@ -185,5 +181,13 @@ public class Documentazione implements Serializable {
 	 */
 	public void setTitolo(String titolo) {
 		this.titolo = titolo;
+	}
+	
+	/**
+	 * Setter id documento
+	 * @param id the id to set
+	 */
+	public void setId(long id) {
+		this.id = id;
 	}
 }

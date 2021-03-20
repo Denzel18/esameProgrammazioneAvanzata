@@ -84,7 +84,7 @@ public class TestDocumentazioneService {
 		Documentazione doc1 = documentazioneService.create("TITOLO", user1, "DESCRIZIONE", data1, (float) 900.10, c1);
 
 		try {
-			documentazioneService.getById(doc1.getDocumento_id()); 
+			documentazioneService.getById(doc1.getId()); 
 		} catch(Exception e) {
 			fail("Exception not expected: " + e.getMessage());
 		}
@@ -107,9 +107,9 @@ public class TestDocumentazioneService {
 		Documentazione doc1 = documentazioneService.create("TITOLO", user1, "DESCRIZIONE", data1, (float) 900.10, c1);
 		assertEquals(documentazioneService.getAll().size(),1);
 
-		doc1.setAutoreUtente(user2);
+		doc1.setUtente(user2);
 		documentazioneService.update(doc1);
-		assertEquals(doc1.getAutoreUtente(),user2);
+		assertEquals(doc1.getUtente(),user2);
 	}
 
 

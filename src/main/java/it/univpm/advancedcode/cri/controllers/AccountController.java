@@ -248,9 +248,9 @@ public class AccountController {
         }
 
         try {
-        	this.documentazioneService.create(documentazione.getTitolo(), documentazione.getAutoreUtente(), documentazione.getDescrizione(), 
-        						documentazione.getDataScadenza(), documentazione.getCosto(), documentazione.getCar());
-            String strMessage = "Il documento \"" + documentazione.getDocumento_id() + "\" %C3%A8 stato salvato correttamente!";
+        	this.documentazioneService.create(documentazione.getTitolo(), documentazione.getUtente(), documentazione.getDescrizione(), 
+        						documentazione.getDataScadenza(), documentazione.getCosto(), documentazione.getVeicolo());
+            String strMessage = "Il documento \"" + documentazione.getId() + "\" %C3%A8 stato salvato correttamente!";
 
             return "redirect:/documentazioni/?successMessage=" + strMessage;
 
@@ -275,10 +275,10 @@ public class AccountController {
 
         if (selectedDoc != null) {
             this.documentazioneService.delete(selectedDoc);
-            strMessage = "Il documento con id : \"" + selectedDoc.getDocumento_id() + "\" %C3%A8 stato cancellato correttamente!";
+            strMessage = "Il documento con id : \"" + selectedDoc.getId() + "\" %C3%A8 stato cancellato correttamente!";
             return "redirect:/documenti/?successMessage=" + strMessage;
         } else {
-            strMessage = "Il documento con id : \"" + selectedDoc.getDocumento_id() + "\" Non pu%C3%B2 essere cancellato!";
+            strMessage = "Il documento con id : \"" + selectedDoc.getId() + "\" Non pu%C3%B2 essere cancellato!";
             return "redirect:/documenti/?errorMessage=" + strMessage;
         }
     }
@@ -314,7 +314,7 @@ public class AccountController {
     @GetMapping(value = "/allegato/show/{allegato_id}")
     public String showAllegato(@PathVariable("allegato_id") String allegato_id) {
         Allegato selectedAllegato = allegatoService.getById(Long.parseLong(allegato_id));
-        logger.info("Showing the allegato \"" + selectedAllegato.getDescription() + "\"...");     
+        logger.info("Showing the allegato \"" + selectedAllegato.getDescrizione() + "\"...");     
         return "redirect:/attachments/?successMessage=" + "MESSAGGIO DI SUCCESSO";
     }
     
@@ -393,13 +393,13 @@ public class AccountController {
         if((user.getRuolo() == null || user.getRuolo().equals("")) ||
         	(user.getUsername() == null || user.getUsername().equals("")) ||
 			(user.getPassword() == null || user.getPassword().equals("")) ||	
-			(user.getFirstName() == null || user.getFirstName().equals("")) ||
-			(user.getLastName() == null || user.getLastName().equals(""))){
+			(user.getFirstname() == null || user.getFirstname().equals("")) ||
+			(user.getLastname() == null || user.getLastname().equals(""))){
             String strMessage = "Non hai inserito i campi obbligatori!";
             return "redirect:/cars/?errorMessage=" + strMessage;
         }
         try {
-            this.userService.create(user.getUsername(), user.getPassword(), user.getFirstName(), user.getLastName(),user.getRuolo());
+            this.userService.create(user.getUsername(), user.getPassword(), user.getFirstname(), user.getLastname(),user.getRuolo());
             String strMessage = "l'utente con username \"" + user.getUsername() + "\" %C3%A8 stato salvato correttamente!";
             return "redirect:/users/?successMessage=" + strMessage;
         } catch (RuntimeException e) {

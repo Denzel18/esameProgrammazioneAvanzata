@@ -64,11 +64,11 @@ public class TestUserDao {
 
 		assertEquals(userDao.findAll().size(),1);
 
-		s.beginTransaction(); user1.setFirstName("Roberto"); userDao.update(user1);
+		s.beginTransaction(); user1.setFirstname("Roberto"); userDao.update(user1);
 		s.getTransaction().commit();
 
 		assertEquals(userDao.findAll().size(),1);
-		assertEquals(user1.getFirstName(),"Roberto"); } }
+		assertEquals(user1.getFirstname(),"Roberto"); } }
 
 	@Test
 	public void noUsersAtBeginning() {

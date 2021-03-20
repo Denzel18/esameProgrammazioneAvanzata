@@ -213,10 +213,10 @@ public class AdminController {
      * @param allegato_id ID dell'allegato da nascondere
      * @return nome della vista
      */
-    @GetMapping(value = "/allegati/show/{allegato_id}")
-    public String showAttachment(@PathVariable("allegato_id") String allegato_id) {
+    @GetMapping(value = "/allegato/show/{allegato_id}")
+    public String showAllegato(@PathVariable("allegato_id") String allegato_id) {
     	Allegato selectedAllegato = allegatoService.getById(Long.parseLong(allegato_id));
-    	logger.info("Showing the attachment \"" + selectedAllegato.getDescription() + "\"...");     
+    	logger.info("Showing the attachment \"" + selectedAllegato.getDescrizione() + "\"...");     
     	return "redirect:/attachments/?successMessage=" + "MESSAGGIO DI SUCCESSO";
     }
 
@@ -271,13 +271,13 @@ public class AdminController {
     	if((user.getRuolo() == null || user.getRuolo().equals("")) ||
     			(user.getUsername() == null || user.getUsername().equals("")) ||
     			(user.getPassword() == null || user.getPassword().equals("")) ||	
-    			(user.getFirstName() == null || user.getFirstName().equals("")) ||
-    			(user.getLastName() == null || user.getLastName().equals(""))){
+    			(user.getFirstname() == null || user.getFirstname().equals("")) ||
+    			(user.getLastname() == null || user.getLastname().equals(""))){
     		String strMessage = "Non hai inserito i campi obbligatori!";
     		return "redirect:/cars/?errorMessage=" + strMessage;
     	}
     	try {
-    		this.userService.create(user.getUsername(), user.getPassword(), user.getFirstName(), user.getLastName(),user.getRuolo());
+    		this.userService.create(user.getUsername(), user.getPassword(), user.getFirstname(), user.getLastname(),user.getRuolo());
     		String strMessage = "l'utente con username \"" + user.getUsername() + "\" %C3%A8 stato salvato correttamente!";
     		return "redirect:/users/?successMessage=" + strMessage;
     	} catch (RuntimeException e) {

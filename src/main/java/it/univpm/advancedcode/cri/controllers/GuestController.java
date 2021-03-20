@@ -115,7 +115,7 @@ public class GuestController {
     	
     	
         if (file.isEmpty()) {
-    	this.userService.create(newUser.getUsername(), newUser.getPassword(), newUser.getFirstName(), newUser.getLastName(), newUser.getRuolo());   	
+    	this.userService.create(newUser.getUsername(), newUser.getPassword(), newUser.getFirstname(), newUser.getLastname(), newUser.getRuolo());   	
     	} else {
             String nameOfFile = null;
             try {
@@ -148,7 +148,7 @@ public class GuestController {
                 e.printStackTrace();
             }
 
-            this.userService.create(newUser.getUsername(), newUser.getPassword(), newUser.getFirstName(), newUser.getLastName(), nameOfFile);
+            this.userService.create(newUser.getUsername(), newUser.getPassword(), newUser.getFirstname(), newUser.getLastname(), nameOfFile);
         }
 
     	return "redirect:/login";
@@ -213,7 +213,7 @@ public class GuestController {
      * @return nome della vista da visualizzare
      */
     @GetMapping(value = "/veicoli")
-    public String showTags(@RequestParam(value = "successMessage", required = false) String successMessage,
+    public String showCars(@RequestParam(value = "successMessage", required = false) String successMessage,
                            @RequestParam(value = "errorMessage", required = false) String errorMessage, Model uiModel) {
         logger.info("Listing all the cars...");
 
