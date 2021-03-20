@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.*;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -56,8 +56,7 @@ public class TestDocumentazioneService {
 	@Test
 	public void createAndDelete() throws java.text.ParseException {
 		User user1 = userService.create("mario98", "12345678", "Mario", "Rossi", "admin");
-		String dataS1= "07/08/2023";
-		Date data1 = new SimpleDateFormat("dd/MM/yyyy").parse(dataS1); 
+		LocalDate data1 = LocalDate.of(2021, 10, 10); 
 		Car c1 = carService.create(1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");		
 		Documentazione doc1 = documentazioneService.create("TITOLO", user1, "DESCRIZIONE", data1, (float) 900.10, c1);
 		try {
@@ -79,11 +78,10 @@ public class TestDocumentazioneService {
 
 	@Test
 	public void createAndFind() throws java.text.ParseException {
-		User user1 = userService.create("mario98", "12345678", "Mario", "Rossi", "admin");	
-		String dataS1= "07/08/2023";
-		Date data1 = new SimpleDateFormat("dd/MM/yyyy").parse(dataS1); 
-		Car c1 = carService.create(1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
-		Documentazione doc1 = documentazioneService.create("TITOLO", user1, "DESCRIZIONE", data1, (float) 900.10,c1);
+		User user1 = userService.create("mario98", "12345678", "Mario", "Rossi", "admin");
+		LocalDate data1 = LocalDate.of(2021, 10, 10); 
+		Car c1 = carService.create(1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");		
+		Documentazione doc1 = documentazioneService.create("TITOLO", user1, "DESCRIZIONE", data1, (float) 900.10, c1);
 
 		try {
 			documentazioneService.getById(doc1.getDocumento_id()); 
@@ -104,10 +102,9 @@ public class TestDocumentazioneService {
 	public void createAndUpdate() throws java.text.ParseException {
 		User user1 = userService.create("mario98", "12345678", "Mario", "Rossi", "admin");
 		User user2 = userService.create("mario18", "12345678", "Mario2", "Rossi", "driver");
-		String dataS1= "07/08/2023";
-		Date data1 = new SimpleDateFormat("dd/MM/yyyy").parse(dataS1); 
-		Car c1 = carService.create(1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
-		Documentazione doc1 = documentazioneService.create("TITOLO", user1, "DESCRIZIONE", data1, (float) 900.10,c1);
+		LocalDate data1 = LocalDate.of(2021, 10, 10); 
+		Car c1 = carService.create(1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");		
+		Documentazione doc1 = documentazioneService.create("TITOLO", user1, "DESCRIZIONE", data1, (float) 900.10, c1);
 		assertEquals(documentazioneService.getAll().size(),1);
 
 		doc1.setAutoreUtente(user2);

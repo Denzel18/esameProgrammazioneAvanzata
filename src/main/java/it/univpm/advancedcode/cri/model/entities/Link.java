@@ -4,9 +4,9 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 
-@Entity(name = "Link")
+@Entity
 @Table(name = "links")
-@PrimaryKeyJoinColumn(name="ALLEGATO_ID")
+@PrimaryKeyJoinColumn(name="allegato_id")
 public class Link extends Allegato implements Serializable {
 	
 	/**

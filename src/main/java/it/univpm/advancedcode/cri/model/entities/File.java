@@ -4,7 +4,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 
-@Entity(name = "File")
+@Entity
 @Table(name="files")
 @NamedQueries({
 	@NamedQuery(
@@ -16,7 +16,7 @@ import javax.persistence.*;
 			query="SELECT f FROM File f WHERE f.noDownloadable= :noDownloadable"
 			)
 })
-@PrimaryKeyJoinColumn(name="ALLEGATO_ID")
+@PrimaryKeyJoinColumn(name="allegato_id")
 public class File extends Allegato implements Serializable{
 	
 
@@ -27,7 +27,7 @@ public class File extends Allegato implements Serializable{
 	 * Getter per il nome del file
 	 * @return nome del file
 	 */
-	@Column(name = "NOME", nullable=false, unique=true, length=100)
+	@Column(name = "nome", nullable=false, unique=true, length=100)
 	public String getName() {
 		return name;
 	}

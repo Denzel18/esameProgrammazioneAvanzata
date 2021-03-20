@@ -1,15 +1,14 @@
 package it.univpm.advancedcode.cri.model.entities;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.*; 
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
 
 
-@Entity(name = "Documentazione")
-@Table(name = "documentazioni", uniqueConstraints = {
-        @UniqueConstraint(columnNames = "DOCUMENTO_ID")})
+@Entity
+@Table(name = "documentazioni")
 @NamedQueries({
     @NamedQuery(
             name = "Documentazione.getByTitle",
@@ -22,7 +21,7 @@ public class Documentazione implements Serializable {
 	private long id;
 	private String titolo;
 	private String descrizione;
-	private Date dataScadenza; 
+	private LocalDate dataScadenza; 
 	private float costo; 
 	
 	private Allegato allegatoDocumento; 
@@ -36,7 +35,7 @@ public class Documentazione implements Serializable {
 	 * @return autore 
 	 */
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "USERNAME")
+    @JoinColumn(name = "username")
 	public User getAutoreUtente() {
 		return utente;
 	}
@@ -55,7 +54,7 @@ public class Documentazione implements Serializable {
 	 * @return the allegatoDocumento
 	 */
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "allegato_id", referencedColumnName = "ALLEGATO_ID")
+    @JoinColumn(name = "allegato_id", referencedColumnName = "allegato_id")
 	public Allegato getAllegatoDocumento() {
 		return allegatoDocumento;
 	}
@@ -76,7 +75,7 @@ public class Documentazione implements Serializable {
 	 * @return car 
 	 */
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "documentazione_id")
+    @JoinColumn(name = "documentazioneVeicolo")
 	public Car getCar(){
 		return this.veicolo;
 	}
@@ -97,7 +96,7 @@ public class Documentazione implements Serializable {
 	 * Getter Costo documentazione
 	 * @return costo
 	 */
-	@Column(name = "COSTO", nullable = false)
+	@Column(name = "costo", nullable = false)
 	public float getCosto() {
 		return costo;
 	}
@@ -106,15 +105,15 @@ public class Documentazione implements Serializable {
 	 * Getter Data Scandenza
 	 * @return dataScadenza
 	 */
-	@Column (name = "DATA_SCADENZA", nullable = false)
-	public Date getDataScadenza() {
+	@Column (name = "dataScadenza", nullable = false)
+	public LocalDate getDataScadenza() {
 		return dataScadenza;
 	}
 	/**
 	 * Getter Descrizione
 	 * @return descrizione
 	 */
-	@Column(name = "DESCRIZIONE", nullable = false, length = 300)
+	@Column(name = "descrizione", nullable = false, length = 300)
 	public String getDescrizione() {
 		return this.descrizione;
 	}
@@ -126,7 +125,7 @@ public class Documentazione implements Serializable {
 	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "DOCUMENTO_ID", unique = true)
+	@Column(name = "documento_id", unique = true)
 	public long getDocumento_id() {
 		return id;
 	}
@@ -135,7 +134,7 @@ public class Documentazione implements Serializable {
 	 * Getter Titolo 
 	 * @return titolo
 	 */
-	@Column(name = "TITOLO", nullable = false, unique = true, length = 100)
+	@Column(name = "titolo", nullable = false, unique = true, length = 100)
 	public String getTitolo() {
 		return this.titolo;
 	}
@@ -153,7 +152,7 @@ public class Documentazione implements Serializable {
 	 * Setter Data Scadenza
 	 * @param dataScadenza
 	 */
-	public void setDataScadenza(Date dataScadenza) {
+	public void setDataScadenza(LocalDate dataScadenza) {
 		this.dataScadenza = dataScadenza;
 	}
 

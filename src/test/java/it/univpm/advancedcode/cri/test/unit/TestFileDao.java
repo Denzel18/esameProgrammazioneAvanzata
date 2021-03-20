@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -46,13 +47,9 @@ public class TestFileDao {
 			
 			s.beginTransaction();
 			User user1 = userDao.create("mario98", "12345678", "Mario", "Rossi", "admin");
-            String dataS1= "07/08/2023";
-            Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(dataS1); 
-            
-            
+			LocalDate data1 = LocalDate.of(2021,11,20); 
 			Car c1 = carDao.create((long)1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
-			Documentazione doc1 = documentazioneDao.create("TITOLO", user1, "DESCRIZIONE", date1, 90, c1);
-
+			Documentazione doc1 = documentazioneDao.create("TITOLO", user1, "DESCRIZIONE......", data1, 90, c1);
 			File a=fileDao.create("DESCRIZIONE", doc1, "file1.jpg",true);
 			s.getTransaction().commit();
 			
@@ -90,13 +87,9 @@ public class TestFileDao {
 			
 			s.beginTransaction();
 			User user1 = userDao.create("mario98", "12345678", "Mario", "Rossi", "admin");
-            String dataS1= "07/08/2023";
-            Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(dataS1); 
-            
-            
+			LocalDate data1 = LocalDate.of(2021,11,20); 
 			Car c1 = carDao.create((long)1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
-			Documentazione doc1 = documentazioneDao.create("TITOLO", user1, "DESCRIZIONE", date1, 90, c1);
-
+			Documentazione doc1 = documentazioneDao.create("TITOLO", user1, "DESCRIZIONE......", data1, 90, c1);
 			File a=fileDao.create("DESCRIZIONE", doc1, "file1.jpg",true);
 			s.getTransaction().commit();
 			
@@ -132,12 +125,9 @@ public class TestFileDao {
 			
 			s.beginTransaction();
 			User user1 = userDao.create("mario98", "12345678", "Mario", "Rossi", "admin");
-            String dataS1= "07/08/2023";
-            Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(dataS1); 
-            
-            
+			LocalDate data1 = LocalDate.of(2021,11,20); 
 			Car c1 = carDao.create((long)1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
-			Documentazione doc1 = documentazioneDao.create("TITOLO", user1, "DESCRIZIONE", date1, 90, c1);
+			Documentazione doc1 = documentazioneDao.create("TITOLO", user1, "DESCRIZIONE......", data1, 90, c1);
 
 			File a=fileDao.create("DESCRIZIONE", doc1, "file1.jpg",true);
 			s.getTransaction().commit();

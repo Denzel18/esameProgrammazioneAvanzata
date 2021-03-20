@@ -3,9 +3,8 @@ import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
 
-@Entity(name = "Allegato")
-@Table(name = "allegati", uniqueConstraints = {
-        @UniqueConstraint(columnNames = "ALLEGATO_ID")})
+@Entity
+@Table(name = "allegati")
 @Inheritance(strategy=InheritanceType.JOINED)
 public abstract class Allegato {
     
@@ -18,7 +17,7 @@ public abstract class Allegato {
 	 * Getter DESCRIZIONE allegato
 	 * @return descrizione dell'allegato
 	 */
-	@Column(name = "DESCRIZIONE" , nullable=false, length=100) 
+	@Column(name = "descrizione" , nullable=false, length=100) 
 	public String getDescription() {
 		return this.description;
 	}
@@ -39,7 +38,7 @@ public abstract class Allegato {
 	 */
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="ALLEGATO_ID", unique = true)
+	@Column(name="allegato_id", unique = true)
 	public long getId() {
 		return this.id;
 	}

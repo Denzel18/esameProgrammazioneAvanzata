@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -69,8 +69,7 @@ public class TestFileService {
 	@Test
 	void createAndDelete() throws ParseException {
 		Car c1 = carService.create(1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
-		String dataS1= "07/08/2023";
-        Date data1 = new SimpleDateFormat("dd/MM/yyyy").parse(dataS1); 
+		LocalDate data1 = LocalDate.of(2021, 10, 10);  
 		User user1 = userService.create("mario98", "12345678", "Mario", "Rossi", "admin");
 		Documentazione doc1 = documentazioneService.create("TITOLO", user1, "DESCRIZIONE", data1, (float) 900.10, c1);
 		File a=fileService.create("DESCRIZIONE", doc1, "file1.jpg",true);
@@ -93,8 +92,7 @@ public class TestFileService {
 	void createAndFind() throws ParseException {
 
 		Car c1 = carService.create(1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
-		String dataS1= "07/08/2023";
-        Date data1 = new SimpleDateFormat("dd/MM/yyyy").parse(dataS1); 
+		LocalDate data1 = LocalDate.of(2021, 10, 10); 
 		User user1 = userService.create("mario98", "12345678", "Mario", "Rossi", "admin");
 		Documentazione doc1 = documentazioneService.create("TITOLO", user1, "DESCRIZIONE", data1, (float) 900.10, c1);
 		File a=fileService.create("DESCRIZIONE", doc1, "file1.jpg",true);
@@ -113,8 +111,7 @@ public class TestFileService {
 	void createAndUpdate() throws ParseException {
 
 		Car c1 = carService.create(1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
-		String dataS1= "07/08/2023";
-        Date data1 = new SimpleDateFormat("dd/MM/yyyy").parse(dataS1); 
+		LocalDate data1 = LocalDate.of(2021, 10, 10); 
 		User user1 = userService.create("mario98", "12345678", "Mario", "Rossi", "admin");
 		Documentazione doc1 = documentazioneService.create("TITOLO", user1, "DESCRIZIONE", data1, (float) 900.10, c1);
 		File a=fileService.create("DESCRIZIONE", doc1, "file1.jpg",true);

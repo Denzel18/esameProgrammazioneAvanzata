@@ -5,9 +5,8 @@ import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
 
-@Entity(name = "Manutenzione")
-@Table(name = "manutenzioni", uniqueConstraints = {
-        @UniqueConstraint(columnNames = "MANUTENZIONE_ID")})
+@Entity
+@Table(name = "manutenzioni")
 @NamedQueries({
     @NamedQuery(
             name = "Manutenzione.getById",
@@ -29,7 +28,7 @@ public class Manutenzione implements Serializable{
 	 * @return the veicolo
 	 */
 	@ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "manutenzione_id")
+    @JoinColumn(name = "manutenzioneVeicolo")
 	public Car getVeicolo() {
 		return veicolo;
 	}
@@ -44,7 +43,7 @@ public class Manutenzione implements Serializable{
 	 * Getter Costo Manutenzione 
 	 * @return costoManutenzione
 	 */
-	@Column(name = "COSTO_MANUTENZIONE")
+	@Column(name = "costoManutenzione")
 	public float getCostoManutenzione() {
 		return costoManutenzione;
 	}
@@ -54,7 +53,7 @@ public class Manutenzione implements Serializable{
      */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="MANUTENZIONE_ID", unique = true)
+	@Column(name="manutenzione_id", unique = true)
 	public long getId() {
 		return id;
 	}
@@ -62,7 +61,7 @@ public class Manutenzione implements Serializable{
 	 * Getter Tipo Manutenzione 
 	 * @return tipoManutenzione
 	 */
-	@Column(name = "TIPO_MANUTENZIONE")
+	@Column(name = "tipoManutenzione")
 	public String getTipoManutenzione() {
 		return tipoManutenzione;
 	}

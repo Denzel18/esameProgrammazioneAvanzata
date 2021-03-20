@@ -19,7 +19,7 @@ public class AllegatoDaoDefault extends DefaultDao implements AllegatoDao {
 	@Override
 	public List<Allegato> getAll() {
 		 return getSession().
-	                createQuery("from Allegato order by Allegato.ALLEGATO_ID desc", Allegato.class).
+	                createQuery("from Allegato a", Allegato.class).
 	                getResultList();
 	}
 

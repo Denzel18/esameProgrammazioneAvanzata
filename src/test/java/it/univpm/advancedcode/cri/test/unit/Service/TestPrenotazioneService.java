@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
-import java.sql.Time;
+
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.*;
 import java.util.List;
 
 import org.junit.jupiter.api.AfterEach;
@@ -57,15 +57,10 @@ public class TestPrenotazioneService {
 	@Test
 	public void createAndDelete() throws java.text.ParseException {
 		User user1 = userService.create("mario98", "12345678", "Mario", "Rossi", "admin");			
-		String dataS1= "07/08/2023";
-		Date data1 = new SimpleDateFormat("dd/MM/yyyy").parse(dataS1);
-
-		String dataS2= "07/08/2023";
-		Date data2 = new SimpleDateFormat("dd/MM/yyyy").parse(dataS2);
-
-
-		Time t1 = Time.valueOf("20:45:20");
-		Time t2 = Time.valueOf("19:45:20");
+		LocalDate data1 = LocalDate.of(2021,11,20); 
+		LocalDate data2 = LocalDate.of(2021,11,20);			
+		LocalTime t1 = LocalTime.of(17, 39);
+		LocalTime t2 = LocalTime.of(18, 39);
 
 		Prenotazione p = prenotazioneService.create(1, data1, data2, t1, t2, "DESCRIZIONE", user1);
 		try {
@@ -89,16 +84,10 @@ public class TestPrenotazioneService {
 	public void createAndFind() throws java.text.ParseException {
 
 		User user1 = userService.create("mario98", "12345678", "Mario", "Rossi", "admin");			
-		String dataS1= "07/08/2023";
-		Date data1 = new SimpleDateFormat("dd/MM/yyyy").parse(dataS1);
-
-		String dataS2= "07/08/2023";
-		Date data2 = new SimpleDateFormat("dd/MM/yyyy").parse(dataS2);
-
-		String time = "10:30";
-		@SuppressWarnings("deprecation")
-		Time t1 = new Time(20,30, 0);
-		Time t2 = new Time(20,50, 0);
+		LocalDate data1 = LocalDate.of(2021,11,20); 
+		LocalDate data2 = LocalDate.of(2021,11,20);			
+		LocalTime t1 = LocalTime.of(17, 39);
+		LocalTime t2 = LocalTime.of(18, 39);
 
 		Prenotazione p = prenotazioneService.create(1, data1, data2, t1, t2, "DESCRIZIONE", user1);
 
@@ -122,15 +111,10 @@ public class TestPrenotazioneService {
 	public void createAndUpdate() throws java.text.ParseException {
 		User user1 = userService.create("mario98", "12345678", "Mario", "Rossi", "admin");			
 		String dataS1= "07/08/2023";
-		Date data1 = new SimpleDateFormat("dd/MM/yyyy").parse(dataS1);
-
-		String dataS2= "07/08/2023";
-		Date data2 = new SimpleDateFormat("dd/MM/yyyy").parse(dataS2);
-
-		String time = "10:30";
-		@SuppressWarnings("deprecation")
-		Time t1 = new Time(20,30, 0);
-		Time t2 = new Time(20,50, 0);
+		LocalDate data1 = LocalDate.of(2021,11,20); 
+		LocalDate data2 = LocalDate.of(2021,11,20);			
+		LocalTime t1 = LocalTime.of(17, 39);
+		LocalTime t2 = LocalTime.of(18, 39);
 
 		Prenotazione p = prenotazioneService.create(1, data1, data2, t1, t2, "DESCRIZIONE", user1);
 

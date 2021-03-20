@@ -1,7 +1,7 @@
 package it.univpm.advancedcode.cri.services;
 
-import java.sql.Time;
-import java.util.Date;
+import java.time.*;
+import java.sql.Date;
 import java.util.List;
 
 import it.univpm.advancedcode.cri.model.entities.Prenotazione;
@@ -9,8 +9,8 @@ import it.univpm.advancedcode.cri.model.entities.User;
 
 public interface PrenotazioneService {
 
-	Prenotazione create  (long id,Date dataInzio, Date dataFine, 
-			Time oraInzio, Time oraFine, 
+	Prenotazione create  (long id,LocalDate dataInzio, LocalDate dataFine, 
+			LocalTime oraInzio, LocalTime oraFine, 
 			String descrizione, User utente);
 	
 	void delete(Prenotazione prenotazione);

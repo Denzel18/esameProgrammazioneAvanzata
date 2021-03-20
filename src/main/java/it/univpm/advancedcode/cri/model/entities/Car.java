@@ -23,9 +23,8 @@ import javax.persistence.UniqueConstraint;
 import net.bytebuddy.asm.Advice.Return;
 
 
-@Entity(name = "Car")
-@Table(name = "cars", uniqueConstraints = {
-		@UniqueConstraint(columnNames = "VEICOLO_ID")})
+@Entity
+@Table(name = "cars")
 @NamedQueries({
 	@NamedQuery(
 			name = "Car.getByTarga",
@@ -61,7 +60,7 @@ public class Car implements Serializable {
 	 */
 
 	@OneToMany
-	@JoinColumn(name = "documentazione_id")
+	@JoinColumn(name = "documentazioneVeicolo")
 	public Set<Documentazione> getDocumentazioni() {
 		return this.documentazioni;
 	}
@@ -76,7 +75,7 @@ public class Car implements Serializable {
 
 	//-----MANUTENZIONE-----
 	@OneToMany
-	@JoinColumn(name = "manutenzione_id")
+	@JoinColumn(name = "manutenzioneVeicolo")
 	public Set<Manutenzione> getManutenzioni() {
 		return this.manutenzioni;
 	}
@@ -96,7 +95,7 @@ public class Car implements Serializable {
 	 * @return prenotazioni
 	 */
 	@OneToMany
-	@JoinColumn(name = "prenotazione_id")
+	@JoinColumn(name = "prenotazioneVeicolo")
 	public Set<Prenotazione> getPrenotazioni() {
 		return this.prenotazioni;
 	}
@@ -139,7 +138,7 @@ public class Car implements Serializable {
 	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "VEICOLO_ID", unique = true)
+	@Column(name = "veicolo_id", unique = true)
 	public long getVeicoloID() {
 		return veicoloID;
 	}
@@ -157,7 +156,7 @@ public class Car implements Serializable {
 	 * Getter Tipologia Alimentazione del veicolo
 	 * @return alimentazione
 	 */
-	@Column(name="ALIMENTAZIONE", nullable = false)
+	@Column(name="alimentazione", nullable = false)
 	public String getAlimentazione() {
 		return alimentazione;
 	}
@@ -165,7 +164,7 @@ public class Car implements Serializable {
 	 * Getter Destinazione d'uso del veicolo
 	 * @return destinazioneUso
 	 */
-	@Column(name="DESTINAZIONE_USO", nullable = false)
+	@Column(name="destinazioneUso", nullable = false)
 	public String getDestinazioneUso() {
 		return destinazioneUso;
 	}
@@ -174,7 +173,7 @@ public class Car implements Serializable {
 	 * Getter Marca del veicolo 
 	 * @return marca 
 	 */
-	@Column(name="MARCA", nullable = false)
+	@Column(name="marca", nullable = false)
 	public String getMarca() {
 		return marca;
 	}
@@ -182,7 +181,7 @@ public class Car implements Serializable {
 	 * Getter Massa del veicolo
 	 * @return massa
 	 */
-	@Column(name="MASSA", nullable = false)
+	@Column(name="massa", nullable = false)
 	public int getMassa() {
 		return massa;
 	}
@@ -190,7 +189,7 @@ public class Car implements Serializable {
 	 * Getter Modello del veicolo 
 	 * @return modello
 	 */
-	@Column(name="MODELLO", nullable = false)
+	@Column(name="modello", nullable = false)
 	public String getModello() {
 		return modello;
 	}
@@ -198,7 +197,7 @@ public class Car implements Serializable {
 	 * Getter Numero Assi del veicolo 
 	 * @return numeroAssi
 	 */
-	@Column(name="NUMERO_ASSI", nullable = false)
+	@Column(name="numeroAssi", nullable = false)
 	public int getNumeroAssi() {
 		return numeroAssi;
 	}
@@ -206,7 +205,7 @@ public class Car implements Serializable {
 	 * Getter Numero Telaio del veicolo
 	 * @return numeroTelaio
 	 */
-	@Column(name="NUMERO_TELAIO", nullable = false)
+	@Column(name="numeroTelaio", nullable = false)
 	public String getNumeroTelaio() {
 		return numeroTelaio;
 	}
@@ -215,7 +214,7 @@ public class Car implements Serializable {
 	 * @return targa
 	 */
 
-	@Column(name="TARGA", nullable = false, length = 7, unique = true)
+	@Column(name="targa", nullable = false, length = 7, unique = true)
 	public String getTarga() {
 		return targa;
 	}

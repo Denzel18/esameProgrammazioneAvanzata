@@ -1,16 +1,14 @@
 package it.univpm.advancedcode.cri.model.entities;
 
 import java.io.Serializable;
-import java.sql.Time;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
-import javax.persistence.*;;
+import javax.persistence.*;
+import java.time.*; 
 
 
-@Entity(name = "Prenotazione")
-@Table(name = "prenotazioni", uniqueConstraints = {
-        @UniqueConstraint(columnNames = "PRENOTAZIONE_ID")})
+@Entity
+@Table(name = "prenotazioni")
 @NamedQueries({
     @NamedQuery(
             name = "Prenotazione.getById",
@@ -21,10 +19,10 @@ public class Prenotazione implements Serializable {
 	
 
 	private long id;
-    private Date dataInzio; 
-    private Date dataFine; 
-    private Time oraInzio; 
-    private Time oraFine; 
+    private LocalDate dataInzio; 
+    private LocalDate dataFine; 
+    private LocalTime oraInzio; 
+    private LocalTime oraFine; 
     private String descrizione;
     
     
@@ -38,7 +36,7 @@ public class Prenotazione implements Serializable {
 	 * @return the veicolo
 	 */
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "prenotazione_id")
+    @JoinColumn(name = "prenotazioneVeicolo")
 	public Car getVeicolo() {
 		return this.veicolo;
 	}
@@ -56,7 +54,7 @@ public class Prenotazione implements Serializable {
 	 * @return the User
 	 */
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "USERNAME")
+    @JoinColumn(name = "username")
 	public User getUtente() {
 		return this.utente;
 	}
@@ -74,23 +72,23 @@ public class Prenotazione implements Serializable {
 	 * Getter Data di prenotazione fine 
 	 * @return dataFine
 	 */
-	@Column(name = "DATA_FINE")
-	public Date getDataFine() {
+	@Column(name = "dataFine")
+	public LocalDate getDataFine() {
 		return dataFine;
 	}
 	/**
 	 * Getter Data di prenotazione inizio 
 	 * @return dataInizio
 	 */
-	@Column(name = "DATA_INIZIO")
-	public Date getDataInzio() {
+	@Column(name = "dataInizio")
+	public LocalDate getDataInzio() {
 		return dataInzio;
 	}
 	/**
 	 * Getter Descrizione prenotazione 
 	 * @return descrizione
 	 */
-	@Column(name = "DESCRIZIONE")
+	@Column(name = "descrizione")
 	public String getDescrizione() {
 		return descrizione;
 	}
@@ -100,7 +98,7 @@ public class Prenotazione implements Serializable {
      */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="PRENOTAZIONE_ID", unique = true)
+	@Column(name="prenotazione_id", unique = true)
 	public long getId() {
 		return id;
 	}
@@ -108,16 +106,16 @@ public class Prenotazione implements Serializable {
 	 * Getter Ora di prenotazione (fine) 
 	 * @return oraFine 
 	 */
-	@Column(name = "ORA_FINE")
-	public Time getOraFine() {
+	@Column(name = "oraFine")
+	public LocalTime getOraFine() {
 		return oraFine;
 	}
 	/**
 	 * Getter Ora di prenotazione (inizio) 
 	 * @return oraInzio 
 	 */
-	@Column(name = "ORA_INIZIO")
-	public Time getOraInzio() {
+	@Column(name = "oraInizio")
+	public LocalTime getOraInzio() {
 		return oraInzio;
 	}
 	/**
@@ -131,14 +129,14 @@ public class Prenotazione implements Serializable {
 	 * Setter Data di prenotazione (fine)
 	 * @param dataFine
 	 */
-	public void setDataFine(Date dataFine) {
+	public void setDataFine(LocalDate dataFine) {
 		this.dataFine = dataFine;
 	}
 	/**
 	 * Setter Data di prenotazione (inizio)
 	 * @param dataInzio
 	 */
-	public void setDataInzio(Date dataInzio) {
+	public void setDataInzio(LocalDate dataInzio) {
 		this.dataInzio = dataInzio;
 	}
 	/**
@@ -159,7 +157,7 @@ public class Prenotazione implements Serializable {
 	 * Setter Ora di prenozazione (fine)
 	 * @param oraFine
 	 */
-	public void setOraFine(Time oraFine) {
+	public void setOraFine(LocalTime oraFine) {
 		this.oraFine = oraFine;
 	}
 	
@@ -167,7 +165,7 @@ public class Prenotazione implements Serializable {
 	 * Setter Ora di prenozazione (inizio)
 	 * @param oraInzio
 	 */
-	public void setOraInzio(Time oraInzio) {
+	public void setOraInzio(LocalTime oraInzio) {
 		this.oraInzio = oraInzio;
 	}
 	

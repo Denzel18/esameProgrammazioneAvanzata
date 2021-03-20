@@ -1,9 +1,6 @@
 package it.univpm.advancedcode.cri.controllers;
 
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-
+import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +8,16 @@ import org.springframework.beans.support.PagedListHolder;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.activation.MimetypesFileTypeMap;
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
+
 
 import it.univpm.advancedcode.cri.model.entities.Car;
 import it.univpm.advancedcode.cri.model.entities.User;
@@ -97,57 +102,57 @@ public class GuestController {
      * @param newUser utente registrato
      * @return redirect alla vista con la lista di tutti i posts
      */
-//    @PostMapping(value="/sign_up/save", consumes = "multipart/form-data")
-//    public String newUserSave(@ModelAttribute("newUser") User newUser, @RequestParam("image") MultipartFile file) {
-//    	logger.info("Saving a new user");
-//
-//    	User u = this.userService.findUserByUsername(newUser.getUsername());
-//
-//    	if( u != null) {
-//    		String notAvailable = "Username non disponibile, scegline un altro!";
-//    		return "redirect:/sign_up?message=" + notAvailable;
-//    	}
-//    	
-//    	
-//        if (file.isEmpty()) {
-//    	this.userService.create(newUser.getUsername(), newUser.getPassword(), newUser.getFirstName(), newUser.getLastName());   	
-//    	} else {
-//            String nameOfFile = null;
-//            try {
-//                String uploadsDir = "/WEB-INF/files/profile_pictures/";
-//                String realPathtoUploads = request.getServletContext().getRealPath(uploadsDir);
-//                if (!new File(realPathtoUploads).exists()) {
-//                    logger.info("creating the directory...");
-//                    if(!new File(realPathtoUploads).mkdir()){
-//                        String strMessage = "ERRORE, impossibile creare la cartella nel server!";
-//                        return "redirect:/sign_up?message=" + strMessage;
-//                    }
-//                }
-//
-//                logger.info("realPathtoUploads = {}", realPathtoUploads);
-//                // rename uploaded file with the username
-//                String fileExtension = FilenameUtils.getExtension(file.getOriginalFilename());
-//                nameOfFile = newUser.getUsername() + "." + fileExtension;
-//                String filePath = realPathtoUploads + nameOfFile;
-//                File dest = new File(filePath);
-//                // controllo che sia un file immagine
-//                String mimetype= new MimetypesFileTypeMap().getContentType(dest);
-//                String type = mimetype.split("/")[0];
-//                if(!type.equals("image")) {
-//                    String strMessage = "ERRORE, il file specificato non %C3%A8 un'immagine!";
-//                    return "redirect:/sign_up?message=" + strMessage;
-//                }
-//                // sposto il file sulla cartella destinazione
-//                file.transferTo(dest);
-//            } catch (Exception e){
-//                e.printStackTrace();
-//            }
-//
-//            this.userService.create(newUser.getUsername(), newUser.getPassword(), newUser.getFirstName(), newUser.getLastName(), nameOfFile);
-//        }
-//
-//    	return "redirect:/login";
-//    }
+    @PostMapping(value="/sign_up/save", consumes = "multipart/form-data")
+    public String newUserSave(@ModelAttribute("newUser") User newUser, @RequestParam("image") MultipartFile file) {
+    	logger.info("Saving a new user");
+
+    	User u = this.userService.findUserByUsername(newUser.getUsername());
+
+    	if( u != null) {
+    		String notAvailable = "Username non disponibile, scegline un altro!";
+    		return "redirect:/sign_up?message=" + notAvailable;
+    	}
+    	
+    	
+        if (file.isEmpty()) {
+    	this.userService.create(newUser.getUsername(), newUser.getPassword(), newUser.getFirstName(), newUser.getLastName(), newUser.getRuolo());   	
+    	} else {
+            String nameOfFile = null;
+            try {
+                String uploadsDir = "/WEB-INF/files/profile_pictures/";
+                String realPathtoUploads = request.getServletContext().getRealPath(uploadsDir);
+                if (!new File(realPathtoUploads).exists()) {
+                    logger.info("creating the directory...");
+                    if(!new File(realPathtoUploads).mkdir()){
+                        String strMessage = "ERRORE, impossibile creare la cartella nel server!";
+                        return "redirect:/sign_up?message=" + strMessage;
+                    }
+                }
+
+                logger.info("realPathtoUploads = {}", realPathtoUploads);
+                // rename uploaded file with the username
+                String fileExtension = FilenameUtils.getExtension(file.getOriginalFilename());
+                nameOfFile = newUser.getUsername() + "." + fileExtension;
+                String filePath = realPathtoUploads + nameOfFile;
+                File dest = new File(filePath);
+                // controllo che sia un file immagine
+                String mimetype= new MimetypesFileTypeMap().getContentType(dest);
+                String type = mimetype.split("/")[0];
+                if(!type.equals("image")) {
+                    String strMessage = "ERRORE, il file specificato non %C3%A8 un'immagine!";
+                    return "redirect:/sign_up?message=" + strMessage;
+                }
+                // sposto il file sulla cartella destinazione
+                file.transferTo(dest);
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+
+            this.userService.create(newUser.getUsername(), newUser.getPassword(), newUser.getFirstName(), newUser.getLastName(), nameOfFile);
+        }
+
+    	return "redirect:/login";
+    }
     
     /**
      * Setter per la proprietà riferita al Service dell'entità Manutenzione.

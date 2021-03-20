@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -41,8 +41,7 @@ public class TestLinkService {
 	@Test
 	void createAndDelete() throws ParseException {
 		User user1 = userService.create("mario98", "12345678", "Mario", "Rossi", "admin");	
-		String dataS1= "07/08/2023";
-		Date data1 = new SimpleDateFormat("dd/MM/yyyy").parse(dataS1); 
+		LocalDate data1 = LocalDate.of(2021, 10, 10); 
 		Car c1 = carService.create(1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
 		Documentazione doc1 = documentazioneService.create("TITOLO", user1, "DESCRIZIONE", data1, (float) 900.10, c1);
 		Link link1=linkService.create("DESCRIZIONE", doc1, "https://www.univpm.it");
@@ -57,8 +56,7 @@ public class TestLinkService {
 	@Test
 	void createAndFind() throws ParseException {
 		User user1 = userService.create("mario98", "12345678", "Mario", "Rossi", "admin");	
-		String dataS1= "07/08/2023";
-		Date data1 = new SimpleDateFormat("dd/MM/yyyy").parse(dataS1); 
+		LocalDate data1 = LocalDate.of(2021, 10, 10); 
 		Car c1 = carService.create(1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
 		Documentazione doc1 = documentazioneService.create("TITOLO", user1, "DESCRIZIONE", data1, (float) 900.10, c1);
 		Link link1=linkService.create("DESCRIZIONE", doc1, "https://www.univpm.it");
@@ -81,8 +79,7 @@ public class TestLinkService {
 	@Test
 	void createAndUpdate() throws ParseException {
 		User user1 = userService.create("mario98", "12345678", "Mario", "Rossi", "admin");	
-		String dataS1= "07/08/2023";
-		Date data1 = new SimpleDateFormat("dd/MM/yyyy").parse(dataS1); 
+		LocalDate data1 = LocalDate.of(2021, 10, 10); 
 		Car c1 = carService.create(1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
 		Documentazione doc1 = documentazioneService.create("TITOLO", user1, "DESCRIZIONE", data1, (float) 900.10, c1);
 		Link link1=linkService.create("DESCRIZIONE", doc1, "https://www.univpm.it");

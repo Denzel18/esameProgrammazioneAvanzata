@@ -1,7 +1,6 @@
 package it.univpm.advancedcode.cri.services;
 
-import java.sql.Time;
-import java.util.Date;
+import java.time.*;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +25,7 @@ public class PrenotazioneServiceDefault implements PrenotazioneService {
 	 */
 	@Transactional
 	@Override
-	public Prenotazione create(long id,Date dataInzio, Date dataFine, Time oraInzio, Time oraFine, 
+	public Prenotazione create(long id,LocalDate dataInzio, LocalDate dataFine, LocalTime oraInzio, LocalTime oraFine, 
 			String descrizione, User utente) {
 		return this.prenotazioneRepository.create(id, dataInzio,  dataFine, oraInzio,  oraFine, descrizione,  utente);
 	}

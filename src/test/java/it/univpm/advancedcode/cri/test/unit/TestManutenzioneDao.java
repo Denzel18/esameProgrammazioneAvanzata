@@ -144,10 +144,10 @@ public class TestManutenzioneDao {
 	public void noManutenzioneAtBeginning() {
 		try (AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(DataServiceConfigTest.class)) {
 			SessionFactory sf = ctx.getBean("sessionFactory", SessionFactory.class);
-			ManutenzioneDao postDao=ctx.getBean("manutenzioneDao",ManutenzioneDao.class);
+			ManutenzioneDao manutenzioneDao=ctx.getBean("manutenzioneDao",ManutenzioneDao.class);
 			Session s  = sf.openSession();
-			postDao.setSession(s);
-			assertEquals(postDao.getAll().size(), 0);
+			manutenzioneDao.setSession(s);
+			assertEquals(manutenzioneDao.getAll().size(), 0);
 		}
 	}
 

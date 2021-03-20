@@ -1,6 +1,6 @@
 package it.univpm.advancedcode.cri.services;
 
-import java.util.Date;
+import java.time.*;
 import java.util.List;
 import java.util.Set;
 
@@ -33,7 +33,7 @@ public class DocumentazioneServiceDefault implements DocumentazioneService {
      */
     @Transactional
     @Override
-    public Documentazione create(String title, User autoreUtente, String descrizione, Date dataScadenza, float costo, Car car) {
+    public Documentazione create(String title, User autoreUtente, String descrizione, LocalDate dataScadenza, float costo, Car car) {
     	return this.docRepository.create(title, autoreUtente, descrizione, dataScadenza, costo, car);
     }
 
@@ -52,7 +52,7 @@ public class DocumentazioneServiceDefault implements DocumentazioneService {
      */
     @Transactional
     @Override
-    public Documentazione create(String title, User autoreUtente, String descrizione, Date dataScadenza, float costo,
+    public Documentazione create(String title, User autoreUtente, String descrizione, LocalDate dataScadenza, float costo,
     	    Allegato allegato, Car car) {
     	return this.docRepository.create(title, autoreUtente, descrizione, dataScadenza, costo, allegato, car);
     			

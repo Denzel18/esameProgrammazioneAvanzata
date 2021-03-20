@@ -1,0 +1,15 @@
+it/univpm/advancedcode/cri/test/unit/Service/TestPrenotazioneService.class
+it/univpm/advancedcode/cri/test/unit/TestManutenzioneDao.class
+it/univpm/advancedcode/cri/test/unit/TestAllegatoDao.class
+it/univpm/advancedcode/cri/test/unit/TestFileDao.class
+it/univpm/advancedcode/cri/test/unit/Service/TestDocumentazioneService.class
+it/univpm/advancedcode/cri/test/unit/TestUserDao.class
+it/univpm/advancedcode/cri/test/unit/Service/TestLinkService.class
+it/univpm/advancedcode/cri/test/unit/Service/TestFileService.class
+it/univpm/advancedcode/cri/test/unit/TestPrenotazioneDao.class
+it/univpm/advancedcode/cri/test/unit/TestDocumentazioneDao.class
+it/univpm/advancedcode/cri/test/unit/TestCarDao.class
+it/univpm/advancedcode/cri/test/unit/Service/TestUserService.class
+it/univpm/advancedcode/cri/test/unit/Service/TestManutenzioneService.class
+it/univpm/advancedcode/cri/test/unit/Service/TestCarService.class
+it/univpm/advancedcode/cri/test/unit/TestLinkDao.class

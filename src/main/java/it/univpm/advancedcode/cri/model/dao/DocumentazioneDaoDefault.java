@@ -1,6 +1,6 @@
 package it.univpm.advancedcode.cri.model.dao;
 
-import java.util.Date;
+import java.time.*;
 import java.util.List;
 import java.util.Set;
 
@@ -24,7 +24,7 @@ public class DocumentazioneDaoDefault extends DefaultDao implements Documentazio
      * @param car 
      */
     @Override
-    public Documentazione create(String title, User autoreUtente, String descrizione, Date dataScadenza, float costo, Car car) {
+    public Documentazione create(String title, User autoreUtente, String descrizione, LocalDate dataScadenza, float costo, Car car) {
         Documentazione doc = new Documentazione();
         doc.setTitolo(title);
         doc.setDescrizione(descrizione);
@@ -46,7 +46,7 @@ public class DocumentazioneDaoDefault extends DefaultDao implements Documentazio
      * @param car 
      */
     @Override
-    public Documentazione create(String title, User autoreUtente, String descrizione, Date dataScadenza, float costo,
+    public Documentazione create(String title, User autoreUtente, String descrizione, LocalDate dataScadenza, float costo,
     		Allegato allegato, Car car) {
 
         Documentazione doc = new Documentazione();
@@ -78,7 +78,7 @@ public class DocumentazioneDaoDefault extends DefaultDao implements Documentazio
     public List<Documentazione> getAll() {
   	
         return getSession().
-                createQuery("from Documentazione order by Documentazione.DOCUMENTO_ID desc", Documentazione.class).
+                createQuery("from Documentazione d", Documentazione.class).
                 getResultList();
     }
     

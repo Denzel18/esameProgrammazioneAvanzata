@@ -43,7 +43,7 @@ public class ManutenzioneDaoDefault extends DefaultDao implements ManutenzioneDa
 	@Override
 	public List<Manutenzione> getAll() {
 		 return getSession().
-	                createQuery("from Manutenzione order by Manutenzione.MANUTENZIONE_ID desc", Manutenzione.class).
+	                createQuery("from Manutenzione m", Manutenzione.class).
 	                getResultList();
 	}
 

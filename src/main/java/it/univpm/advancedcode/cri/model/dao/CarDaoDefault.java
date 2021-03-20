@@ -57,7 +57,7 @@ public class CarDaoDefault extends DefaultDao implements CarDao {
 	 */
 	@Override
 	public List<Car> getParcoMezzi() {
-		List<Car> parcoMezzi = getSession().createQuery("from Car c order by c.targa desc").list();
+		List<Car> parcoMezzi = getSession().createQuery("from Car c").list();
 		return parcoMezzi ; 
 		//return getSession().createQuery("select car from cars as c order by c.targa desc", Car.class).getResultList();
 		 //return getSession().

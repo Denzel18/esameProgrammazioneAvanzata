@@ -49,127 +49,127 @@ public class DriverController {
 	}
 
 
-//	/**
-//	 * Metodo per la richiesta GET di visualizzazione dettagli profilo
-//	 *
-//	 * @param auth informazioni dell'autenticazione
-//	 * @param errorMessage eventuale messaggio di errore
-//	 * @param successMessage eventuale messaggio di successo
-//	 * @param uiModel	porzione del modello da passare alla vista
-//	 * @return			nome della vista da renderizzare
-//	 */
-//	@GetMapping(value = "/profile")
-//	public String showUserProfile (Authentication auth, Model uiModel,
-//								   @RequestParam(value = "successMessage", required = false) String successMessage,
-//								   @RequestParam(value = "errorMessage", required = false) String errorMessage) {
-//		logger.info("Showing Profile...");
-//
-//		if (auth != null) {
-//			User userLoggedIn = this.userService.findUserByUsername(auth.getName());
-//			uiModel.addAttribute("user", userLoggedIn);
-//			uiModel.addAttribute("successMessage", successMessage);
-//			uiModel.addAttribute("errorMessage", errorMessage);
-//			return "users.profile";
-//		}
-//
-//		else {
-//			String noAuthMessage = "Nessun utente autenticato.";
-//			return "redirect:/?errorMessage=" + noAuthMessage;
-//		}
-//	}
-//
-//
-//	/**
-//	 * Metodo per la richiesta GET di modifica profilo utente
-//	 *
-//	 * @param uiModel	porzione del modello da passare alla vista
-//	 * @return			nome della vista da renderizzare
-//	 */
-//	@GetMapping(value = "/profile/edit")
-//	public String editProfile (Authentication auth, Model uiModel) {
-//
-//
-//		if (auth != null) {
-//			User userLoggedIn = this.userService.findUserByUsername(auth.getName());
-//			uiModel.addAttribute("userToEdit", userLoggedIn);
-//			return "users.editProfile";
-//		}
-//
-//		else {
-//			String message = "Nessun utente autenticato.";
-//			return "redirect:/?errorMessage=" + message;
-//		}
-//
-//	}
-//
-//	/**
-//	 * Metodo per al richiesta POST di salvataggio modifiche al profilo utente
-//	 *
-//	 * @param profile	profilo utente modificato
-//	 * @param br		eventuali errori di validazione
-//	 * @param uiModel	porzione del modello da passare alla vista
-//	 * @return			redirect all'indirizzo cui fare richiesta
-//	 */
-//	@PostMapping(value = "/profile/edit/save", consumes = "multipart/form-data")
-//	public String saveProfile(@ModelAttribute("userToEdit") User profile, BindingResult br, Model uiModel,
-//							  @RequestParam("image") MultipartFile file) {
-//		logger.info("Saving the edited profile...");
-//		if (!file.isEmpty()) {
-//			String nameOfFile = null;
-//			try {
-//				String uploadsDir = "/WEB-INF/files/profile_pictures/";
-//				String realPathtoUploads = request.getServletContext().getRealPath(uploadsDir);
-//				if (!new java.io.File(realPathtoUploads).exists()) {
-//					logger.info("creating the directory...");
-//					if (!new java.io.File(realPathtoUploads).mkdir()) {
-//						String strMessage = "ERRORE, impossibile creare la cartella nel server!";
-//						return "redirect:/profile?errorMessage=" + strMessage;
-//					}
-//				}
-//
-//				logger.info("realPathtoUploads = {}", realPathtoUploads);
-//				// rename uploaded file with the username
-//				String fileExtension = FilenameUtils.getExtension(file.getOriginalFilename());
-//				nameOfFile = profile.getUsername() + "." + fileExtension;
-//				String filePath = realPathtoUploads + nameOfFile;
-//				java.io.File dest = new File(filePath);
-//				// controllo che sia un file immagine
-//				String mimetype = new MimetypesFileTypeMap().getContentType(dest);
-//				String type = mimetype.split("/")[0];
-//				if (!type.equals("image")) {
-//					String strMessage = "ERRORE, il file specificato non %C3%A8 un'immagine!";
-//					return "redirect:/profile?errorMessage=" + strMessage;
-//				}
-//				// sposto il file sulla cartella destinazione
-//				file.transferTo(dest);
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//
-//			profile.setImageProfile(nameOfFile);
-//		}
-//		try {
-//			this.userService.update(profile);
-//			String strMessage = "Il tuo profilo utente %C3%A8 stato salvato correttamente!";
-//			return "redirect:/profile?successMessage=" + strMessage;
-//		} catch (RuntimeException e) {
-//
-//			return "redirect:/profile?errorMessage=" + e.getMessage();
-//
-//		}
-//	}
-//	
-//	@GetMapping(value="/profile/delete")
-//	public String deleteProfile(Authentication auth, Model uiModel) {
-//		if (auth != null) {
-//			User userLoggedIn = this.userService.findUserByUsername(auth.getName());
-//			this.userService.delete(userLoggedIn);
-//			return "redirect:/logout";
-//		}
-//
-//		else {
-//			String message = "Nessun utente autenticato.";
-//			return "redirect:/?errorMessage=" + message;
-//		}
-//	}
+	/**
+	 * Metodo per la richiesta GET di visualizzazione dettagli profilo
+	 *
+	 * @param auth informazioni dell'autenticazione
+	 * @param errorMessage eventuale messaggio di errore
+	 * @param successMessage eventuale messaggio di successo
+	 * @param uiModel	porzione del modello da passare alla vista
+	 * @return			nome della vista da renderizzare
+	 */
+	@GetMapping(value = "/profile")
+	public String showUserProfile (Authentication auth, Model uiModel,
+								   @RequestParam(value = "successMessage", required = false) String successMessage,
+								   @RequestParam(value = "errorMessage", required = false) String errorMessage) {
+		logger.info("Showing Profile...");
+
+		if (auth != null) {
+			User userLoggedIn = this.userService.findUserByUsername(auth.getName());
+			uiModel.addAttribute("user", userLoggedIn);
+			uiModel.addAttribute("successMessage", successMessage);
+			uiModel.addAttribute("errorMessage", errorMessage);
+			return "users.profile";
+		}
+
+		else {
+			String noAuthMessage = "Nessun utente autenticato.";
+			return "redirect:/?errorMessage=" + noAuthMessage;
+		}
+	}
+
+
+	/**
+	 * Metodo per la richiesta GET di modifica profilo utente
+	 *
+	 * @param uiModel	porzione del modello da passare alla vista
+	 * @return			nome della vista da renderizzare
+	 */
+	@GetMapping(value = "/profile/edit")
+	public String editProfile (Authentication auth, Model uiModel) {
+
+
+		if (auth != null) {
+			User userLoggedIn = this.userService.findUserByUsername(auth.getName());
+			uiModel.addAttribute("userToEdit", userLoggedIn);
+			return "users.editProfile";
+		}
+
+		else {
+			String message = "Nessun utente autenticato.";
+			return "redirect:/?errorMessage=" + message;
+		}
+
+	}
+
+	/**
+	 * Metodo per al richiesta POST di salvataggio modifiche al profilo utente
+	 *
+	 * @param profile	profilo utente modificato
+	 * @param br		eventuali errori di validazione
+	 * @param uiModel	porzione del modello da passare alla vista
+	 * @return			redirect all'indirizzo cui fare richiesta
+	 */
+	@PostMapping(value = "/profile/edit/save", consumes = "multipart/form-data")
+	public String saveProfile(@ModelAttribute("userToEdit") User profile, BindingResult br, Model uiModel,
+							  @RequestParam("image") MultipartFile file) {
+		logger.info("Saving the edited profile...");
+		if (!file.isEmpty()) {
+			String nameOfFile = null;
+			try {
+				String uploadsDir = "/WEB-INF/files/profile_pictures/";
+				String realPathtoUploads = request.getServletContext().getRealPath(uploadsDir);
+				if (!new java.io.File(realPathtoUploads).exists()) {
+					logger.info("creating the directory...");
+					if (!new java.io.File(realPathtoUploads).mkdir()) {
+						String strMessage = "ERRORE, impossibile creare la cartella nel server!";
+						return "redirect:/profile?errorMessage=" + strMessage;
+					}
+				}
+
+				logger.info("realPathtoUploads = {}", realPathtoUploads);
+				// rename uploaded file with the username
+				String fileExtension = FilenameUtils.getExtension(file.getOriginalFilename());
+				nameOfFile = profile.getUsername() + "." + fileExtension;
+				String filePath = realPathtoUploads + nameOfFile;
+				java.io.File dest = new File(filePath);
+				// controllo che sia un file immagine
+				String mimetype = new MimetypesFileTypeMap().getContentType(dest);
+				String type = mimetype.split("/")[0];
+				if (!type.equals("image")) {
+					String strMessage = "ERRORE, il file specificato non %C3%A8 un'immagine!";
+					return "redirect:/profile?errorMessage=" + strMessage;
+				}
+				// sposto il file sulla cartella destinazione
+				file.transferTo(dest);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			profile.setImageProfile(nameOfFile);
+		}
+		try {
+			this.userService.update(profile);
+			String strMessage = "Il tuo profilo utente %C3%A8 stato salvato correttamente!";
+			return "redirect:/profile?successMessage=" + strMessage;
+		} catch (RuntimeException e) {
+
+			return "redirect:/profile?errorMessage=" + e.getMessage();
+
+		}
+	}
+	
+	@GetMapping(value="/profile/delete")
+	public String deleteProfile(Authentication auth, Model uiModel) {
+		if (auth != null) {
+			User userLoggedIn = this.userService.findUserByUsername(auth.getName());
+			this.userService.delete(userLoggedIn);
+			return "redirect:/logout";
+		}
+
+		else {
+			String message = "Nessun utente autenticato.";
+			return "redirect:/?errorMessage=" + message;
+		}
+	}
 }

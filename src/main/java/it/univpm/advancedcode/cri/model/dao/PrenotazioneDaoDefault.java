@@ -1,7 +1,7 @@
 package it.univpm.advancedcode.cri.model.dao;
 
-import java.sql.Time;
-import java.util.Date;
+import java.time.*; 
+
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
@@ -23,7 +23,7 @@ public class PrenotazioneDaoDefault extends DefaultDao implements PrenotazioneDa
 	 * @return una prenotazione con le caratteristiche richieste 
 	 */
 	@Override 
-	public Prenotazione create  (long id,Date dataInzio, Date dataFine, Time oraInzio, Time oraFine, 
+	public Prenotazione create  (long id,LocalDate dataInzio, LocalDate dataFine, LocalTime oraInzio, LocalTime oraFine, 
 			String descrizione, User utente) {
 		Prenotazione prenotazione = new Prenotazione();
 		prenotazione.setId(id);
@@ -55,7 +55,7 @@ public class PrenotazioneDaoDefault extends DefaultDao implements PrenotazioneDa
 	@Override
 	public List<Prenotazione> getAll() {
 		return getSession().
-				createQuery("from Prenotazioni", Prenotazione.class).
+				createQuery("from Prenotazione p", Prenotazione.class).
 				getResultList();
 	}
 
@@ -73,8 +73,8 @@ public class PrenotazioneDaoDefault extends DefaultDao implements PrenotazioneDa
 
 		return getSession().
 				createQuery(
-						"select c.* "
-								+ "from Prenotazioni p, User u "
+						"select p.* "
+								+ "from Prenotazione p, User u "
 								+ "where p.user = u.username"
 								+ "order by p.id desc", Prenotazione.class).
 				getResultList();

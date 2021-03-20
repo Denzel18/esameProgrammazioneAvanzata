@@ -1,7 +1,6 @@
 package it.univpm.advancedcode.cri.model.dao;
 
-import java.sql.Time;
-import java.util.Date;
+import java.time.*;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -12,8 +11,8 @@ import it.univpm.advancedcode.cri.model.entities.User;
 
 public interface PrenotazioneDao {
 	
-	Prenotazione create  (long id,Date dataInzio, Date dataFine, 
-			Time oraInzio, Time oraFine, 
+	Prenotazione create  (long id, LocalDate dataInzio, LocalDate dataFine, 
+			LocalTime oraInzio, LocalTime oraFine, 
 			String descrizione, User utente);
 
 	void delete(Prenotazione prenotazione);
