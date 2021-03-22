@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import it.univpm.advancedcode.cri.model.entities.Prenotazione;
 import it.univpm.advancedcode.cri.model.entities.User;
 
+
 @Repository("prenotazioneDao")
 public class PrenotazioneDaoDefault extends DefaultDao implements PrenotazioneDao {
 
@@ -69,6 +70,7 @@ public class PrenotazioneDaoDefault extends DefaultDao implements PrenotazioneDa
 		return getSession().find(Prenotazione.class, id);
 	}
 
+	@Override
 	public List<Prenotazione> getPrenotazioneByUtente(String username) {
 
 		return getSession().
@@ -88,7 +90,9 @@ public class PrenotazioneDaoDefault extends DefaultDao implements PrenotazioneDa
 	 */
 	@Override
 	public Prenotazione update(Prenotazione prenotazione) {
-		return (Prenotazione)this.getSession().merge(prenotazione);
+		this.getSession().update(prenotazione);
+        Prenotazione updated_prenotazione = this.getById(prenotazione.getId());
+        return updated_prenotazione;
 	}
 
 

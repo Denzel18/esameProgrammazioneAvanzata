@@ -1,5 +1,4 @@
 package it.univpm.advancedcode.cri.app;
-
 import java.io.IOException;
 import java.util.Properties;
 import javax.sql.DataSource;
@@ -36,7 +35,7 @@ public class DataServiceConfig {
 
             DriverManagerDataSource ds = new DriverManagerDataSource();
             ds.setDriverClassName(com.mysql.cj.jdbc.Driver.class.getName());
-            ds.setUrl("jdbc:mysql://localhost:3306/cri_db?createDatabaseIfNotExist=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false");
+            ds.setUrl("jdbc:mysql://localhost:3306/CRI_DB?createDatabaseIfNotExist=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false");
             ds.setUsername("root");
             ds.setPassword("rootroot");
 
@@ -79,7 +78,6 @@ public class DataServiceConfig {
         sessionFactoryBean.setHibernateProperties(hibernateProperties);
         sessionFactoryBean.afterPropertiesSet();
         return sessionFactoryBean.getObject();
-        
     }
 
     @Bean
@@ -88,4 +86,3 @@ public class DataServiceConfig {
         return new HibernateTransactionManager(sessionFactory);
     }
 }
-

@@ -13,7 +13,7 @@ import it.univpm.advancedcode.cri.model.entities.Allegato;
 @Service("allegatoService")
 public class AllegatoServiceDefault implements AllegatoService {
 
-	AllegatoDao attachmentRepository;
+	AllegatoDao allegatoRepository;
 	
 	/**
 	 * Metodo per restituire tutti gli allegati
@@ -22,7 +22,7 @@ public class AllegatoServiceDefault implements AllegatoService {
 	@Transactional(readOnly = true)
 	@Override
 	public List<Allegato> getAll() {
-		return this.attachmentRepository.getAll();
+		return this.allegatoRepository.getAll();
 	}
 
 	/**
@@ -33,37 +33,37 @@ public class AllegatoServiceDefault implements AllegatoService {
 	@Transactional(readOnly = true)
 	@Override
 	public Allegato getById(long id) {
-		return this.attachmentRepository.getById(id);
+		return this.allegatoRepository.getById(id);
 	}
 
 	/**
 	 * Metodo per aggiornare un allegato
-	 * @param attachment: allegato da aggiornare
+	 * @param allegato: allegato da aggiornare
 	 * @return allegato aggiornato
 	 */
 	@Transactional
 	@Override
-	public Allegato update(Allegato attachment) {
-		return this.attachmentRepository.update(attachment);
+	public Allegato update(Allegato allegato) {
+		return this.allegatoRepository.update(allegato);
 	}
 
 	/**
 	 * Metodo per cancellare un allegato
-	 * @param attachment: allegato da cancellare
+	 * @param allegato: allegato da cancellare
 	 */
 	@Transactional
 	@Override
-	public void delete(Allegato attachment) {
-		this.attachmentRepository.delete(attachment);
+	public void delete(Allegato allegato) {
+		this.allegatoRepository.delete(allegato);
 	}
 
 	/**
 	 * Setter per la proprietà che si riferisce al DAO dell'entità Attachment.
 	 *
-	 * @param attachmentRepository DAO dell'entità Attachment da settare
+	 * @param allegatoRepository DAO dell'entità Attachment da settare
 	 */
 	@Autowired
-	public void setLinkRepository(AllegatoDao attachmentRepository) {
-		this.attachmentRepository = attachmentRepository;
+	public void setLinkRepository(AllegatoDao allegatoRepository) {
+		this.allegatoRepository = allegatoRepository;
 	}
 }

@@ -44,4 +44,3 @@ public class WebInit extends AbstractAnnotationConfigDispatcherServletInitialize
 	}
 
 }
-

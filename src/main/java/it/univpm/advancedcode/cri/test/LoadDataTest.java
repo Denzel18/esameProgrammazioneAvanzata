@@ -12,7 +12,6 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import it.univpm.advancedcode.cri.model.dao.*;
 import it.univpm.advancedcode.cri.model.entities.*;
 
-
 public class LoadDataTest {
 	public static void main(String... args) {
 
@@ -23,24 +22,25 @@ public class LoadDataTest {
 
 			UserDao userDao = ctx.getBean("userDao", UserDao.class);
 			DocumentazioneDao documentazioneDao = ctx.getBean("documentazioneDao", DocumentazioneDao.class);
-			AllegatoDao allegatoDao = ctx.getBean("allegatoDao", AllegatoDao.class);
 			CarDao carDao = ctx.getBean("carDao", CarDao.class);
 			ManutenzioneDao manutenzioneDao = ctx.getBean("manutenzioneDao", ManutenzioneDao.class);
-			FileDao fileDao = ctx.getBean("fileDao", FileDao.class);
-			LinkDao linkDao = ctx.getBean("linkDao", LinkDao.class);
 			PrenotazioneDao prenotazioneDao = ctx.getBean("prenotazioneDao", PrenotazioneDao.class);
+			FileDao fileDao = ctx.getBean("fileDao", FileDao.class);
+            LinkDao linkDao = ctx.getBean("linkDao", LinkDao.class);
+            AllegatoDao allegatoDao = ctx.getBean("allegatoDao", AllegatoDao.class);
 
 
 			try (Session session = sf.openSession()) {
 
 				userDao.setSession(session);
 				documentazioneDao.setSession(session);
-				allegatoDao.setSession(session);
+				prenotazioneDao.setSession(session);
 				carDao.setSession(session);
 				manutenzioneDao.setSession(session);
 				fileDao.setSession(session);
 				linkDao.setSession(session);
-				prenotazioneDao.setSession(session);
+				allegatoDao.setSession(session);
+
 
 
 				// CREAZIONE UTENTI

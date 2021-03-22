@@ -39,11 +39,10 @@ public class LoadDataServicesTest {
 			UserService userService = ctx.getBean("userService", UserService.class);
 			PrenotazioneService prenotazioneService = ctx.getBean("prenotazioneService", PrenotazioneService.class);
 			ManutenzioneService manutenzioneService = ctx.getBean("manutenzioneService", ManutenzioneService.class);
-			LinkService linkService = ctx.getBean("linkService", LinkService.class);
-			FileService fileService = ctx.getBean("fileService", FileService.class);
-
 			DocumentazioneService documentazioneService = ctx.getBean("documentazioneService", DocumentazioneService.class);
 			CarService carService = ctx.getBean("carService", CarService.class);
+			FileService fileService = ctx.getBean("fileService", FileService.class);
+			LinkService linkService = ctx.getBean("linkService", LinkService.class);
 			AllegatoService allegatoService = ctx.getBean("allegatoService", AllegatoService.class);
 
 			//utenti
@@ -65,7 +64,7 @@ public class LoadDataServicesTest {
 			try {
 				LocalDate data1 = LocalDate.of(2021,10,20); 
 				LocalDate data2 = LocalDate.of(2021,11,20);
-				
+
 				Documentazione d1 = documentazioneService.create(TITLE, user1, DESCRIPTION, data1, 90, c1);
 				Documentazione d2 = documentazioneService.create(TITLE, user5, DESCRIPTION, data2, 180, c1);
 
@@ -84,11 +83,11 @@ public class LoadDataServicesTest {
 			try {
 				LocalDate data1 = LocalDate.of(2021,11,20); 
 				LocalDate data2 = LocalDate.of(2021,11,20);
-				
+
 				LocalDate data3 = LocalDate.of(2021,11,25); 
 				LocalDate data4 = LocalDate.of(2021,11,25);
-				
-				
+
+
 				LocalTime t1 = LocalTime.of(17, 39);
 				LocalTime t2 = LocalTime.of(18, 39);
 

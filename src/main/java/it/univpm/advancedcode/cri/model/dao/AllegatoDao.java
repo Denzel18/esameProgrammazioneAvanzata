@@ -1,7 +1,7 @@
 package it.univpm.advancedcode.cri.model.dao;
 
 import java.util.List;
-
+import java.util.Set;
 import org.hibernate.Session;
 
 import it.univpm.advancedcode.cri.model.entities.Allegato;

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="it.univpm.advancedcode.cri.test.unit.TestDocumentazioneDao" time="3.905" tests="4" errors="4" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="it.univpm.advancedcode.cri.test.unit.TestDocumentazioneDao" time="4.366" tests="4" errors="4" skipped="0" failures="0">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="java.vm.version" value="15.0.1+9"/>
@@ -56,7 +56,7 @@
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
   </properties>
-  <testcase name="findDocumentoById" classname="it.univpm.advancedcode.cri.test.unit.TestDocumentazioneDao" time="2.222">
+  <testcase name="findDocumentoById" classname="it.univpm.advancedcode.cri.test.unit.TestDocumentazioneDao" time="2.637">
     <error message="Error creating bean with name &apos;allegatoDao&apos;: Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;sessionFactory&apos; defined in it.univpm.advancedcode.cri.test.DataServiceConfigTest: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method &apos;sessionFactory&apos; threw exception; nested exception is java.lang.NullPointerException: Cannot read field &quot;value&quot; because &quot;s1&quot; is null" type="org.springframework.beans.factory.BeanCreationException">org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'allegatoDao': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sessionFactory' defined in it.univpm.advancedcode.cri.test.DataServiceConfigTest: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method 'sessionFactory' threw exception; nested exception is java.lang.NullPointerException: Cannot read field "value" because "s1" is null
 	at it.univpm.advancedcode.cri.test.unit.TestDocumentazioneDao.findDocumentoById(TestDocumentazioneDao.java:78)
 Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sessionFactory' defined in it.univpm.advancedcode.cri.test.DataServiceConfigTest: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method 'sessionFactory' threw exception; nested exception is java.lang.NullPointerException: Cannot read field "value" because "s1" is null
@@ -146,9 +146,9 @@ Hibernate:
 Hibernate: 
     
     create table allegati (
-       allegato_id bigint not null,
+       allegato_id bigint not null auto_increment,
         descrizione varchar(100) not null,
-        documento_id bigint,
+        documento_id bigint not null,
         primary key (allegato_id)
     ) engine=InnoDB
 Hibernate: 
@@ -305,18 +305,18 @@ Hibernate:
        foreign key (veicolo_id) 
        references cars (veicolo_id)
 ]]></system-out>
-    <system-err><![CDATA[mar 22, 2021 4:15:18 PM org.hibernate.Version logVersion
+    <system-err><![CDATA[mar 22, 2021 5:38:36 PM org.hibernate.Version logVersion
 INFO: HHH000412: Hibernate ORM core version 5.4.22.Final
-mar 22, 2021 4:15:18 PM org.hibernate.annotations.common.reflection.java.JavaReflectionManager <clinit>
+mar 22, 2021 5:38:37 PM org.hibernate.annotations.common.reflection.java.JavaReflectionManager <clinit>
 INFO: HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-mar 22, 2021 4:15:19 PM org.hibernate.dialect.Dialect <init>
+mar 22, 2021 5:38:37 PM org.hibernate.dialect.Dialect <init>
 INFO: HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
-mar 22, 2021 4:15:20 PM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
+mar 22, 2021 5:38:38 PM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
 INFO: HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
 [main] WARN org.springframework.context.annotation.AnnotationConfigApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'allegatoDao': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sessionFactory' defined in it.univpm.advancedcode.cri.test.DataServiceConfigTest: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method 'sessionFactory' threw exception; nested exception is java.lang.NullPointerException: Cannot read field "value" because "s1" is null
 ]]></system-err>
   </testcase>
-  <testcase name="updateDocumentazione" classname="it.univpm.advancedcode.cri.test.unit.TestDocumentazioneDao" time="0.583">
+  <testcase name="updateDocumentazione" classname="it.univpm.advancedcode.cri.test.unit.TestDocumentazioneDao" time="0.622">
     <error message="Error creating bean with name &apos;allegatoDao&apos;: Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;sessionFactory&apos; defined in it.univpm.advancedcode.cri.test.DataServiceConfigTest: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method &apos;sessionFactory&apos; threw exception; nested exception is java.lang.NullPointerException" type="org.springframework.beans.factory.BeanCreationException">org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'allegatoDao': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sessionFactory' defined in it.univpm.advancedcode.cri.test.DataServiceConfigTest: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method 'sessionFactory' threw exception; nested exception is java.lang.NullPointerException
 	at it.univpm.advancedcode.cri.test.unit.TestDocumentazioneDao.updateDocumentazione(TestDocumentazioneDao.java:129)
 Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sessionFactory' defined in it.univpm.advancedcode.cri.test.DataServiceConfigTest: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method 'sessionFactory' threw exception; nested exception is java.lang.NullPointerException
@@ -405,9 +405,9 @@ Hibernate:
 Hibernate: 
     
     create table allegati (
-       allegato_id bigint not null,
+       allegato_id bigint not null auto_increment,
         descrizione varchar(100) not null,
-        documento_id bigint,
+        documento_id bigint not null,
         primary key (allegato_id)
     ) engine=InnoDB
 Hibernate: 
@@ -564,14 +564,14 @@ Hibernate:
        foreign key (veicolo_id) 
        references cars (veicolo_id)
 ]]></system-out>
-    <system-err><![CDATA[mar 22, 2021 4:15:20 PM org.hibernate.dialect.Dialect <init>
+    <system-err><![CDATA[mar 22, 2021 5:38:38 PM org.hibernate.dialect.Dialect <init>
 INFO: HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
-mar 22, 2021 4:15:21 PM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
+mar 22, 2021 5:38:39 PM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
 INFO: HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
 [main] WARN org.springframework.context.annotation.AnnotationConfigApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'allegatoDao': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sessionFactory' defined in it.univpm.advancedcode.cri.test.DataServiceConfigTest: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method 'sessionFactory' threw exception; nested exception is java.lang.NullPointerException
 ]]></system-err>
   </testcase>
-  <testcase name="deleteDocumentazione" classname="it.univpm.advancedcode.cri.test.unit.TestDocumentazioneDao" time="0.553">
+  <testcase name="deleteDocumentazione" classname="it.univpm.advancedcode.cri.test.unit.TestDocumentazioneDao" time="0.587">
     <error message="Error creating bean with name &apos;allegatoDao&apos;: Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;sessionFactory&apos; defined in it.univpm.advancedcode.cri.test.DataServiceConfigTest: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method &apos;sessionFactory&apos; threw exception; nested exception is java.lang.NullPointerException" type="org.springframework.beans.factory.BeanCreationException">org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'allegatoDao': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sessionFactory' defined in it.univpm.advancedcode.cri.test.DataServiceConfigTest: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method 'sessionFactory' threw exception; nested exception is java.lang.NullPointerException
 	at it.univpm.advancedcode.cri.test.unit.TestDocumentazioneDao.deleteDocumentazione(TestDocumentazioneDao.java:33)
 Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sessionFactory' defined in it.univpm.advancedcode.cri.test.DataServiceConfigTest: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method 'sessionFactory' threw exception; nested exception is java.lang.NullPointerException
@@ -660,9 +660,9 @@ Hibernate:
 Hibernate: 
     
     create table allegati (
-       allegato_id bigint not null,
+       allegato_id bigint not null auto_increment,
         descrizione varchar(100) not null,
-        documento_id bigint,
+        documento_id bigint not null,
         primary key (allegato_id)
     ) engine=InnoDB
 Hibernate: 
@@ -819,14 +819,14 @@ Hibernate:
        foreign key (veicolo_id) 
        references cars (veicolo_id)
 ]]></system-out>
-    <system-err><![CDATA[mar 22, 2021 4:15:21 PM org.hibernate.dialect.Dialect <init>
+    <system-err><![CDATA[mar 22, 2021 5:38:39 PM org.hibernate.dialect.Dialect <init>
 INFO: HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
-mar 22, 2021 4:15:21 PM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
+mar 22, 2021 5:38:39 PM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
 INFO: HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
 [main] WARN org.springframework.context.annotation.AnnotationConfigApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'allegatoDao': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sessionFactory' defined in it.univpm.advancedcode.cri.test.DataServiceConfigTest: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method 'sessionFactory' threw exception; nested exception is java.lang.NullPointerException
 ]]></system-err>
   </testcase>
-  <testcase name="noDocumentazioneAtBeginning" classname="it.univpm.advancedcode.cri.test.unit.TestDocumentazioneDao" time="0.541">
+  <testcase name="noDocumentazioneAtBeginning" classname="it.univpm.advancedcode.cri.test.unit.TestDocumentazioneDao" time="0.512">
     <error message="Error creating bean with name &apos;allegatoDao&apos;: Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;sessionFactory&apos; defined in it.univpm.advancedcode.cri.test.DataServiceConfigTest: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method &apos;sessionFactory&apos; threw exception; nested exception is java.lang.NullPointerException" type="org.springframework.beans.factory.BeanCreationException">org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'allegatoDao': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sessionFactory' defined in it.univpm.advancedcode.cri.test.DataServiceConfigTest: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method 'sessionFactory' threw exception; nested exception is java.lang.NullPointerException
 	at it.univpm.advancedcode.cri.test.unit.TestDocumentazioneDao.noDocumentazioneAtBeginning(TestDocumentazioneDao.java:114)
 Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sessionFactory' defined in it.univpm.advancedcode.cri.test.DataServiceConfigTest: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method 'sessionFactory' threw exception; nested exception is java.lang.NullPointerException
@@ -915,9 +915,9 @@ Hibernate:
 Hibernate: 
     
     create table allegati (
-       allegato_id bigint not null,
+       allegato_id bigint not null auto_increment,
         descrizione varchar(100) not null,
-        documento_id bigint,
+        documento_id bigint not null,
         primary key (allegato_id)
     ) engine=InnoDB
 Hibernate: 
@@ -1074,9 +1074,9 @@ Hibernate:
        foreign key (veicolo_id) 
        references cars (veicolo_id)
 ]]></system-out>
-    <system-err><![CDATA[mar 22, 2021 4:15:21 PM org.hibernate.dialect.Dialect <init>
+    <system-err><![CDATA[mar 22, 2021 5:38:39 PM org.hibernate.dialect.Dialect <init>
 INFO: HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
-mar 22, 2021 4:15:22 PM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
+mar 22, 2021 5:38:40 PM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
 INFO: HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
 [main] WARN org.springframework.context.annotation.AnnotationConfigApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'allegatoDao': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sessionFactory' defined in it.univpm.advancedcode.cri.test.DataServiceConfigTest: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method 'sessionFactory' threw exception; nested exception is java.lang.NullPointerException
 ]]></system-err>

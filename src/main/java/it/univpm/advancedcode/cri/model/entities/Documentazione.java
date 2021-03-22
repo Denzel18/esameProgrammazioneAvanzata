@@ -57,7 +57,7 @@ public class Documentazione implements Serializable {
 	 * Getter Allegato associato
 	 * @return the allegatoDocumento
 	 */
-	@OneToMany(mappedBy = "documento", cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.EAGER, orphanRemoval = true, mappedBy = "documento", cascade = CascadeType.ALL)
 	public Set<Allegato> getAllegati() {
 		return this.allegati;
 	}

@@ -2,7 +2,6 @@ package it.univpm.advancedcode.cri.model.dao;
 
 import java.util.List;
 import java.util.Set;
-
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
