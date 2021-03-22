@@ -27,8 +27,8 @@ public class Manutenzione implements Serializable{
      * Getter veicolo che ha eseguito la manutenzione
 	 * @return the veicolo
 	 */
-	@ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "manutenzioneVeicolo")
+    @ManyToOne
+    @JoinColumn(name = "veicolo_id")
 	public Car getVeicolo() {
 		return veicolo;
 	}

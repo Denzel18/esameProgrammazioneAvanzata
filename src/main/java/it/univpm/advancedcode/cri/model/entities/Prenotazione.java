@@ -35,8 +35,8 @@ public class Prenotazione implements Serializable {
      * Getter veicolo che ha eseguito la prentoazione
 	 * @return the veicolo
 	 */
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "prenotazioneVeicolo")
+    @ManyToOne
+    @JoinColumn(name = "veicolo_id")
 	public Car getVeicolo() {
 		return this.veicolo;
 	}
@@ -53,7 +53,7 @@ public class Prenotazione implements Serializable {
      * Getter utente che ha eseguito la prenotazione
 	 * @return the User
 	 */
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "username")
 	public User getUtente() {
 		return this.utente;

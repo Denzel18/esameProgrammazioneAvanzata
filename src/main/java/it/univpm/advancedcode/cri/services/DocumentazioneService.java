@@ -10,11 +10,12 @@ import it.univpm.advancedcode.cri.model.entities.Documentazione;
 import it.univpm.advancedcode.cri.model.entities.User;
 
 public interface DocumentazioneService {
-    Documentazione create(String title, User autoreUtente, String descrizione, LocalDate dataScadenza, float costo, Car car);
+	
+	Documentazione create(String title, User utente, String descrizione, LocalDate dataScadenza, float costo, Car car);
 
-    Documentazione create(String title, User autoreUtente, String descrizione, LocalDate dataScadenza, float costo,
-    	   Allegato allegato, Car car);
-
+	Documentazione create(String title,  User utente, String descrizione, LocalDate dataScadenza, float costo,
+                Allegato allegato, Car car);
+	
     void delete(Documentazione documento);
 
     List<Documentazione> getAll();

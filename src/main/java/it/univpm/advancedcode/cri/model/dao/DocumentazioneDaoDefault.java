@@ -25,44 +25,35 @@ public class DocumentazioneDaoDefault extends DefaultDao implements Documentazio
      * @param car 
      */
     @Override
-    public Documentazione create(String title, User autoreUtente, String descrizione, LocalDate dataScadenza, float costo, Car car) {
+    public Documentazione create(String title,  User utente, String descrizione, LocalDate dataScadenza, float costo, Car car) {
         Documentazione doc = new Documentazione();
         doc.setTitolo(title);
         doc.setDescrizione(descrizione);
         doc.setVeicolo(car);
         doc.setDataScadenza(dataScadenza);
         doc.setCosto(costo);
+        doc.setUtente(utente);
         this.getSession().save(doc);
         return doc;
     }
-
-    /**
-     * Funzione creazione documento 
-     * @param title
-     * @param autoreUtente
-     * @param descrizione
-     * @param dataScadenza
-     * @param costo
-     * @param allegato
-     * @param car 
-     */
-    @Override
-    public Documentazione create(String title, User autoreUtente, String descrizione, LocalDate dataScadenza, float costo,
-    		Allegato allegato, Car car) {
-    	
-    	Set<Allegato> allegati = new HashSet();
-    	allegati.add(allegato);
-
+    
+    
+	@Override
+	public Documentazione create(String title, User utente, String descrizione, LocalDate dataScadenza, float costo,
+			Allegato allegato, Car car) {
+		Set<Allegato> allegati = new HashSet<Allegato>();
+		allegati.add(allegato);
         Documentazione doc = new Documentazione();
         doc.setTitolo(title);
         doc.setDescrizione(descrizione);
         doc.setVeicolo(car);
+        doc.setDataScadenza(dataScadenza);
+        doc.setCosto(costo);
+        doc.setUtente(utente);
         doc.setAllegati(allegati);
-        doc.setDataScadenza(dataScadenza);
-        doc.setCosto(costo);
         this.getSession().save(doc);
         return doc;
-    }
+	}
 
     /**
      * Funzione per eliminare il post specificato.
@@ -123,5 +114,8 @@ public class DocumentazioneDaoDefault extends DefaultDao implements Documentazio
          return updated_documento;
          
     }
+
+
+
 
 }

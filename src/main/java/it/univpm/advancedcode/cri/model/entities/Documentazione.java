@@ -10,10 +10,10 @@ import javax.persistence.*;
 @Entity
 @Table(name = "documentazioni")
 @NamedQueries({
-    @NamedQuery(
-            name = "Documentazione.getByTitle",
-            query = "FROM Documentazione WHERE Documentazione.TITOLO =: titolo"
-    )
+	@NamedQuery(
+			name = "Documentazione.getByTitle",
+			query = "FROM Documentazione WHERE Documentazione.TITOLO =: titolo"
+			)
 })
 public class Documentazione implements Serializable {
 	private long id;
@@ -28,61 +28,68 @@ public class Documentazione implements Serializable {
 
 
 	//Autore UTENTE insirimento documentazione
-	
+
 	/**
-	 * Getter Autore inserimento del documento
-	 * @return autore 
+	 * Getter Utente
+	 * @return the utente
 	 */
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "username")
+	@ManyToOne
+	@JoinColumn(name = "username")
 	public User getUtente() {
 		return utente;
 	}
+
+
 	/**
-	 * Setter Autore inserimento documento
-	 * @param autoreUtente
+	 * Setter Utente
+	 * @param utente the utente to set
 	 */
 	public void setUtente(User utente) {
 		this.utente = utente;
 	}
-	
+
+
+
+
 	//ALLEGATO 
 
 	/**
 	 * Getter Allegato associato
 	 * @return the allegatoDocumento
 	 */
-    @OneToMany(fetch = FetchType.EAGER, orphanRemoval = true, mappedBy = "documento")
-    public Set<Allegato> getAllegati() {
-        return this.allegati;
-    }
+	@OneToMany(mappedBy = "documento", cascade = CascadeType.ALL)
+	public Set<Allegato> getAllegati() {
+		return this.allegati;
+	}
 
-    /**
-     * Setter per la proprietà attachments.
-     *
-     * @param attachments allegati del post da settare
-     */
-    public void setAllegati(Set<Allegato> allegati) {
-        this.allegati = allegati;
-    }
 
-    /**
-     * Metodo per aggiungere un allegato al documento.
-     *
-     * @param allegato allegato da aggiungere
-     */
-    public void addAllegati(Allegato allegato) {
-        allegato.setDocumento(this);
-        this.allegati.add(allegato);
-    }
-	
+
+
+	/**
+	 * Setter allegati.
+	 * @param allegati allegati del documento da settare
+	 */
+	public void setAllegati(Set<Allegato> allegati) {
+		this.allegati = allegati;
+	}
+
+	/**
+	 * Metodo per aggiungere un allegato al documento
+	 * @param allegato allegato da aggiungere
+	 */
+	public void addAllegati(Allegato allegato) {
+		allegato.setDocumento(this);
+		this.allegati.add(allegato);
+	}
+
 	//CAR -- DOCUMENTI RELATIVI AL VEICOLO 
 
 	/**
 	 * Getter car documentazione
 	 * @return car 
 	 */
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
+	@JoinColumn(name = "veicolo_id")
 	public Car getVeicolo(){
 		return this.veicolo;
 	}
@@ -94,8 +101,8 @@ public class Documentazione implements Serializable {
 	public void setVeicolo(Car veicolo) {
 		this.veicolo=veicolo;
 	}
-	
-	
+
+
 	//----- GETTER DOCUMENTAZIONE
 
 
@@ -182,7 +189,7 @@ public class Documentazione implements Serializable {
 	public void setTitolo(String titolo) {
 		this.titolo = titolo;
 	}
-	
+
 	/**
 	 * Setter id documento
 	 * @param id the id to set

@@ -19,9 +19,9 @@ public class User implements Serializable {
 
 	private Set<Car> carUsers = new HashSet<Car>(); 
 	
-	private Documentazione documentazione;
+	private Set<Documentazione> documentazioni= new HashSet<Documentazione>(); 
 	
-	private Prenotazione prenotazione; 
+	private Set<Prenotazione> prenotazioni = new HashSet<Prenotazione>();
 	
 	//------ PRENOTAZIONI--------
 	/**
@@ -29,39 +29,49 @@ public class User implements Serializable {
 	 * @return prenotazioni 
 	 */
 
-	@OneToOne
-	public Prenotazione getPrenotazione() {
-		return this.prenotazione;
-	}
 
 	/**
-	 * Setter prenotazioni
-	 * @param prenotazioni 
+	 * Getter prenotazioni
+	 * @return the prenotazioni
 	 */
-	public void setPrenotazione(Prenotazione prenotazione) {
-		this.prenotazione = prenotazione;
+	@OneToMany(mappedBy = "utente", cascade = CascadeType.ALL)
+	public Set<Prenotazione> getPrenotazioni() {
+		return prenotazioni;
 	}
+
+
+	/**
+	 * Setter Prenotazioni
+	 * @param prenotazioni the prenotazioni to set
+	 */
+	public void setPrenotazioni(Set<Prenotazione> prenotazioni) {
+		this.prenotazioni = prenotazioni;
+	}
+
+	
 	
 	
 	//------- DOCUMENTAZIONE -----   
 
 	/**
 	 * Getter Documentazione Sottoscritta dall'utente
-	 * @return the documentazioneUtente
+	 * @return the documentazioni
 	 */
-	@OneToOne
-	public Documentazione getDocumentazione() {
-		return this.documentazione;
+	@OneToMany(mappedBy = "utente", cascade = CascadeType.ALL)
+	public Set<Documentazione> getDocumentazioni() {
+		return documentazioni;
 	}
 
 
 	/**
-	 * Setter Documentazione sottoscritta dall'utente
-	 * @param documentazioneUtente the documentazioneUtente to set
+	 * Setter documentazioni
+	 * @param documentazioni the documentazioni to set
 	 */
-	public void setDocumentazione(Documentazione documentazione) {
-		this.documentazione = documentazione;
+	public void setDocumentazioni(Set<Documentazione> documentazioni) {
+		this.documentazioni = documentazioni;
 	}
+	
+	
 
 
 	//VEICOLI 
@@ -76,6 +86,7 @@ public class User implements Serializable {
 	public Set<Car> getCarUsers(){
 		return this.carUsers;
 	}
+
 
 	/**
 	 * Setter cars gestite dall'utente

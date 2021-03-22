@@ -106,7 +106,6 @@ public class TestDocumentazioneService {
 		Car c1 = carService.create(1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");		
 		Documentazione doc1 = documentazioneService.create("TITOLO", user1, "DESCRIZIONE", data1, (float) 900.10, c1);
 		assertEquals(documentazioneService.getAll().size(),1);
-
 		doc1.setUtente(user2);
 		documentazioneService.update(doc1);
 		assertEquals(doc1.getUtente(),user2);

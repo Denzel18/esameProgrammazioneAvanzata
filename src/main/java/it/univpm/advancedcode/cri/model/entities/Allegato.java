@@ -28,8 +28,8 @@ public abstract class Allegato {
 	 */
 
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "documento_id", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "documento_id")
 	public Documentazione getDocumento() {
 		return this.documento;
 	}

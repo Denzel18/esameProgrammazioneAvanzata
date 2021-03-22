@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: it.univpm.advancedcode.cri.test.unit.TestUserDao
 -------------------------------------------------------------------------------
-Tests run: 4, Failures: 0, Errors: 4, Skipped: 0, Time elapsed: 2.764 sec <<< FAILURE! - in it.univpm.advancedcode.cri.test.unit.TestUserDao
-testFindUserByUsername  Time elapsed: 0.576 sec  <<< ERROR!
+Tests run: 4, Failures: 0, Errors: 4, Skipped: 0, Time elapsed: 1.803 sec <<< FAILURE! - in it.univpm.advancedcode.cri.test.unit.TestUserDao
+testFindUserByUsername  Time elapsed: 0.389 sec  <<< ERROR!
 org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'allegatoDao': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sessionFactory' defined in it.univpm.advancedcode.cri.test.DataServiceConfigTest: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method 'sessionFactory' threw exception; nested exception is java.lang.NullPointerException
 	at it.univpm.advancedcode.cri.test.unit.TestUserDao.testFindUserByUsername(TestUserDao.java:86)
 Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sessionFactory' defined in it.univpm.advancedcode.cri.test.DataServiceConfigTest: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method 'sessionFactory' threw exception; nested exception is java.lang.NullPointerException
@@ -11,7 +11,7 @@ Caused by: org.springframework.beans.BeanInstantiationException: Failed to insta
 	at it.univpm.advancedcode.cri.test.unit.TestUserDao.testFindUserByUsername(TestUserDao.java:86)
 Caused by: java.lang.NullPointerException
 
-createAndDelete  Time elapsed: 0.681 sec  <<< ERROR!
+createAndDelete  Time elapsed: 0.452 sec  <<< ERROR!
 org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'allegatoDao': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sessionFactory' defined in it.univpm.advancedcode.cri.test.DataServiceConfigTest: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method 'sessionFactory' threw exception; nested exception is java.lang.NullPointerException
 	at it.univpm.advancedcode.cri.test.unit.TestUserDao.createAndDelete(TestUserDao.java:21)
 Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sessionFactory' defined in it.univpm.advancedcode.cri.test.DataServiceConfigTest: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method 'sessionFactory' threw exception; nested exception is java.lang.NullPointerException
@@ -20,7 +20,7 @@ Caused by: org.springframework.beans.BeanInstantiationException: Failed to insta
 	at it.univpm.advancedcode.cri.test.unit.TestUserDao.createAndDelete(TestUserDao.java:21)
 Caused by: java.lang.NullPointerException
 
-createAndUpdate  Time elapsed: 0.707 sec  <<< ERROR!
+createAndUpdate  Time elapsed: 0.494 sec  <<< ERROR!
 org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'allegatoDao': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sessionFactory' defined in it.univpm.advancedcode.cri.test.DataServiceConfigTest: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method 'sessionFactory' threw exception; nested exception is java.lang.NullPointerException
 	at it.univpm.advancedcode.cri.test.unit.TestUserDao.createAndUpdate(TestUserDao.java:54)
 Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sessionFactory' defined in it.univpm.advancedcode.cri.test.DataServiceConfigTest: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method 'sessionFactory' threw exception; nested exception is java.lang.NullPointerException
@@ -29,7 +29,7 @@ Caused by: org.springframework.beans.BeanInstantiationException: Failed to insta
 	at it.univpm.advancedcode.cri.test.unit.TestUserDao.createAndUpdate(TestUserDao.java:54)
 Caused by: java.lang.NullPointerException
 
-noUsersAtBeginning  Time elapsed: 0.8 sec  <<< ERROR!
+noUsersAtBeginning  Time elapsed: 0.468 sec  <<< ERROR!
 org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'allegatoDao': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sessionFactory' defined in it.univpm.advancedcode.cri.test.DataServiceConfigTest: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method 'sessionFactory' threw exception; nested exception is java.lang.NullPointerException
 	at it.univpm.advancedcode.cri.test.unit.TestUserDao.noUsersAtBeginning(TestUserDao.java:75)
 Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sessionFactory' defined in it.univpm.advancedcode.cri.test.DataServiceConfigTest: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method 'sessionFactory' threw exception; nested exception is java.lang.NullPointerException

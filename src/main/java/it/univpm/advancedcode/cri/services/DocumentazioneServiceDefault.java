@@ -33,11 +33,11 @@ public class DocumentazioneServiceDefault implements DocumentazioneService {
      */
     @Transactional
     @Override
-    public Documentazione create(String title, User autoreUtente, String descrizione, LocalDate dataScadenza, float costo, Car car) {
-    	return this.docRepository.create(title, autoreUtente, descrizione, dataScadenza, costo, car);
+    public Documentazione create(String title, User utente, String descrizione, LocalDate dataScadenza, float costo, Car car) {
+    	return this.docRepository.create(title, utente, descrizione, dataScadenza, costo, car);
     }
 
-
+   
     /**
      * Funzione per creare un nuovo documento.
      *
@@ -126,4 +126,7 @@ public class DocumentazioneServiceDefault implements DocumentazioneService {
     public Documentazione update(Documentazione documento) {
         return this.docRepository.update(documento);
     }
+
+
+
 }

@@ -40,8 +40,7 @@ public class Car implements Serializable {
 	 * Getter documentazione
 	 * @return
 	 */
-	@OneToMany(cascade  = CascadeType.ALL, orphanRemoval = true, targetEntity = it.univpm.advancedcode.cri.model.entities.Documentazione.class)
-	@JoinColumn(name = "documento_id")
+	@OneToMany(mappedBy = "veicolo", cascade = CascadeType.ALL)
 	public Set<Documentazione> getDocumentazioni() {
 		return this.documentazioni;
 	}
@@ -55,8 +54,7 @@ public class Car implements Serializable {
 	}	
 
 	//-----MANUTENZIONE-----
-	@OneToMany
-	@JoinColumn(name = "manutenzioneVeicolo")
+	@OneToMany(mappedBy = "veicolo", cascade = CascadeType.ALL)
 	public Set<Manutenzione> getManutenzioni() {
 		return this.manutenzioni;
 	}
@@ -75,8 +73,7 @@ public class Car implements Serializable {
 	 * Getter prenotazioni
 	 * @return prenotazioni
 	 */
-	@OneToMany
-	@JoinColumn(name = "prenotazioneVeicolo")
+	@OneToMany(mappedBy = "veicolo", cascade = CascadeType.ALL)
 	public Set<Prenotazione> getPrenotazioni() {
 		return this.prenotazioni;
 	}
