@@ -17,7 +17,7 @@ import it.univpm.advancedcode.cri.model.entities.User;
 @Service("documentazioneService")
 public class DocumentazioneServiceDefault implements DocumentazioneService {
 
-    private DocumentazioneDao docRepository;
+    private DocumentazioneDao documentazioneRepository;
     
     /**
      * Funzione per creare un nuovo documento.
@@ -34,7 +34,7 @@ public class DocumentazioneServiceDefault implements DocumentazioneService {
     @Transactional
     @Override
     public Documentazione create(String title, User utente, String descrizione, LocalDate dataScadenza, float costo, Car car) {
-    	return this.docRepository.create(title, utente, descrizione, dataScadenza, costo, car);
+    	return this.documentazioneRepository.create(title, utente, descrizione, dataScadenza, costo, car);
     }
 
    
@@ -54,7 +54,7 @@ public class DocumentazioneServiceDefault implements DocumentazioneService {
     @Override
     public Documentazione create(String title, User autoreUtente, String descrizione, LocalDate dataScadenza, float costo,
     	    Allegato allegato, Car car) {
-    	return this.docRepository.create(title, autoreUtente, descrizione, dataScadenza, costo, allegato, car);
+    	return this.documentazioneRepository.create(title, autoreUtente, descrizione, dataScadenza, costo, allegato, car);
     			
     }
 
@@ -66,7 +66,7 @@ public class DocumentazioneServiceDefault implements DocumentazioneService {
     @Transactional
     @Override
     public void delete(Documentazione documento) {
-        this.docRepository.delete(documento);
+        this.documentazioneRepository.delete(documento);
     }
 
 
@@ -78,7 +78,7 @@ public class DocumentazioneServiceDefault implements DocumentazioneService {
     @Transactional(readOnly = true)
     @Override
     public List<Documentazione> getAll() {
-        return this.docRepository.getAll();
+        return this.documentazioneRepository.getAll();
     }
     
     /**
@@ -90,7 +90,7 @@ public class DocumentazioneServiceDefault implements DocumentazioneService {
     @Transactional(readOnly = true)
     @Override
     public Documentazione getById(long id) {
-        return this.docRepository.getById(id);
+        return this.documentazioneRepository.getById(id);
     }
     
     /**
@@ -102,7 +102,7 @@ public class DocumentazioneServiceDefault implements DocumentazioneService {
     @Transactional(readOnly = true)
     @Override
     public Documentazione getByTitle(String title) {
-        return this.docRepository.getByTitle(title);
+        return this.documentazioneRepository.getByTitle(title);
     }
 
     /**
@@ -111,8 +111,8 @@ public class DocumentazioneServiceDefault implements DocumentazioneService {
      * @param postRepository DAO dell'entità Post da settare
      */
     @Autowired
-    public void setDocRepository(DocumentazioneDao docRepository) {
-        this.docRepository = docRepository;
+    public void setDocumentazioneRepository(DocumentazioneDao documentazioneRepository) {
+        this.documentazioneRepository = documentazioneRepository;
     }
 
     /**
@@ -124,7 +124,7 @@ public class DocumentazioneServiceDefault implements DocumentazioneService {
     @Transactional
     @Override
     public Documentazione update(Documentazione documento) {
-        return this.docRepository.update(documento);
+        return this.documentazioneRepository.update(documento);
     }
 
 

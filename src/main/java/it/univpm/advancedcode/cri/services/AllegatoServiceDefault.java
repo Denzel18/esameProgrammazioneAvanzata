@@ -63,7 +63,7 @@ public class AllegatoServiceDefault implements AllegatoService {
 	 * @param allegatoRepository DAO dell'entità Attachment da settare
 	 */
 	@Autowired
-	public void setLinkRepository(AllegatoDao allegatoRepository) {
+	public void setAllegatoRepository(AllegatoDao allegatoRepository) {
 		this.allegatoRepository = allegatoRepository;
 	}
 }

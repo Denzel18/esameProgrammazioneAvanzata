@@ -14,7 +14,7 @@ import it.univpm.advancedcode.cri.model.entities.Manutenzione;
 @Service("manutenzioneService")
 public class ManutenzioneServiceDefault implements ManutenzioneService {
 
-    private ManutenzioneDao manRepository;
+    private ManutenzioneDao manutenzioneRepository;
     
     /**
      * Funzione per creare un nuovo documento.
@@ -31,7 +31,7 @@ public class ManutenzioneServiceDefault implements ManutenzioneService {
     @Transactional
     @Override
     public Manutenzione create(long id, String tipoManutenzione, float costoManutenzione, Car car) {
-    	return this.manRepository.create(id, tipoManutenzione, costoManutenzione, car);
+    	return this.manutenzioneRepository.create(id, tipoManutenzione, costoManutenzione, car);
     }
 
 
@@ -43,7 +43,7 @@ public class ManutenzioneServiceDefault implements ManutenzioneService {
     @Transactional
     @Override
     public void delete(Manutenzione manutenzione) {
-        this.manRepository.delete(manutenzione);
+        this.manutenzioneRepository.delete(manutenzione);
     }
 
     /**
@@ -54,7 +54,7 @@ public class ManutenzioneServiceDefault implements ManutenzioneService {
     @Transactional(readOnly = true)
     @Override
     public List<Manutenzione> getAll() {
-        return this.manRepository.getAll();
+        return this.manutenzioneRepository.getAll();
     }
 
     /**
@@ -66,7 +66,7 @@ public class ManutenzioneServiceDefault implements ManutenzioneService {
     @Transactional(readOnly = true)
     @Override
     public Manutenzione getById(long id) {
-        return this.manRepository.getById(id);
+        return this.manutenzioneRepository.getById(id);
     }
 
     /**
@@ -75,8 +75,8 @@ public class ManutenzioneServiceDefault implements ManutenzioneService {
      * @param postRepository DAO dell'entità Post da settare
      */
     @Autowired
-    public void setManRepository(ManutenzioneDao manRepository) {
-        this.manRepository = manRepository;
+    public void setManutenzioneRepository(ManutenzioneDao manutenzioneRepository) {
+        this.manutenzioneRepository = manutenzioneRepository;
     }
 
     /**
@@ -88,6 +88,6 @@ public class ManutenzioneServiceDefault implements ManutenzioneService {
     @Transactional
     @Override
     public Manutenzione update(Manutenzione manutenzione) {
-        return this.manRepository.update(manutenzione);
+        return this.manutenzioneRepository.update(manutenzione);
     }
 }

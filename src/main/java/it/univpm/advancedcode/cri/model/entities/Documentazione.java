@@ -25,9 +25,7 @@ public class Documentazione implements Serializable {
 	private Car veicolo;
 	private User utente;
 
-
-
-	//Autore UTENTE insirimento documentazione
+	//Autore UTENTE inserimento documentazione
 
 	/**
 	 * Getter Utente
@@ -39,7 +37,6 @@ public class Documentazione implements Serializable {
 		return utente;
 	}
 
-
 	/**
 	 * Setter Utente
 	 * @param utente the utente to set
@@ -47,9 +44,6 @@ public class Documentazione implements Serializable {
 	public void setUtente(User utente) {
 		this.utente = utente;
 	}
-
-
-
 
 	//ALLEGATO 
 
@@ -61,9 +55,6 @@ public class Documentazione implements Serializable {
 	public Set<Allegato> getAllegati() {
 		return this.allegati;
 	}
-
-
-
 
 	/**
 	 * Setter allegati.
