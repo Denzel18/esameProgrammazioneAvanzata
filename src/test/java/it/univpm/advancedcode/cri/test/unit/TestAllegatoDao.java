@@ -4,10 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.time.LocalDate;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -56,7 +53,7 @@ public class TestAllegatoDao {
 			User user1 = userDao.create("mario98", "12345678", "Mario", "Rossi", "admin");
 			LocalDate data1 = LocalDate.of(2021,11,20); 
 			Car c1 = carDao.create((long)1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
-			Documentazione doc1 = documentazioneDao.create("TITOLO", user1, DESCRIPTION, data1, 90, c1);
+			Documentazione doc1 = documentazioneDao.create("TITOLO", DESCRIPTION, data1, 90);
 
 			Link link1=linkDao.create(DESCRIPTION, doc1, "https://www.univpm.it");
 			File file1=fileDao.create(DESCRIPTION, doc1, "file1.jpg", true);
@@ -108,7 +105,7 @@ public class TestAllegatoDao {
 			User user1 = userDao.create("mario98", "12345678", "Mario", "Rossi", "admin");
 			LocalDate data1 = LocalDate.of(2021,11,20); 
 			Car c1 = carDao.create((long)1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
-			Documentazione doc1 = documentazioneDao.create("TITOLO", user1, DESCRIPTION, data1, 90, c1);
+			Documentazione doc1 = documentazioneDao.create("TITOLO", DESCRIPTION, data1, 90);
 			
 			Link link1=linkDao.create(DESCRIPTION, doc1, "https://www.univpm.it");
 			File file1=fileDao.create(DESCRIPTION, doc1, "file1.jpg", true);
@@ -166,7 +163,7 @@ public class TestAllegatoDao {
 			User user1 = userDao.create("mario98", "12345678", "Mario", "Rossi", "admin");
 			LocalDate data1 = LocalDate.of(2021,11,20); 
 			Car c1 = carDao.create((long)1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
-			Documentazione doc1 = documentazioneDao.create("TITOLO", user1, DESCRIPTION, data1, 90, c1);
+			Documentazione doc1 = documentazioneDao.create("TITOLO", DESCRIPTION, data1, 90);
 			
 			Link link1=linkDao.create(DESCRIPTION, doc1, "https://www.univpm.it");
 			File file1=fileDao.create(DESCRIPTION, doc1, "file1.jpg", true);

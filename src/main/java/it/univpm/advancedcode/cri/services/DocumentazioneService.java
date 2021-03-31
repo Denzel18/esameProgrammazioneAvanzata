@@ -2,19 +2,12 @@ package it.univpm.advancedcode.cri.services;
 
 import java.time.*;
 import java.util.List;
-import java.util.Set;
-
-import it.univpm.advancedcode.cri.model.entities.Allegato;
-import it.univpm.advancedcode.cri.model.entities.Car;
 import it.univpm.advancedcode.cri.model.entities.Documentazione;
-import it.univpm.advancedcode.cri.model.entities.User;
+
 
 public interface DocumentazioneService {
 	
-	Documentazione create(String title, User utente, String descrizione, LocalDate dataScadenza, float costo, Car car);
-
-	Documentazione create(String title,  User utente, String descrizione, LocalDate dataScadenza, float costo,
-                Allegato allegato, Car car);
+	Documentazione create(String title, String descrizione, LocalDate dataScadenza, float costo);
 	
     void delete(Documentazione documento);
 

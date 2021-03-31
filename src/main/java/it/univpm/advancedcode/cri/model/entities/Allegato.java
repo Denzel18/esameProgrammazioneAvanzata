@@ -1,6 +1,4 @@
 package it.univpm.advancedcode.cri.model.entities;
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.*;
 
 @Entity
@@ -27,9 +25,8 @@ public abstract class Allegato {
 	 * @return allegato associato al documento
 	 */
 
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "documento_id", nullable = false)
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "documento_id" , nullable = false)
 	public Documentazione getDocumento() {
 		return this.documento;
 	}
@@ -53,13 +50,12 @@ public abstract class Allegato {
 	}
 		
 	/**
-	 * Setter per la proprietà post
-	 * @param post: post associato all'allegato da settare
+	 * Setter documentazione
+	 * @param documento: documento associato all'allegato da settare
 	 */
 	public void setDocumento(Documentazione documento) {
 		this.documento=documento;
 	}
-	
 	/**
 	 * Setter ID
 	 * @param id
@@ -67,6 +63,4 @@ public abstract class Allegato {
 	public void setId(long id) {
 		this.id=id;
 	}
-	
-
 }

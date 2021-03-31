@@ -6,11 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -21,10 +17,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import it.univpm.advancedcode.cri.model.dao.CarDao;
 import it.univpm.advancedcode.cri.model.dao.ManutenzioneDao;
-import it.univpm.advancedcode.cri.model.entities.Car;
-import it.univpm.advancedcode.cri.model.entities.Documentazione;
 import it.univpm.advancedcode.cri.model.entities.Manutenzione;
-import it.univpm.advancedcode.cri.model.entities.User;
 import it.univpm.advancedcode.cri.test.DataServiceConfigTest;
 
 public class TestManutenzioneDao {
@@ -42,10 +35,7 @@ public class TestManutenzioneDao {
 
 
 			s.beginTransaction();
-
-			Car c1 = carDao.create((long) 1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");				
-
-			Manutenzione manutenzione = manutenzioneDao.create(1,"STRAORDINARIA", (float) 900.00, c1);   
+			Manutenzione manutenzione = manutenzioneDao.create(1,"STRAORDINARIA", (float) 900.00);   
 
 			s.getTransaction().commit();
 
@@ -85,10 +75,7 @@ public class TestManutenzioneDao {
 
 
 			s.beginTransaction();
-
-			Car c1 = carDao.create((long) 1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
-
-			Manutenzione manutenzione = manutenzioneDao.create(1,"STRAORDINARIA", (float) 900.00, c1);   
+			Manutenzione manutenzione = manutenzioneDao.create(1,"STRAORDINARIA", (float) 900.00);   
 
 			s.getTransaction().commit();
 
@@ -122,9 +109,7 @@ public class TestManutenzioneDao {
 
 
 			s.beginTransaction();
-
-			Car c1 = carDao.create((long) 1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
-			Manutenzione manutenzione = manutenzioneDao.create(1,"STRAORDINARIA", (float) 900.00, c1);    
+			Manutenzione manutenzione = manutenzioneDao.create(1,"STRAORDINARIA", (float) 900.00);   
 
 			s.getTransaction().commit();
 

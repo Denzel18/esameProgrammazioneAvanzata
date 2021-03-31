@@ -5,7 +5,6 @@ import javax.annotation.Resource;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import javax.annotation.Resource;
 
 public abstract class DefaultDao {
 

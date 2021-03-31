@@ -1,8 +1,6 @@
 package it.univpm.advancedcode.cri.model.entities;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.*;
 
 @Entity
@@ -25,88 +23,6 @@ public class Car implements Serializable {
 	private int numeroAssi; 
 	private String alimentazione; 
 
-
-	private Set<Documentazione> documentazioni = new HashSet<Documentazione>();
-
-	private Set<Manutenzione> manutenzioni = new HashSet<Manutenzione>();
-
-	private Set<Prenotazione> prenotazioni = new HashSet<Prenotazione>();
-
-	private Set<User> utenti = new HashSet<User>();
-
-
-	//-----DOCUMENTAZIONE-----
-	/**
-	 * Getter documentazione
-	 * @return
-	 */
-	@OneToMany(mappedBy = "veicolo", cascade = CascadeType.ALL)
-	public Set<Documentazione> getDocumentazioni() {
-		return this.documentazioni;
-	}
-	/**
-	 * Setter per la proprietà documentazioni.
-	 *
-	 * @param documentazioni documentazioni del veicolo da settare
-	 */
-	public void setDocumentazioni(Set<Documentazione> documentazioni) {
-		this.documentazioni = documentazioni;
-	}	
-
-	//-----MANUTENZIONE-----
-	@OneToMany(mappedBy = "veicolo", cascade = CascadeType.ALL)
-	public Set<Manutenzione> getManutenzioni() {
-		return this.manutenzioni;
-	}
-	/**
-	 * Setter per la proprietà documentazioni.
-	 *
-	 * @param documentazioni documentazioni del veicolo da settare
-	 */
-	public void setManutenzioni(Set<Manutenzione> manutenzioni) {
-		this.manutenzioni = manutenzioni;
-	}
-
-
-	//-----PRENOTAZIONI-----
-	/**
-	 * Getter prenotazioni
-	 * @return prenotazioni
-	 */
-	@OneToMany(mappedBy = "veicolo", cascade = CascadeType.ALL)
-	public Set<Prenotazione> getPrenotazioni() {
-		return this.prenotazioni;
-	}
-	/**
-	 * Setter prenotazioni
-	 * @param prenotazioni
-	 */
-	public void setPrenotazioni(Set<Prenotazione> prenotazioni) {
-		this.prenotazioni = prenotazioni;
-	}
-
-
-	//---UTENTI
-
-	/**
-	 * Getter utenti
-	 * @return utenti 
-	 */
-	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinTable(name = "cars_users",
-	joinColumns = @JoinColumn(name = "veicolo_id", nullable = false),
-	inverseJoinColumns = @JoinColumn(name = "username", nullable = false))
-	public Set<User> getUtenti(){
-		return this.utenti ; 
-	}
-
-	/**
-	 * Setter utenti
-	 * @param documentazioni documentazioni del veicolo da settare
-	 */
-	public void setUtenti(Set<User> carUsers) {
-		this.utenti = carUsers;
-	}
 
 	//----- ID VEICOLO -----
 	
@@ -231,7 +147,6 @@ public class Car implements Serializable {
 	public void setMassa(int massa) {
 		this.massa = massa;
 	}
-
 
 	/** 
 	 * Setter Modello del veicolo 

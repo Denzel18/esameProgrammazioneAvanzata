@@ -2,8 +2,6 @@ package it.univpm.advancedcode.cri.model.dao;
 import java.util.List;
 import org.hibernate.Session;
 import it.univpm.advancedcode.cri.model.entities.User;
-import org.springframework.security.crypto.password.PasswordEncoder;
-
 
 public interface UserDao {
 

@@ -1,8 +1,6 @@
 package it.univpm.advancedcode.cri.model.entities;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.*;
 import java.time.*; 
 
@@ -23,49 +21,7 @@ public class Prenotazione implements Serializable {
     private LocalDate dataFine; 
     private LocalTime oraInzio; 
     private LocalTime oraFine; 
-    private String descrizione;
-    
-    
-    private User utente;
-
-    private Car veicolo; 
-    
-
-    /**
-     * Getter veicolo che ha eseguito la prentoazione
-	 * @return the veicolo
-	 */
-    @ManyToOne
-    @JoinColumn(name = "veicolo_id")
-	public Car getVeicolo() {
-		return this.veicolo;
-	}
-	/**
-	 * Setter veicolo che ha eseguito la prenotazione
-	 * @param veicolo
-	 */
-	public void setVeicolo(Car veicolo) {
-		this.veicolo = veicolo;
-	}
-    
-	
-    /**
-     * Getter utente che ha eseguito la prenotazione
-	 * @return the User
-	 */
-    @ManyToOne
-    @JoinColumn(name = "username")
-	public User getUtente() {
-		return this.utente;
-	}
-	/**
-	 * Setter utente che ha eseguito la prenotazione
-	 * @param utente
-	 */
-	public void setUtente(User utente) {
-		this.utente = utente;
-	}
-	
+    private String descrizione;	
 	
 	//------ GETTER PRENOTAZIONE
 	/**

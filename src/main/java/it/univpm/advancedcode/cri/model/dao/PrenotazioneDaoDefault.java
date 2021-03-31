@@ -5,9 +5,7 @@ import java.time.*;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
-
 import it.univpm.advancedcode.cri.model.entities.Prenotazione;
-import it.univpm.advancedcode.cri.model.entities.User;
 
 
 @Repository("prenotazioneDao")
@@ -25,7 +23,7 @@ public class PrenotazioneDaoDefault extends DefaultDao implements PrenotazioneDa
 	 */
 	@Override 
 	public Prenotazione create  (long id,LocalDate dataInzio, LocalDate dataFine, LocalTime oraInzio, LocalTime oraFine, 
-			String descrizione, User utente) {
+			String descrizione) {
 		Prenotazione prenotazione = new Prenotazione();
 		prenotazione.setId(id);
 		prenotazione.setDataInzio(dataInzio);
@@ -33,7 +31,6 @@ public class PrenotazioneDaoDefault extends DefaultDao implements PrenotazioneDa
 		prenotazione.setOraInzio(oraInzio);
 		prenotazione.setOraFine(oraFine);
 		prenotazione.setDescrizione(descrizione);
-		prenotazione.setUtente(utente);
 		this.getSession().save(prenotazione);
 		return prenotazione;
 	}
@@ -51,7 +48,7 @@ public class PrenotazioneDaoDefault extends DefaultDao implements PrenotazioneDa
 
 	/**
 	 * Metodo per restituire la lista di tutte le prenotazioni
-	 * @return lista di tutte le manutenzioni
+	 * @return lista di tutte le prenotazioni
 	 */
 	@Override
 	public List<Prenotazione> getAll() {
@@ -61,7 +58,7 @@ public class PrenotazioneDaoDefault extends DefaultDao implements PrenotazioneDa
 	}
 
 	/**
-	 * Metodo per restituire una Prenotazione da un id
+	 * Metodo per restituire una Prenotazione dato un id
 	 * @param id 
 	 * @return Prenotazione
 	 */
@@ -84,9 +81,8 @@ public class PrenotazioneDaoDefault extends DefaultDao implements PrenotazioneDa
 
 	/**
 	 * Metodo per aggiornare un Prenotazione
-	 * @param allegato: manutenzioe da aggiornare
-	 * 
-	 * @return Prenotazione 
+	 * @param prenotazione : prenotazione da aggiornare
+	 * @return prenotazione 
 	 */
 	@Override
 	public Prenotazione update(Prenotazione prenotazione) {
@@ -94,6 +90,4 @@ public class PrenotazioneDaoDefault extends DefaultDao implements PrenotazioneDa
         Prenotazione updated_prenotazione = this.getById(prenotazione.getId());
         return updated_prenotazione;
 	}
-
-
 }

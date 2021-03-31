@@ -1,26 +1,24 @@
 package it.univpm.advancedcode.cri.model.dao;
 
 import java.util.List;
-import java.util.Set;
-
 import org.springframework.stereotype.Repository;
 
-import it.univpm.advancedcode.cri.model.entities.Car;
 import it.univpm.advancedcode.cri.model.entities.Manutenzione;
 
 @Repository("manutenzioneDao")
 public class ManutenzioneDaoDefault extends DefaultDao implements ManutenzioneDao {
 	
 	/**
-	 * 
+	 * Metodo per creare una manutenzione 
+	 * @param id id della manutenzione 
+	 * @param tipoManutenzione tipologia manutenzione "Straordinaria" o "Ordinaria"
 	 */
 	@Override
-	public Manutenzione create (long id, String tipoManutenzione, float costoManutenzione, Car car) {
+	public Manutenzione create (long id, String tipoManutenzione, float costoManutenzione) {
 		Manutenzione man = new Manutenzione(); 
 		man.setId(id);
 		man.setTipoManutenzione(tipoManutenzione);
 		man.setCostoManutenzione(costoManutenzione);
-		man.setVeicolo(car);
         this.getSession().save(man);
 		return man; 
 	}
@@ -28,7 +26,6 @@ public class ManutenzioneDaoDefault extends DefaultDao implements ManutenzioneDa
 	/**
 	 * Metodo per eliminare una manutenzione
 	 * @param manutenzione da eliminare
-	 * 
 	 */
 	@Override
 	public void delete(Manutenzione manutenzione) {
@@ -48,8 +45,8 @@ public class ManutenzioneDaoDefault extends DefaultDao implements ManutenzioneDa
 	}
 
 	/**
-	 * Metodo per restituire una manutenzione da un id
-	 * @param id 
+	 * Metodo per restituire una manutenzione dato un id
+	 * @param id della manutenzione
 	 * @return manutenzione
 	 */
 	@Override
@@ -59,9 +56,8 @@ public class ManutenzioneDaoDefault extends DefaultDao implements ManutenzioneDa
 	
 	/**
 	 * Metodo per aggiornare un manutenzione
-	 * @param allegato: manutenzioe da aggiornare
-	 * 
-	 * @return Manutenzione 
+	 * @param manutenzione : manutenzione da aggiornare
+	 * @return manutenzione 
 	 */
 	@Override
 	public Manutenzione update(Manutenzione manutenzione) {

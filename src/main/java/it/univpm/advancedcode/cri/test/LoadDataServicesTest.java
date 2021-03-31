@@ -1,9 +1,9 @@
 package it.univpm.advancedcode.cri.test;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import it.univpm.advancedcode.cri.model.entities.Car;
@@ -19,9 +19,6 @@ import it.univpm.advancedcode.cri.services.LinkService;
 import it.univpm.advancedcode.cri.services.ManutenzioneService;
 import it.univpm.advancedcode.cri.services.PrenotazioneService;
 import it.univpm.advancedcode.cri.services.UserService;
-import it.univpm.advancedcode.cri.test.DataServiceConfigTest;
-
-import java.time.*;
 
 
 public class LoadDataServicesTest {
@@ -65,8 +62,8 @@ public class LoadDataServicesTest {
 				LocalDate data1 = LocalDate.of(2021,10,20); 
 				LocalDate data2 = LocalDate.of(2021,11,20);
 
-				Documentazione d1 = documentazioneService.create(TITLE, user1, DESCRIPTION, data1, 90, c1);
-				Documentazione d2 = documentazioneService.create(TITLE, user5, DESCRIPTION, data2, 180, c1);
+				Documentazione d1 = documentazioneService.create(TITLE, DESCRIPTION, data1, 90);
+				Documentazione d2 = documentazioneService.create(TITLE, DESCRIPTION, data2, 180);
 
 				fileService.create(DESCRIPTION, d1, "file1.jpg", true);
 				fileService.create(DESCRIPTION, d2, "file2.jpg", true);
@@ -95,8 +92,8 @@ public class LoadDataServicesTest {
 				LocalTime t4 = LocalTime.of(19, 39);
 
 
-				Prenotazione p1 = prenotazioneService.create(1, data1, data2,t1,t2,"DESCRIZIONE", user1);
-				Prenotazione p2 = prenotazioneService.create(1, data3, data4,t3,t4,"DESCRIZIONE", user1);
+				Prenotazione p1 = prenotazioneService.create(1, data1, data2,t1,t2,"DESCRIZIONE");
+				Prenotazione p2 = prenotazioneService.create(1, data3, data4,t3,t4,"DESCRIZIONE");
 
 
 			}catch (Exception e) {
@@ -109,8 +106,8 @@ public class LoadDataServicesTest {
 
 
 			try {
-				Manutenzione m1 = manutenzioneService.create(1,"tipomanutenzione",(float) 100, c5);
-				Manutenzione m2 = manutenzioneService.create(1,"tipomanutenzione",(float) 100, c5);
+				Manutenzione m1 = manutenzioneService.create(1,"tipomanutenzione",(float) 100);
+				Manutenzione m2 = manutenzioneService.create(1,"tipomanutenzione",(float) 100);
 
 			}catch (Exception e) {
 				System.out.println("ERRORE PRENOTAZIONE");

@@ -16,86 +16,7 @@ public class User implements Serializable {
 	private String password;
 	private String imageProfile;
 	private String ruolo;
-
-	private Set<Car> carUsers = new HashSet<Car>(); 
 	
-	private Set<Documentazione> documentazioni= new HashSet<Documentazione>(); 
-	
-	private Set<Prenotazione> prenotazioni = new HashSet<Prenotazione>();
-	
-	//------ PRENOTAZIONI--------
-	/**
-	 * Getter prenotazioni
-	 * @return prenotazioni 
-	 */
-
-
-	/**
-	 * Getter prenotazioni
-	 * @return the prenotazioni
-	 */
-	@OneToMany(mappedBy = "utente", cascade = CascadeType.ALL)
-	public Set<Prenotazione> getPrenotazioni() {
-		return prenotazioni;
-	}
-
-
-	/**
-	 * Setter Prenotazioni
-	 * @param prenotazioni the prenotazioni to set
-	 */
-	public void setPrenotazioni(Set<Prenotazione> prenotazioni) {
-		this.prenotazioni = prenotazioni;
-	}
-
-	
-	
-	
-	//------- DOCUMENTAZIONE -----   
-
-	/**
-	 * Getter Documentazione Sottoscritta dall'utente
-	 * @return the documentazioni
-	 */
-	@OneToMany(mappedBy = "utente", cascade = CascadeType.ALL)
-	public Set<Documentazione> getDocumentazioni() {
-		return documentazioni;
-	}
-
-
-	/**
-	 * Setter documentazioni
-	 * @param documentazioni the documentazioni to set
-	 */
-	public void setDocumentazioni(Set<Documentazione> documentazioni) {
-		this.documentazioni = documentazioni;
-	}
-	
-	
-
-
-	//VEICOLI 
-	
-	/** 
-	 * Getter veicolo
-	 *  
-	 * @return veicoli
-	 */	
-
-	@ManyToMany(fetch = FetchType.EAGER, mappedBy="utenti")
-	public Set<Car> getCarUsers(){
-		return this.carUsers;
-	}
-
-
-	/**
-	 * Setter cars gestite dall'utente
-	 * @param cars
-	 */
-	public void setCarUsers(Set<Car> cars) {
-		this.carUsers=cars;
-	}
-
 	/** 
 	 * Getter per la proprietà firstname dell'User
 	 * @return il nome dell'utente 
@@ -163,14 +84,9 @@ public class User implements Serializable {
 	public String getRuolo() {
 		return this.ruolo;
 	}
-
-
-
-
 	
 	/** 
 	 * Setter per la proprietà firstname dell'User 
-	 * 
 	 * @param firstname: nome dell'utente da settare
 	 */
 
@@ -180,7 +96,6 @@ public class User implements Serializable {
 	
 	/** 
 	 * Setter per la proprietà imageProfile dell'User 
-	 * 
 	 * @param imgprofile: nome del file contenente l'immagine profilo dell'utente da settare
 	 */
 
@@ -190,7 +105,6 @@ public class User implements Serializable {
 	
 	/** 
 	 * Setter per la proprietà lastname dell'User 
-	 * 
 	 * @param lastname: cognome dell'utente da settare
 	 */
 
@@ -201,7 +115,6 @@ public class User implements Serializable {
 	
 	/** 
 	 * Setter per la proprietà firstname dell'User 
-	 * 
 	 * @param password: password dell'utente da settare
 	 */
 
@@ -210,7 +123,6 @@ public class User implements Serializable {
 	}
 	/**
 	 * Setter della proprietà admin.
-	 *
 	 * @param admin specifico se l'utente è un admin o meno
 	 */
 	public void setRuolo(String ruolo) {
@@ -219,7 +131,6 @@ public class User implements Serializable {
 	}
 	/** 
 	 * Setter per la proprietà username dell'User 
-	 * 
 	 * @param username: username da settare per l'utente 
 	 */
 

@@ -1,14 +1,12 @@
 package it.univpm.advancedcode.cri.services;
 
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import it.univpm.advancedcode.cri.model.dao.ManutenzioneDao;
-import it.univpm.advancedcode.cri.model.entities.Car;
 import it.univpm.advancedcode.cri.model.entities.Manutenzione;
 
 @Service("manutenzioneService")
@@ -30,8 +28,8 @@ public class ManutenzioneServiceDefault implements ManutenzioneService {
      */
     @Transactional
     @Override
-    public Manutenzione create(long id, String tipoManutenzione, float costoManutenzione, Car car) {
-    	return this.manutenzioneRepository.create(id, tipoManutenzione, costoManutenzione, car);
+    public Manutenzione create(long id, String tipoManutenzione, float costoManutenzione) {
+    	return this.manutenzioneRepository.create(id, tipoManutenzione, costoManutenzione);
     }
 
 
@@ -59,7 +57,6 @@ public class ManutenzioneServiceDefault implements ManutenzioneService {
 
     /**
      * Funzione per cercare un particolare manutenzione specificandone l'ID.
-     *
      * @param id id del manutenzione da cercare
      * @return manutenzione
      */
@@ -70,9 +67,8 @@ public class ManutenzioneServiceDefault implements ManutenzioneService {
     }
 
     /**
-     * Setter per la proprietà che si riferisce al DAO dell'entità Post.
-     *
-     * @param postRepository DAO dell'entità Post da settare
+     * Setter per la proprietà che si riferisce al DAO dell'entità manutenzione.
+     * @param manutenzioneRepository DAO dell'entità Manutenzione da settare
      */
     @Autowired
     public void setManutenzioneRepository(ManutenzioneDao manutenzioneRepository) {
@@ -81,7 +77,6 @@ public class ManutenzioneServiceDefault implements ManutenzioneService {
 
     /**
      * Funzione per aggiornare il manutenzione
-     *
      * @param manutenzione
      * @return manutenzione aggiornato
      */

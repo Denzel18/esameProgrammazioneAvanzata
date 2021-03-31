@@ -2,8 +2,6 @@ package it.univpm.advancedcode.cri.model.entities;
 
 import java.io.Serializable;
 import java.time.*; 
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.*;
 
 
@@ -21,78 +19,6 @@ public class Documentazione implements Serializable {
 	private String descrizione;
 	private LocalDate dataScadenza; 
 	private float costo; 
-	private Set<Allegato> allegati = new HashSet(); 
-	private Car veicolo;
-	private User utente;
-
-	//Autore UTENTE inserimento documentazione
-
-	/**
-	 * Getter Utente
-	 * @return the utente
-	 */
-	@ManyToOne
-	@JoinColumn(name = "username")
-	public User getUtente() {
-		return utente;
-	}
-
-	/**
-	 * Setter Utente
-	 * @param utente the utente to set
-	 */
-	public void setUtente(User utente) {
-		this.utente = utente;
-	}
-
-	//ALLEGATO 
-
-	/**
-	 * Getter Allegato associato
-	 * @return the allegatoDocumento
-	 */
-	@OneToMany(fetch = FetchType.EAGER, orphanRemoval = true, mappedBy = "documento", cascade = CascadeType.ALL)
-	public Set<Allegato> getAllegati() {
-		return this.allegati;
-	}
-
-	/**
-	 * Setter allegati.
-	 * @param allegati allegati del documento da settare
-	 */
-	public void setAllegati(Set<Allegato> allegati) {
-		this.allegati = allegati;
-	}
-
-	/**
-	 * Metodo per aggiungere un allegato al documento
-	 * @param allegato allegato da aggiungere
-	 */
-	public void addAllegati(Allegato allegato) {
-		allegato.setDocumento(this);
-		this.allegati.add(allegato);
-	}
-
-	//CAR -- DOCUMENTI RELATIVI AL VEICOLO 
-
-	/**
-	 * Getter car documentazione
-	 * @return car 
-	 */
-	@ManyToOne
-	@JoinColumn(name = "veicolo_id")
-	public Car getVeicolo(){
-		return this.veicolo;
-	}
-
-	/**
-	 * Setter Car
-	 * @param cars
-	 */
-	public void setVeicolo(Car veicolo) {
-		this.veicolo=veicolo;
-	}
-
 
 	//----- GETTER DOCUMENTAZIONE
 
@@ -107,7 +33,7 @@ public class Documentazione implements Serializable {
 	}
 
 	/**
-	 * Getter Data Scandenza
+	 * Getter Data Scandenza documentazione
 	 * @return dataScadenza
 	 */
 	@Column (name = "dataScadenza", nullable = false)
@@ -183,7 +109,7 @@ public class Documentazione implements Serializable {
 
 	/**
 	 * Setter id documento
-	 * @param id the id to set
+	 * @param id 
 	 */
 	public void setId(long id) {
 		this.id = id;

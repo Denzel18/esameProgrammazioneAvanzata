@@ -1,4 +1,3 @@
-it/univpm/advancedcode/cri/controllers/DriverController.class
 it/univpm/advancedcode/cri/services/DocumentazioneService.class
 it/univpm/advancedcode/cri/model/dao/ManutenzioneDaoDefault.class
 it/univpm/advancedcode/cri/model/dao/UserDao.class
@@ -27,7 +26,6 @@ it/univpm/advancedcode/cri/services/PrenotazioneService.class
 it/univpm/advancedcode/cri/model/dao/ManutenzioneDao.class
 it/univpm/advancedcode/cri/test/LoadDataTest.class
 it/univpm/advancedcode/cri/app/WebConfig.class
-it/univpm/advancedcode/cri/controllers/AdminController.class
 it/univpm/advancedcode/cri/services/LinkServiceDefault.class
 it/univpm/advancedcode/cri/model/dao/LinkDao.class
 it/univpm/advancedcode/cri/model/entities/Car.class
@@ -41,7 +39,6 @@ it/univpm/advancedcode/cri/test/DataServiceConfigTest.class
 it/univpm/advancedcode/cri/services/ManutenzioneServiceDefault.class
 it/univpm/advancedcode/cri/model/dao/PrenotazioneDaoDefault.class
 it/univpm/advancedcode/cri/model/entities/Documentazione.class
-it/univpm/advancedcode/cri/controllers/AccountController.class
 it/univpm/advancedcode/cri/model/dao/CarDaoDefault.class
 it/univpm/advancedcode/cri/model/entities/User.class
 it/univpm/advancedcode/cri/model/dao/FileDaoDefault.class

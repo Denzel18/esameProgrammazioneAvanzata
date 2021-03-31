@@ -1,8 +1,6 @@
 package it.univpm.advancedcode.cri.model.entities;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.*;
 
 @Entity
@@ -18,27 +16,7 @@ public class Manutenzione implements Serializable{
 	private long id;
     private String tipoManutenzione; // straordinaria o regolare
     private float costoManutenzione;
-    
-    
-    private Car veicolo; 
-      
 
-    /**
-     * Getter veicolo che ha eseguito la manutenzione
-	 * @return the veicolo
-	 */
-    @ManyToOne
-    @JoinColumn(name = "veicolo_id")
-	public Car getVeicolo() {
-		return veicolo;
-	}
-	/**
-	 * Setter veicolo che ha eseguito la manutenzione
-	 * @param veicolo
-	 */
-	public void setVeicolo(Car veicolo) {
-		this.veicolo = veicolo;
-	}
 	/**
 	 * Getter Costo Manutenzione 
 	 * @return costoManutenzione

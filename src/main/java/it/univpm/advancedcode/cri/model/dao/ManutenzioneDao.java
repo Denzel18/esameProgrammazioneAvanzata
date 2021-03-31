@@ -1,17 +1,13 @@
 package it.univpm.advancedcode.cri.model.dao;
 
 import java.util.List;
-import java.util.Set;
-
 import org.hibernate.Session;
-
-import it.univpm.advancedcode.cri.model.entities.Car;
 import it.univpm.advancedcode.cri.model.entities.Manutenzione;
 
 
 public interface ManutenzioneDao {
 	
-	Manutenzione create (long id, String tipoManutenzione, float costoManutenzione, Car car) ;
+	Manutenzione create (long id, String tipoManutenzione, float costoManutenzione) ;
 
 	void delete(Manutenzione manutezione);
 	

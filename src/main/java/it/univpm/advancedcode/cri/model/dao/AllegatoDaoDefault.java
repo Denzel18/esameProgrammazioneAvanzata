@@ -1,12 +1,8 @@
 package it.univpm.advancedcode.cri.model.dao;
 
 import java.util.List;
-import java.util.Set;
-import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
-
 import it.univpm.advancedcode.cri.model.entities.Allegato;
-import it.univpm.advancedcode.cri.model.entities.Documentazione;
 
 @Repository("allegatoDao")
 public class AllegatoDaoDefault extends DefaultDao implements AllegatoDao {
@@ -23,7 +19,7 @@ public class AllegatoDaoDefault extends DefaultDao implements AllegatoDao {
 	}
 
 	/**
-	 * Metodo per restituire un allegato da un id
+	 * Metodo per restituire un allegato dato un id
 	 * @param id: id dell'allegato da cercare 
 	 * @return allegato con id specificato
 	 */
@@ -35,7 +31,6 @@ public class AllegatoDaoDefault extends DefaultDao implements AllegatoDao {
 	/**
 	 * Metodo per aggiornare un allegato
 	 * @param allegato: allegato da aggiornare
-	 * 
 	 * @return allegato aggiornato
 	 */
 	@Override

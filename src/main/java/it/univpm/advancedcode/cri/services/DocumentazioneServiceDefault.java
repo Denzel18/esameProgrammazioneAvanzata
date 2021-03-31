@@ -1,18 +1,12 @@
 package it.univpm.advancedcode.cri.services;
 
-import java.time.*;
+import java.time.LocalDate;
 import java.util.List;
-import java.util.Set;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import it.univpm.advancedcode.cri.model.dao.DocumentazioneDao;
-import it.univpm.advancedcode.cri.model.entities.Allegato;
-import it.univpm.advancedcode.cri.model.entities.Car;
 import it.univpm.advancedcode.cri.model.entities.Documentazione;
-import it.univpm.advancedcode.cri.model.entities.User;
 
 @Service("documentazioneService")
 public class DocumentazioneServiceDefault implements DocumentazioneService {
@@ -33,29 +27,8 @@ public class DocumentazioneServiceDefault implements DocumentazioneService {
      */
     @Transactional
     @Override
-    public Documentazione create(String title, User utente, String descrizione, LocalDate dataScadenza, float costo, Car car) {
-    	return this.documentazioneRepository.create(title, utente, descrizione, dataScadenza, costo, car);
-    }
-
-   
-    /**
-     * Funzione per creare un nuovo documento.
-     *
-     * @param title            
-     * @param autoreUtente     
-     * @param descrizione 
-     * @param dataScadenza 
-     * @param costo  
-     * @param allegati 
-     * @car car 
-     * @return nuovo documento creato
-     */
-    @Transactional
-    @Override
-    public Documentazione create(String title, User autoreUtente, String descrizione, LocalDate dataScadenza, float costo,
-    	    Allegato allegato, Car car) {
-    	return this.documentazioneRepository.create(title, autoreUtente, descrizione, dataScadenza, costo, allegato, car);
-    			
+    public Documentazione create(String title, String descrizione, LocalDate dataScadenza, float costo) {
+    	return this.documentazioneRepository.create(title, descrizione, dataScadenza, costo);
     }
 
     /**

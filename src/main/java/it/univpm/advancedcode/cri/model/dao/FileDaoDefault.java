@@ -23,7 +23,7 @@ public class FileDaoDefault extends DefaultDao implements FileDao  {
 		File file=new File();
 		file.setDescrizione(descrizione);
 		file.setDocumento(documento);
-		file.setName("post" + documento.getId() + "_" + name);
+		file.setName("documento" + documento.getId() + "_" + name);
 		file.setNoDownloadable(noDownloadable);
 		this.getSession().save(file);
 		return file;

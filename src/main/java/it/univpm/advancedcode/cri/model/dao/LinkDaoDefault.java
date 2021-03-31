@@ -14,7 +14,7 @@ public class LinkDaoDefault extends DefaultDao implements LinkDao {
 	 * Metodo per creare un nuovo link
 	 * @param description: descrizione del link
 	 * @param hide: visibilità del link
-	 * @param post: post a cui il link è associato
+	 * @param documento : documento a cui il link è associato
 	 * @param link: nome del link
 	 * @return link creato 
 	 */
@@ -31,7 +31,7 @@ public class LinkDaoDefault extends DefaultDao implements LinkDao {
 	/**
 	 * Metodo per creare un nuovo link
 	 * @param description: descrizione del link
-	 * @param post: post a cui il link è associato
+	 * @param documento : documento a cui il link è associato
 	 * @param link: nome del link
 	 * @return link creato 
 	 */
@@ -56,7 +56,7 @@ public class LinkDaoDefault extends DefaultDao implements LinkDao {
 	@Override
 	public List<Link> getAll() {
 		return getSession().
-                createQuery("from Link p", Link.class).
+                createQuery("from Link l", Link.class).
                 getResultList();
 	}
 

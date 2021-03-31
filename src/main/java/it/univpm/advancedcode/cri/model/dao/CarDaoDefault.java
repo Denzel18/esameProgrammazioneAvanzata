@@ -6,7 +6,6 @@ import org.springframework.stereotype.Repository;
 
 import it.univpm.advancedcode.cri.model.entities.Car;
 
-
 @Repository("carDao")
 public class CarDaoDefault extends DefaultDao implements CarDao {
 
@@ -30,8 +29,8 @@ public class CarDaoDefault extends DefaultDao implements CarDao {
 	}
 
 	/**
-	 * Metodo per eliminare un allegato
-	 * @param allegato: allegato da eliminare
+	 * Metodo per eliminare un veicolo
+	 * @param veicolo : veicolo da eliminare
 	 * 
 	 */
 	@Override
@@ -40,9 +39,9 @@ public class CarDaoDefault extends DefaultDao implements CarDao {
 	}
 	
 	/**
-	 * Metodo per restituire un allegato da un id
-	 * @param id: id dell'allegato da cercare 
-	 * @return allegato con id specificato
+	 * Metodo per restituire un veicolo data la targa
+	 * @param targa : targa del veicolo
+	 * @return veicolo con quella targa
 	 */
 	@Override
 	public Car getByTarga(String targa) {
@@ -52,25 +51,20 @@ public class CarDaoDefault extends DefaultDao implements CarDao {
 	}
 
 	/**
-	 * Metodo per restituire la lista di tutti gli allegati
-	 * @return lista di tutti gli allegati
+	 * Metodo per restituire la lista di tutti i veicoli
+	 * @return lista di tutti i veicoli
 	 */
 	@Override
 	public List<Car> getParcoMezzi() {
-		List<Car> parcoMezzi = getSession().createQuery("from Car c").list();
+		List<Car> parcoMezzi = getSession().createQuery("from Car c", Car.class).getResultList();
 		return parcoMezzi ; 
-		//return getSession().createQuery("select car from cars as c order by c.targa desc", Car.class).getResultList();
-		 //return getSession().
-	     //           createQuery("from car a order by a.targa desc", Car.class).
-	     //           getResultList();
 	}
 	
 	
 	/**
-	 * Metodo per aggiornare un post
-	 * @param allegato: allegato da aggiornare
-	 * 
-	 * @return allegato aggiornato
+	 * Metodo per aggiornare un veicolo
+	 * @param car : veicolo da aggiornare
+	 * @return car veicolo aggiornato
 	 */
 	@Override
 	public Car update(Car car) {

@@ -9,9 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import it.univpm.advancedcode.cri.model.dao.PrenotazioneDao;
 import it.univpm.advancedcode.cri.model.entities.Prenotazione;
-import it.univpm.advancedcode.cri.model.entities.User;
-
-
 
 @Service("prenotazioneService")
 public class PrenotazioneServiceDefault implements PrenotazioneService {
@@ -19,21 +16,24 @@ public class PrenotazioneServiceDefault implements PrenotazioneService {
 	private PrenotazioneDao prenotazioneRepository;
 
 	/**
-	 * Funzione per creare un tag con un nome specifico
-	 * 
-	 * @param name nome del tag da creare
+	 * Funzione per creare una prenotazione
+	 * @param id 
+	 * @param dataInizio
+	 * @param dataFine
+	 * @param oraInizio
+	 * @param oraFine
+	 * @param descrizione
 	 */
 	@Transactional
 	@Override
 	public Prenotazione create(long id,LocalDate dataInzio, LocalDate dataFine, LocalTime oraInzio, LocalTime oraFine, 
-			String descrizione, User utente) {
-		return this.prenotazioneRepository.create(id, dataInzio,  dataFine, oraInzio,  oraFine, descrizione,  utente);
+			String descrizione) {
+		return this.prenotazioneRepository.create(id, dataInzio,  dataFine, oraInzio,  oraFine, descrizione);
 	}
 
 	/**
-	 * Funzione per cancellare un tag specifico
-	 * 
-	 * @param tag tag da cancellare
+	 * Funzione per cancellare un prenotazione specifico
+	 * @param prenotazione prenotazione da cancellare
 	 */
 	@Transactional
 	@Override

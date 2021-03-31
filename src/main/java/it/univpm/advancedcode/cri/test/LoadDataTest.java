@@ -72,20 +72,20 @@ public class LoadDataTest {
 				LocalDate data1 = LocalDate.of(2021,11,20); 
 				
 				Documentazione d1 =
-						documentazioneDao.create("REVISIONE -TX123TY", user5, "DESCRIZIONE",
-								LocalDate.of(2020,10,10), (float)900.00, c1);
+						documentazioneDao.create("REVISIONE -TX123TY", "DESCRIZIONE",
+								LocalDate.of(2020,10,10), (float)900.00);
 
-				Documentazione d4 = documentazioneDao.create("REVISIONE -TX444TY", user5,
-						"DESCRIZIONE", data1, (float)900.00, c3);
+				Documentazione d4 = documentazioneDao.create("REVISIONE -TX444TY",
+						"DESCRIZIONE", data1, (float)920.00);
 				
-				Documentazione d5 = documentazioneDao.create("TAGLIANDO -TX123TY", user5,
-						"DESCRIZIONE", data1, (float)900.00, c5);
+				Documentazione d5 = documentazioneDao.create("TAGLIANDO -TX123TY",
+						"DESCRIZIONE", data1, (float)930.00);
 
-				Documentazione d2 = documentazioneDao.create("BOLLO  -TX123TY", user5,
-						"DESCRIZIONE", data1, (float)900.00, c3);
+				Documentazione d2 = documentazioneDao.create("BOLLO  -TX123TY",
+						"DESCRIZIONE", data1, (float)950.00);
 
-				Documentazione d3 = documentazioneDao.create("REVISIONE -TX123TY", user5,
-						"DESCRIZIONE", data1, (float)900.00, c1);
+				Documentazione d3 = documentazioneDao.create("REVISIONE -TX123TY",
+						"DESCRIZIONE", data1, (float)970.00);
 
 				session.getTransaction().commit(); 
 				assert documentazioneDao.getAll().size() == 5;
