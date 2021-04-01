@@ -55,6 +55,9 @@ public class TestDocumentazioneService {
 		User user = userService.create("marioR", "marioR", "mario", "rossi", "admin");
 		Car car = carService.create((long)1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
 		Documentazione doc1 = documentazioneService.create("TITOLO", user, "DESCRIZIONE", data1, (float) 900.10, car);
+		
+		System.out.println("Lunghezza : "+documentazioneService.getAll().size());
+
 		try {
 			assertEquals(documentazioneService.getAll().size(),1);
 		} catch(Exception e) {
@@ -82,7 +85,7 @@ public class TestDocumentazioneService {
 		try {
 			documentazioneService.getById(doc1.getId()); 
 		} catch(Exception e) {
-			System.out.println("Exception : "+e.getMessage() );
+			fail("Exception not excepted: "+e.getMessage());
 		}
 		try {
 			Documentazione notFound=documentazioneService.getById(999);

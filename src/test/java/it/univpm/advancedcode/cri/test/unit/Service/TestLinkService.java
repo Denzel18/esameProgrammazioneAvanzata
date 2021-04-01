@@ -60,7 +60,7 @@ public class TestLinkService {
 		try {
 			linkService.getById(link1.getId());
 		} catch(Exception e) {
-			System.out.println("Exception not expected: " + e.getMessage());
+			fail("Exception not expected: " + e.getMessage());
 		}
 		try {
 			Link notFound=linkService.getById(999);
@@ -79,6 +79,8 @@ public class TestLinkService {
 		Car car = carService.create((long)1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
 		Documentazione doc1 = documentazioneService.create("TITOLO", user, "DESCRIZIONE", data1, (float) 900.10, car);
 		Link link1=linkService.create("DESCRIZIONE", doc1, "https://www.univpm.it");
+		
+		System.out.println(" LINK HASHCODE " + linkService.hashCode()); 
 
 		assertEquals(linkService.getAll().size(),1);
 

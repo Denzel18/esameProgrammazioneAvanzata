@@ -17,7 +17,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import it.univpm.advancedcode.cri.model.dao.CarDao;
 import it.univpm.advancedcode.cri.model.dao.PrenotazioneDao;
+import it.univpm.advancedcode.cri.model.dao.UserDao;
+import it.univpm.advancedcode.cri.model.entities.Car;
+import it.univpm.advancedcode.cri.model.entities.User;
 import it.univpm.advancedcode.cri.model.entities.Prenotazione;
 import it.univpm.advancedcode.cri.test.DataServiceConfigTest;
 
@@ -28,16 +32,22 @@ public class TestPrenotazioneDao {
   		try (AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(DataServiceConfigTest.class)) {
 			SessionFactory sf = ctx.getBean("sessionFactory", SessionFactory.class);			
 			PrenotazioneDao prenotazioneDao=ctx.getBean("prenotazioneDao",PrenotazioneDao.class);
+			CarDao carDao=ctx.getBean("carDao",CarDao.class);
+			UserDao userDao=ctx.getBean("userDao",UserDao.class);
 			
 			Session s=sf.openSession();
 			prenotazioneDao.setSession(s);
+			carDao.setSession(s);
+			userDao.setSession(s);
 
 			s.beginTransaction();
 			LocalDate data1 = LocalDate.of(2021,11,20); 
 			LocalDate data2 = LocalDate.of(2021,11,20);			
 			LocalTime t1 = LocalTime.of(17, 39);
 			LocalTime t2 = LocalTime.of(18, 39);
-			Prenotazione prenotazione = prenotazioneDao.create(1,data1, data2, t1, t2, "DESCRIZIONE"); 
+			Car car = carDao.create((long)1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
+			User user = userDao.create("denisberno", "berno", "denis", "bernovschi", "admin"); 
+			Prenotazione prenotazione = prenotazioneDao.create(1,data1, data2, t1, t2, "DESCRIZIONE", car, user); 
 			s.getTransaction().commit();
 			
 			assertEquals(prenotazioneDao.getAll().size(),1);
@@ -66,16 +76,22 @@ public class TestPrenotazioneDao {
         try (AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(DataServiceConfigTest.class)) {
 			SessionFactory sf = ctx.getBean("sessionFactory", SessionFactory.class);			
 			PrenotazioneDao prenotazioneDao=ctx.getBean("prenotazioneDao",PrenotazioneDao.class);
+			CarDao carDao=ctx.getBean("carDao",CarDao.class);
+			UserDao userDao=ctx.getBean("userDao",UserDao.class);
 			
 			Session s=sf.openSession();
 			prenotazioneDao.setSession(s);
-			
+			carDao.setSession(s);
+			userDao.setSession(s);
+
 			s.beginTransaction();
 			LocalDate data1 = LocalDate.of(2021,11,20); 
 			LocalDate data2 = LocalDate.of(2021,11,20);			
 			LocalTime t1 = LocalTime.of(17, 39);
 			LocalTime t2 = LocalTime.of(18, 39);
-			Prenotazione prenotazione = prenotazioneDao.create(1,data1, data2, t1, t2, "DESCRIZIONE"); 
+			Car car = carDao.create((long)1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
+			User user = userDao.create("denisberno", "berno", "denis", "bernovschi", "admin"); 
+			Prenotazione prenotazione = prenotazioneDao.create(1,data1, data2, t1, t2, "DESCRIZIONE", car, user); 
 			s.getTransaction().commit();
 			
 			try {
@@ -99,16 +115,22 @@ public class TestPrenotazioneDao {
 		try (AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(DataServiceConfigTest.class)) {
 			SessionFactory sf = ctx.getBean("sessionFactory", SessionFactory.class);			
 			PrenotazioneDao prenotazioneDao=ctx.getBean("prenotazioneDao",PrenotazioneDao.class);
+			CarDao carDao=ctx.getBean("carDao",CarDao.class);
+			UserDao userDao=ctx.getBean("userDao",UserDao.class);
 			
 			Session s=sf.openSession();
 			prenotazioneDao.setSession(s);
-			
+			carDao.setSession(s);
+			userDao.setSession(s);
+
 			s.beginTransaction();
 			LocalDate data1 = LocalDate.of(2021,11,20); 
 			LocalDate data2 = LocalDate.of(2021,11,20);			
 			LocalTime t1 = LocalTime.of(17, 39);
 			LocalTime t2 = LocalTime.of(18, 39);
-			Prenotazione prenotazione = prenotazioneDao.create(1,data1, data2, t1, t2, "DESCRIZIONE"); 
+			Car car = carDao.create((long)1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
+			User user = userDao.create("denisberno", "berno", "denis", "bernovschi", "admin"); 
+			Prenotazione prenotazione = prenotazioneDao.create(1,data1, data2, t1, t2, "DESCRIZIONE", car, user); 
 			s.getTransaction().commit();
 			
 			List<Prenotazione> allPrenotazioni=prenotazioneDao.getAll();
@@ -124,7 +146,7 @@ public class TestPrenotazioneDao {
 			Session s  = sf.openSession();
 			prenotazioneDao.setSession(s);
 			assertEquals(prenotazioneDao.getAll().size(), 0);
-  			}
+  		}
   	}
  
 	@BeforeEach

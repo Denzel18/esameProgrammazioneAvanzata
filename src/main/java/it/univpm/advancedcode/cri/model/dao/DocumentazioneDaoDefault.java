@@ -78,10 +78,9 @@ public class DocumentazioneDaoDefault extends DefaultDao implements Documentazio
      */
     @Override
     public List<Documentazione> getAll() {
-  	
-        return getSession().
-                createQuery("from Documentazione d", Documentazione.class).
+        return getSession().createQuery("from Documentazione d", Documentazione.class).
                 getResultList();
+
     }
     
     /**

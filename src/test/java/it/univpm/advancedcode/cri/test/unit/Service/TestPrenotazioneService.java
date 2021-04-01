@@ -15,18 +15,26 @@ import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import it.univpm.advancedcode.cri.model.entities.Prenotazione;
+import it.univpm.advancedcode.cri.model.entities.User;
+import it.univpm.advancedcode.cri.model.entities.Car;
 import it.univpm.advancedcode.cri.services.PrenotazioneService;
+import it.univpm.advancedcode.cri.services.CarService;
+import it.univpm.advancedcode.cri.services.UserService;
 import it.univpm.advancedcode.cri.test.DataServiceConfigTest;
 
 public class TestPrenotazioneService {
 
 	private AnnotationConfigApplicationContext ctx;
 	private PrenotazioneService prenotazioneService;
+	private CarService carService ;
+	private UserService userService ; 
 
 	@BeforeEach
 	void openContext() {
 		ctx = new AnnotationConfigApplicationContext(DataServiceConfigTest.class);    
 		prenotazioneService = ctx.getBean("prenotazioneService", PrenotazioneService.class);
+		carService = ctx.getBean("carService", CarService.class);
+		userService = ctx.getBean("userService", UserService.class);
 	}
 
 
@@ -52,8 +60,9 @@ public class TestPrenotazioneService {
 		LocalDate data2 = LocalDate.of(2021,11,20);			
 		LocalTime t1 = LocalTime.of(17, 39);
 		LocalTime t2 = LocalTime.of(18, 39);
-
-		Prenotazione p = prenotazioneService.create(1, data1, data2, t1, t2, "DESCRIZIONE");
+		User user = userService.create("denisberno", "berno", "denis", "bernovschi", "admin"); 
+		Car car = carService.create((long)1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
+		Prenotazione p = prenotazioneService.create(1, data1, data2, t1, t2, "DESCRIZIONE", car, user );
 		try {
 			assertEquals(prenotazioneService.getAll().size(),1);
 		} catch(Exception e) {
@@ -77,8 +86,9 @@ public class TestPrenotazioneService {
 		LocalDate data2 = LocalDate.of(2021,11,20);			
 		LocalTime t1 = LocalTime.of(17, 39);
 		LocalTime t2 = LocalTime.of(18, 39);
-
-		Prenotazione p = prenotazioneService.create(1, data1, data2, t1, t2, "DESCRIZIONE");
+		User user = userService.create("denisberno", "berno", "denis", "bernovschi", "admin"); 
+		Car car = carService.create((long)1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
+		Prenotazione p = prenotazioneService.create(1, data1, data2, t1, t2, "DESCRIZIONE", car, user );
 
 
 		try {
@@ -102,8 +112,9 @@ public class TestPrenotazioneService {
 		LocalDate data2 = LocalDate.of(2021,11,20);			
 		LocalTime t1 = LocalTime.of(17, 39);
 		LocalTime t2 = LocalTime.of(18, 39);
-
-		Prenotazione p = prenotazioneService.create(1, data1, data2, t1, t2, "DESCRIZIONE");
+		User user = userService.create("denisberno", "berno", "denis", "bernovschi", "admin"); 
+		Car car = carService.create((long)1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
+		Prenotazione p = prenotazioneService.create(1, data1, data2, t1, t2, "DESCRIZIONE", car, user );
 
 		assertEquals(prenotazioneService.getAll().size(),1);
 

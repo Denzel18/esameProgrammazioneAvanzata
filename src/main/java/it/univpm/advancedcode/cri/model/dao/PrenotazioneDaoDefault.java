@@ -6,6 +6,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 import it.univpm.advancedcode.cri.model.entities.Prenotazione;
+import it.univpm.advancedcode.cri.model.entities.User;
+import it.univpm.advancedcode.cri.model.entities.Car;
 
 
 @Repository("prenotazioneDao")
@@ -23,7 +25,7 @@ public class PrenotazioneDaoDefault extends DefaultDao implements PrenotazioneDa
 	 */
 	@Override 
 	public Prenotazione create  (long id,LocalDate dataInzio, LocalDate dataFine, LocalTime oraInzio, LocalTime oraFine, 
-			String descrizione) {
+			String descrizione, Car car , User utente) {
 		Prenotazione prenotazione = new Prenotazione();
 		prenotazione.setId(id);
 		prenotazione.setDataInzio(dataInzio);
@@ -31,6 +33,8 @@ public class PrenotazioneDaoDefault extends DefaultDao implements PrenotazioneDa
 		prenotazione.setOraInzio(oraInzio);
 		prenotazione.setOraFine(oraFine);
 		prenotazione.setDescrizione(descrizione);
+		prenotazione.setUtente(utente);
+		prenotazione.setVeicolo(car);
 		this.getSession().save(prenotazione);
 		return prenotazione;
 	}

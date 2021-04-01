@@ -3,6 +3,7 @@ package it.univpm.advancedcode.cri.test;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -75,6 +76,13 @@ public class LoadDataServicesTest {
 				System.out.println("ERRORE DOCUMENTAZIONE");
 			}
 
+
+			//documentazione get all test 
+
+			List <Documentazione> allDocuments = documentazioneService.getAll();
+			for( Documentazione a : allDocuments){
+				System.out.println("TITOLO : "+a.getTitolo());
+			}
 			//prenotazione
 
 			try {
@@ -92,8 +100,8 @@ public class LoadDataServicesTest {
 				LocalTime t4 = LocalTime.of(19, 39);
 
 
-				Prenotazione p1 = prenotazioneService.create(1, data1, data2,t1,t2,"DESCRIZIONE");
-				Prenotazione p2 = prenotazioneService.create(1, data3, data4,t3,t4,"DESCRIZIONE");
+				Prenotazione p1 = prenotazioneService.create(1, data1, data2,t1,t2,"DESCRIZIONE", c1, user1);
+				Prenotazione p2 = prenotazioneService.create(1, data3, data4,t3,t4,"DESCRIZIONE", c5, user5);
 
 
 			}catch (Exception e) {
@@ -106,11 +114,12 @@ public class LoadDataServicesTest {
 
 
 			try {
-				Car car = carService.create((long)3, "AX335TY", "FIAT", "DUCATO", "X1LS11121", 3400, "SOCCORSO", 2, "DIESEL");
+				Car car = carService.create((long)3, "AX337TY", "FIAT", "DUCATO", "X1LS11121", 3400, "SOCCORSO", 2, "DIESEL");
+				Car car2 = carService.create((long)5, "AX336TY", "FIAT", "DUCATO", "X1LS11121", 3400, "SOCCORSO", 2, "DIESEL");
 				Manutenzione m1 = manutenzioneService.create(1,"tipomanutenzione",(float) 100, car);
-				Manutenzione m2 = manutenzioneService.create(1,"tipomanutenzione",(float) 100, car);
+				Manutenzione m2 = manutenzioneService.create(1,"tipomanutenzione",(float) 100, car2);
 			}catch (Exception e) {
-				System.out.println("ERRORE PRENOTAZIONE");
+				System.out.println("ERRORE Manutenzione");
 			}
 
 		} catch (Exception e) {

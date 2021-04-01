@@ -9,6 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import it.univpm.advancedcode.cri.model.dao.PrenotazioneDao;
 import it.univpm.advancedcode.cri.model.entities.Prenotazione;
+import it.univpm.advancedcode.cri.model.entities.Car;
+import it.univpm.advancedcode.cri.model.entities.User;
 
 @Service("prenotazioneService")
 public class PrenotazioneServiceDefault implements PrenotazioneService {
@@ -23,12 +25,14 @@ public class PrenotazioneServiceDefault implements PrenotazioneService {
 	 * @param oraInizio
 	 * @param oraFine
 	 * @param descrizione
+	 * @param car
+	 * @param user
 	 */
 	@Transactional
 	@Override
 	public Prenotazione create(long id,LocalDate dataInzio, LocalDate dataFine, LocalTime oraInzio, LocalTime oraFine, 
-			String descrizione) {
-		return this.prenotazioneRepository.create(id, dataInzio,  dataFine, oraInzio,  oraFine, descrizione);
+			String descrizione, Car car, User user) {
+		return this.prenotazioneRepository.create(id, dataInzio,  dataFine, oraInzio,  oraFine, descrizione, car, user);
 	}
 
 	/**

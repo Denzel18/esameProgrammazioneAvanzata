@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import java.util.List;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import it.univpm.advancedcode.cri.app.DataServiceConfig;
@@ -56,7 +57,7 @@ public class LoadDataTest {
 				User user2 = userDao.create("luca78", "12345678", "Luca", "Rossini", "driver");
 				User user3 = userDao.create("matteoVerdi", "12345678", "Matteo", "Verdi", "admin");
 				User user4 = userDao.create("giov_bian", "12345678", "Giovanni", "Bianchi", "admin");
-				User user5 = userDao.create("anto88", "12345678", "Antonio", "Bianchini", "admin");
+				User user5 = userDao.create("anto98", "12345678", "Antonio", "Bianchini", "admin");
 				user1.setRuolo("admin");
 				session.getTransaction().commit();
 				assert userDao.findAll().size() == 5;
@@ -83,19 +84,24 @@ public class LoadDataTest {
 								LocalDate.of(2020,10,10), (float)900.00, c5);
 
 				Documentazione d4 = documentazioneDao.create("REVISIONE -TX444TY",
-						user5, "DESCRIZIONE", data1, (float)920.00, c2);
+						user3, "DESCRIZIONE", data1, (float)920.00, c2);
 				
 				Documentazione d5 = documentazioneDao.create("TAGLIANDO -TX123TY",
-						user5, "DESCRIZIONE", data1, (float)930.00, c4);
+						user2, "DESCRIZIONE", data1, (float)930.00, c4);
 
 				Documentazione d2 = documentazioneDao.create("BOLLO  -TX123TY",
-						user5, "DESCRIZIONE", data1, (float)950.00, c1);
+						user1, "DESCRIZIONE", data1, (float)950.00, c1);
 
 				Documentazione d3 = documentazioneDao.create("REVISIONE -TX124TY",
-						user5, "DESCRIZIONE", data1, (float)970.00 , c3);
+						user4, "DESCRIZIONE", data1, (float)970.00 , c3);
 
 				session.getTransaction().commit(); 
 				assert documentazioneDao.getAll().size() == 5;
+
+				List <Documentazione> allDocs = documentazioneDao.getAll();
+				for( Documentazione a : allDocs){
+					System.out.println("TITOLO : "+a.getTitolo());
+				}
 
 
 				//LINK - FILE - ALLEGATI

@@ -17,37 +17,23 @@ import it.univpm.advancedcode.cri.test.DataServiceConfigTest;
 public class TestUserDao {
 
 	@Test public void createAndDelete() { 
-		System.out.println(" TEST _ CREATE & DELETE");
 		try (AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(DataServiceConfigTest.class)) {
 			SessionFactory sf = ctx.getBean("sessionFactory", SessionFactory.class);
 			UserDao userDao=ctx.getBean("userDao",UserDao.class);
-
 			Session s=sf.openSession(); 
-
-
-			if(s == null)
-				System.out.println("SEI UN COGLIONE \n");
-			else
-				System.out.println("SEI UN GRANDE COGLIONE \n");
-
 			userDao.setSession(s);
 
 			s.beginTransaction(); 
 			User user1 = userDao.create("mario98", "12345678","Mario", "Rossi", "admin"); 
 			s.getTransaction().commit();
-			System.out.println(" UTENTE CREATO ");
-
 			assertEquals(userDao.findAll().size(),1);
 
 			s.beginTransaction(); 
 			userDao.delete(user1); 
 			s.getTransaction().commit();
 
-			System.out.println(" UTENTE CANCELLATO");
-
 			assertEquals(userDao.findAll().size(),0); 
 		} 
-		System.out.println(" FINE TEST _ CREATE & DELETE");
 	}
 
 	@Test public void createAndUpdate() { try (AnnotationConfigApplicationContext

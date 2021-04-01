@@ -2,14 +2,16 @@ package it.univpm.advancedcode.cri.services;
 
 import java.time.LocalDate;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import it.univpm.advancedcode.cri.model.dao.DocumentazioneDao;
-import it.univpm.advancedcode.cri.model.entities.Documentazione;
-import it.univpm.advancedcode.cri.model.entities.User;
 import it.univpm.advancedcode.cri.model.entities.Allegato;
 import it.univpm.advancedcode.cri.model.entities.Car;
+import it.univpm.advancedcode.cri.model.entities.Documentazione;
+import it.univpm.advancedcode.cri.model.entities.User;
 
 @Service("documentazioneService")
 public class DocumentazioneServiceDefault implements DocumentazioneService {
@@ -78,7 +80,13 @@ public class DocumentazioneServiceDefault implements DocumentazioneService {
     @Transactional(readOnly = true)
     @Override
     public List<Documentazione> getAll() {
-        return this.documentazioneRepository.getAll();
+        try{
+            return this.documentazioneRepository.getAll();
+        }catch(Exception e){
+            System.out.println("EXCEPTION GET ALL ");
+            return null; 
+        }
+
     }
     
     /**
