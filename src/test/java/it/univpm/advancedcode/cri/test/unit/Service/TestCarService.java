@@ -53,14 +53,12 @@ public class TestCarService {
 	}
 
 	@Test
-	public void createAndUpdate() throws java.text.ParseException {
+	public void createAndUpdate(){
 		Car c1 = carService.create(1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
-
 		assertEquals(carService.getAll().size(), 1);
-
-		c1.setTarga("CC000TY");
+		c1.setAlimentazione("DIESEL");
 		carService.update(c1);
-		assertEquals(carService.getByTarga("CC000TY"),  c1); 
+		assertEquals(c1.getAlimentazione(), "DIESEL"); 
 	}
 
 	@Test
@@ -68,16 +66,5 @@ public class TestCarService {
 		assertEquals(carService.getAll().size(), 0);
 	}
 
-
-
-	@Test public void testGetByTarga() { 
-		Car c1 = carService.create(1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
-		try { 
-			assertEquals(carService.getAll().size(), 1);
-			assertEquals(carService.getByTarga("AX311TY"), c1); 
-		} catch (Exception e) {
-			fail("Exception not excepted: " + e.getMessage()); 
-		}
-	}
 
 }

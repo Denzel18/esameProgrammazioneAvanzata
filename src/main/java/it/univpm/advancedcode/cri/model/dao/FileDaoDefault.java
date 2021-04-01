@@ -12,7 +12,7 @@ public class FileDaoDefault extends DefaultDao implements FileDao  {
 
 	/**
 	 * Metodo per creare un nuovo file
-	 * @param description: descrizione del file da creare
+	 * @param descrizione: descrizione del file da creare
 	 * @param documento: documento a cui il file è associato
 	 * @param name: nome del file
 	 * @param noDownloadable: flag per indicare se il file è scaricabile o meno

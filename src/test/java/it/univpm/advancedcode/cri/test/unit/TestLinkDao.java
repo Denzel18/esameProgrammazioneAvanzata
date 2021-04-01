@@ -19,6 +19,8 @@ import it.univpm.advancedcode.cri.model.dao.CarDao;
 import it.univpm.advancedcode.cri.model.dao.DocumentazioneDao;
 import it.univpm.advancedcode.cri.model.dao.LinkDao;
 import it.univpm.advancedcode.cri.model.dao.UserDao;
+import it.univpm.advancedcode.cri.model.entities.Car;
+import it.univpm.advancedcode.cri.model.entities.User;
 import it.univpm.advancedcode.cri.model.entities.Documentazione;
 import it.univpm.advancedcode.cri.model.entities.Link;
 import it.univpm.advancedcode.cri.test.DataServiceConfigTest;
@@ -42,8 +44,9 @@ public class TestLinkDao {
 
 			s.beginTransaction();
 			LocalDate data1 = LocalDate.of(2021,11,20); 
-			Documentazione doc1 = documentazioneDao.create("TITOLO", "DESCRIZIONE......", data1, 90);
-			
+			User user = userDao.create("marioR", "marioR", "mario", "rossi", "admin");
+			Car car = carDao.create((long)1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
+			Documentazione doc1 = documentazioneDao.create("TITOLO", user, "DESCRIZIONE......", data1, 90, car);
 			Link link1=linkDao.create("DESCRIZIONE", doc1, "https://www.univpmLink.it");
 			s.getTransaction().commit();
 
@@ -73,10 +76,10 @@ public class TestLinkDao {
 			carDao.setSession(s);
 
 			s.beginTransaction();
-			
 			LocalDate data1 = LocalDate.of(2021,11,20); 
-			Documentazione doc1 = documentazioneDao.create("TITOLO", "DESCRIZIONE......", data1, 90);
-			
+			User user = userDao.create("marioR", "marioR", "mario", "rossi", "admin");
+			Car car = carDao.create((long)1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
+			Documentazione doc1 = documentazioneDao.create("TITOLO", user, "DESCRIZIONE......", data1, 90, car);
 			Link link1=linkDao.create("DESCRIZIONE", doc1, "https://www.univpmLink.it");
 			s.getTransaction().commit();
 
@@ -112,10 +115,10 @@ public class TestLinkDao {
 			carDao.setSession(s);
 
 			s.beginTransaction();
-		
-			LocalDate data1 = LocalDate.of(2021,11,20); 	
-			Documentazione doc1 = documentazioneDao.create("TITOLO", "DESCRIZIONE......", data1, 90);
-			
+			LocalDate data1 = LocalDate.of(2021,11,20); 
+			User user = userDao.create("marioR", "marioR", "mario", "rossi", "admin");
+			Car car = carDao.create((long)1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
+			Documentazione doc1 = documentazioneDao.create("TITOLO", user, "DESCRIZIONE......", data1, 90, car);
 			Link link1=linkDao.create("DESCRIZIONE", doc1, "https://www.univpmLink.it");
 			s.getTransaction().commit();
 

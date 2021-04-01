@@ -19,8 +19,10 @@ import it.univpm.advancedcode.cri.model.dao.CarDao;
 import it.univpm.advancedcode.cri.model.dao.DocumentazioneDao;
 import it.univpm.advancedcode.cri.model.dao.FileDao;
 import it.univpm.advancedcode.cri.model.dao.UserDao;
+import it.univpm.advancedcode.cri.model.entities.Car;
 import it.univpm.advancedcode.cri.model.entities.Documentazione;
 import it.univpm.advancedcode.cri.model.entities.File;
+import it.univpm.advancedcode.cri.model.entities.User;
 import it.univpm.advancedcode.cri.test.DataServiceConfigTest;
 
 public class TestFileDao {
@@ -31,17 +33,21 @@ public class TestFileDao {
 			SessionFactory sf = ctx.getBean("sessionFactory", SessionFactory.class);
 			FileDao fileDao=ctx.getBean("fileDao",FileDao.class);
 			DocumentazioneDao documentazioneDao=ctx.getBean("documentazioneDao",DocumentazioneDao.class);
-			UserDao userDao=ctx.getBean("userDao",UserDao.class);
 			CarDao carDao=ctx.getBean("carDao",CarDao.class);
+			UserDao userDao=ctx.getBean("userDao",UserDao.class);
 			
 			Session s=sf.openSession();
 			fileDao.setSession(s);
 			documentazioneDao.setSession(s);
+			carDao.setSession(s);
 			userDao.setSession(s);
 			
 			s.beginTransaction();
 			LocalDate data1 = LocalDate.of(2021,11,20); 
-			Documentazione doc1 = documentazioneDao.create("TITOLO", "DESCRIZIONE......", data1, 90);
+			User user = userDao.create("marioR", "marioR", "mario", "rossi", "admin");
+			Car car = carDao.create((long)1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
+			Documentazione doc1 = documentazioneDao.create("TITOLO", user, "DESCRIZIONE......", data1, 90, car);
+			File a=fileDao.create("DESCRIZIONE", doc1, "file1.jpg",true);
 			s.getTransaction().commit();
 			
 			assertEquals(fileDao.getAll().size(),1);
@@ -68,17 +74,20 @@ public class TestFileDao {
 			SessionFactory sf = ctx.getBean("sessionFactory", SessionFactory.class);
 			FileDao fileDao=ctx.getBean("fileDao",FileDao.class);
 			DocumentazioneDao documentazioneDao=ctx.getBean("documentazioneDao",DocumentazioneDao.class);
-			UserDao userDao=ctx.getBean("userDao",UserDao.class);
 			CarDao carDao=ctx.getBean("carDao",CarDao.class);
+			UserDao userDao=ctx.getBean("userDao",UserDao.class);
 			
 			Session s=sf.openSession();
 			fileDao.setSession(s);
 			documentazioneDao.setSession(s);
+			carDao.setSession(s);
 			userDao.setSession(s);
 			
 			s.beginTransaction();
 			LocalDate data1 = LocalDate.of(2021,11,20); 
-			Documentazione doc1 = documentazioneDao.create("TITOLO", "DESCRIZIONE......", data1, 90);
+			User user = userDao.create("marioR", "marioR", "mario", "rossi", "admin");
+			Car car = carDao.create((long)1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
+			Documentazione doc1 = documentazioneDao.create("TITOLO", user, "DESCRIZIONE......", data1, 90, car);
 			File a=fileDao.create("DESCRIZIONE", doc1, "file1.jpg",true);
 			s.getTransaction().commit();
 			
@@ -104,23 +113,25 @@ public class TestFileDao {
 			SessionFactory sf = ctx.getBean("sessionFactory", SessionFactory.class);
 			FileDao fileDao=ctx.getBean("fileDao",FileDao.class);
 			DocumentazioneDao documentazioneDao=ctx.getBean("documentazioneDao",DocumentazioneDao.class);
-			UserDao userDao=ctx.getBean("userDao",UserDao.class);
 			CarDao carDao=ctx.getBean("carDao",CarDao.class);
+			UserDao userDao=ctx.getBean("userDao",UserDao.class);
 			
 			Session s=sf.openSession();
 			fileDao.setSession(s);
 			documentazioneDao.setSession(s);
+			carDao.setSession(s);
 			userDao.setSession(s);
 			
 			s.beginTransaction();
 			LocalDate data1 = LocalDate.of(2021,11,20); 
-			Documentazione doc1 = documentazioneDao.create("TITOLO", "DESCRIZIONE......", data1, 90);
-
+			User user = userDao.create("marioR", "marioR", "mario", "rossi", "admin");
+			Car car = carDao.create((long)1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
+			Documentazione doc1 = documentazioneDao.create("TITOLO", user, "DESCRIZIONE......", data1, 90, car);
 			File a=fileDao.create("DESCRIZIONE", doc1, "file1.jpg",true);
 			s.getTransaction().commit();
 			
 			assertEquals(fileDao.getAll().size(),1);
-			assertEquals(fileDao.getByName("post1_file1.jpg").getName(),"post1_file1.jpg");
+			assertEquals(fileDao.getByName("documento1_file1.jpg").getName(),"documento1_file1.jpg");
 			
 			s.beginTransaction();
 			a.setName("post1_modifica.jpg");
@@ -149,7 +160,6 @@ public class TestFileDao {
 	
 	@AfterEach
 	void tearDown() throws Exception {
-	}
-	
+	}	
 }
 

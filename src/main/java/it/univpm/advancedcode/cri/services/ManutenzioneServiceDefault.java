@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import it.univpm.advancedcode.cri.model.dao.ManutenzioneDao;
+import it.univpm.advancedcode.cri.model.entities.Car;
 import it.univpm.advancedcode.cri.model.entities.Manutenzione;
 
 @Service("manutenzioneService")
@@ -15,21 +16,18 @@ public class ManutenzioneServiceDefault implements ManutenzioneService {
     private ManutenzioneDao manutenzioneRepository;
     
     /**
-     * Funzione per creare un nuovo documento.
+     * Funzione per creare un nuovo manutenzione.
      *
-     * @param title            
-     * @param autoreUtente     
-     * @param descrizione 
-     * @param dataScadenza 
-     * @param costo  
-     * @param allegati 
-     * @car car 
-     * @return nuovo documento creato
+     * @param id            
+     * @param tipoManutenzione      
+     * @param costoManutenzione  
+     * @param car 
+     * @return nuovo manutenzione creata
      */
     @Transactional
     @Override
-    public Manutenzione create(long id, String tipoManutenzione, float costoManutenzione) {
-    	return this.manutenzioneRepository.create(id, tipoManutenzione, costoManutenzione);
+    public Manutenzione create(long id, String tipoManutenzione, float costoManutenzione, Car car) {
+    	return this.manutenzioneRepository.create(id, tipoManutenzione, costoManutenzione, car);
     }
 
 

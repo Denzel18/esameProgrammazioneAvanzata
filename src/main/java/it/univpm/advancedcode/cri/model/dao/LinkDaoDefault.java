@@ -12,7 +12,7 @@ public class LinkDaoDefault extends DefaultDao implements LinkDao {
 
 	/**
 	 * Metodo per creare un nuovo link
-	 * @param description: descrizione del link
+	 * @param descrizione: descrizione del link
 	 * @param hide: visibilità del link
 	 * @param documento : documento a cui il link è associato
 	 * @param link: nome del link
@@ -30,14 +30,14 @@ public class LinkDaoDefault extends DefaultDao implements LinkDao {
 
 	/**
 	 * Metodo per creare un nuovo link
-	 * @param description: descrizione del link
+	 * @param descrizione: descrizione del link
 	 * @param documento : documento a cui il link è associato
 	 * @param link: nome del link
 	 * @return link creato 
 	 */
 	@Override
-	public Link create(String description, Documentazione documento, String link) {
-		return this.create(description, false, documento, link);
+	public Link create(String descrizione, Documentazione documento, String link) {
+		return this.create(descrizione, false, documento, link);
 	}
 
 	/**

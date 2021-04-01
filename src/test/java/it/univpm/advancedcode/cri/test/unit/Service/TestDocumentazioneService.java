@@ -5,11 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
-import java.text.SimpleDateFormat;
-import java.time.*;
-import java.util.HashSet;
+import java.time.LocalDate;
 import java.util.List;
-import java.util.Set;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -27,17 +24,16 @@ import it.univpm.advancedcode.cri.test.DataServiceConfigTest;
 public class TestDocumentazioneService {
 
 	private AnnotationConfigApplicationContext ctx;
-	private CarService carService;
 	private DocumentazioneService documentazioneService;
 	private UserService userService;
-	
+	private CarService carService;	
 
 	@BeforeEach
 	void openContext() {
 		ctx = new AnnotationConfigApplicationContext(DataServiceConfigTest.class);    
-		carService = ctx.getBean("carService", CarService.class);
 		documentazioneService = ctx.getBean("documentazioneService", DocumentazioneService.class);
 		userService = ctx.getBean("userService", UserService.class);
+		carService = ctx.getBean("carService", CarService.class);
 	}
 
 	@BeforeEach
@@ -55,10 +51,10 @@ public class TestDocumentazioneService {
 
 	@Test
 	public void createAndDelete() throws java.text.ParseException {
-		User user1 = userService.create("mario98", "12345678", "Mario", "Rossi", "admin");
-		LocalDate data1 = LocalDate.of(2021, 10, 10); 
-		Car c1 = carService.create(1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");		
-		Documentazione doc1 = documentazioneService.create("TITOLO", user1, "DESCRIZIONE", data1, (float) 900.10, c1);
+		LocalDate data1 = LocalDate.of(2021, 10, 10); 		
+		User user = userService.create("marioR", "marioR", "mario", "rossi", "admin");
+		Car car = carService.create((long)1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
+		Documentazione doc1 = documentazioneService.create("TITOLO", user, "DESCRIZIONE", data1, (float) 900.10, car);
 		try {
 			assertEquals(documentazioneService.getAll().size(),1);
 		} catch(Exception e) {
@@ -78,15 +74,15 @@ public class TestDocumentazioneService {
 
 	@Test
 	public void createAndFind() throws java.text.ParseException {
-		User user1 = userService.create("mario98", "12345678", "Mario", "Rossi", "admin");
-		LocalDate data1 = LocalDate.of(2021, 10, 10); 
-		Car c1 = carService.create(1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");		
-		Documentazione doc1 = documentazioneService.create("TITOLO", user1, "DESCRIZIONE", data1, (float) 900.10, c1);
+		LocalDate data1 = LocalDate.of(2021, 10, 10); 		
+		User user = userService.create("marioR", "marioR", "mario", "rossi", "admin");
+		Car car = carService.create((long)1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
+		Documentazione doc1 = documentazioneService.create("TITOLO", user, "DESCRIZIONE", data1, (float) 900.10, car);
 
 		try {
 			documentazioneService.getById(doc1.getId()); 
 		} catch(Exception e) {
-			fail("Exception not expected: " + e.getMessage());
+			System.out.println("Exception : "+e.getMessage() );
 		}
 		try {
 			Documentazione notFound=documentazioneService.getById(999);
@@ -100,18 +96,15 @@ public class TestDocumentazioneService {
 
 	@Test
 	public void createAndUpdate() throws java.text.ParseException {
-		User user1 = userService.create("mario98", "12345678", "Mario", "Rossi", "admin");
-		User user2 = userService.create("mario18", "12345678", "Mario2", "Rossi", "driver");
-		LocalDate data1 = LocalDate.of(2021, 10, 10); 
-		Car c1 = carService.create(1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");		
-		Documentazione doc1 = documentazioneService.create("TITOLO", user1, "DESCRIZIONE", data1, (float) 900.10, c1);
+		LocalDate data1 = LocalDate.of(2021, 10, 10); 		
+		User user = userService.create("marioR", "marioR", "mario", "rossi", "admin");
+		Car car = carService.create((long)1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
+		Documentazione doc1 = documentazioneService.create("TITOLO", user, "DESCRIZIONE", data1, (float) 900.10, car);
 		assertEquals(documentazioneService.getAll().size(),1);
-		doc1.setUtente(user2);
+		doc1.setCosto((float) 900.30);
 		documentazioneService.update(doc1);
-		assertEquals(doc1.getUtente(),user2);
+		assertEquals(doc1.getCosto(),(float) 900.30);
 	}
-
-
 }
 
 

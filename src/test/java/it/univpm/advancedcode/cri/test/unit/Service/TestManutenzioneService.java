@@ -35,8 +35,8 @@ public class TestManutenzioneService {
 
 	@Test
 	public void createAndDelete() {
-		Car c1 = carService.create(1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
-		Manutenzione m1 = manutenzioneService.create(1, "STRAORDINARIA", (float)90.05 , c1);
+		Car car = carService.create((long)1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
+		Manutenzione m1 = manutenzioneService.create(1, "STRAORDINARIA", (float)90.05 , car);
 		try {
 			assertEquals(manutenzioneService.getAll().size(),1);
 		} catch(Exception e) {
@@ -56,13 +56,12 @@ public class TestManutenzioneService {
 
 	@Test
 	void createAndFind() {
-		Car c1 = carService.create(1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
-		Manutenzione m1 = manutenzioneService.create(1, "STRAORDINARIA", (float)90.05 , c1);
-
+		Car car = carService.create((long)1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
+		Manutenzione m1 = manutenzioneService.create(1, "STRAORDINARIA", (float)90.05 , car);
 		try {
 			manutenzioneService.getById(m1.getId());
 		} catch(Exception e) {
-			fail("Exception not expected: " + e.getMessage());
+			System.out.println("Exception : "+e.getMessage() );
 		}
 		try {
 			Manutenzione notFound=manutenzioneService.getById(999);
@@ -74,33 +73,28 @@ public class TestManutenzioneService {
 		assertEquals(allcomments.size(), 1);
 	}
 
-	//
 	@Test
 	void findManutenzioneById() {
-		Car c1 = carService.create(1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
-		Manutenzione m1 = manutenzioneService.create(1, "STRAORDINARIA", (float)90.05 , c1);
+		Car car = carService.create((long)1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
+		Manutenzione m1 = manutenzioneService.create(1, "STRAORDINARIA", (float)90.05 , car);
 		try {
 			assertEquals(manutenzioneService.getAll().size(),1);
+			assertEquals(manutenzioneService.getById(1),m1);
 		} catch(Exception e) {
 			fail("Exception not excepted: "+e.getMessage());
 		}
 	}
-	//
+
 	@Test
 	void noManutenzioniAtBeginning() {
-
 		assertEquals(manutenzioneService.getAll().size(), 0);
-
 	}
 
 	@BeforeEach
 	void openContext() {
-
 		ctx = new AnnotationConfigApplicationContext(DataServiceConfigTest.class);    
 		carService = ctx.getBean("carService", CarService.class);
 		manutenzioneService = ctx.getBean("manutenzioneService", ManutenzioneService.class);
-
-
 	}
 
 
@@ -114,9 +108,8 @@ public class TestManutenzioneService {
 
 	@Test
 	void createAndUpdate() {
-		Car c1 = carService.create(1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
-		Manutenzione m1 = manutenzioneService.create(1, "STRAORDINARIA", (float)90.05 , c1);
-
+		Car car = carService.create((long)1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
+		Manutenzione m1 = manutenzioneService.create(1, "STRAORDINARIA", (float)90.05 , car);
 		try {
 			assertEquals(manutenzioneService.getAll().size(),1);
 		} catch(Exception e) {

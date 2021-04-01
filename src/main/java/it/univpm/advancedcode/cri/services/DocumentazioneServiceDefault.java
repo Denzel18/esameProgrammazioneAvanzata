@@ -7,13 +7,16 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import it.univpm.advancedcode.cri.model.dao.DocumentazioneDao;
 import it.univpm.advancedcode.cri.model.entities.Documentazione;
+import it.univpm.advancedcode.cri.model.entities.User;
+import it.univpm.advancedcode.cri.model.entities.Allegato;
+import it.univpm.advancedcode.cri.model.entities.Car;
 
 @Service("documentazioneService")
 public class DocumentazioneServiceDefault implements DocumentazioneService {
 
     private DocumentazioneDao documentazioneRepository;
     
-    /**
+   /**
      * Funzione per creare un nuovo documento.
      *
      * @param title            
@@ -27,9 +30,33 @@ public class DocumentazioneServiceDefault implements DocumentazioneService {
      */
     @Transactional
     @Override
-    public Documentazione create(String title, String descrizione, LocalDate dataScadenza, float costo) {
-    	return this.documentazioneRepository.create(title, descrizione, dataScadenza, costo);
+    public Documentazione create(String title, User autoreUtente, String descrizione, LocalDate dataScadenza, float costo,
+    	    Allegato allegato, Car car) {
+    	return this.documentazioneRepository.create(title, autoreUtente, descrizione, dataScadenza, costo, allegato, car);
+    			
     }
+
+
+
+   /**
+     * Funzione per creare un nuovo documento.
+     *
+     * @param title            
+     * @param autoreUtente     
+     * @param descrizione 
+     * @param dataScadenza 
+     * @param costo  
+     * @param allegati 
+     * @car car 
+     * @return nuovo documento creato
+     */
+    @Transactional
+    @Override
+    public Documentazione create(String title, User utente, String descrizione, LocalDate dataScadenza, float costo, Car car) {
+    	return this.documentazioneRepository.create(title, utente, descrizione, dataScadenza, costo, car);
+    }
+
+
 
     /**
      * Funzione per eliminare il post specificato.
@@ -99,6 +126,8 @@ public class DocumentazioneServiceDefault implements DocumentazioneService {
     public Documentazione update(Documentazione documento) {
         return this.documentazioneRepository.update(documento);
     }
+
+
 
 
 

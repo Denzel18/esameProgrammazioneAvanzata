@@ -24,9 +24,8 @@ public abstract class Allegato {
 	 * Getter per la proprietà allegato
 	 * @return allegato associato al documento
 	 */
-
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "documento_id" , nullable = false)
+	@JoinColumn(name = "documento_id", nullable = false)
 	public Documentazione getDocumento() {
 		return this.documento;
 	}

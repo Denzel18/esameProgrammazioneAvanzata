@@ -10,35 +10,12 @@ import it.univpm.advancedcode.cri.model.dao.FileDao;
 import it.univpm.advancedcode.cri.model.entities.Documentazione;
 import it.univpm.advancedcode.cri.model.entities.File;
 
+
 @Service("fileService")
 public class FileServiceDefault implements FileService {
 
 	FileDao fileRepository;
 	
-	/**
-	 * Metodo per creare un file
-	 * @param description: descrizione del file 
-	 * @param hide: visibilità del file
-	 * @param documento: post a cui il file è associato
-	 * @param name: nome del file
-	 * @param noDownloadable: flag per indicare se il file è scaricabile o meno
-	 */
-	@Override
-	@Transactional
-	public File create(String description, Documentazione documento,String name, boolean noDownloadable) {
-		return this.fileRepository.create(description, documento, name, noDownloadable);
-	}
-
-	/**
-	 * Metodo per cancellare un file
-	 * @param file: file da eliminare
-	 */
-	@Transactional
-	@Override
-	public void delete(File file) {
-		this.fileRepository.delete(file);
-	}
-
 	/**
 	 * Metodo per ricavare tutti i file
 	 */
@@ -58,7 +35,7 @@ public class FileServiceDefault implements FileService {
 	public File getById(long id) {
 		return this.fileRepository.getById(id);
 	}
-	
+
 	/**
 	 * Metodo per ricavare i file dal nome
 	 * @param name: nome del file da ricavare
@@ -80,31 +57,34 @@ public class FileServiceDefault implements FileService {
 	public List<File> getByNoDownloadable(boolean noDownloadable) {
 		return this.fileRepository.getByNoDownloadable(noDownloadable);
 	}
-
+	
 	/**
-	 * Metodo per restituire i file associati ad un certo post
-	 * @param post: post ricercato
-	 * @return lista dei file associati al post
+	 * Metodo per restituire i file associati ad un certo documento
+	 * @param documentazione: documentazione ricercato
+	 * @return lista dei file associati al documentazione
 	 */
 	@Transactional(readOnly=true)
 	@Override
-	public List<File> getFileByPost(Documentazione documento) {
+	public List<File> getFileByPost(Documentazione documentazione) {
 		List<File> files=this.fileRepository.getAll();
-		files.removeIf(file -> !file.getDocumento().equals(documento));
+		files.removeIf(file -> !file.getDocumento().equals(documentazione));
 		return files;
-		
 	}
 
 	/**
-	 * Setter per la proprietà che si riferisce al DAO dell'entità File.
-	 *
-	 * @param fileRepository DAO dell'entità File da settare
+	 * Metodo per creare un file
+	 * @param description: descrizione del file 
+	 * @param hide: visibilità del file
+	 * @param post: post a cui il file è associato
+	 * @param name: nome del file
+	 * @param noDownloadable: flag per indicare se il file è scaricabile o meno
 	 */
-	@Autowired
-	public void setFileRepository(FileDao fileRepository) {
-		this.fileRepository = fileRepository;
+	@Override
+	@Transactional
+	public File create(String description, Documentazione documento,String name, boolean noDownloadable) {
+		return this.fileRepository.create(description, documento, name, noDownloadable);
 	}
-
+	
 	/**
 	 * Metodo per aggiornare un file
 	 * @param file: file da aggiornare
@@ -114,5 +94,24 @@ public class FileServiceDefault implements FileService {
 	@Override
 	public File update(File file) {
 		return this.fileRepository.update(file);
+	}
+
+	/**
+	 * Metodo per cancellare un file
+	 * @param file: file da eliminare
+	 */
+	@Transactional
+	@Override
+	public void delete(File file) {
+		this.fileRepository.delete(file);
+	}
+
+	/**
+	 * Setter per la proprietà che si riferisce al DAO dell'entità File.
+	 * @param fileRepository DAO dell'entità File da settare
+	 */
+	@Autowired
+	public void setFileRepository(FileDao fileRepository) {
+		this.fileRepository = fileRepository;
 	}
 }

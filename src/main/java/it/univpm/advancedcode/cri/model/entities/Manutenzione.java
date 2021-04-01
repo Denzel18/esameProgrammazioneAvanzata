@@ -5,17 +5,31 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "manutenzioni")
-@NamedQueries({
-    @NamedQuery(
-            name = "Manutenzione.getById",
-            query = "FROM Manutenzione WHERE Manutenzione.MANUTENZIONE_ID = :ID"
-    )
-})
 public class Manutenzione implements Serializable{
 	
 	private long id;
     private String tipoManutenzione; // straordinaria o regolare
     private float costoManutenzione;
+	private Car veicolo; 
+      
+	// --------- VEICOLO ---------
+    /**
+     * Getter veicolo che ha eseguito la manutenzione
+	 * @return the veicolo
+	 */
+    @ManyToOne
+    @JoinColumn(name = "veicolo_id")
+	public Car getVeicolo() {
+		return veicolo;
+	}
+	/**
+	 * Setter veicolo che ha eseguito la manutenzione
+	 * @param veicolo
+	 */
+	public void setVeicolo(Car veicolo) {
+		this.veicolo = veicolo;
+	}
+
 
 	/**
 	 * Getter Costo Manutenzione 

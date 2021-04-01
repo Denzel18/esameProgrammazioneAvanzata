@@ -22,9 +22,7 @@ import it.univpm.advancedcode.cri.services.UserService;
 
 
 public class LoadDataServicesTest {
-	private final static String DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras "
-			+ "tempus magna vel posuere cursus. Sed ultricies nunc purus, et maximus eros accumsan sit amet. Donec "
-			+ "diam nisl, consectetur non nisl vel, condimentum finibus est.";
+	private final static String DESCRIPTION = "Descrizione ....";
 
 	private final static String TITLE = "Lorem ipsum dolor sit amet.";
 
@@ -62,8 +60,10 @@ public class LoadDataServicesTest {
 				LocalDate data1 = LocalDate.of(2021,10,20); 
 				LocalDate data2 = LocalDate.of(2021,11,20);
 
-				Documentazione d1 = documentazioneService.create(TITLE, DESCRIPTION, data1, 90);
-				Documentazione d2 = documentazioneService.create(TITLE, DESCRIPTION, data2, 180);
+				Car car = carService.create(1, "AZ123TY", "FIAT", "DOBLO", "124575323", 5000, "soccorso", 3, "DIESEL");
+
+				Documentazione d1 = documentazioneService.create(TITLE, user5, DESCRIPTION, data1, 90, car) ;
+				Documentazione d2 = documentazioneService.create(TITLE, user5, DESCRIPTION, data2, 180, car);
 
 				fileService.create(DESCRIPTION, d1, "file1.jpg", true);
 				fileService.create(DESCRIPTION, d2, "file2.jpg", true);
@@ -106,9 +106,9 @@ public class LoadDataServicesTest {
 
 
 			try {
-				Manutenzione m1 = manutenzioneService.create(1,"tipomanutenzione",(float) 100);
-				Manutenzione m2 = manutenzioneService.create(1,"tipomanutenzione",(float) 100);
-
+				Car car = carService.create((long)3, "AX335TY", "FIAT", "DUCATO", "X1LS11121", 3400, "SOCCORSO", 2, "DIESEL");
+				Manutenzione m1 = manutenzioneService.create(1,"tipomanutenzione",(float) 100, car);
+				Manutenzione m2 = manutenzioneService.create(1,"tipomanutenzione",(float) 100, car);
 			}catch (Exception e) {
 				System.out.println("ERRORE PRENOTAZIONE");
 			}

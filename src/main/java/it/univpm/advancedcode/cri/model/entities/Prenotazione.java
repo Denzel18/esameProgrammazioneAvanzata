@@ -7,12 +7,6 @@ import java.time.*;
 
 @Entity
 @Table(name = "prenotazioni")
-@NamedQueries({
-    @NamedQuery(
-            name = "Prenotazione.getById",
-            query = "FROM Prenotazione WHERE Prenotazione.PRENOTAZIONE_ID = :ID"
-    )
-})
 public class Prenotazione implements Serializable {
 	
 
@@ -22,6 +16,47 @@ public class Prenotazione implements Serializable {
     private LocalTime oraInzio; 
     private LocalTime oraFine; 
     private String descrizione;	
+
+	private User utente;
+
+    private Car veicolo; 
+    
+
+	//----------- VEICOLO -----------
+    /**
+     * Getter veicolo che ha eseguito la prentoazione
+	 * @return the veicolo
+	 */
+    @ManyToOne
+    @JoinColumn(name = "veicolo_id")
+	public Car getVeicolo() {
+		return this.veicolo;
+	}
+	/**
+	 * Setter veicolo che ha eseguito la prenotazione
+	 * @param veicolo
+	 */
+	public void setVeicolo(Car veicolo) {
+		this.veicolo = veicolo;
+	}
+    
+	//---------- UTENTE --------
+    /**
+     * Getter utente che ha eseguito la prenotazione
+	 * @return the User
+	 */
+    @ManyToOne
+    @JoinColumn(name = "username")
+	public User getUtente() {
+		return this.utente;
+	}
+	/**
+	 * Setter utente che ha eseguito la prenotazione
+	 * @param utente
+	 */
+	public void setUtente(User utente) {
+		this.utente = utente;
+	}
 	
 	//------ GETTER PRENOTAZIONE
 	/**

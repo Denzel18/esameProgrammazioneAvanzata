@@ -1,10 +1,16 @@
 package it.univpm.advancedcode.cri.model.dao;
 
 import java.time.*;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.stereotype.Repository;
+
+import it.univpm.advancedcode.cri.model.entities.Car;
 import it.univpm.advancedcode.cri.model.entities.Documentazione;
+import it.univpm.advancedcode.cri.model.entities.User;
+import it.univpm.advancedcode.cri.model.entities.Allegato;
 
 @Repository("documentazioneDao")
 public class DocumentazioneDaoDefault extends DefaultDao implements DocumentazioneDao {
@@ -18,15 +24,45 @@ public class DocumentazioneDaoDefault extends DefaultDao implements Documentazio
      * @param costo
      */
     @Override
-    public Documentazione create(String title, String descrizione, LocalDate dataScadenza, float costo) {
+    public Documentazione create(String title,  User utente, String descrizione, LocalDate dataScadenza, float costo, Car car) {
         Documentazione doc = new Documentazione();
         doc.setTitolo(title);
         doc.setDescrizione(descrizione);
+        doc.setVeicolo(car);
         doc.setDataScadenza(dataScadenza);
         doc.setCosto(costo);
+        doc.setUtente(utente);
         this.getSession().save(doc);
         return doc;
     }
+    /**
+     * Funzione creazione Documentazione
+     * @param title
+     * @param utente
+     * @param descrizione
+     * @param dataScadenza
+     * @param costo
+     * @param allegato
+     * @param car
+     * @return
+     */
+    @Override
+	public Documentazione create(String title, User utente, String descrizione, LocalDate dataScadenza, float costo,
+			Allegato allegato, Car car) {
+		Set<Allegato> allegati = new HashSet<Allegato>();
+		allegati.add(allegato);
+        Documentazione doc = new Documentazione();
+        doc.setTitolo(title);
+        doc.setDescrizione(descrizione);
+        doc.setVeicolo(car);
+        doc.setDataScadenza(dataScadenza);
+        doc.setCosto(costo);
+        doc.setUtente(utente);
+        doc.setAllegati(allegati);
+        this.getSession().save(doc);
+        return doc;
+	}
+
     
     /**
      * Funzione per eliminare il documento specificato.

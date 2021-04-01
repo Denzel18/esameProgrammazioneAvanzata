@@ -4,6 +4,7 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import it.univpm.advancedcode.cri.model.entities.Manutenzione;
+import it.univpm.advancedcode.cri.model.entities.Car;
 
 @Repository("manutenzioneDao")
 public class ManutenzioneDaoDefault extends DefaultDao implements ManutenzioneDao {
@@ -12,16 +13,20 @@ public class ManutenzioneDaoDefault extends DefaultDao implements ManutenzioneDa
 	 * Metodo per creare una manutenzione 
 	 * @param id id della manutenzione 
 	 * @param tipoManutenzione tipologia manutenzione "Straordinaria" o "Ordinaria"
+	 * @param costoManutenzione costo manutenzione
+	 * @param car veicolo soggetto a manutenzione
 	 */
 	@Override
-	public Manutenzione create (long id, String tipoManutenzione, float costoManutenzione) {
+	public Manutenzione create (long id, String tipoManutenzione, float costoManutenzione, Car car) {
 		Manutenzione man = new Manutenzione(); 
 		man.setId(id);
 		man.setTipoManutenzione(tipoManutenzione);
 		man.setCostoManutenzione(costoManutenzione);
+		man.setVeicolo(car);
         this.getSession().save(man);
 		return man; 
 	}
+
 
 	/**
 	 * Metodo per eliminare una manutenzione

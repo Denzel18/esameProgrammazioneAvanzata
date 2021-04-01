@@ -1,28 +1,102 @@
 package it.univpm.advancedcode.cri.model.entities;
 
 import java.io.Serializable;
-import java.time.*; 
+import java.time.*;
+import java.util.Set;
+import java.util.HashSet;
 import javax.persistence.*;
 
 
 @Entity
 @Table(name = "documentazioni")
-@NamedQueries({
-	@NamedQuery(
-			name = "Documentazione.getByTitle",
-			query = "FROM Documentazione WHERE Documentazione.TITOLO =: titolo"
-			)
-})
-public class Documentazione implements Serializable {
+public class 
+
+Documentazione implements Serializable {
 	private long id;
 	private String titolo;
 	private String descrizione;
 	private LocalDate dataScadenza; 
 	private float costo; 
 
+	private Set<Allegato> allegati = new HashSet<>();
+
+	private User utente;
+
+	private Car veicolo;
+
+
+	//----------- VEICOLO -------------------
+	/**
+	 * Getter car documentazione
+	 * @return car 
+	 */
+	@ManyToOne
+	@JoinColumn(name = "veicolo_id")
+	public Car getVeicolo(){
+		return this.veicolo;
+	}
+
+	/**
+	 * Setter Car
+	 * @param cars
+	 */
+	public void setVeicolo(Car veicolo) {
+		this.veicolo=veicolo;
+	}
+
+
+
+	//----------- UTENTE insirimento documentazione
+
+	/**
+	 * Getter Utente
+	 * @return the utente
+	 */
+	@ManyToOne
+	@JoinColumn(name = "username")
+	public User getUtente() {
+		return utente;
+	}
+
+
+	/**
+	 * Setter Utente
+	 * @param utente the utente to set
+	 */
+	public void setUtente(User utente) {
+		this.utente = utente;
+	}
+
+	//------ ALLEGATI -------------
+
+	 /**
+     * Getter allegati
+     * @return allegati del post
+     */
+    @OneToMany(fetch = FetchType.EAGER, orphanRemoval = true, mappedBy = "documento")
+    public Set<Allegato> getAllegati() {
+        return allegati;
+    }
+
+    /**
+     * Setter allegati
+     * @param allegati allegati del post da settare
+     */
+    public void setAllegati(Set<Allegato> allegati) {
+        this.allegati = allegati;
+    }
+
+    /**
+     * Metodo per aggiungere un allegato al documento
+     * @param allegato allegato da aggiungere
+     */
+    public void addAllegato(Allegato allegato) {
+        allegato.setDocumento(this);
+        this.allegati.add(allegato);
+    }
+
+
 	//----- GETTER DOCUMENTAZIONE
-
-
 	/**
 	 * Getter Costo documentazione
 	 * @return costo

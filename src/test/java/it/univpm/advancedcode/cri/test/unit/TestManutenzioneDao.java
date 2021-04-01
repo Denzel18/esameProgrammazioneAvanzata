@@ -17,6 +17,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import it.univpm.advancedcode.cri.model.dao.CarDao;
 import it.univpm.advancedcode.cri.model.dao.ManutenzioneDao;
+import it.univpm.advancedcode.cri.model.entities.Car;
 import it.univpm.advancedcode.cri.model.entities.Manutenzione;
 import it.univpm.advancedcode.cri.test.DataServiceConfigTest;
 
@@ -35,7 +36,8 @@ public class TestManutenzioneDao {
 
 
 			s.beginTransaction();
-			Manutenzione manutenzione = manutenzioneDao.create(1,"STRAORDINARIA", (float) 900.00);   
+			Car car = carDao.create(5, "PP006AA", "FIAT", "DUCATO", "P01210011", 4000, "SOCCORSO", 2, "ELETTRICO");
+			Manutenzione manutenzione = manutenzioneDao.create(1,"STRAORDINARIA", (float) 900.00, car);   
 
 			s.getTransaction().commit();
 
@@ -75,7 +77,8 @@ public class TestManutenzioneDao {
 
 
 			s.beginTransaction();
-			Manutenzione manutenzione = manutenzioneDao.create(1,"STRAORDINARIA", (float) 900.00);   
+			Car car = carDao.create(5, "PP006AA", "FIAT", "DUCATO", "P01210011", 4000, "SOCCORSO", 2, "ELETTRICO");
+			Manutenzione manutenzione = manutenzioneDao.create(10,"STRAORDINARIA", (float) 900.00, car); 
 
 			s.getTransaction().commit();
 
@@ -108,8 +111,9 @@ public class TestManutenzioneDao {
 			carDao.setSession(s);
 
 
-			s.beginTransaction();
-			Manutenzione manutenzione = manutenzioneDao.create(1,"STRAORDINARIA", (float) 900.00);   
+			s.beginTransaction();  
+			Car car = carDao.create(5, "PP006AA", "FIAT", "DUCATO", "P01210011", 4000, "SOCCORSO", 2, "ELETTRICO");
+			Manutenzione manutenzione = manutenzioneDao.create(1,"STRAORDINARIA", (float) 900.00, car);   
 
 			s.getTransaction().commit();
 

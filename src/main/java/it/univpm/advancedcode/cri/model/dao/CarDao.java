@@ -15,6 +15,8 @@ public interface CarDao {
 	void delete(Car car);
 	
 	Car getByTarga(String targa);
+
+	Car getById(long ID);
 	
 	List<Car> getParcoMezzi();
 	

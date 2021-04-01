@@ -45,10 +45,15 @@ public class CarDaoDefault extends DefaultDao implements CarDao {
 	 */
 	@Override
 	public Car getByTarga(String targa) {
-		return (Car) getSession().getNamedQuery("Car.getCarByTarga").setParameter("targa", targa).
-                uniqueResult();
+		return (Car) getSession().createQuery("from Car c where c.targa="+"'"+targa+"'").uniqueResult();
 		//return getSession().find(Car.class, targa);
 	}
+
+	@Override
+	public Car getById(long id) {
+		return (Car) getSession().find(Car.class, id);
+	}
+
 
 	/**
 	 * Metodo per restituire la lista di tutti i veicoli

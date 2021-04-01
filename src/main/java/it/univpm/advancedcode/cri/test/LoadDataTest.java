@@ -1,22 +1,29 @@
 package it.univpm.advancedcode.cri.test;
 
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import it.univpm.advancedcode.cri.model.dao.*;
-import it.univpm.advancedcode.cri.model.entities.*;
+import it.univpm.advancedcode.cri.app.DataServiceConfig;
+import it.univpm.advancedcode.cri.model.dao.AllegatoDao;
+import it.univpm.advancedcode.cri.model.dao.CarDao;
+import it.univpm.advancedcode.cri.model.dao.DocumentazioneDao;
+import it.univpm.advancedcode.cri.model.dao.FileDao;
+import it.univpm.advancedcode.cri.model.dao.LinkDao;
+import it.univpm.advancedcode.cri.model.dao.ManutenzioneDao;
+import it.univpm.advancedcode.cri.model.dao.PrenotazioneDao;
+import it.univpm.advancedcode.cri.model.dao.UserDao;
+import it.univpm.advancedcode.cri.model.entities.Car;
+import it.univpm.advancedcode.cri.model.entities.Documentazione;
+import it.univpm.advancedcode.cri.model.entities.User;
 
 public class LoadDataTest {
 	public static void main(String... args) {
 
 		try (AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(
-				DataServiceConfigTest.class)) {
+				DataServiceConfig.class)) {
 
 			SessionFactory sf = ctx.getBean("sessionFactory", SessionFactory.class);
 
@@ -47,9 +54,9 @@ public class LoadDataTest {
 				session.beginTransaction();
 				User user1 = userDao.create("mario98", "12345678", "Mario", "Rossi","admin");
 				User user2 = userDao.create("luca78", "12345678", "Luca", "Rossini", "driver");
-				User user3 = userDao.create("matteoVerdi", "12345678", "Matteo", "Verdi", "account");
-				User user4 = userDao.create("giov_bian", "12345678", "Giovanni", "Bianchi", "driver");
-				User user5 = userDao.create("anto88", "12345678", "Antonio", "Bianchini", "driver");
+				User user3 = userDao.create("matteoVerdi", "12345678", "Matteo", "Verdi", "admin");
+				User user4 = userDao.create("giov_bian", "12345678", "Giovanni", "Bianchi", "admin");
+				User user5 = userDao.create("anto88", "12345678", "Antonio", "Bianchini", "admin");
 				user1.setRuolo("admin");
 				session.getTransaction().commit();
 				assert userDao.findAll().size() == 5;
@@ -72,20 +79,20 @@ public class LoadDataTest {
 				LocalDate data1 = LocalDate.of(2021,11,20); 
 				
 				Documentazione d1 =
-						documentazioneDao.create("REVISIONE -TX123TY", "DESCRIZIONE",
-								LocalDate.of(2020,10,10), (float)900.00);
+						documentazioneDao.create("REVISIONE -TX123TY", user5, "DESCRIZIONE",
+								LocalDate.of(2020,10,10), (float)900.00, c5);
 
 				Documentazione d4 = documentazioneDao.create("REVISIONE -TX444TY",
-						"DESCRIZIONE", data1, (float)920.00);
+						user5, "DESCRIZIONE", data1, (float)920.00, c2);
 				
 				Documentazione d5 = documentazioneDao.create("TAGLIANDO -TX123TY",
-						"DESCRIZIONE", data1, (float)930.00);
+						user5, "DESCRIZIONE", data1, (float)930.00, c4);
 
 				Documentazione d2 = documentazioneDao.create("BOLLO  -TX123TY",
-						"DESCRIZIONE", data1, (float)950.00);
+						user5, "DESCRIZIONE", data1, (float)950.00, c1);
 
-				Documentazione d3 = documentazioneDao.create("REVISIONE -TX123TY",
-						"DESCRIZIONE", data1, (float)970.00);
+				Documentazione d3 = documentazioneDao.create("REVISIONE -TX124TY",
+						user5, "DESCRIZIONE", data1, (float)970.00 , c3);
 
 				session.getTransaction().commit(); 
 				assert documentazioneDao.getAll().size() == 5;
@@ -97,19 +104,15 @@ public class LoadDataTest {
 
 				fileDao.create("DESCRIZIONE", d1, "file1.jpg", true);
 				fileDao.create("DESCRIZIONE", d2, "file2.jpg", true);
-				fileDao.create("DESCRIZIONE", d1, "file1.jpg", true);
-				fileDao.create("DESCRIZIONE", d2, "file2.jpg", true);
 				fileDao.create("DESCRIZIONE", d3, "file3.jpg", true);
 
 				linkDao.create("DESCRIZIONE", d1, "https://www.univpm.it");
-				linkDao.create("DESCRIZIONE", true, d2, "https://www.univpm.it");
-				linkDao.create("DESCRIZIONE", d1, "https://www.univpm.it");
-				linkDao.create("DESCRIZIONE", true, d2, "https://www.univpm.it");
+				linkDao.create("DESCRIZIONE", true, d2, "https://www.univpm.it"); 
 				linkDao.create("DESCRIZIONE", d3, "https://www.univpm.it");
 
 				session.getTransaction().commit();
 
-				//assert allegatoDao.getAll().size() == 10;
+				assert allegatoDao.getAll().size() == 10;
 
 
 
