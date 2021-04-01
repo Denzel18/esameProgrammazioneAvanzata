@@ -144,7 +144,7 @@ public class User implements Serializable {
 	 *
 	 * @return se l'utente è un admin o meno
 	 */
-	@Column(name = "ruolo" , nullable=false)
+	@Column(name = "ruolo")
 	public String getRuolo() {
 		return this.ruolo;
 	}

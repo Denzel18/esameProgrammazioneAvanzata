@@ -36,13 +36,8 @@
 			<h2 class="my-4 text-center">${cars}</h2>
 			<c:choose>
 				<c:when test="${numCars != 0}">
-					<div class="font-weight-bold text-center">Numero veicoli:
-						${numCars}</div>
+					<div class="font-weight-bold text-center">Numero veicoli: ${numCars}</div>
 				</c:when>
-				<c:otherwise>
-					<div class="font-weight-bold text-center">Nessun post
-						presente!</div>
-				</c:otherwise>
 			</c:choose>
 
 			<div>
@@ -59,43 +54,6 @@
 					</div>
 				</c:forEach>
 			</div>
-
-			<c:if test="${numPosts != 0}">
-				<div id="pagination" class="pagination justify-content-center mb-4">
-
-					<c:url value="/" var="prev">
-						<c:param name="page" value="${page-1}" />
-					</c:url>
-					<c:if test="${page > 1}">
-						<li class="page-item"><a href="<c:out value="${prev}" />"
-							class="pn prev page-link">Prev</a></li>
-					</c:if>
-
-					<c:forEach begin="1" end="${maxPages}" step="1" varStatus="i">
-						<c:choose>
-							<c:when test="${page == i.index}">
-								<li class="page-item disabled"><span class="page-link">${i.index}</span>
-								</li>
-							</c:when>
-							<c:otherwise>
-								<c:url value="/" var="url">
-									<c:param name="page" value="${i.index}" />
-								</c:url>
-								<li class="page-item"><a href='<c:out value="${url}" />'
-									class="page-link">${i.index}</a></li>
-							</c:otherwise>
-						</c:choose>
-					</c:forEach>
-					<c:url value="/" var="next">
-						<c:param name="page" value="${page + 1}" />
-					</c:url>
-					<c:if test="${page + 1 <= maxPages}">
-						<li class="page-item"><a href='<c:out value="${next}" />'
-							class="pn next page-link">Next</a>
-						<li class="page-item">
-					</c:if>
-				</div>
-			</c:if>
 
 			<!-- Pagination 
         <ul class="pagination justify-content-center mb-4">

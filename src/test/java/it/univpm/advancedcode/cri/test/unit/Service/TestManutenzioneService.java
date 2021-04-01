@@ -79,7 +79,7 @@ public class TestManutenzioneService {
 		Manutenzione m1 = manutenzioneService.create(1, "STRAORDINARIA", (float)90.05 , car);
 		try {
 			assertEquals(manutenzioneService.getAll().size(),1);
-			assertEquals(manutenzioneService.getById(1),m1);
+			assertEquals(manutenzioneService.getById(1).getId(),m1.getId());
 		} catch(Exception e) {
 			fail("Exception not excepted: "+e.getMessage());
 		}
