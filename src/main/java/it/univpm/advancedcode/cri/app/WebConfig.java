@@ -117,7 +117,8 @@ public class WebConfig implements WebMvcConfigurer {
 	}
 
 
-	@Bean ResourceBundleThemeSource themeSource() {
+	@Bean
+	ResourceBundleThemeSource themeSource() {
 		return new ResourceBundleThemeSource();
 	}
 
