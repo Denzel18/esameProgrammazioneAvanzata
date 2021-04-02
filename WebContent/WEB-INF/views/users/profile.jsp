@@ -49,18 +49,27 @@
 
 			<div class="form-group">
 		        <label>Nome</label>
-		        <input type="text" name="firstname" class="form-control mt-2" placeholder="${user.firstName}" disabled="disabled">
+		        <input type="text" name="firstname" class="form-control mt-2" placeholder="${user.firstname}" disabled="disabled">
 	        </div>
 	        
 	        <div class="form-group">
 		        <label>Cognome</label>
-		        <input type="text" name="lastname" class="form-control mt-2" placeholder="${user.lastName}" disabled="disabled">
+		        <input type="text" name="lastname" class="form-control mt-2" placeholder="${user.lastname}" disabled="disabled">
 	        </div>
 	        
 	        <div class="form-group">
 		         <label>Immagine Profilo</label>
 		         <input type="text" name="image" class="form-control mt-2" placeholder="${user.imageProfile}" disabled="disabled"><br>
 	        </div>
+
+			<div class="form-group">
+				<label>Ruolo</label>
+				<select name="ruolo" id="ruolo" class="form-control mt-2" placeholder="${user.ruolo}">
+					<option value="admin">Admin</option>
+					<option value="driver">Driver</option>
+					<option value="account">Account</option>
+				</select>
+			</div>
 	        
 	         <div class="d-flex justify-content-between">
 	        	<a href="${url}" class="btn btn-primary col-6" role="button">Modifica</a>

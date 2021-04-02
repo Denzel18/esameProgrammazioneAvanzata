@@ -23,16 +23,25 @@
         <put-attribute name="body" value="/WEB-INF/views/contacts.jsp"/>
         <put-attribute name="pageTitle" value="Contatti"/>
     </definition>
-    <definition extends="default" name="car.details">
-        <put-attribute name="body" value="/WEB-INF/views/carDetails.jsp"/>
-        <put-attribute name="pageTitle" value="Dettagli Post"/>
-    </definition>
-    <definition extends="default" name="cars.list">
-        <put-attribute name="body" value="/WEB-INF/views/cars/list.jsp"/>
-        <put-attribute name="pageTitle" value="Dettagli Post"/>
-    </definition>
-        <definition extends="default" name="disclaimer">
+    <definition extends="default" name="disclaimer">
         <put-attribute name="body" value="/WEB-INF/views/disclaimer.jsp"/>
         <put-attribute name="pageTitle" value="Disclaimer"/>
     </definition>
+
+    <!-- USERS -->
+    <definition extends="default" name="disclaimer">
+        <put-attribute name="body" value="/WEB-INF/views/disclaimer.jsp"/>
+        <put-attribute name="pageTitle" value="Disclaimer"/>
+    </definition>
+    <definition extends="default" name="disclaimer">
+        <put-attribute name="body" value="/WEB-INF/views/disclaimer.jsp"/>
+        <put-attribute name="pageTitle" value="Disclaimer"/>
+    </definition>
+    <definition extends="default" name="disclaimer">
+        <put-attribute name="body" value="/WEB-INF/views/disclaimer.jsp"/>
+        <put-attribute name="pageTitle" value="Disclaimer"/>
+    </definition>
+
+
+
 </tiles-definitions>

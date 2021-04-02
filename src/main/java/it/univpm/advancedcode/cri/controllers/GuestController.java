@@ -147,4 +147,89 @@ public class GuestController {
         uiModel.addAttribute("maxPages", pagedListHolder.getPageCount());
     }
 
+    //----------------- CARS ----------------//
+    /**
+     * Metodo " GET " lista dei veicoli
+     * @param successMessage
+     * @param errorMessage
+     * @param uiModel
+     * @return nome della vista
+     */
+    @GetMapping(value = "/cars")
+	public String showCars(@RequestParam(value = "successMessage", required = false) String successMessage,
+			@RequestParam(value = "errorMessage", required = false) String errorMessage,
+			Model uiModel) {
+		logger.info("Listing all the cars...");
+
+		List<Car> cars = this.carService.getAll();
+
+		uiModel.addAttribute("cars", cars);
+		uiModel.addAttribute("numCars", cars.size());
+		uiModel.addAttribute("successMessage", successMessage);
+		uiModel.addAttribute("errorMessage", errorMessage);
+
+		return "cars.list";
+	}
+
+    /**
+	 * Metodo " GET " per la creazione di un veicolo 
+	 * @param uiModel modello associato
+	 * @return nome della vista
+	 */
+	@GetMapping(value = "/car/new")
+	public String newCar(Model uiModel) {
+		logger.info("Creating a new car...");
+		uiModel.addAttribute("car", new Car());
+		return "car.new";
+	}
+
+    //------------------ USERS ------------------------//
+	/**
+	 * Metodo " GET " per la visualizzazione della lista di tutti gli utenti.
+	 *
+	 * @param errorMessage eventuale messaggio di errore
+	 * @param successMessage eventuale messaggio di successo
+	 * @param uiModel modello associato alla vista
+	 * @return nome della vista da visualizzare
+	 */
+	@GetMapping(value = "/users")
+	public String showUsers(@RequestParam(value = "successMessage", required = false) String successMessage,
+			@RequestParam(value = "errorMessage", required = false) String errorMessage,
+			Model uiModel) {
+		logger.info("Listing all the users...");
+		List<User> allUsers = this.userService.findAll();
+		uiModel.addAttribute("users", allUsers);
+		uiModel.addAttribute("numUsers", allUsers.size());
+		uiModel.addAttribute("successMessage", successMessage);
+		uiModel.addAttribute("errorMessage", errorMessage);
+		return "users.list";
+	}
+
+    /**
+	 * Metodo " GET " per la creazione di un utente 
+	 * @param uiModel modello associato
+	 * @return nome della vista
+	 */
+	@GetMapping(value = "/user/new")
+	public String newUsers(Model uiModel) {
+		logger.info("Creating a new user...");
+		uiModel.addAttribute("user", new User());
+		return "users.new";
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

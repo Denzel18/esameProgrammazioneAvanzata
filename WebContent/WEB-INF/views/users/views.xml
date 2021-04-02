@@ -11,6 +11,10 @@
 		<put-attribute name="body" value="/WEB-INF/views/users/profile.jsp" />
 		<put-attribute name="pageTitle" value="Profilo Utente" />
 	</definition>
+	<definition extends="default" name="users.new">
+		<put-attribute name="body" value="/WEB-INF/views/users/profile.jsp" />
+		<put-attribute name="pageTitle" value="Profilo Utente" />
+	</definition>
 	<definition extends="default" name="users.editProfile">
 		<put-attribute name="body" value="/WEB-INF/views/users/editProfile.jsp" />
 		<put-attribute name="pageTitle" value="Modifica Profilo Utente" />

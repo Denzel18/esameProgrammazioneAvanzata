@@ -35,14 +35,12 @@
             </thead>
             <tbody>
             <c:forEach items="${users}" var="user">
-            <c:if test="${user.admin == false}"> 
                 <tr>
                     <td>${user.username}</td>
-                    <td>${user.getFirstName()}</td>
-                    <td>${user.getLastName()}</td>
+                    <td>${user.getFirstname()}</td>
+                    <td>${user.getLastname()}</td>
                     <td>${user.getRuolo()}</td>
                 </tr>
-            </c:if>
             </c:forEach>
             </tbody>
         </table>

@@ -5,10 +5,14 @@
 <tiles-definitions>
     <definition extends="default" name="car.list">
         <put-attribute name="body" value="/WEB-INF/views/cars/list.jsp"/>
-        <put-attribute name="pageTitle" value="Lista dei Veicoli"/>
+        <put-attribute name="pageTitle" value="Car List"/>
     </definition>
-    <definition extends="default" name="tags.new">
+    <definition extends="default" name="car.new">
         <put-attribute name="body" value="/WEB-INF/views/cars/newCar.jsp"/>
-        <put-attribute name="pageTitle" value="Inserisci Veicolo"/>
+        <put-attribute name="pageTitle" value="Car New"/>
+    </definition>
+    <definition extends="default" name="car.edit">
+        <put-attribute name="body" value="/WEB-INF/views/cars/editCar.jsp"/>
+        <put-attribute name="pageTitle" value="Edit Car"/>
     </definition>
 </tiles-definitions>

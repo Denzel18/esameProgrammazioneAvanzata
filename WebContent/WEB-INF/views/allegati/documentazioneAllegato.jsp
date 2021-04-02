@@ -31,12 +31,12 @@
                            title="Scarica ${file.description}" download>${file.description}</a>
                     </i></td>
                     <td><a class="btn btn-success"
-                           href="<c:url value="/posts/edit/${documentoId}/attachments/file/${file.id}/edit"/>"
+                           href="<c:url value="/posts/edit/${documentoId}/allegati/file/${file.id}/edit"/>"
                            title="Modifica &quot;${file.description}&quot;">
                         <i class="fa fa-pencil-square-o"></i>
                     </a></td>
                     <td><a class="btn btn-danger"
-                           href="<c:url value="/attachments/${file.id}/delete"/>"
+                           href="<c:url value="/allegati/${file.id}/delete"/>"
                            title="Elimina &quot;${file.description}&quot;"
                            onclick='return confirm("Sei sicuro di voler eliminare \"${file.description}\"?");'>
                         <i class="fa fa-trash"></i></a></td>

@@ -20,13 +20,13 @@
 	
 			<div class="form-group">
 				<label>Nome*</label>
-		        <input type="text" name="firstName" class="form-control mt-2" value="${userToEdit.firstName}" onblur = "controlloNome()" autofocus/>
+		        <input type="text" name="firstName" class="form-control mt-2" value="${userToEdit.firstname}" onblur = "controlloNome()" autofocus/>
 				<p id=name_err></p>
 			</div>
 	        
 			<div class="form-group">
 		        <label>Cognome*</label>
-		        <input type="text" name="lastName"  class="form-control mt-2" value="${userToEdit.lastName}" onblur = "controlloCognome()"/>
+		        <input type="text" name="lastName"  class="form-control mt-2" value="${userToEdit.lastname}" onblur = "controlloCognome()"/>
 				<p id=lastname_err></p>
 			</div>
 			
