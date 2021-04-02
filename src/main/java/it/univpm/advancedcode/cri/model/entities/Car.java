@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Table(name = "cars")
 public class Car implements Serializable {
 
-	private long veicoloID; 
+	private long id; 
 	private String targa;
 	private String marca; 
 	private String modello; 
@@ -114,15 +114,15 @@ public class Car implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "veicolo_id", unique = true)
-	public long getVeicoloID() {
-		return veicoloID;
+	public long getId() {
+		return this.id;
 	}
 	/**
 	 * Setter ID Veicolo
 	 * @param veicolo_id the veicolo_id to set
 	 */
-	public void setVeicoloID(long veicolo_id) {
-		this.veicoloID = veicolo_id;
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	//---- GETTER VEICOLO

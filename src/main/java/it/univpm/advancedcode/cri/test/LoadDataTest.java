@@ -57,7 +57,9 @@ public class LoadDataTest {
 				User user2 = userDao.create("luca78", "12345678", "Luca", "Rossini", "driver");
 				User user3 = userDao.create("matteoVerdi", "12345678", "Matteo", "Verdi", "admin");
 				User user4 = userDao.create("giov_bian", "12345678", "Giovanni", "Bianchi", "admin");
-				User user5 = userDao.create("anto98", "12345678", "Antonio", "Bianchini", "admin");
+				User user5 = userDao.create("driver", "driver", "Antonio", "Bianchini", "driver");
+				User user6 = userDao.create("admin", "admin", "Marco", "Rossini", "admin");
+				User user7 = userDao.create("account", "account", "Francesco", "Gorini", "account");
 				user1.setRuolo("admin");
 				session.getTransaction().commit();
 				assert userDao.findAll().size() == 5;

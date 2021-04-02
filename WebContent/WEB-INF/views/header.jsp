@@ -54,9 +54,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="${login_url}">Login</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="${sign_up_url}">Registrati</a>
-                    </li>
                 </ul>
             </div>
         </div>

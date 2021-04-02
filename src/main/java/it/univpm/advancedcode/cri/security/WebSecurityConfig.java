@@ -49,14 +49,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http.authorizeRequests().
-                antMatchers("/sign_up").not().authenticated().
-                antMatchers("/").permitAll().
-                antMatchers("/**").permitAll().
-                antMatchers("/**/**").permitAll().
-                and().formLogin().loginPage("/login").defaultSuccessUrl("/")
-                .failureUrl("/login?error=true").permitAll().
-                and().logout().logoutSuccessUrl("/")
-                .invalidateHttpSession(true).permitAll().
-                and().csrf().disable();
+        antMatchers("/sign_up").not().authenticated().
+        antMatchers("/").permitAll().
+        antMatchers("/**").permitAll().
+        antMatchers("/**/**").permitAll().
+        antMatchers("/**/**/**").permitAll().
+        and().formLogin().loginPage("/login").defaultSuccessUrl("/")
+        .failureUrl("/login?error=true").permitAll().
+        and().logout().logoutSuccessUrl("/")
+        .invalidateHttpSession(true).permitAll().
+        and().csrf().disable();
+
     }
 }

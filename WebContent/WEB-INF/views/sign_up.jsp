@@ -1,60 +1,78 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 
 
 
-	
 
 
-<c:url value="/sign_up/save" var="action_url"/>
+
+<c:url value="/sign_up/save" var="action_url" />
 
 <c:if test="${not empty message}">
-    <div class="row">
-        <div class="alert alert-danger mx-auto" role="alert">${message}
-            <button type="button" class="close ml-3" data-dismiss="alert" aria-label="Close" style="font-size: 1.4rem;">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    </div>
+	<div class="row">
+		<div class="alert alert-danger mx-auto" role="alert">${message}
+			<button type="button" class="close ml-3" data-dismiss="alert"
+				aria-label="Close" style="font-size: 1.4rem;">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+	</div>
 </c:if>
 <div class="row justify-content-center">
 	<div class="card col-6">
-	    <form name="modulo" class="form-signin" action="${action_url}"method="POST" modelAttribute="newUser" enctype="multipart/form-data" onsubmit="return false" >
-	       	<div class="card-header">
-	        	<h1 class="h3 mb-3 font-weight-normal text-center"> <b>Inserisci i tuoi dati</b></h1>
-	        </div>
-	        <p class="text-danger">(* Campo obbligatorio)</p>
-	
-	        <label>Nome Utente*</label>
-	        <input type="text" name="username" class="form-control mt-2" placeholder="Username"  required autofocus>
-	     	<p id="err_user"></p>
-	
-	        <label>Password* <sup id="apice"></sup></label>
-	        <input type="password" name="password" class="form-control mt-2" placeholder="6-15 caratteri, alfanumerici, simboli speciali (_ * – + ! ? , : ; .)"  onkeyup="passwordRobusta()" required>
-	        <p id=nogood_pass></p>
-	        
-	        <label>Conferma Password*</label>
-	        <input type="password" name="conferma_password" class="form-control mt-2" placeholder="Conferma Password" onkeyup = "verificaPasswordUguali()" required>
-	        <p id=err_pass></p>
-	        
-	        <label>Nome*</label>
-	        <input type="text" name="firstName" class="form-control mt-2" placeholder="Mario" onfocus = "verificaPasswordUguali()" onblur = "controlloNome()"  required/>
+		<form name="modulo" class="form-signin" action="${action_url}"
+			method="POST" modelAttribute="newUser" enctype="multipart/form-data"
+			onsubmit="return false">
+			<div class="card-header">
+				<h1 class="h3 mb-3 font-weight-normal text-center">
+					<b>Inserisci i tuoi dati</b>
+				</h1>
+			</div>
+			<p class="text-danger">(* Campo obbligatorio)</p>
+
+			<label>Nome Utente*</label> <input type="text" name="username"
+				class="form-control mt-2" placeholder="Username" required autofocus>
+			<p id="err_user"></p>
+
+			<label>Password* <sup id="apice"></sup></label> <input
+				type="password" name="password" class="form-control mt-2"
+				placeholder="6-15 caratteri, alfanumerici, simboli speciali (_ * – + ! ? , : ; .)"
+				onkeyup="passwordRobusta()" required>
+			<p id=nogood_pass></p>
+
+			<label>Conferma Password*</label> <input type="password"
+				name="conferma_password" class="form-control mt-2"
+				placeholder="Conferma Password" onkeyup="verificaPasswordUguali()"
+				required>
+			<p id=err_pass></p>
+
+			<label>Nome*</label> <input type="text" name="firstName"
+				class="form-control mt-2" placeholder="Mario"
+				onfocus="verificaPasswordUguali()" onblur="controlloNome()" required />
 			<p id=name_err></p>
-			
-	        <label>Cognome*</label>
-	        <input type="text" name="lastName"  class="form-control mt-2" placeholder="Rossi" onfocus = "verificaPasswordUguali()" onblur = "controlloCognome()"  required/>
+
+			<label>Cognome*</label> <input type="text" name="lastName"
+				class="form-control mt-2" placeholder="Rossi"
+				onfocus="verificaPasswordUguali()" onblur="controlloCognome()"
+				required />
 			<p id=lastname_err></p>
+
+			<label>Ruolo*</label> 
+			<select id="ruolo" name="ruolo">
+				<option value="admin">ADMIN</option>
+				<option value="driver">RUOLO</option>
+				<option value="account">ACCOUNT</option>
+			</select> 
 			
-	        <label>Immagine Profilo</label>
-	        <input type="file" name="image" class="form-control mt-2"/><br>
-	        
-	        
-	        
-	        <input id="invia" type="submit" class="btn btn-lg btn-primary btn-block" value="Registrati!" onclick="controlloForm()"><br><br>
-	    </form>
+			<label>Immagine Profilo</label> <input type="file" name="image"
+				class="form-control mt-2" /><br> <input id="invia"
+				type="submit" class="btn btn-lg btn-primary btn-block"
+				value="Registrati!" onclick="controlloForm()"><br>
+			<br>
+		</form>
 	</div>
 </div>
 

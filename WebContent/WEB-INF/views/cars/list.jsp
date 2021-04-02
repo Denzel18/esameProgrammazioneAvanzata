@@ -25,7 +25,7 @@
     </div>
     <div class="overflow-auto">
         <h5 class="text-center font-weight-bold mt-4 mb-4">Lista di tutti i veicoli</h5>
-        <div class="font-weight-bold text-center">Numero veicoli: ${numTags}</div>
+        <div class="font-weight-bold text-center">Numero veicoli: ${numCars}</div>
         <table class="table table-striped w-75 mx-auto">
         	<thead>
         		<tr>
@@ -53,11 +53,11 @@
             		<td>${cars.numeroAssi}</td>
             		<td>${cars.alimentazione}</td>
             		<td><a class="btn btn-danger"
-                                       href="<c:url value="/car/delete/${car.targa}"/>"
-                                       title="Elimina &quot;${car.targa}&quot;"
-                                       onclick='return confirm("Sei sicuro di voler eliminare \"${car.targa}\"?");'>
+                                       href="<c:url value="/car/delete/${car.id}"/>"
+                                       title="Elimina &quot;${car.id}&quot;"
+                                       onclick='return confirm("Sei sicuro di voler eliminare \"${car.id}\"?");'>
                                         <i class="fa fa-trash"></i></a></td>
-                  	<td><a href="<c:url value="/car/${car.targa}"/>">${car.targa}</a></td>
+                  	<td><a href="<c:url value="/car/${car.id}"/>">${car.id}</a></td>
                 </tr>
             </c:forEach>
             </tbody>

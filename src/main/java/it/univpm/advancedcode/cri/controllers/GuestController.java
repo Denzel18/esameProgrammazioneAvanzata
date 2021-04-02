@@ -94,21 +94,27 @@ public class GuestController {
      * Metodo per la visualizzazione della pagina statica homepage
      * 
      */
+
     @GetMapping(value="/cri")
-    public String showWebpage(@RequestParam(value = "successMessage", required = false) String successMessage,
-                               @RequestParam(value = "errorMessage", required = false) String errorMessage, Model uiModel) {
-            logger.info("Listing all the tags...");
-    
-            List<Car> cars = this.carService.getAll();
-    
-            uiModel.addAttribute("cars", cars);
-            uiModel.addAttribute("numCars", cars.size());
-            uiModel.addAttribute("successMessage", successMessage);
-            uiModel.addAttribute("errorMessage", errorMessage);
-   
-    	return "home";
+    public String showWebPage(@RequestParam(value = "successMessage", required = false) String successMessage,
+                           @RequestParam(value = "errorMessage", required = false) String errorMessage,
+                           @RequestParam(required = false) Integer page,
+                           Model uiModel) {
+    	 
+    	logger.info("Listing all the cars...");
+    	
+	    List<Car> allCars = this.carService.getAll();    	
+
+	    carsPagination(page, uiModel, allCars);
+	    uiModel.addAttribute("cars", allCars);
+	    uiModel.addAttribute("numCars",allCars.size());
+	    uiModel.addAttribute("CarsTitle","Tutti i veicoli ha disposizione");
+	    uiModel.addAttribute("successMessage", successMessage);
+        uiModel.addAttribute("errorMessage", errorMessage);
+	
+        return "home";
     }
-    
+
     /**
      * Metodo per la visualizzazione della pagina statica privacy_policy
      */
@@ -116,4 +122,29 @@ public class GuestController {
     public String showPrivacyPolicy() {
     	return "disclaimer";
     }
+
+    /**
+     * Metodo utilizzato per sfruttare la paginazione nella home.
+     *
+     * @param page numero della pagina
+     * @param uiModel modello associato alla vista
+     * @param posts lista di post da paginare
+     */
+    private void carsPagination(@RequestParam(required = false) Integer page, Model uiModel, List<Car>
+            cars) {
+
+        PagedListHolder<Car> pagedListHolder = new PagedListHolder<>(cars);
+        pagedListHolder.setPageSize(2);
+
+        if(page == null || page < 1 || page > pagedListHolder.getPageCount()) page = 1;
+
+        if(page <= pagedListHolder.getPageCount()) {
+            pagedListHolder.setPage(page - 1);
+            uiModel.addAttribute("cars", pagedListHolder.getPageList());
+        }
+
+        uiModel.addAttribute("page", page);
+        uiModel.addAttribute("maxPages", pagedListHolder.getPageCount());
+    }
+
 }
