@@ -23,6 +23,7 @@ public class CarDaoDefault extends DefaultDao implements CarDao {
 		car.setNumeroTelaio(numeroTelaio);
 		car.setMassa(massa);
 		car.setDestinazioneUso(destinazioneUso);
+		car.setNumeroAssi(numeroAssi);
 		car.setAlimentazione(alimentazione);
 		this.getSession().save(car);
 		return car; 

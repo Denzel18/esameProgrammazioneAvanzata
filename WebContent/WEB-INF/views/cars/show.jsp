@@ -24,48 +24,45 @@
         </c:if>
     </div>
     <div class="overflow-auto">
-        <h5 class="text-center font-weight-bold mt-4 mb-4">Lista di tutti i veicoli</h5>
-        <div class="font-weight-bold text-center">Numero veicoli: ${numCars}</div>
+        <h5 class="text-center font-weight-bold mt-4 mb-4">Veicolo ${car.targa}</h5>
         <table class="table table-striped w-75 mx-auto">
         	<thead>
         		<tr>
         			<th>TARGA</th>
         			<th>MARCA</th>
         			<th>MODELLO</th>
-        			<th>NUMERO TELAIO</th>
-        			<th>MASSA</th>
-        			<th>DESTINAZIONE D'USO</th>
-		        	<th>NUMERO ASSI</th>
-        			<th>ALIMENTAZIONE</th>
-        			<th>ELIMINA</th>
-        			<th>SHOW</th>
-                    <th>EDIT</th>
-        		</tr> 
-        	</thead>
-            <tbody>
-            <c:forEach items="${cars}" var="car">
-            	<tr>
+                </tr>
+                <tr>
             		<td>${car.targa}</td>
             		<td>${car.marca}</td>
             		<td>${car.modello}</td>
-            		<td>${car.numeroTelaio}</td>
+                </tr>
+                <tr>
+        			<th>NUMERO TELAIO</th>
+        			<th>MASSA</th>
+        			<th>DESTINAZIONE D'USO</th>
+                </tr>
+                <tr>
+                    <td>${car.numeroTelaio}</td>
             		<td>${car.massa}</td>
             		<td>${car.destinazioneUso}</td>
+                </tr>  
+                <tr>
+		        	<th>NUMERO ASSI</th>
+        			<th>ALIMENTAZIONE</th>
+        			<th>ELIMINA</th>
+        		</tr> 
+                <tr>
             		<td>${car.numeroAssi}</td>
             		<td>${car.alimentazione}</td>
-                    <td><a class="btn btn-danger"
-                                       href="<c:url value="/car/delete/${car.targa}"/>"/
+            		<td><a class="btn btn-danger"
+                                       href="<c:url value="/car/delete/${car.targa}"/>"
                                        title="Elimina &quot;${car.targa}&quot;"
                                        onclick='return confirm("Sei sicuro di voler eliminare il veicolo targato: \"${car.targa}\"?");'>
-                                        <i class="fa fa-trash"></i></a></td>
-                    <td><a class="btn btn-info" href="<c:url value="/car/${car.targa}"/>"><i class="fa fa-info"></i></a></td>
-                    <td><a class="btn btn-info" href="<c:url value="/car/edit/${car.targa}"/>"><i class="fa fa-edit"></i></a></td>
+                                        <i class="fa fa-trash"></i></a>
+                    </td>
                 </tr>
-            </c:forEach>
-            </tbody>
+        	</thead>
         </table>
     </div>
-    <div class="text-center mb-4">
-            <a type="button" class="btn btn-success" href="${newCar_url}">Aggiungi un nuovo veicolo</a>
-   	</div>
 </div>

@@ -6,14 +6,14 @@
 
 <div class="row justify-content-center">
 	<div class="col-6">
-		<%--@elvariable id="tag" type="it.univpm.advprog.blog.model.entities.Tag"--%>
+		<%--@elvariable id="car" type="it.univpm.advancedcode.cri.model.entities.Car"--%>
 		<form:form class="form-signin" action="${action_url}" method="POST"
 			modelAttribute="car">
         	<p class="text-danger">TUTTI I CAMPI SONO OBBLIGATORI</p>
 			<h3 class="font-weight-bold text-center mb-3">Inserisci un nuovo
 				veicolo</h3>
 
-			<form:label path="targa">Targa</form:label>
+			<form:label path="targa">TARGA</form:label>
 			<form:input path="targa" class="form-control mt-2" />
 
 			<form:label path="marca">MARCA</form:label>

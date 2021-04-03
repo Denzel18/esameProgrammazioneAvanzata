@@ -15,4 +15,8 @@
         <put-attribute name="body" value="/WEB-INF/views/cars/editCar.jsp"/>
         <put-attribute name="pageTitle" value="Edit Car"/>
     </definition>
+    <definition extends="default" name="car.show">
+        <put-attribute name="body" value="/WEB-INF/views/cars/show.jsp"/>
+        <put-attribute name="pageTitle" value="Show Car"/>
+    </definition>
 </tiles-definitions>

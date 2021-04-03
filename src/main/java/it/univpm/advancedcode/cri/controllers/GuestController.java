@@ -1,12 +1,9 @@
 package it.univpm.advancedcode.cri.controllers;
 
-import java.io.File;
 import java.util.List;
 
-import javax.activation.MimetypesFileTypeMap;
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,11 +11,12 @@ import org.springframework.beans.support.PagedListHolder;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
 import it.univpm.advancedcode.cri.model.entities.Car;
 import it.univpm.advancedcode.cri.model.entities.User;
@@ -160,15 +158,12 @@ public class GuestController {
 			@RequestParam(value = "errorMessage", required = false) String errorMessage,
 			Model uiModel) {
 		logger.info("Listing all the cars...");
-
 		List<Car> cars = this.carService.getAll();
-
 		uiModel.addAttribute("cars", cars);
 		uiModel.addAttribute("numCars", cars.size());
 		uiModel.addAttribute("successMessage", successMessage);
 		uiModel.addAttribute("errorMessage", errorMessage);
-
-		return "cars.list";
+		return "car.list";
 	}
 
     /**
@@ -182,6 +177,125 @@ public class GuestController {
 		uiModel.addAttribute("car", new Car());
 		return "car.new";
 	}
+
+    /**
+     * Metodo " GET " per la visualizzazione del un veicolo
+     * @param targa
+     * @param uiModel
+     * @return nome della vista
+     */
+	@GetMapping(value = "/car/{targa}")
+	public String showCar(@PathVariable("targa") String targa, Model uiModel) {
+        Car selectedCar = this.carService.getByTarga(targa);
+        logger.info("Showing a new car...");
+        String strMessage;
+        if (selectedCar != null){
+            uiModel.addAttribute("car", selectedCar);
+            return "car.show"; 
+        }else{
+            logger.info("Listing all the cars...");
+            List<Car> cars = this.carService.getAll();
+            uiModel.addAttribute("cars", cars);
+            uiModel.addAttribute("numCars", cars.size());
+            uiModel.addAttribute("successMessage", "");
+            uiModel.addAttribute("errorMessage", "veicolo non trovato");
+            return "car.list";
+        }
+	}
+
+
+    /**
+     * Metodo " GET " per la modifica del un veicolo
+     * @param targa
+     * @param uiModel
+     * @return nome della vista
+     */
+	@GetMapping(value = "/car/edit/{targa}")
+	public String editCar(@PathVariable("targa") String targa, Model uiModel) {
+        Car selectedCar = this.carService.getByTarga(targa);
+        logger.info("Showing a new car...");
+        String strMessage;
+        if (selectedCar != null){
+            uiModel.addAttribute("car", selectedCar);
+            return "car.edit"; 
+        }else{
+            logger.info("Listing all the cars...");
+            List<Car> cars = this.carService.getAll();
+            uiModel.addAttribute("cars", cars);
+            uiModel.addAttribute("numCars", cars.size());
+            uiModel.addAttribute("successMessage", "");
+            uiModel.addAttribute("errorMessage", "veicolo non trovato");
+            return "car.list";
+        }
+	}
+
+
+
+    /**
+	 * Metodo " GET " per eliminare un veicolo
+	 * @param targa targa del veicolo da cancellare
+	 * @return nome della vista da visualizzare
+	 */
+	@GetMapping(value = "/car/delete/{targa}")
+	public String deleteCar(@PathVariable("targa") String targa) {
+		logger.info("Deleting car with with license plate \"" + targa + "\"...");
+
+		Car selectedCar = this.carService.getByTarga(targa);
+		String strMessage;
+        if(selectedCar != null){
+            this.carService.delete(selectedCar);
+            strMessage = "Il veicolo targato \"" + selectedCar.getTarga() + "\" %C3%A8 stato cancellato correttamente!";
+            return "redirect:/cars/?successMessage=" + strMessage;
+            // if (selectedCar.getPrenotazioni().size() == 0) {
+            //     this.carService.delete(selectedCar);
+            //     strMessage = "Il veicolo targato \"" + selectedCar.getTarga() + "\" %C3%A8 stato cancellato correttamente!";
+            //     return "redirect:/cars/?successMessage=" + strMessage;
+            // } else {
+            //     strMessage = "Il veicolo targato \"" + selectedCar.getTarga() + "\" risulta essere prenotato... " +
+            //             "Non pu%C3%B2 essere cancellato!";
+            //     return "redirect:/cars/?errorMessage=" + strMessage;
+            // }
+        }else{
+            strMessage = "Il veicolo targato non e' stato cancellato, ci sono problemi"+
+            "Non pu%C3%B2 essere cancellato!";
+            return "redirect:/cars/?errorMessage=" + strMessage;
+        }
+	}
+
+
+
+    /**
+	 * Metodo " POST " per il salvataggio del veicolo
+	 * @param car           car restituita dalla richiesta
+	 * @param bindingResult eventuali errori di validazione
+	 * @param uiModel       modello associato alla vista
+	 * @return nome della vista da visualizzare
+	 */
+	@PostMapping(value = "/car/new/save")
+	public String saveCar(@ModelAttribute("car") Car car, BindingResult bindingResult, Model uiModel) {
+		logger.info("Saving a new car...");
+		if((car.getTarga() == null || car.getTarga().equals("")) || 
+				(car.getMarca() == null || car.getMarca().equals("")) ||
+				(car.getModello() == null || car.getModello().equals("")) ||
+				(car.getNumeroTelaio() == null || car.getNumeroTelaio().equals("")) ||
+				(car.getMassa() == 0) ||
+				(car.getDestinazioneUso() == null || car.getDestinazioneUso().equals("")) ||
+				(car.getNumeroAssi()== 0) ||
+				(car.getAlimentazione() == null || car.getAlimentazione().equals(""))) {
+			String strMessage = "Non hai inserito i campi obbligatori!";
+			return "redirect:/cars/?errorMessage=" + strMessage;
+		}
+
+		try {
+            this.carService.create(car.getId(), car.getTarga(), car.getMarca(), car.getModello(), 
+            car.getNumeroTelaio(), car.getMassa(), car.getDestinazioneUso(), car.getNumeroAssi(), car.getAlimentazione());
+			String strMessage = "Il veicolo targa \"" + car.getTarga() + "\" %C3%A8 stato salvato correttamente!";
+			return "redirect:/cars/?successMessage=" + strMessage;
+		} catch (RuntimeException e) {
+			return "redirect:/cars/?errorMessage=" + e.getMessage();
+		}
+	}
+
 
     //------------------ USERS ------------------------//
 	/**

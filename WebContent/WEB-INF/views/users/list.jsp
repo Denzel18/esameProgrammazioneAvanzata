@@ -31,6 +31,9 @@
                 <th scope="col">Nome</th>
                 <th scope="col">Cognome</th>
                 <th scope="col">Ruolo</th>
+                <th scope="col">Show</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
             </tr>
             </thead>
             <tbody>
@@ -40,6 +43,9 @@
                     <td>${user.getFirstname()}</td>
                     <td>${user.getLastname()}</td>
                     <td>${user.getRuolo()}</td>
+                    <td>SHOW</td>
+                    <td>EDIT</td>
+                    <td>DELETE</td>
                 </tr>
             </c:forEach>
             </tbody>
