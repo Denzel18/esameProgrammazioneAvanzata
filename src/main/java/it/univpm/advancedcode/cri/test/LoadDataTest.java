@@ -60,8 +60,8 @@ public class LoadDataTest {
 				User user5 = userDao.create("driver", "driver", "Antonio", "Bianchini", "driver");
 				User user6 = userDao.create("admin", "admin", "Marco", "Rossini", "admin");
 				User user7 = userDao.create("account", "account", "Francesco", "Gorini", "account");
-				user1.setRuolo("admin");
 				session.getTransaction().commit();
+				
 				assert userDao.findAll().size() == 5;
 
 

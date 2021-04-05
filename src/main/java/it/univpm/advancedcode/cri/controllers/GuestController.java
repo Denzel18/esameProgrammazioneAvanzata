@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,10 @@ import it.univpm.advancedcode.cri.model.entities.Car;
 import it.univpm.advancedcode.cri.model.entities.User;
 import it.univpm.advancedcode.cri.services.CarService;
 import it.univpm.advancedcode.cri.services.UserService;
+
+import java.io.File;
+import javax.activation.MimetypesFileTypeMap;
+import org.springframework.web.multipart.MultipartFile;
 
 
 
@@ -188,7 +193,6 @@ public class GuestController {
 	public String showCar(@PathVariable("targa") String targa, Model uiModel) {
         Car selectedCar = this.carService.getByTarga(targa);
         logger.info("Showing a new car...");
-        String strMessage;
         if (selectedCar != null){
             uiModel.addAttribute("car", selectedCar);
             return "car.show"; 
@@ -213,8 +217,7 @@ public class GuestController {
 	@GetMapping(value = "/car/edit/{targa}")
 	public String editCar(@PathVariable("targa") String targa, Model uiModel) {
         Car selectedCar = this.carService.getByTarga(targa);
-        logger.info("Showing a new car...");
-        String strMessage;
+        logger.info("Edit a car...");
         if (selectedCar != null){
             uiModel.addAttribute("car", selectedCar);
             return "car.edit"; 
@@ -228,8 +231,6 @@ public class GuestController {
             return "car.list";
         }
 	}
-
-
 
     /**
 	 * Metodo " GET " per eliminare un veicolo
@@ -246,15 +247,7 @@ public class GuestController {
             this.carService.delete(selectedCar);
             strMessage = "Il veicolo targato \"" + selectedCar.getTarga() + "\" %C3%A8 stato cancellato correttamente!";
             return "redirect:/cars/?successMessage=" + strMessage;
-            // if (selectedCar.getPrenotazioni().size() == 0) {
-            //     this.carService.delete(selectedCar);
-            //     strMessage = "Il veicolo targato \"" + selectedCar.getTarga() + "\" %C3%A8 stato cancellato correttamente!";
-            //     return "redirect:/cars/?successMessage=" + strMessage;
-            // } else {
-            //     strMessage = "Il veicolo targato \"" + selectedCar.getTarga() + "\" risulta essere prenotato... " +
-            //             "Non pu%C3%B2 essere cancellato!";
-            //     return "redirect:/cars/?errorMessage=" + strMessage;
-            // }
+            // fare controlli su prenotazione ...
         }else{
             strMessage = "Il veicolo targato non e' stato cancellato, ci sono problemi"+
             "Non pu%C3%B2 essere cancellato!";
@@ -296,6 +289,25 @@ public class GuestController {
 		}
 	}
 
+    /**
+     * Metodo update car 
+     * @param car car to update
+     * @param br binding result
+     * @param uiModel
+     * @return nome della vista da visualizzare 
+     */
+
+    @PostMapping(value = "/car/edit/save", consumes = "multipart/form-data")
+	public String saveEditCar(@ModelAttribute("carToEdit") Car car, BindingResult br, Model uiModel) {
+		logger.info("Saving the edited car...");
+		try {
+			this.carService.update(car);
+			String strMessage = "Il veicolo %C3%A8 stato salvato correttamente!";
+			return "redirect:/cars?successMessage=" + strMessage;
+		} catch (RuntimeException e) {
+			return "redirect:/cars?errorMessage=" + e.getMessage();
+		}
+	}
 
     //------------------ USERS ------------------------//
 	/**
@@ -316,8 +328,33 @@ public class GuestController {
 		uiModel.addAttribute("numUsers", allUsers.size());
 		uiModel.addAttribute("successMessage", successMessage);
 		uiModel.addAttribute("errorMessage", errorMessage);
-		return "users.list";
+		return "user.list";
 	}
+
+        /**
+     * Metodo " GET " per la visualizzazione di un utente
+     * @param username
+     * @param uiModel
+     * @return nome della vista
+     */
+	@GetMapping(value = "/user/{username}")
+	public String showUser(@PathVariable("username") String username, Model uiModel) {
+        User selectedUser = this.userService.findUserByUsername(username); 
+        logger.info("Showing a user...");
+        if (selectedUser != null){
+            uiModel.addAttribute("user", selectedUser);
+            return "user.profile"; 
+        }else{
+            logger.info("Listing all the users...");
+            List<User> users = this.userService.findAll();
+            uiModel.addAttribute("users", users);
+            uiModel.addAttribute("numUsers", users.size());
+            uiModel.addAttribute("successMessage", "");
+            uiModel.addAttribute("errorMessage", "utente non trovato");
+            return "user.list";
+        }
+	}
+
 
     /**
 	 * Metodo " GET " per la creazione di un utente 
@@ -328,13 +365,144 @@ public class GuestController {
 	public String newUsers(Model uiModel) {
 		logger.info("Creating a new user...");
 		uiModel.addAttribute("user", new User());
-		return "users.new";
+		return "user.new";
+	}
+
+        /**
+     * Metodo " GET " per la modifica di un utente
+     * @param targa
+     * @param uiModel
+     * @return nome della vista
+     */
+	@GetMapping(value = "/user/edit/{username}")
+	public String editUser(@PathVariable("username") String username, Model uiModel) {
+        User selectedUser = this.userService.findUserByUsername(username);
+        logger.info("Edit a user...");
+        if (selectedUser != null){
+            uiModel.addAttribute("user", selectedUser);
+            return "user.edit"; 
+        }else{
+            logger.info("Listing all the users...");
+            List<User> users = this.userService.findAll();
+            uiModel.addAttribute("users", users);
+            uiModel.addAttribute("numUsers", users.size());
+            uiModel.addAttribute("successMessage", "");
+            uiModel.addAttribute("errorMessage", "utente non trovato");
+            return "user.list";
+        }
 	}
 
 
+        /**
+	 * Metodo " GET " per eliminare un utente
+	 * @param username  username del utente da cancellare
+	 * @return nome della vista
+	 */
+	@GetMapping(value = "/user/delete/{username}")
+	public String deleteUser(@PathVariable("username") String username) {
+		logger.info("Deleting user \"" + username + "\"...");
+
+		User selectedUser = this.userService.findUserByUsername(username);
+		String strMessage;
+        if(selectedUser != null){
+            this.userService.delete(selectedUser);
+            strMessage = "L'utente : \"" + selectedUser.getUsername() + "\" %C3%A8 stato cancellato correttamente!";
+            return "redirect:/users/?successMessage=" + strMessage;
+            //fare dovuti controlli
+        }else{
+            strMessage = "L'utente non e' stato cancellato, ci sono problemi"+
+            "Non pu%C3%B2 essere cancellato!";
+            return "redirect:/users/?errorMessage=" + strMessage;
+        }
+	}
 
 
+    /**
+	 * Metodo " POST " per il salvataggio del utente
+	 * @param car           car restituita dalla richiesta
+	 * @param bindingResult eventuali errori di validazione
+	 * @param uiModel       modello associato alla vista
+	 * @return nome della vista da visualizzare
+	 */
 
+
+	@PostMapping(value = "/user/new/save")
+	public String saveUser(@ModelAttribute("user") User user, BindingResult bindingResult, Model uiModel) {
+		logger.info("Saving a new user...");
+        if((user.getFirstname() == null || user.getFirstname().equals("")) || 
+            (user.getLastname() == null || user.getLastname().equals("")) || 
+            (user.getUsername() == null || user.getUsername().equals("")) || 
+            (user.getRuolo() == null || user.getRuolo().equals("")) ||
+            (user.getPassword() == null || user.getPassword().equals(""))){
+            String strMessage = "Non hai inserito i campi obbligatori !"; 
+            return "redirect:/users/?errorMessage=" + strMessage; 
+        }
+        
+		try {
+            this.userService.create(user.getUsername(), user.getPassword(), user.getFirstname(), user.getLastname(), user.getRuolo());
+			String strMessage = "L'utente :  \"" + user.getUsername() + "\" %C3%A8 stato salvato correttamente!";
+			return "redirect:/users/?successMessage=" + strMessage;
+		} catch (RuntimeException e) {
+			return "redirect:/users/?errorMessage=" + e.getMessage();
+		}
+    }
+
+    /**
+     * Metodo update user
+     * @param user user to update 
+     * @param br binding result
+     * @param uiModel
+     * @param file
+     * @return nome della vista da visualizzare 
+     */
+
+    @PostMapping(value = "/user/edit/save", consumes = "multipart/form-data")
+	public String saveProfile(@ModelAttribute("userToEdit") User user, BindingResult br, Model uiModel,
+							  @RequestParam("image") MultipartFile file) {
+		logger.info("Saving the edited user...");
+		if (!file.isEmpty()) {
+			String nameOfFile = null;
+			try {
+				String uploadsDir = "/WEB-INF/files/profile_pictures/";
+				String realPathtoUploads = request.getServletContext().getRealPath(uploadsDir);
+				if (!new java.io.File(realPathtoUploads).exists()) {
+					logger.info("creating the directory...");
+					if (!new java.io.File(realPathtoUploads).mkdir()) {
+						String strMessage = "ERRORE, impossibile creare la cartella nel server!";
+						return "redirect:/users?errorMessage=" + strMessage;
+					}
+				}
+				logger.info("realPathtoUploads = {}", realPathtoUploads);
+				// rename uploaded file with the username
+				String fileExtension = FilenameUtils.getExtension(file.getOriginalFilename());
+				nameOfFile = user.getUsername() + "." + fileExtension;
+				String filePath = realPathtoUploads + nameOfFile;
+				java.io.File dest = new File(filePath);
+				// controllo che sia un file immagine
+				String mimetype = new MimetypesFileTypeMap().getContentType(dest);
+				String type = mimetype.split("/")[0];
+				if (!type.equals("image")) {
+					String strMessage = "ERRORE, il file specificato non %C3%A8 un'immagine!";
+					return "redirect:/users?errorMessage=" + strMessage;
+				}
+				// sposto il file sulla cartella destinazione
+				file.transferTo(dest);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			user.setImageProfile(nameOfFile);
+		}
+		try {
+			this.userService.update(user);
+			String strMessage = "Il tuo profilo utente %C3%A8 stato salvato correttamente!";
+			return "redirect:/users?successMessage=" + strMessage;
+		} catch (RuntimeException e) {
+
+			return "redirect:/users?errorMessage=" + e.getMessage();
+
+		}
+	}
 
 
 

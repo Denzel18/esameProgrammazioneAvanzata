@@ -146,7 +146,7 @@ public class User implements Serializable {
 	 */
 	@Column(name = "ruolo")
 	public String getRuolo() {
-		return this.ruolo;
+		return this.ruolo; 
 	}
 	
 	/** 
@@ -190,7 +190,7 @@ public class User implements Serializable {
 	 * @param admin specifico se l'utente è un admin o meno
 	 */
 	public void setRuolo(String ruolo) {
-		if((ruolo == "admin")|| (ruolo == "accounting") || (ruolo == "driver"))
+		if((ruolo == "admin")|| (ruolo == "account") || (ruolo == "driver"))
 			this.ruolo = ruolo;
 	}
 	/** 

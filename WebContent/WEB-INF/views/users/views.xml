@@ -3,20 +3,27 @@
    Foundation//DTD Tiles  Configuration 3.0//EN"
         "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
-    <definition extends="default" name="users.list">
+    <definition extends="default" name="user.list">
         <put-attribute name="body" value="/WEB-INF/views/users/list.jsp"/>
         <put-attribute name="pageTitle" value="Lista Utenti"/>
     </definition>
-	<definition extends="default" name="users.profile">
-		<put-attribute name="body" value="/WEB-INF/views/users/profile.jsp" />
-		<put-attribute name="pageTitle" value="Profilo Utente" />
+	<definition extends="default" name="user.profile">
+		<put-attribute name="body" value="/WEB-INF/views/users/show.jsp" />
+		<put-attribute name="pageTitle" value="Mostra profilo" />
 	</definition>
-	<definition extends="default" name="users.new">
-		<put-attribute name="body" value="/WEB-INF/views/users/profile.jsp" />
-		<put-attribute name="pageTitle" value="Profilo Utente" />
+	<definition extends="default" name="user.new">
+		<put-attribute name="body" value="/WEB-INF/views/users/newUser.jsp" />
+		<put-attribute name="pageTitle" value="Inserisci Utente" />
 	</definition>
-	<definition extends="default" name="users.editProfile">
+	<definition extends="default" name="user.edit">
 		<put-attribute name="body" value="/WEB-INF/views/users/editProfile.jsp" />
 		<put-attribute name="pageTitle" value="Modifica Profilo Utente" />
 	</definition>
+	<!-- Mostra profilo all'Utente -->
+	<definition extends="default" name="user.showProfile">
+		<put-attribute name="body" value="/WEB-INF/views/users/profile.jsp" />
+		<put-attribute name="pageTitle" value="Visualizza Profilo Utente" />
+	</definition>
+
+
 </tiles-definitions>

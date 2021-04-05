@@ -2,45 +2,53 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<c:url value="/user/edit/save" var="action_url"/>
+<c:url value="/user/new/save" var="action_url"/>
 <div class="card mb-5">
     <form:form name="modulo" class="form-signin" action="${action_url}" method="POST" modelAttribute="user" enctype="multipart/form-data">
-       	<div class="card-header">
-       		<h1 class="h3 mb-3 font-weight-normal">Modifica i tuoi Dati</h1>
+       		<h1 class="h3 mb-3 font-weight-normal">Inserisci i tuoi dati</h1>
        	</div>
         
         <div class="card-body">
         	<p class="text-danger">* Campo obbligatorio.</p>
 	        <div class="form-group">
-	        	<label>Nome Utente</label>
-	        	<input type="text" name="username" value="${user.username}" readonly="readonly" class="form-control mt-2" />
+	        	<label>Username*</label>
+	        	<input type="text" name="username" value="username" class="form-control mt-2" />
 	        </div>
-	       
-	        <input type="hidden" name="password" value="${user.password}">
-	
+			<div class="form-group">
+	        	<label>Password*</label>
+	        	<input type="text" name="password" value="password" class="form-control mt-2" />
+	        </div>
+
 			<div class="form-group">
 				<label>Nome*</label>
-		        <input type="text" name="firstname" class="form-control mt-2" value="${user.firstname}" onblur = "controlloNome()" autofocus/>
+		        <input type="text" name="firstname"  value ="Mario" class="form-control mt-2" onblur = "controlloNome()" autofocus/>
 				<p id=name_err></p>
 			</div>
 	        
 			<div class="form-group">
 		        <label>Cognome*</label>
-		        <input type="text" name="lastname"  class="form-control mt-2" value="${user.lastname}" onblur = "controlloCognome()"/>
+		        <input type="text" name="lastname"  value="Rossi" class="form-control mt-2"  onblur = "controlloCognome()"/>
 				<p id=lastname_err></p>
+			</div>
+
+			<div class="form-group">
+		        <label>Ruolo</label>
+				<select id="cars" name="ruolo">
+					<option value="admin">Admin</option>
+					<option value="driver">Driver</option>
+					<option value="account">Account</option>
+				  </select>
 			</div>
 			
 			<div class="form-group">
 		        <label>Immagine Profilo</label>
 		        <input type="file" name="image" class="form-control mt-2"/>
-		        <small><b>NOTA</b>: Se non viene caricata alcuna immagine del profilo rimarrà quella attualmente presente nel server. <b>MAX 1MB</b></small>
-			</div>	
-		
+		        <small><b>MAX 1MB</b></small>
+			</div>			
 			<div class="d-flex justify-content-center">
-				<input class="btn btn-primary col-3" type="submit" value="Applica" onclick="controlloForm()"/>
+				<input class="btn btn-primary col-3" type="submit" value="Inserisci" onclick="controlloForm()"/>
 			</div>
 	        <form:hidden path="imageProfile"/>
-			<form:hidden path="ruolo"/>
         </div>
     </form:form>
 </div>

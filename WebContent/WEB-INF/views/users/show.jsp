@@ -27,31 +27,24 @@
         <table class="table table-striped w-75 mx-auto">
             <thead>
             <tr>
+                <th scope="col">Immagine Profilo</th>
                 <th scope="col">Username</th>
                 <th scope="col">Nome</th>
                 <th scope="col">Cognome</th>
-                <th scope="col">Show</th>
-                <th scope="col">Edit</th>
-                <th scope="col">Delete</th>
+                <th scope="col">Elimina</th>
+            </tr>
+            <tr>
+                <td>${user.imageProfile}</td>
+                <td>${user.username}</td>
+                <td>${user.firstname}</td>
+                <td>${user.lastname}</td>
+                <td><a class="btn btn-danger"
+                    href="<c:url value="/user/delete/${user.username}"/>"/
+                    title="Elimina &quot;${car.targa}&quot;"
+                    onclick='return confirm("Sei sicuro di voler eliminare l'utente : \"${user.username}\"?");'>
+                     <i class="fa fa-trash"></i></a></td>
             </tr>
             </thead>
-            <tbody>
-            <c:forEach items="${users}" var="user">
-                <tr>
-                    <td>${user.username}</td>
-                    <td>${user.firstname}</td>
-                    <td>${user.lastname}</td>
-                    <td><a class="btn btn-info" href="<c:url value="/user/${user.username}"/>"><i class="fa fa-info"></i></a></td>
-                    <td><a class="btn btn-info" href="<c:url value="/user/edit/${user.username}"/>"><i class="fa fa-edit"></i></a></td>
-                    <td><a class="btn btn-danger"
-                        href="<c:url value="/user/delete/${user.username}"/>"/
-                        title="Elimina &quot;${car.targa}&quot;"
-                        onclick='return confirm("Sei sicuro di voler eliminare l'utente : \"${user.username}\"?");'>
-                         <i class="fa fa-trash"></i></a></td>
-
-                </tr>
-            </c:forEach>
-            </tbody>
         </table>
     </div>
 </div>
