@@ -11,9 +11,9 @@ public class Prenotazione implements Serializable {
 	
 
 	private long id;
-    private LocalDate dataInzio; 
+    private LocalDate dataInizio; 
     private LocalDate dataFine; 
-    private LocalTime oraInzio; 
+    private LocalTime oraInizio; 
     private LocalTime oraFine; 
     private String descrizione;	
 
@@ -72,8 +72,8 @@ public class Prenotazione implements Serializable {
 	 * @return dataInizio
 	 */
 	@Column(name = "dataInizio")
-	public LocalDate getDataInzio() {
-		return dataInzio;
+	public LocalDate getDataInizio() {
+		return dataInizio;
 	}
 	/**
 	 * Getter Descrizione prenotazione 
@@ -106,8 +106,8 @@ public class Prenotazione implements Serializable {
 	 * @return oraInzio 
 	 */
 	@Column(name = "oraInizio")
-	public LocalTime getOraInzio() {
-		return oraInzio;
+	public LocalTime getOraInizio() {
+		return oraInizio;
 	}
 	/**
 	 * Getter Utente prenotazione
@@ -127,8 +127,8 @@ public class Prenotazione implements Serializable {
 	 * Setter Data di prenotazione (inizio)
 	 * @param dataInzio
 	 */
-	public void setDataInzio(LocalDate dataInzio) {
-		this.dataInzio = dataInzio;
+	public void setDataInizio(LocalDate dataInizio) {
+		this.dataInizio = dataInizio;
 	}
 	/**
 	 * Setter Descrizione prenotazione
@@ -156,8 +156,8 @@ public class Prenotazione implements Serializable {
 	 * Setter Ora di prenozazione (inizio)
 	 * @param oraInzio
 	 */
-	public void setOraInzio(LocalTime oraInzio) {
-		this.oraInzio = oraInzio;
+	public void setOraInizio(LocalTime oraInzio) {
+		this.oraInizio = oraInzio;
 	}
 	
     

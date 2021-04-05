@@ -4,7 +4,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <!--<sec:authorize access="isAuthenticated()" var="isAuth"/>-->
-
+<c:url value="/manutenzione/new" var="newManutenzione_url"/>
 <div class="col-md-12 mb-4">
     <div class="row">
         <c:if test="${fn:length(successMessage) > 0}">
@@ -37,12 +37,12 @@
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${manutenzioni}" var="comment">
+                <c:forEach items="${manutenzioni}" var="manutenzione">
                     <tr>
                         <td>${manutenzione.id}</td>
                         <td>${manutenzione.tipoManutenzione}</td>
                         <td>${manutenzione.costoManutenzione}</td>
-                        <td>${manutenzione.getCars().targa}</td>
+                        <td>${manutenzione.veicolo.targa}</td>
 						<td>
 							<div class="row">
 								<div class="col-lg">
@@ -60,7 +60,7 @@
 									<a class="btn btn-danger"
 											href="<c:url value="/manutenzione/delete/${manutenzione.id}"/>"
                                            	title="Elimina &quot;${manutenzione.id}&quot;"
-                                       onclick='return confirm("Sei sicuro di voler eliminare il commento?");'>
+                                       onclick='return confirm("Sei sicuro di voler eliminare il manutenzione?");'>
 										<i class="fa fa-trash"></i>
 									</a>
 								</div>
@@ -71,4 +71,7 @@
                 </tbody>
             </table>
         </div>
+        <div class="text-center mb-4">
+            <a type="button" class="btn btn-success" href="${newManutenzione_url}">Aggiungi un nuova manutenzione</a>
+   	    </div>
     </div>

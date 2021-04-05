@@ -28,9 +28,9 @@ public class PrenotazioneDaoDefault extends DefaultDao implements PrenotazioneDa
 			String descrizione, Car car , User utente) {
 		Prenotazione prenotazione = new Prenotazione();
 		prenotazione.setId(id);
-		prenotazione.setDataInzio(dataInzio);
+		prenotazione.setDataInizio(dataInzio);
 		prenotazione.setDataFine(dataFine);
-		prenotazione.setOraInzio(oraInzio);
+		prenotazione.setOraInizio(oraInzio);
 		prenotazione.setOraFine(oraFine);
 		prenotazione.setDescrizione(descrizione);
 		prenotazione.setUtente(utente);
@@ -47,7 +47,6 @@ public class PrenotazioneDaoDefault extends DefaultDao implements PrenotazioneDa
 	@Override
 	public void delete(Prenotazione prenotazione) {
 		this.getSession().delete(prenotazione);
-
 	}
 
 	/**
@@ -90,8 +89,6 @@ public class PrenotazioneDaoDefault extends DefaultDao implements PrenotazioneDa
 	 */
 	@Override
 	public Prenotazione update(Prenotazione prenotazione) {
-		this.getSession().update(prenotazione);
-        Prenotazione updated_prenotazione = this.getById(prenotazione.getId());
-        return updated_prenotazione;
+		return (Prenotazione)this.getSession().merge(prenotazione);
 	}
 }

@@ -1,6 +1,7 @@
 package it.univpm.advancedcode.cri.test;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -18,6 +19,8 @@ import it.univpm.advancedcode.cri.model.dao.PrenotazioneDao;
 import it.univpm.advancedcode.cri.model.dao.UserDao;
 import it.univpm.advancedcode.cri.model.entities.Car;
 import it.univpm.advancedcode.cri.model.entities.Documentazione;
+import it.univpm.advancedcode.cri.model.entities.Manutenzione;
+import it.univpm.advancedcode.cri.model.entities.Prenotazione;
 import it.univpm.advancedcode.cri.model.entities.User;
 
 public class LoadDataTest {
@@ -121,6 +124,19 @@ public class LoadDataTest {
 				session.getTransaction().commit();
 
 				assert allegatoDao.getAll().size() == 10;
+
+
+				//PRENOTAZIONI
+				LocalDate data_1 = LocalDate.of(2021,11,20); 
+				LocalDate data_2 = LocalDate.of(2021,11,20);			
+				LocalTime t1 = LocalTime.of(17, 39);
+				LocalTime t2 = LocalTime.of(18, 39);
+				Prenotazione p1 = prenotazioneDao.create(1, data_1, data_2, t1, t2, "Descrizione", c1, user1);
+				Prenotazione p2 = prenotazioneDao.create(1, data_1, data_2, t1, t2, "Descrizione", c2, user2);
+
+				//MANUTENZIONI 
+				Manutenzione m1 = manutenzioneDao.create(1, "STRAORDINARIA", (float) 90.00, c1); 
+				Manutenzione m2 = manutenzioneDao.create(1, "ORDINARIA", (float) 190.00, c2); 
 
 
 

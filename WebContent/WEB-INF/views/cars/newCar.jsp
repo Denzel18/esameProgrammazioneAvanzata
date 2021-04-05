@@ -5,7 +5,7 @@
 <c:url value="/car/new/save" var="action_url" />
 
 <div class="row justify-content-center">
-	<div class="col-6">
+	<div class="col-12">
 		<%--@elvariable id="car" type="it.univpm.advancedcode.cri.model.entities.Car"--%>
 		<form:form class="form-signin" action="${action_url}" method="POST"
 			modelAttribute="car">

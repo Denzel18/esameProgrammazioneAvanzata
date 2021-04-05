@@ -4,7 +4,6 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <!--<sec:authorize access="hasRole('admin')" var="isAdmin"/>-->
-<c:url value="/car/new" var="newCar_url"/>
 
 <div class="col-md-12 mb-4">
     <div class="row">

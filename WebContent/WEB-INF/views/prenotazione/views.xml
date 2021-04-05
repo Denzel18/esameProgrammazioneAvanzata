@@ -3,16 +3,20 @@
    Foundation//DTD Tiles  Configuration 3.0//EN"
         "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
-    <definition extends="default" name="comments.list">
-        <put-attribute name="body" value="/WEB-INF/views/comments/list.jsp"/>
-        <put-attribute name="pageTitle" value="Lista Tuoi Commenti"/>
+    <definition extends="default" name="prenotazioni.list">
+        <put-attribute name="body" value="/WEB-INF/views/prenotazione/list.jsp"/>
+        <put-attribute name="pageTitle" value="Lista prenotazioni"/>
     </definition>
-    <definition extends="default" name="comments.listforAdmin">
-        <put-attribute name="body" value="/WEB-INF/views/comments/listForAdmin.jsp"/>
-        <put-attribute name="pageTitle" value="Lista Commenti Utenti"/>
+    <definition extends="default" name="prenotazione.new">
+        <put-attribute name="body" value="/WEB-INF/views/prenotazione/newPrenotazione.jsp"/>
+        <put-attribute name="pageTitle" value="Nuova Prenotazione"/>
     </definition>
-        <definition extends="default" name="comments.editComment">
-        <put-attribute name="body" value="/WEB-INF/views/comments/editComment.jsp"/>
-        <put-attribute name="pageTitle" value="Modifica Commento"/>
+    <definition extends="default" name="prenotazione.show">
+        <put-attribute name="body" value="/WEB-INF/views/prenotazione/show.jsp"/>
+        <put-attribute name="pageTitle" value="Vista Prenotazione"/>
+    </definition>
+        <definition extends="default" name="prenotazione.edit">
+        <put-attribute name="body" value="/WEB-INF/views/prenotazione/editPrenotazione.jsp"/>
+        <put-attribute name="pageTitle" value="Modifica Prenotazione"/>
     </definition>
 </tiles-definitions>

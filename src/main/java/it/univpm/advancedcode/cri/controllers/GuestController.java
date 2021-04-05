@@ -1,8 +1,14 @@
 package it.univpm.advancedcode.cri.controllers;
 
+import java.io.File;
+import java.time.Duration;
+import java.time.Period;
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.activation.MimetypesFileTypeMap;
 import javax.servlet.http.HttpServletRequest;
+import javax.swing.text.Document;
 
 import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
@@ -18,15 +24,24 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import it.univpm.advancedcode.cri.model.entities.Car;
-import it.univpm.advancedcode.cri.model.entities.User;
-import it.univpm.advancedcode.cri.services.CarService;
-import it.univpm.advancedcode.cri.services.UserService;
-
-import java.io.File;
-import javax.activation.MimetypesFileTypeMap;
 import org.springframework.web.multipart.MultipartFile;
+
+import it.univpm.advancedcode.cri.model.entities.Allegato;
+import it.univpm.advancedcode.cri.model.entities.Car;
+import it.univpm.advancedcode.cri.model.entities.Documentazione;
+import it.univpm.advancedcode.cri.model.entities.Link;
+import it.univpm.advancedcode.cri.model.entities.Manutenzione;
+import it.univpm.advancedcode.cri.model.entities.Prenotazione;
+import it.univpm.advancedcode.cri.model.entities.User;
+
+import it.univpm.advancedcode.cri.services.AllegatoService;
+import it.univpm.advancedcode.cri.services.CarService;
+import it.univpm.advancedcode.cri.services.DocumentazioneService;
+import it.univpm.advancedcode.cri.services.FileService;
+import it.univpm.advancedcode.cri.services.LinkService;
+import it.univpm.advancedcode.cri.services.ManutenzioneService;
+import it.univpm.advancedcode.cri.services.PrenotazioneService;
+import it.univpm.advancedcode.cri.services.UserService;
 
 
 
@@ -35,6 +50,12 @@ public class GuestController {
     private final Logger logger = LoggerFactory.getLogger(GuestController.class);
     private CarService carService;
     private UserService userService;
+    private PrenotazioneService prenotazioneService; 
+    private ManutenzioneService manutenzioneService; 
+    private DocumentazioneService documentazioneService; 
+    private FileService fileService; 
+    private LinkService linkService; 
+    private AllegatoService allegatoService; 
 
     @Autowired
     private HttpServletRequest request;
@@ -73,6 +94,51 @@ public class GuestController {
     @Autowired
     public void setUserService(UserService userService) {
     	this.userService = userService;
+    }
+    /**
+     * Setter per la proprietà riferita al Service dell'entità Prenotazione
+     * @param prenotazioneService Service dell'entità User da settare
+     */
+    @Autowired
+    public void setPrenotazioneService(PrenotazioneService prenotazioneService) {
+    	this.prenotazioneService = prenotazioneService;
+    }
+    /**
+     * Setter per la proprietà riferita al Service dell'entità Manutenzione
+     * @param manutenzioneService Service dell'entità User da settare
+     */
+    @Autowired
+    public void setManutenzioneService(ManutenzioneService manutenzioneService) {
+    	this.manutenzioneService = manutenzioneService;
+    }
+    /**
+     * Setter per la proprietà riferita al Service dell'entità File
+     * @param fileService Service dell'entità User da settare
+     */
+    @Autowired
+    public void setFileService(FileService fileService) {
+    	this.fileService = fileService;
+    }
+    /**
+     * Setter per la proprietà riferita al Service dell'entità Link
+     * @param linkService Service dell'entità User da settare
+     */
+    @Autowired
+    public void setLinkService(LinkService linkService) {
+    	this.linkService = linkService;
+    }
+
+
+
+
+
+    /**
+     * Setter per la proprietà riferita al Service dell'entità Documentazione
+     * @param userService Service dell'entità User da settare
+     */
+    @Autowired
+    public void setDocumentazioneService(DocumentazioneService documentazioneService) {
+    	this.documentazioneService = documentazioneService;
     }
     
     /**
@@ -258,7 +324,7 @@ public class GuestController {
 
 
     /**
-	 * Metodo " POST " per il salvataggio del veicolo
+	 * Metodo " Documentazione " per il salvataggio del veicolo
 	 * @param car           car restituita dalla richiesta
 	 * @param bindingResult eventuali errori di validazione
 	 * @param uiModel       modello associato alla vista
@@ -418,7 +484,7 @@ public class GuestController {
 
 
     /**
-	 * Metodo " POST " per il salvataggio del utente
+	 * Metodo " Documentazione " per il salvataggio del utente
 	 * @param car           car restituita dalla richiesta
 	 * @param bindingResult eventuali errori di validazione
 	 * @param uiModel       modello associato alla vista
@@ -505,11 +571,574 @@ public class GuestController {
 	}
 
 
+    //------------------- PRENOTAZIONI --------------//
+    /**
+	 * Metodo " GET " per la visualizzazione della lista di tutte le prenotazioni
+	 * @param errorMessage eventuale messaggio di errore
+	 * @param successMessage eventuale messaggio di successo
+	 * @param uiModel modello associato alla vista
+	 * @return nome della vista da visualizzare
+	 */
+	@GetMapping(value = "/prenotazioni")
+	public String showPrenotazioni(@RequestParam(value = "successMessage", required = false) String successMessage,
+			@RequestParam(value = "errorMessage", required = false) String errorMessage,
+			Model uiModel) {
+		logger.info("Listing all the prenotazioni...");
+
+		List<Prenotazione> allBookings = this.prenotazioneService.getAll();
+		uiModel.addAttribute("prenotazioni", allBookings);
+		uiModel.addAttribute("numPrenotazioni", allBookings.size());
+		uiModel.addAttribute("successMessage", successMessage);
+		uiModel.addAttribute("errorMessage", errorMessage);
+		return "prenotazioni.list";
+	}
+
+    /**
+	 * Metodo " GET " per eliminare una prenotazione
+	 * @param id id della prenotazione da cancellare
+	 * @return nome della vista da visualizzare
+	 */
+	@GetMapping(value = "/prenotazione/delete/{id}")
+	public String deletePrenotazione(@PathVariable("id") Long id) {
+		logger.info("Deleting booking with id \"" + id + "\"...");
+        Prenotazione selectedPrenotazione = this.prenotazioneService.getById(id); 
+		String strMessage;
+        if(selectedPrenotazione != null){
+            this.prenotazioneService.delete(selectedPrenotazione);
+            strMessage = "La prenotazione relativa alla data:  \"" + selectedPrenotazione.getDataInizio() + "\" %C3%A8 stato cancellata correttamente!";
+            return "redirect:/prenotazioni/?successMessage=" + strMessage;
+            // fare controlli su prenotazione ...
+        }else{
+            strMessage = "La prenotazione non può essere cancellata, ci sono problemi"+
+            "Non pu%C3%B2 essere cancellata!";
+            return "redirect:/prenotazioni/?errorMessage=" + strMessage;
+        }
+	}
+
+
+    /**
+	 * Metodo " GET " per la creazione di una prenotazione 
+	 * @param uiModel modello associato
+	 * @return nome della vista
+	 */
+	@GetMapping(value = "/prenotazione/new")
+	public String newPrenotazione(Model uiModel) {
+		logger.info("Creating a new prenotazione...");
+		uiModel.addAttribute("prenotazione", new Prenotazione());
+		return "prenotazione.new";
+	}
+
+
+	@PostMapping(value = "/prenotazione/new/save")
+	public String savePrenotazione(@ModelAttribute("prenotazione") Prenotazione prenotazione, BindingResult bindingResult, Model uiModel) {
+		logger.info("Saving a new prenotazione...");
+        if(
+            (prenotazione.getDataInizio().toString() == null) || 
+            (prenotazione.getDataFine().toString() == null) ||
+            (prenotazione.getOraInizio().toString() == null) ||
+            (prenotazione.getOraFine().toString() == null) //||
+            //(prenotazione.getDescrizione().equals("") || prenotazione.getDescrizione() == null ) ||
+            //(prenotazione.getVeicolo() == null) ||
+            //(prenotazione.getUtente() == null)){
+        ){    
+            String strMessage = "Non hai inserito i campi obbligatori !"; 
+            return "redirect:/prenotazioni/?errorMessage=" + strMessage;                 
+
+
+            
+        }else if(Period.between(prenotazione.getDataInizio(),prenotazione.getDataFine()).getDays() < 0){
+            String strMessage = "Le date inserite non sono corrette !"; 
+            return "redirect:/prenotazioni/?errorMessage=" + strMessage; 
+        }else if(Duration.between(prenotazione.getOraInizio(),prenotazione.getOraFine()).isNegative()){
+            String strMessage = "Gli orari inseriti non sono corretti !"; 
+            return "redirect:/prenotazioni/?errorMessage=" + strMessage; 
+        }
+
+		try {
+            this.prenotazioneService.create(prenotazione.getId(), prenotazione.getDataInizio(), 
+            prenotazione.getDataFine(), prenotazione.getOraInizio(), prenotazione.getOraFine(), 
+            prenotazione.getDescrizione(), prenotazione.getVeicolo(), prenotazione.getUtente());
+			String strMessage = "La prenotazione :  \"" + prenotazione.getId() + "\" %C3%A8 stata salvato correttamente!";
+			return "redirect:/prenotazioni/?successMessage=" + strMessage;
+		} catch (RuntimeException e) {
+			return "redirect:/prenotazioni/?errorMessage=" + e.getMessage();
+		}
+    }
+    
+    /**
+     * Metodo " GET " per la visualizzazione di una prenotazione
+     * @param username
+     * @param uiModel
+     * @return nome della vista
+     */
+	@GetMapping(value = "/prenotazione/{id}")
+	public String showPrenotazione(@PathVariable("id") Long id, Model uiModel) {
+        Prenotazione selectedPrenotazione = this.prenotazioneService.getById(id); 
+        logger.info("Showing a prenotazione...");
+        if (selectedPrenotazione != null){
+            uiModel.addAttribute("prenotazione", selectedPrenotazione);
+            return "prenotazione.show"; 
+        }else{
+            logger.info("Listing all prenotazioni...");
+            List<Prenotazione> allBookings = this.prenotazioneService.getAll();
+            uiModel.addAttribute("prenotazioni", allBookings);
+            uiModel.addAttribute("numPrenotazioni", allBookings.size());
+            uiModel.addAttribute("successMessage", "OK");
+            uiModel.addAttribute("errorMessage", "ERROR");
+            return "prenotazioni.list";
+        }
+	}
+
+    /**
+     * Metodo " GET " per la modifica di una prenotazione
+     * @param id
+     * @param uiModel
+     * @return nome della vista
+     */
+	@GetMapping(value = "/prenotazione/edit/{id}")
+	public String editPrenotazione(@PathVariable("id") Long id, Model uiModel) {
+        Prenotazione selectedPrenotazione = this.prenotazioneService.getById(id);
+        logger.info("Edit a prenotazione...");
+        if (selectedPrenotazione != null){
+            uiModel.addAttribute("prenotazione", selectedPrenotazione);
+            return "prenotazione.edit"; 
+        }else{
+            logger.info("Listing all prenotazioni...");
+            List<Prenotazione> allBookings = this.prenotazioneService.getAll();
+            uiModel.addAttribute("prenotazioni", allBookings);
+            uiModel.addAttribute("numPrenotazioni", allBookings.size());
+            uiModel.addAttribute("successMessage", "OK");
+            uiModel.addAttribute("errorMessage", "ERROR");
+            return "prenotazioni.list";
+        }
+	}
+
+    
+    /**
+     * Metodo update prenotazione 
+     * @param prenotazione prenotazione to update
+     * @param br binding result
+     * @param uiModel
+     * @return nome della vista da visualizzare 
+     */
+
+    @PostMapping(value = "/prenotazione/edit/save", consumes = "multipart/form-data")
+	public String saveEditPrenotazione(@ModelAttribute("prenotazione") Prenotazione prenotazione, BindingResult br, Model uiModel) {
+		logger.info("Saving the edited prenotazione...");
+		try {
+			this.prenotazioneService.update(prenotazione);
+			String strMessage = "La prenotazione %C3%A8 stata salvato correttamente!";
+			return "redirect:/prenotazioni?successMessage=" + strMessage;
+		} catch (RuntimeException e) {
+			return "redirect:/prenotazioni?errorMessage=" + e.getMessage();
+		}
+	}
+
+    //------------------- MANUTENZIONI --------------//
+    /**
+	 * Metodo " GET " per la visualizzazione della lista di tutte le manutenzioni
+	 * @param errorMessage eventuale messaggio di errore
+	 * @param successMessage eventuale messaggio di successo
+	 * @param uiModel modello associato alla vista
+	 * @return nome della vista da visualizzare
+	 */
+	@GetMapping(value = "/manutenzioni")
+	public String showManutenzioni(@RequestParam(value = "successMessage", required = false) String successMessage,
+			@RequestParam(value = "errorMessage", required = false) String errorMessage,
+			Model uiModel) {
+		logger.info("Listing all the manutenzioni...");
+		List<Manutenzione> allManutenzioni = this.manutenzioneService.getAll();
+		uiModel.addAttribute("manutenzioni", allManutenzioni);
+		uiModel.addAttribute("numManutenzioni", allManutenzioni.size());
+		uiModel.addAttribute("successMessage", successMessage);
+		uiModel.addAttribute("errorMessage", errorMessage);
+		return "manutenzioni.list";
+	}
+
+    /**
+	 * Metodo " GET " per eliminare una manutenzione
+	 * @param id id della manutenzione da cancellare
+	 * @return nome della vista da visualizzare
+	 */
+	@GetMapping(value = "/manutenzione/delete/{id}")
+	public String deleteManutenzione(@PathVariable("id") Long id) {
+		logger.info("Deleting manutentizioni with id \"" + id + "\"...");
+        Manutenzione selectedManutenzione = this.manutenzioneService.getById(id); 
+		String strMessage;
+        if(selectedManutenzione != null){
+            this.manutenzioneService.delete(selectedManutenzione);
+            strMessage = "La manutenzione relativa alla data:  \"" + selectedManutenzione.getId() + "\" %C3%A8 stata cancellata correttamente!";
+            return "redirect:/manutenzioni/?successMessage=" + strMessage;
+            // fare controlli su prenotazione ...
+        }else{
+            strMessage = "La manutenzione non può essere cancellata, ci sono problemi"+
+            "Non pu%C3%B2 essere cancellata!";
+            return "redirect:/manutenzioni/?errorMessage=" + strMessage;
+        }
+	}
+
+
+    /**
+	 * Metodo " GET " per la creazione di una manutenzione 
+	 * @param uiModel modello associato
+	 * @return nome della vista
+	 */
+	@GetMapping(value = "/manutenzione/new")
+	public String newManutenzione(Model uiModel) {
+		logger.info("Creating a new manutenzione...");
+		uiModel.addAttribute("manutenzione", new Manutenzione());
+		return "manutenzione.new";
+	}
 
 
 
 
+    /**
+	 * Metodo " Documentazione " per il salvataggio del veicolo
+	 * @param car           car restituita dalla richiesta
+	 * @param bindingResult eventuali errori di validazione
+	 * @param uiModel       modello associato alla vista
+	 * @return nome della vista da visualizzare
+	 */
+	@PostMapping(value = "/manutenzione/new/save")
+	public String saveManutenzione(@ModelAttribute("manutenzione") Manutenzione manutenzione, BindingResult bindingResult, Model uiModel) {
+		logger.info("Saving a new manutenzione...");
+		if(manutenzione.getCostoManutenzione() == 0) {
+			String strMessage = "Non hai inserito i campi obbligatori!";
+			return "redirect:/manutenzioni/?errorMessage=" + strMessage;
+		}
 
+		try {
+            this.manutenzioneService.create(manutenzione.getId(), manutenzione.getTipoManutenzione(), manutenzione.getCostoManutenzione(), manutenzione.getVeicolo());
+            String strMessage = "La manutenzione, id: \"" + manutenzione.getId() + "\" %C3%A8 stata salvato correttamente!";
+			return "redirect:/manutenzioni/?successMessage=" + strMessage;
+		} catch (RuntimeException e) {
+			return "redirect:/manutenzioni/?errorMessage=" + e.getMessage();
+		}
+	}
+
+        /**
+     * Metodo " GET " per la modifica di una prenotazione
+     * @param id
+     * @param uiModel
+     * @return nome della vista
+     */
+	@GetMapping(value = "/manutenzione/edit/{id}")
+	public String editManutenzione(@PathVariable("id") Long id, Model uiModel) {
+        Manutenzione selectedManutenzione = this.manutenzioneService.getById(id);
+        logger.info("Edit a manutenzione...");
+        if (selectedManutenzione != null){
+            uiModel.addAttribute("manutenzione", selectedManutenzione);
+            return "manutenzione.edit"; 
+        }else{
+            logger.info("Listing all the manutenzioni...");
+            List<Manutenzione> allManutenzioni = this.manutenzioneService.getAll();
+            uiModel.addAttribute("manutenzioni", allManutenzioni);
+            uiModel.addAttribute("numManutenzioni", allManutenzioni.size());
+            uiModel.addAttribute("successMessage", "OK");
+            uiModel.addAttribute("errorMessage", "ERRORE");
+            return "manutenzioni.list";
+        }
+	}
+
+    
+    /**
+     * Metodo update prenotazione 
+     * @param prenotazione prenotazione to update
+     * @param br binding result
+     * @param uiModel
+     * @return nome della vista da visualizzare 
+     */
+
+    @PostMapping(value = "/manutenzione/edit/save", consumes = "multipart/form-data")
+	public String saveEditManutenzione(@ModelAttribute("manutenzione") Manutenzione manutenzione, BindingResult br, Model uiModel) {
+		logger.info("Saving the edited manutenzione...");
+		try {
+			this.manutenzioneService.update(manutenzione);
+			String strMessage = "La manutenzione %C3%A8 stata salvata correttamente!";
+			return "redirect:/manutenzioni?successMessage=" + strMessage;
+		} catch (RuntimeException e) {
+			return "redirect:/manutenzioni?errorMessage=" + e.getMessage();
+		}
+	}
+
+    //---------------DOCUMENTAZIONI -----------------//
+
+
+    /**
+	 * Metodo " GET " per la visualizzazione della lista di tutte le documentazioni
+	 * @param errorMessage eventuale messaggio di errore
+	 * @param successMessage eventuale messaggio di successo
+	 * @param uiModel modello associato alla vista
+	 * @return nome della vista da visualizzare
+	 */
+	@GetMapping(value = "/documentazioni")
+	public String showDocumentazioni(@RequestParam(value = "successMessage", required = false) String successMessage,
+			@RequestParam(value = "errorMessage", required = false) String errorMessage,
+			Model uiModel) {
+		logger.info("Listing all the documentazioni...");
+		List<Documentazione> allDocumentazioni = this.documentazioneService.getAll();
+		uiModel.addAttribute("documentazioni", allDocumentazioni);
+		uiModel.addAttribute("numDocumentazioni", allDocumentazioni.size());
+		uiModel.addAttribute("successMessage", successMessage);
+		uiModel.addAttribute("errorMessage", errorMessage);
+		return "documentazioni.list";
+	}
+
+	/**
+	 * Metodo per la richiesta GET di eliminazione post
+	 *
+	 * @param id		id del commento da rimuovere
+	 * @param auth informazioni dell'autenticazione corrente
+	 * @return			redirect all'indirizzo cui fare richiesta
+	 */
+	@GetMapping(value = "/documentazione/delete/{documento_id}")
+	public String deleteDocumentazione (@PathVariable("documento_id") long id, Authentication auth) {
+		logger.info("Deleting a documentazione...");
+
+		Documentazione documento = documentazioneService.getById(id);
+		if(documento == null) {
+			String message = "Errore, documento ... !";
+			return "redirect:/documentazioni?errorMessage=" + message;
+		}
+
+		this.documentazioneService.delete(documento);
+		String message = "Documento \"" + documento.getTitolo() + "\" eliminato correttamente!";
+		return "redirect:" + "/documentazioni/?successMessage=" + message;
+	}
+
+	/**
+	 * Metodo per la richiesta GET della gestione degli allegati di un documento
+	 *
+	 * @param id ID del documento
+	 * @param uiModel modello associato alla vista
+	 * @param auth informazioni dell'autenticazione corrente
+	 * @return nome della vista da visualizzare
+	 */
+	@GetMapping(value="/documentazione/{documento_id}/allegati")
+	public String documentazioneAllegati(@PathVariable("documento_id") long id, Model uiModel, Authentication auth) {
+
+		Documentazione documento = documentazioneService.getById(id);
+		if(documento == null) {
+			String message = "Errore, documento ... !";
+			return "redirect:/documentazioni?errorMessage=" + message;
+		}
+
+		// get all file allegati
+        List<it.univpm.advancedcode.cri.model.entities.File> filesDocumentazione = new ArrayList<>();
+		for (Allegato allegato:documento.getAllegati()) {
+			it.univpm.advancedcode.cri.model.entities.File file = fileService.getById(allegato.getId());
+			if( file != null) {
+				filesDocumentazione.add(file);
+			}
+		}
+
+
+		// get all link allegati
+		List<Link> linksDocumentazione = new ArrayList<>();
+		for (Allegato allegato:documento.getAllegati()) {
+			Link link = linkService.getById(allegato.getId());
+			if( link != null) {
+				linksDocumentazione.add(link);
+			}
+		}
+
+		uiModel.addAttribute("filesDocumentazione", filesDocumentazione);
+		uiModel.addAttribute("linksDocumentazione", linksDocumentazione);
+		uiModel.addAttribute("documento_id", id);
+
+		return "documentazione.allegati";
+	}
+
+	/**
+	 * Metodo per la richiesta GET di creazione di un nuovo allegato di tipo link.
+	 *
+	 * @param documento_id ID del documento
+	 * @param uiModel modello associato alla vista
+	 * @param auth informazioni dell'autenticazione corrente
+	 * @return nome della vista da visualizzare
+	 */
+	@GetMapping(value="/documentazione/edit/{documento_id}/allegati/link/new")
+	public String newLink(@PathVariable("documento_id") long documento_id, Model uiModel, Authentication auth) {
+
+		Documentazione documento = documentazioneService.getById(documento_id);
+		if(documento == null) {
+			String message = "Errore link, documento ...!";
+			return "redirect:/allegati?errorMessage=" + message;
+		}
+
+		uiModel.addAttribute("link", new Link());
+		uiModel.addAttribute("documento_id", documento_id);
+		uiModel.addAttribute("pageTitle","Inserisci Link");
+		return "link.new";
+	}
+
+	/**
+	 * Metodo per la richiesta GET di creazione di un nuovo allegato di tipo file.
+	 * @param documento_id ID del documento
+	 * @param uiModel modello associato alla vista
+	 * @param auth informazioni dell'autenticazione corrente
+	 * @return nome della vista da visualizzare
+	 */
+	@GetMapping(value="/documentazione/edit/{documento_id}/allegati/file/new")
+	public String newFile(@PathVariable("documento_id") long documento_id, Model uiModel, Authentication auth) {
+
+		Documentazione documento = documentazioneService.getById(documento_id);
+		if(documento == null) {
+			String message = "Errore link, documento ...!";
+			return "redirect:/allegati?errorMessage=" + message;
+		}
+
+		uiModel.addAttribute("file", new it.univpm.advancedcode.cri.model.entities.File());
+		uiModel.addAttribute("documento_id", documento_id);
+		uiModel.addAttribute("pageTitle","Inserisci File");
+		return "file.new";
+	}
+
+	/**
+	 * Metodo per la richiesta GET di modifica di un link.
+	 * @param documento_id ID del documento
+	 * @param linkId ID del link da modificare
+	 * @param uiModel modello associato alla vista
+	 * @param auth informazioni dell'autenticazione corrente
+	 * @return nome della vista da visualizzare
+	 */
+	@GetMapping(value="/documentazione/edit/{documento_id}/allegati/link/{linkID}/edit")
+	public String editLink(@PathVariable("documento_id") long documento_id, @PathVariable("linkID") long linkId, Model uiModel,
+						   Authentication auth) {
+
+        Documentazione documento = documentazioneService.getById(documento_id);
+		Allegato allegato = allegatoService.getById(linkId);
+		if(documento == null || allegato == null) {
+			String message = "Errore link, documento ...!";
+			return "redirect:/allegati?errorMessage=" + message;
+		}
+
+		uiModel.addAttribute("link", linkService.getById(linkId));
+		uiModel.addAttribute("documento_id", documento_id);
+
+		return "link.edit";
+	}
+
+	/**
+	 * Metodo per la richiesta GET di modifica di un file.
+	 * @param documento_id ID del documento
+	 * @param fileId ID del file da modificare
+	 * @param uiModel modello associato alla vista
+	 * @param auth informazioni dell'autenticazione corrente
+	 * @return nome della vista da visualizzare
+	 */
+	@GetMapping(value="/documentazione/edit/{documento_id}/allegati/file/{fileID}/edit")
+	public String editFile(@PathVariable("documento_id") long documento_id, @PathVariable("fileID") long fileId, Model uiModel,
+						   Authentication auth) {
+        Documentazione documento = documentazioneService.getById(documento_id);
+        Allegato allegato = allegatoService.getById(fileId);
+		if(documento == null || allegato == null ) {
+			String message = "Errore file, documento ...!";
+			return "redirect:/allegati?errorMessage=" + message;
+		}
+
+		uiModel.addAttribute("file", fileService.getById(fileId));
+		uiModel.addAttribute("documento_id", documento_id);
+
+		return "file.edit";
+	}
+
+	/**
+	 * Metodo per la richiesta POST di salvataggio di un link.
+	 * @param link link da salvare
+	 * @param documento_id ID del documento
+	 * @return nome della vista da visualizzare
+	 */
+	@PostMapping(value = "/documentazione/edit/{documento_id}/allegati/link/save")
+	public String saveLink (@ModelAttribute("link") Link link, @PathVariable("documento_id") long documento_id) {
+		logger.info("Saving a link allegati...");
+		try {
+			link.setDocumento(this.documentazioneService.getById(documento_id)); 
+			this.linkService.update(link);
+			String message = "Il link \"" + link.getDescrizione() + "\" %C3%A8 stato salvato correttamente!";
+			return "redirect:" + "/documentazioni/?successMessage=" + message;
+
+		} catch (RuntimeException e) {
+			return "redirect:" + "/documentazioni/?errorMessage=" + e.getMessage();
+		}
+	}
+
+	/**
+	 * Metodo per la richiesta POST di salvataggio di un nuovo file.
+	 *
+	 * @param newFile nuovo file
+	 * @param postId ID del post
+	 * @param uploadedFile file caricato nel form
+	 * @return nome della vista da visualizzare
+	 */
+	@PostMapping(value = "/documentazione/edit/{documento_id}/allegati/file/new/save", consumes = "multipart/form-data")
+	public String saveNewFile (@ModelAttribute("file") it.univpm.advancedcode.cri.model.entities.File newFile,
+							   @PathVariable("documento_id") long documento_id, @RequestParam("fileAllegato") MultipartFile
+									   uploadedFile) {
+		logger.info("Saving the new file...");
+
+		if (!uploadedFile.isEmpty()) {
+			String nameOfFile = null;
+			try {
+				String uploadsDir = "/WEB-INF/files/documentazione_allegati/";
+				String realPathtoUploads = request.getServletContext().getRealPath(uploadsDir);
+				if (!new java.io.File(realPathtoUploads).exists()) {
+					logger.info("creating the directory...");
+					if (!new java.io.File(realPathtoUploads).mkdir()) {
+						String strMessage = "ERRORE, impossibile creare la cartella nel server!";
+						return "redirect:/documentazioni?errorMessage=" + strMessage;
+					}
+				}
+
+				logger.info("realPathtoUploads = {}", realPathtoUploads);
+				nameOfFile = "documento" + documento_id + "_" + uploadedFile.getOriginalFilename();
+				String filePath = realPathtoUploads + nameOfFile;
+				java.io.File dest = new File(filePath);
+				// sposto il file sulla cartella destinazione
+				uploadedFile.transferTo(dest);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			newFile.setName(nameOfFile);
+		} else {
+			String message = "ERRORE, non hai caricato alcun file!";
+			return "redirect:/documentazioni?errorMessage=" + message;
+		}
+
+		try {
+			newFile.setDocumento(documentazioneService.getById(documento_id)); 
+			this.fileService.update(newFile);
+			String strMessage = "Il file \"" + newFile.getDescrizione() + "\" %C3%A8 stato salvato correttamente!";
+			return "redirect:/documentazioni?successMessage=" + strMessage;
+		} catch (RuntimeException e) {
+			return "redirect:/documentazioni?errorMessage=" + e.getMessage();
+		}
+	}
+
+// 	/**
+// 	 * Metodo per la richiesta Documentazione di salvataggio di un file modificato.
+// 	 *
+// 	 * @param file file da salvare
+// 	 * @param postId ID del post
+// 	 * @return nome della vista da visualizzare
+// 	 */
+// 	@PostMapping(value = "/posts/edit/{postID}/allegati/file/save")
+// 	public String saveEditedFile (@ModelAttribute("file") it.univpm.advprog.blog.model.entities.File file,
+// 								  @PathVariable("postID") long postId) {
+// 		logger.info("Saving the edited file...");
+// 		try {
+// 			file.setPost(this.postService.getById(postId));
+// 			this.fileService.update(file);
+// 			String message = "Il file \"" + file.getDescription() + "\" %C3%A8 stato salvato correttamente!";
+
+// 			return "redirect:" + "/posts/?successMessage=" + message;
+
+// 		} catch (RuntimeException e) {
+// 			return "redirect:" + "/posts/?errorMessage=" + e.getMessage();
+// 		}
+// 	}
 
 
 

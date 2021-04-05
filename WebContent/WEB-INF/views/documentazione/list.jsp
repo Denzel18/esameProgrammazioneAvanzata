@@ -5,7 +5,7 @@
 
 
 
-<sec:authorize access="isAuthenticated()" var="isAuth"/>
+<!--<sec:authorize access="isAuthenticated()" var="isAuth"/>-->
 <script type="text/javascript">
     $('#myModal').on('shown.bs.modal', function () {
         $('#myInput').trigger('focus')
@@ -30,7 +30,7 @@
     </div>
     <div class="overflow-auto">
         <h5 class="text-center font-weight-bold mt-4 mb-4">Lista di tutti i documenti</h5>
-        <div class="font-weight-bold text-center">Numero documenti: ${numDocumenti}</div>
+        <div class="font-weight-bold text-center">Numero documenti: ${numDocumentazioni}</div>
         <table class="table table-striped w-75 mx-auto">
             <thead>
             <tr>
@@ -39,21 +39,19 @@
                 <th scope="col">Descrizione</th>
                 <th scope="col">Utente</th>
                 <th scope="col">Data Scadenza</th>
-                <th scope="col">Costo</th>
                 <th scope="col">Modifica Documento</th>
                 <th scope="col">Gestisci Allegati</th>
                 <th scope="col">Elimina</th>
             </tr>
             </thead>
             <tbody>
-            <c:forEach items="${docs}" var="post">
+            <c:forEach items="${documentazioni}" var="doc">
                 <tr>
                     <td>${doc.id}</td>
-                    <td><a href="<c:url value="/documentazione/${doc.id}"/>"> ${doc.titolo}</a></td>
+                    <td>${doc.titolo }</td>
                     <td>${doc.descrizione }</td>
                     <td>${doc.getUtente().username }</td>
-                    <td>${post.dataScadenza }</td>
-                    <td>${post.costo }</td>
+                    <td>${doc.dataScadenza }</td>
                     <td>
                         <div class="row">
                             <div class="col-lg">
@@ -82,7 +80,7 @@
                                 <a class="btn btn-danger"
                                    href="<c:url value="/documentazione/delete/${doc.id}"/>"
                                    title="Elimina &quot;${doc.titolo}&quot;"
-                                   onclick='return confirm("Sei sicuro di voler eliminare il post \"${documento.titolo}\"?");'>
+                                   onclick='return confirm("Sei sicuro di voler eliminare il documento \"${documento.titolo}\"?");'>
                                     <i class="fa fa-trash"></i>
                                 </a>
                             </div>

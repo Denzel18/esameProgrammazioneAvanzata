@@ -11,7 +11,7 @@
         <put-attribute name="body" value="/WEB-INF/views/documentazione/form.jsp"/>
         <put-attribute name="pageTitle" value="Nuovo Documento"/>
     </definition>
-    <definition extends="default" name="posts.edit">
+    <definition extends="default" name="documentazione.edit">
         <put-attribute name="body" value="/WEB-INF/views/documentazione/form.jsp"/>
         <put-attribute name="pageTitle" value="Modifica documentazione"/>
     </definition>

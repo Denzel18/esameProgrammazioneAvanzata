@@ -24,21 +24,21 @@
             </tr>
             </thead>
             <tbody>
-            <c:forEach items="${filesPost}" var="file">
+            <c:forEach items="${filesDocumentazione}" var="file">
                 <tr>
                     <td><i class="fa fa-file">
                         <a href="<c:url value="/files/documentazione_allegati/${file.name}"/>"
-                           title="Scarica ${file.description}" download>${file.description}</a>
+                           title="Scarica ${file.descrizione}" download>${file.descrizione}</a>
                     </i></td>
                     <td><a class="btn btn-success"
                            href="<c:url value="/posts/edit/${documentoId}/allegati/file/${file.id}/edit"/>"
-                           title="Modifica &quot;${file.description}&quot;">
+                           title="Modifica &quot;${file.descrizione}&quot;">
                         <i class="fa fa-pencil-square-o"></i>
                     </a></td>
                     <td><a class="btn btn-danger"
                            href="<c:url value="/allegati/${file.id}/delete"/>"
-                           title="Elimina &quot;${file.description}&quot;"
-                           onclick='return confirm("Sei sicuro di voler eliminare \"${file.description}\"?");'>
+                           title="Elimina &quot;${file.descrizione}&quot;"
+                           onclick='return confirm("Sei sicuro di voler eliminare \"${file.descrizione}\"?");'>
                         <i class="fa fa-trash"></i></a></td>
                 </tr>
             </c:forEach>
@@ -47,7 +47,7 @@
     </c:if>
     <c:if test="${not empty linksPost}">
         <div class="text-center">
-            <h3 class="mt-5 mb-3 font-weight-bold">Allegati di tipo link del post</h3>
+            <h3 class="mt-5 mb-3 font-weight-bold">Allegati di tipo link del documento</h3>
         </div>
         <table class="table table-striped w-75 mx-auto">
             <thead>
@@ -58,18 +58,18 @@
             </tr>
             </thead>
             <tbody>
-            <c:forEach items="${linksPost}" var="link">
+            <c:forEach items="${linksDocumentazione}" var="link">
                 <tr>
                     <td><i class="fa fa-link"><a href="${link.link}"
-                                                 title="Vai a ${link.description}"
-                                                 target="_blank">${link.description}</a></i></td>
+                                                 title="Vai a ${link.descrizione}"
+                                                 target="_blank">${link.descrizione}</a></i></td>
                     <td><a class="btn btn-success"
-                           href="<c:url value="/posts/edit/${documentoId}/attachments/link/${link.id}/edit"/>"
+                           href="<c:url value="/documentazione/edit/${documentoId}/attachments/link/${link.id}/edit"/>"
                            title="Modifica &quot;${link.description}&quot;">
                         <i class="fa fa-pencil-square-o"></i>
                     </a></td>
                     <td><a class="btn btn-danger"
-                           href="<c:url value="/attachments/${link.id}/delete"/>"
+                           href="<c:url value="/allegati/${link.id}/delete"/>"
                            title="Elimina &quot;${link.description}&quot;"
                            onclick='return confirm("Sei sicuro di voler eliminare \"${link.description}\"?");'>
                         <i class="fa fa-trash"></i></a></td>

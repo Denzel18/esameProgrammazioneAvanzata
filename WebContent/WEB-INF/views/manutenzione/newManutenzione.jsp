@@ -3,17 +3,16 @@
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<c:url value="/manutenzione/edit/save" var="action_url"/>
+<c:url value="/manutenzione/new/save" var="action_url"/>
 <div class="col">
 
-    <form:form name="modulo" action="${action_url}" method="POST" modelAttribute="manutenzione" enctype="multipart/form-data">
-        <h1 class="h3 mb-3 font-weight-normals">Modifica manutenzione</h1>
+    <form:form name="modulo" action="${action_url}" method="POST" modelAttribute="manutenzione">
+        <h1 class="h3 mb-3 font-weight-normals">Inserisci manutenzione</h1>
 		<%--@elvariable id="manutenzione" type="it.univpm.advancedcode.cri.model.entities.Manutenzione"--%>
         	<p class="text-danger">TUTTI I CAMPI SONO OBBLIGATORI</p>
-            <hidden />
-            <form:hidden value="${manutenzione.id}" path="id" class="form-control mt-2"/>
+
 			<form:label path="costoManutenzione">Costo Manutenzione</form:label>
-			<form:input value="${manutenzione.costoManutenzione}" path="costoManutenzione" class="form-control mt-2" />
+			<form:input path="costoManutenzione" class="form-control mt-2" />
 
             <br>
 
@@ -26,7 +25,7 @@
             <br>
 			
             <form:label path="veicolo">VEICOLO(TARGA)</form:label>
-			<form:input value="${manutenzione.veicolo.targa}" path="veicolo" class="form-control mt-2" />
+			<form:input path="veicolo" class="form-control mt-2" />
 
 			<div class="d-flex justify-content-center">
 				<input type="submit" value="Inserisci"
@@ -34,7 +33,6 @@
 			</div>
     </form:form>
 </div>
-
 
 
 <script type="text/javascript">

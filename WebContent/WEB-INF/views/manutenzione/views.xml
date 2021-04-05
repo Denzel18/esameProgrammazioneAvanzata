@@ -7,8 +7,12 @@
         <put-attribute name="body" value="/WEB-INF/views/manutenzione/list.jsp"/>
         <put-attribute name="pageTitle" value="Lista Manutenzioni"/>
     </definition>
-        <definition extends="default" name="manutenzione.editManutenzione">
+    <definition extends="default" name="manutenzione.edit">
         <put-attribute name="body" value="/WEB-INF/views/manutenzione/editManutenzione.jsp"/>
         <put-attribute name="pageTitle" value="Modifica Manutenzione"/>
+    </definition>
+    <definition extends="default" name="manutenzione.new">
+        <put-attribute name="body" value="/WEB-INF/views/manutenzione/newManutenzione.jsp"/>
+        <put-attribute name="pageTitle" value="Create Manutenzione"/>
     </definition>
 </tiles-definitions>

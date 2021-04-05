@@ -9,7 +9,7 @@
 
 		<form:form name="modulo" class="form-signin" action="${action_url}" method="POST" modelAttribute="car" enctype="multipart/form-data">
 			<h1 class="h3 mb-3 font-weight-normals">Modifica veicolo</h1>
-				<form:input value="${car.id}" path="id" class="form-control mt-2" type="hidden"/>
+				<form:hidden value="${car.id}" path="id" class="form-control mt-2"/>
 				<form:label path="targa">TARGA</form:label>
 				<form:input value="${car.targa}" path="targa" class="form-control mt-2" />
 				<form:label path="marca">MARCA</form:label>
