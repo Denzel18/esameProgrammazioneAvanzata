@@ -1,14 +1,5 @@
 # Progetto Programmazione Avanzata
 
-## ERRORE 
-***Il progetto attualmente è in una fase di deadlock, in quanto nella compilazione e nel check del parte backend del progetto, risulta emerge un errore al quale non trovo soluzione.*** 
-
-`mar 16, 2021 1:42:29 AM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
-INFO: HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-[main] WARN org.springframework.context.annotation.AnnotationConfigApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'allegatoDao': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sessionFactory' defined in it.univpm.advancedcode.cri.test.DataServiceConfigTest: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method 'sessionFactory' threw exception; nested exception is java.lang.NullPointerException: Cannot read field "value" because "s1" is null
-mar 16, 2021 1:42:29 AM org.hibernate.dialect.Dialect <init>
-INFO: HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect`
-
 ## Introduzione 
 Il progetto nasce dall'esigenza di gestire il parco mezzi della sede CRI di fano, ecco quindi che attraverso questo progetto ci poniamo come obbiettivo quello di realizzare un'applicazione WEB per gestire tutto ciò. Il parco mezzi prevede quindi la gestione dei veicoli a 365 gradi
 * Manutenzione
