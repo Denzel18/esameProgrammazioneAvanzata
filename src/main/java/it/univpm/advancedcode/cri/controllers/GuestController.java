@@ -127,6 +127,14 @@ public class GuestController {
     public void setLinkService(LinkService linkService) {
     	this.linkService = linkService;
     }
+	/**
+     * Setter per la proprietà riferita al Service dell'entità Link
+     * @param linkService Service dell'entità User da settare
+     */
+    @Autowired
+    public void setAllegatoService(AllegatoService allegatoService) {
+    	this.allegatoService = allegatoService;
+    }
 
 
 
@@ -197,7 +205,7 @@ public class GuestController {
      *
      * @param page numero della pagina
      * @param uiModel modello associato alla vista
-     * @param posts lista di post da paginare
+     * @param cars lista di veicoli da paginare
      */
     private void carsPagination(@RequestParam(required = false) Integer page, Model uiModel, List<Car>
             cars) {
@@ -886,8 +894,36 @@ public class GuestController {
 	}
 
 	/**
-	 * Metodo per la richiesta GET di eliminazione post
+	 * Metodo per la richiesta GET di modifica di un documento
 	 *
+	 * @param authentication informazioni per 'autenticazione corrente
+	 * @param documento_id	id del documento da modificare
+	 * @param uiModel	porzione di modello da passare alla vista
+	 * @return			nome della vista da renderizzare
+	 */
+	@GetMapping(value="/documentazione/edit/{documento_id}")
+	public String editDocumentazione(Authentication authentication, @PathVariable("documento_id") long documento_id, Model uiModel) {
+		logger.info("Modifying a documento");
+
+		Documentazione documento = documentazioneService.getById(documento_id);
+		List<User> allUsers = userService.findAll();
+		List<Car> allCars = carService.getAll();
+		if(documento != null) {
+
+			uiModel.addAttribute("documentazione", documento);
+			uiModel.addAttribute("allUsers", allUsers);
+			uiModel.addAttribute("allCars", allCars);
+			uiModel.addAttribute("titlePageForm", "Modifica il documento \"" + documento.getTitolo() + "\"");
+			return "documentazione.edit";
+
+		} else {
+			String message = "Errore, documento ...";
+			return "redirect:/documentazioni?errorMessage=" + message;
+		}
+	}
+
+	/**
+	 * Metodo per la richiesta GET di eliminazione documento
 	 * @param id		id del commento da rimuovere
 	 * @param auth informazioni dell'autenticazione corrente
 	 * @return			redirect all'indirizzo cui fare richiesta
@@ -1068,7 +1104,7 @@ public class GuestController {
 	 * Metodo per la richiesta POST di salvataggio di un nuovo file.
 	 *
 	 * @param newFile nuovo file
-	 * @param postId ID del post
+	 * @param documento_id ID del documento
 	 * @param uploadedFile file caricato nel form
 	 * @return nome della vista da visualizzare
 	 */
@@ -1117,28 +1153,27 @@ public class GuestController {
 		}
 	}
 
-// 	/**
-// 	 * Metodo per la richiesta Documentazione di salvataggio di un file modificato.
-// 	 *
-// 	 * @param file file da salvare
-// 	 * @param postId ID del post
-// 	 * @return nome della vista da visualizzare
-// 	 */
-// 	@PostMapping(value = "/posts/edit/{postID}/allegati/file/save")
-// 	public String saveEditedFile (@ModelAttribute("file") it.univpm.advprog.blog.model.entities.File file,
-// 								  @PathVariable("postID") long postId) {
-// 		logger.info("Saving the edited file...");
-// 		try {
-// 			file.setPost(this.postService.getById(postId));
-// 			this.fileService.update(file);
-// 			String message = "Il file \"" + file.getDescription() + "\" %C3%A8 stato salvato correttamente!";
+	/**
+	 * Metodo per la richiesta Documentazione di salvataggio di un file modificato.
+	 * @param file file da salvare
+	 * @param documento_id ID del documento
+	 * @return nome della vista da visualizzare
+	 */
+	@PostMapping(value = "/documentazione/edit/{documento_id}/allegati/file/save")
+	public String saveEditedFile (@ModelAttribute("file") it.univpm.advancedcode.cri.model.entities.File file,
+								  @PathVariable("documento_id") long documento_id) {
+		logger.info("Saving the edited file...");
+		try {
+			file.setDocumento(this.documentazioneService.getById(documento_id));
+			this.fileService.update(file);
+			String message = "Il file \"" + file.getDescrizione() + "\" %C3%A8 stato salvato correttamente!";
 
-// 			return "redirect:" + "/posts/?successMessage=" + message;
+			return "redirect:" + "/documentazioni/?successMessage=" + message;
 
-// 		} catch (RuntimeException e) {
-// 			return "redirect:" + "/posts/?errorMessage=" + e.getMessage();
-// 		}
-// 	}
+		} catch (RuntimeException e) {
+			return "redirect:" + "/documentazioni/?errorMessage=" + e.getMessage();
+		}
+	}
 
 
 

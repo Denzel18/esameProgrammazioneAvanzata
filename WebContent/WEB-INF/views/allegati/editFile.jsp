@@ -14,8 +14,8 @@
     <form:label path="name">Nome</form:label>
     <form:input path="name" class="form-control mt-2" readonly="true"/><br>
 
-    <form:label path="description">Descrizione</form:label>
-    <form:input path="description" class="form-control mt-2"/><br>
+    <form:label path="descrizione">Descrizione</form:label>
+    <form:input path="descrizione" class="form-control mt-2"/><br>
 
     <c:if test="${file.noDownloadable}">
         <div class="form-check">
@@ -48,7 +48,6 @@
     </c:if>
 
     <form:hidden path="id"/>
-    <form:hidden path="hide"/>
-    <%--    <form:hidden path="post.id"/>--%>
+    <%--    <form:hidden path="documentazione.id"/>--%>
     <input type="submit" value="Submit" class="mt-3 btn btn-lg btn-primary btn-block"/><br><br>
 </form:form>

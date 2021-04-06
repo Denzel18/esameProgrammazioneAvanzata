@@ -15,10 +15,9 @@
 <div class="row justify-content-center">
 	<div class="col-8">
 		<%--@elvariable id="documento" type="it.univpm.advancedcode.cri.model.entities.Documentazione"--%>
-		<form:form name="modulo" class="form-signin" action="${action_url}"
-			method="POST" modelAttribute="car" onsubmit="return false">
+		<form:form name="modulo" class="form-signin" action="${action_url}" method="POST" modelAttribute="documentazione" onsubmit="return false">
 			<div class="text-center mb-3">
-				<h3 class="font-weight-bold">"Inserimento nuovo documento"}</h3>
+				<h3 class="font-weight-bold">"Inserimento nuovo documento"</h3>
 			</div>
 			<p class="text-danger">Tutti i campi sono obbligatori</p>
 
@@ -40,7 +39,7 @@
 			<form:textarea id="costo" path="costo" class="form-control mt-2"
 				style="resize:none" rows="4" />
 			<br>
-
+ 
 			<label>Seleziona il/i veicolo <select name="carsSelected"
 				multiple class="custom-select">
 					<c:choose>
@@ -63,13 +62,13 @@
 						</c:otherwise>
 					</c:choose>
 			</select><br>
-			</label>
-
+			</label> 
+<!-- 
 			<label>Seleziona utente <select name="userSelected"
 				multiple class="custom-select">
 					<c:choose>
 						<c:when test="${not empty carsUtente}">
-							<c:forEach items="${allusers}" var="user">
+							<c:forEach items="${allUsers}" var="user">
 								<c:choose>
 									<c:when test="${carsUtente.contains(user.username)}">
 										<option value="${user.username}" selected>${user.username}</option>
@@ -87,14 +86,11 @@
 						</c:otherwise>
 					</c:choose>
 			</select><br>
-			</label>
+			</label> -->
 
 
 			<form:hidden path="id" />
-			<form:hidden path="hide" />
 
-
-			<form:hidden path="archive.name" />
 			<input type="submit" value="Submit"
 				class="mt-3 btn btn-lg btn-primary btn-block"
 				onclick="controlloForm()" />

@@ -3,9 +3,10 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 
-<c:url value="/documentazione/edit/${documento_id}/allegati/link/save" var="file_action_url"/>
+<c:url value="/documentazione/edit/${documento_id}/allegati/link/save" var="link_action_url"/>
 
-<%--@elvariable id="link" type="it.univpm.advprog.blog.model.entities.Link"--%>
+
+<%--@elvariable id="link" type="it.univpm.advancedcode.cri.model.entities.Link"--%>
 <form:form name="modulo" class="form-signin" action="${link_action_url}" method="POST" modelAttribute="link"
            onsubmit="return false">
 
@@ -13,16 +14,14 @@
         <h3 class="font-weight-bold">${pageTitle}</h3>
     </div>
 
-    <form:label path="description">Descrizione</form:label>
-    <form:input id="descriptionField" path="description" class="form-control mt-2"/><br>
+    <form:label path="descrizione">Descrizione</form:label>
+    <form:input id="descriptionField" path="descrizione" class="form-control mt-2"/><br>
 
     <form:label path="link">Link</form:label>
     <form:input id="linkField" path="link" class="form-control mt-2"/><br>
 
     <form:hidden path="id"/>
-    <form:hidden path="hide"/>
-    <%--    <form:hidden path="post.id"/>--%>
-
+    <%--    <form:hidden path="documentazione.id"/>--%>
     <input type="submit" value="Submit" class="mt-3 btn btn-lg btn-primary btn-block" onclick="controlloCampi()"/><br><br>
 </form:form>
 
