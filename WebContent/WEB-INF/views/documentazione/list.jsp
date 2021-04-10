@@ -11,6 +11,7 @@
         $('#myInput').trigger('focus')
     })
 </script>
+<c:url value="/documentazione/new" var="newDocumentazione_url"/>
 <div class="col-md-12 mb-4">
     <div class="row">
         <c:if test="${fn:length(successMessage) > 0}">
@@ -38,6 +39,7 @@
                 <th scope="col">Titolo</th>
                 <th scope="col">Descrizione</th>
                 <th scope="col">Utente</th>
+                <th scope="col">Veicolo</th>
                 <th scope="col">Data Scadenza</th>
                 <th scope="col">Modifica Documento</th>
                 <th scope="col">Gestisci Allegati</th>
@@ -51,6 +53,7 @@
                     <td>${doc.titolo }</td>
                     <td>${doc.descrizione }</td>
                     <td>${doc.getUtente().username }</td>
+                    <td>${doc.getVeicolo().targa }</td>
                     <td>${doc.dataScadenza }</td>
                     <td>
                         <div class="row">
@@ -91,4 +94,7 @@
             </tbody>
         </table>
     </div>
+    <div class="text-center mb-4">
+        <a type="button" class="btn btn-success" href="${newDocumentazione_url}">Aggiungi un nuovo documentazione</a>
+   </div>
 </div>

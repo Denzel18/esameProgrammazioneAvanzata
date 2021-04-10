@@ -2,6 +2,7 @@ package it.univpm.advancedcode.cri.controllers;
 
 import java.io.File;
 import java.time.Duration;
+import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
@@ -802,8 +803,8 @@ public class GuestController {
 
 
     /**
-	 * Metodo " Documentazione " per il salvataggio del veicolo
-	 * @param car           car restituita dalla richiesta
+	 * Metodo " POST " per il salvataggio della manutenzione
+	 * @param manutenzione  manutenzione restituita dalla richiesta
 	 * @param bindingResult eventuali errori di validazione
 	 * @param uiModel       modello associato alla vista
 	 * @return nome della vista da visualizzare
@@ -826,7 +827,7 @@ public class GuestController {
 	}
 
         /**
-     * Metodo " GET " per la modifica di una prenotazione
+     * Metodo " GET " per la modifica di una manutenzione
      * @param id
      * @param uiModel
      * @return nome della vista
@@ -851,8 +852,8 @@ public class GuestController {
 
     
     /**
-     * Metodo update prenotazione 
-     * @param prenotazione prenotazione to update
+     * Metodo update manutenzione 
+     * @param prenotazione manutenzione to update
      * @param br binding result
      * @param uiModel
      * @return nome della vista da visualizzare 
@@ -921,6 +922,74 @@ public class GuestController {
 			return "redirect:/documentazioni?errorMessage=" + message;
 		}
 	}
+
+
+	/**
+	 * Metodo per la richiesta GET di creazione nuovo documento
+		* @param uiModel porzione di modello da passare alla vista
+		* @param auth
+		* @return nome della vista da renderizzare
+	*/
+	@GetMapping(value = "/documentazione/new")
+	public String newDocumento(Model uiModel, Authentication auth) {
+		logger.info("Creating a new post");
+
+		List<Car> cars = carService.getAll();
+		//User user = userService.findUserByUsername(auth.getName());
+		List<User> users = userService.findAll();
+		uiModel.addAttribute("documentazione", new Documentazione());
+		uiModel.addAttribute("allCars", cars);
+		uiModel.addAttribute("allUsers", users);
+		uiModel.addAttribute("titlePageForm", "Inserisci un nuovo documento");
+
+		return "documentazione.new";
+	}
+
+
+	/**
+	 * Metodo per la richiesta POST di salvataggio di un nuovo documento
+	 * @param documento documento da salvare ottenutod alla form
+	 * @param br		eventuali errori di validazione
+	 * @param uiModel 	porzione di modello da passare alla vista
+	 * @return			redirect all'indirizzo cui fare richiesta
+	 */
+	@PostMapping(value="/documentazione/save")
+	public String saveDocumentazione(@ModelAttribute("documentazione") Documentazione documento, BindingResult br, Model uiModel,
+	 @RequestParam(value = "veicolo_id", required = false) long veicolo_id, 
+	 @RequestParam(value = "username", required = false) String username) {
+
+			logger.info("Saving the documento");
+			
+			Documentazione found_documento = this.documentazioneService.getById(documento.getId());
+			User autore = userService.findUserByUsername(username);
+			Car veicolo = carService.getById(veicolo_id);
+			
+			
+			try {
+				documento.setUtente(autore);
+				documento.setVeicolo(veicolo);			
+				//creo
+				if (found_documento==null) {
+					this.documentazioneService.create(documento.getId(), documento.getTitolo(), autore, documento.getDescrizione(), documento.getDataScadenza(), 
+					documento.getCosto(), veicolo); 			
+				}
+				//modifico
+				else {
+					this.documentazioneService.update(documento);
+				}
+				String strMessage = "Documento \"" + documento.getTitolo() + "\" salvato correttamente";
+				return "redirect:/documentazioni?successMessage=" + strMessage;
+	
+			} catch (RuntimeException e) {
+				String strMessage = "ERRORE: " + e.getMessage();
+				return "redirect:/documentazioni?errorMessage=" + strMessage;
+			}
+	
+	}
+
+
+
+
 
 	/**
 	 * Metodo per la richiesta GET di eliminazione documento
@@ -1021,8 +1090,8 @@ public class GuestController {
 
 		Documentazione documento = documentazioneService.getById(documento_id);
 		if(documento == null) {
-			String message = "Errore link, documento ...!";
-			return "redirect:/allegati?errorMessage=" + message;
+			String message = "Errore file, documento ...!";
+			return "redirect:/documentazioni?errorMessage=" + message;
 		}
 
 		uiModel.addAttribute("file", new it.univpm.advancedcode.cri.model.entities.File());
@@ -1174,6 +1243,30 @@ public class GuestController {
 			return "redirect:" + "/documentazioni/?errorMessage=" + e.getMessage();
 		}
 	}
+
+	/**
+	 * Metodo per la richiesta GET di eliminazione di un allegato.
+	 * @param auth informazioni dell'autenticazione corrente
+	 * @param id ID dell'allegato da eliminare
+	 * @return nome della vista da visualizzare
+	 */
+	@GetMapping(value = "/allegato/{allegato_id}/delete")
+	public String deleteAttachment (Authentication auth, @PathVariable("allegato_id") long id) {
+		logger.info("Cancellazione allegato...");
+
+		Allegato allegato = allegatoService.getById(id);
+		if(allegato == null) {
+			String message = "Errore, allegato non trovato!";
+			return "redirect:/documentazioni?errorMessage=" + message;
+		}
+
+		this.allegatoService.delete(allegato);
+		String message = "L'allegato \"" + allegato.getDescrizione() + "\" %C3%A8 stato eliminato correttamente!";
+		return "redirect:" + "/documentazioni/?successMessage=" + message;
+	}
+
+
+
 
 
 

@@ -9,7 +9,7 @@
     </definition>
     <definition extends="default" name="documentazione.allegati">
         <put-attribute name="body" value="/WEB-INF/views/allegati/documentazioneAllegato.jsp"/>
-        <put-attribute name="pageTitle" value="Allegati Post"/>
+        <put-attribute name="pageTitle" value="Allegati Documento"/>
     </definition>
     <definition extends="default" name="link.new">
         <put-attribute name="body" value="/WEB-INF/views/allegati/formLink.jsp"/>

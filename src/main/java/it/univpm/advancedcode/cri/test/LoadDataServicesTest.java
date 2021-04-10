@@ -63,8 +63,8 @@ public class LoadDataServicesTest {
 
 				Car car = carService.create(1, "AZ123TY", "FIAT", "DOBLO", "124575323", 5000, "soccorso", 3, "DIESEL");
 
-				Documentazione d1 = documentazioneService.create(TITLE, user5, DESCRIPTION, data1, 90, car) ;
-				Documentazione d2 = documentazioneService.create(TITLE, user5, DESCRIPTION, data2, 180, car);
+				Documentazione d1 = documentazioneService.create((long) 1, TITLE, user5, DESCRIPTION, data1, 90, car) ;
+				Documentazione d2 = documentazioneService.create((long) 2, TITLE, user5, DESCRIPTION, data2, 180, car);
 
 				fileService.create(DESCRIPTION, d1, "file1.jpg", true);
 				fileService.create(DESCRIPTION, d2, "file2.jpg", true);

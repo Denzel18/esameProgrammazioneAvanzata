@@ -16,6 +16,8 @@ public interface CarService {
 	    List<Car> getAll();
 	    
 	    Car getByTarga(String name);
+
+		Car getById(long veicolo_id);
 	    
 	    Car update(Car car);
 

@@ -36,7 +36,7 @@
                         <i class="fa fa-pencil-square-o"></i>
                     </a></td>
                     <td><a class="btn btn-danger"
-                           href="<c:url value="/allegati/${file.id}/delete"/>"
+                           href="<c:url value="/allegato/${file.id}/delete"/>"
                            title="Elimina &quot;${file.descrizione}&quot;"
                            onclick='return confirm("Sei sicuro di voler eliminare \"${file.descrizione}\"?");'>
                         <i class="fa fa-trash"></i></a></td>
@@ -69,7 +69,7 @@
                         <i class="fa fa-pencil-square-o"></i>
                     </a></td>
                     <td><a class="btn btn-danger"
-                           href="<c:url value="/allegati/${link.id}/delete"/>"
+                           href="<c:url value="/allegato/${link.id}/delete"/>"
                            title="Elimina &quot;${link.descrizione}&quot;"
                            onclick='return confirm("Sei sicuro di voler eliminare \"${link.descrizione}\"?");'>
                         <i class="fa fa-trash"></i></a></td>

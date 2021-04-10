@@ -52,7 +52,7 @@ public class CarDaoDefault extends DefaultDao implements CarDao {
 
 	@Override
 	public Car getById(long id) {
-		return (Car) getSession().find(Car.class, id);
+		return (Car) getSession().createQuery("from Car c where c.id="+"'"+id+"'").uniqueResult();
 	}
 
 

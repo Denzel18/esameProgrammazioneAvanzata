@@ -10,9 +10,9 @@ import it.univpm.advancedcode.cri.model.entities.Car;
 
 public interface DocumentazioneService {
 	
-	Documentazione create(String title, User utente, String descrizione, LocalDate dataScadenza, float costo, Car car);
+	Documentazione create(long id , String titolo, User utente, String descrizione, LocalDate dataScadenza, float costo, Car car);
 
-	Documentazione create(String title,  User utente, String descrizione, LocalDate dataScadenza, float costo,
+	Documentazione create(long id , String titolo,  User utente, String descrizione, LocalDate dataScadenza, float costo,
                 Allegato allegato, Car car);
 	
     void delete(Documentazione documento);

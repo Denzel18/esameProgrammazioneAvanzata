@@ -40,7 +40,7 @@ public class TestDocumentazioneDao {
 			LocalDate data1 = LocalDate.of(2021,11,20); 
 			User user = userDao.create("marioR", "marioR", "mario", "rossi", "admin");
 			Car car = carDao.create((long)1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
-			Documentazione doc1 = documentazioneDao.create("TITOLO",  user, "DESCRIZIONE....", data1, 90,car);
+			Documentazione doc1 = documentazioneDao.create((long) 1, "TITOLO",  user, "DESCRIZIONE....", data1, 90,car);
 			s.getTransaction().commit();
 
 			try {
@@ -78,7 +78,7 @@ public class TestDocumentazioneDao {
 			LocalDate data1 = LocalDate.of(2021,11,20); 
 			User user = userDao.create("marioR", "marioR", "mario", "rossi", "admin");
 			Car car = carDao.create((long)1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
-			Documentazione doc1 = documentazioneDao.create("TITOLO",  user, "DESCRIZIONE....", data1, 90,car);
+			Documentazione doc1 = documentazioneDao.create((long) 1, "TITOLO",  user, "DESCRIZIONE....", data1, 90,car);
 			s.getTransaction().commit();
 
 			try {
@@ -121,7 +121,7 @@ public class TestDocumentazioneDao {
 			LocalDate data1 = LocalDate.of(2021,11,20); 
 			User user = userDao.create("marioR", "marioR", "mario", "rossi", "admin");
 			Car car = carDao.create((long)1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
-			Documentazione doc1 = documentazioneDao.create("TITOLO",  user, "DESCRIZIONE....", data1, 90,car);
+			Documentazione doc1 = documentazioneDao.create((long) 1, "TITOLO",  user, "DESCRIZIONE....", data1, 90,car);
 			s.getTransaction().commit();
 
 			try {

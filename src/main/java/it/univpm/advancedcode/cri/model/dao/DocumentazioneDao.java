@@ -11,9 +11,9 @@ import it.univpm.advancedcode.cri.model.entities.Allegato;
 
 public interface DocumentazioneDao {
 		
-	Documentazione create(String title,  User utente, String descrizione, LocalDate dataScadenza, float costo, Car car);
+	Documentazione create(long id, String titolo,  User utente, String descrizione, LocalDate dataScadenza, float costo, Car car);
 
-	Documentazione create(String title, User utente, String descrizione, LocalDate dataScadenza, float costo, Allegato allegato, Car car);
+	Documentazione create(long id, String titolo, User utente, String descrizione, LocalDate dataScadenza, float costo, Allegato allegato, Car car);
 
     void delete(Documentazione documento);
 

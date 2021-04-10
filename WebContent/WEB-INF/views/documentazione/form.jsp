@@ -40,37 +40,36 @@
 				style="resize:none" rows="4" />
 			<br>
  
-			<label>Seleziona il/i veicolo <select name="carsSelected"
+			<label>Seleziona il/i veicolo <select name="veicolo_id"
 				multiple class="custom-select">
 					<c:choose>
 						<c:when test="${not empty carsDocumentazione}">
 							<c:forEach items="${allCars}" var="car">
 								<c:choose>
 									<c:when test="${carsDocumentazione.contains(car.targa)}">
-										<option value="${car.targa}" selected>${car.targa}</option>
+										<option value="${car.id}" selected>${car.targa}</option>
 									</c:when>
 									<c:otherwise>
-										<option value="${car.targa}">${car.targa}</option>
+										<option value="${car.id}">${car.targa}</option>
 									</c:otherwise>
 								</c:choose>
 							</c:forEach>
 						</c:when>
 						<c:otherwise>
-							<c:forEach items="${allCars}" var="tag">
-								<option value="${car.targa}">${car.targa}</option>
+							<c:forEach items="${allCars}" var="car">
+								<option value="${car.id}">${car.targa}</option>
 							</c:forEach>
 						</c:otherwise>
 					</c:choose>
 			</select><br>
 			</label> 
-<!-- 
-			<label>Seleziona utente <select name="userSelected"
+			<label>Seleziona utente <select name="username"
 				multiple class="custom-select">
 					<c:choose>
-						<c:when test="${not empty carsUtente}">
+						<c:when test="${not empty allUsers}">
 							<c:forEach items="${allUsers}" var="user">
 								<c:choose>
-									<c:when test="${carsUtente.contains(user.username)}">
+									<c:when test="${allUsers.contains(user.username)}">
 										<option value="${user.username}" selected>${user.username}</option>
 									</c:when>
 									<c:otherwise>
@@ -80,13 +79,13 @@
 							</c:forEach>
 						</c:when>
 						<c:otherwise>
-							<c:forEach items="${allusers}" var="tag">
+							<c:forEach items="${allUsers}" var="user">
 								<option value="${user.username}">${user.username}</option>
 							</c:forEach>
 						</c:otherwise>
 					</c:choose>
 			</select><br>
-			</label> -->
+			</label> 
 
 
 			<form:hidden path="id" />

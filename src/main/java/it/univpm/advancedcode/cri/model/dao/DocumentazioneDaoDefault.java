@@ -24,9 +24,9 @@ public class DocumentazioneDaoDefault extends DefaultDao implements Documentazio
      * @param costo
      */
     @Override
-    public Documentazione create(String title,  User utente, String descrizione, LocalDate dataScadenza, float costo, Car car) {
+    public Documentazione create(long id, String titolo,  User utente, String descrizione, LocalDate dataScadenza, float costo, Car car) {
         Documentazione doc = new Documentazione();
-        doc.setTitolo(title);
+        doc.setTitolo(titolo);
         doc.setDescrizione(descrizione);
         doc.setVeicolo(car);
         doc.setDataScadenza(dataScadenza);
@@ -47,12 +47,12 @@ public class DocumentazioneDaoDefault extends DefaultDao implements Documentazio
      * @return
      */
     @Override
-	public Documentazione create(String title, User utente, String descrizione, LocalDate dataScadenza, float costo,
+	public Documentazione create(long id, String titolo, User utente, String descrizione, LocalDate dataScadenza, float costo,
 			Allegato allegato, Car car) {
 		Set<Allegato> allegati = new HashSet<Allegato>();
 		allegati.add(allegato);
         Documentazione doc = new Documentazione();
-        doc.setTitolo(title);
+        doc.setTitolo(titolo);
         doc.setDescrizione(descrizione);
         doc.setVeicolo(car);
         doc.setDataScadenza(dataScadenza);

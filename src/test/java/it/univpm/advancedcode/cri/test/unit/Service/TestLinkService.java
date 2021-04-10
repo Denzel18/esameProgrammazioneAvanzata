@@ -40,7 +40,7 @@ public class TestLinkService {
 		LocalDate data1 = LocalDate.of(2021, 10, 10); 		
 		User user = userService.create("marioR", "marioR", "mario", "rossi", "admin");
 		Car car = carService.create((long)1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
-		Documentazione doc1 = documentazioneService.create("TITOLO", user, "DESCRIZIONE", data1, (float) 900.10, car);
+		Documentazione doc1 = documentazioneService.create((long) 1, "TITOLO", user, "DESCRIZIONE", data1, (float) 900.10, car);
 		Link link1=linkService.create("DESCRIZIONE", doc1, "https://www.univpm.it");
 
 		assertEquals(linkService.getAll().size(),1);
@@ -55,7 +55,7 @@ public class TestLinkService {
 		LocalDate data1 = LocalDate.of(2021, 10, 10); 		
 		User user = userService.create("marioR", "marioR", "mario", "rossi", "admin");
 		Car car = carService.create((long)1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
-		Documentazione doc1 = documentazioneService.create("TITOLO", user, "DESCRIZIONE", data1, (float) 900.10, car);
+		Documentazione doc1 = documentazioneService.create((long) 1, "TITOLO", user, "DESCRIZIONE", data1, (float) 900.10, car);
 		Link link1=linkService.create("DESCRIZIONE", doc1, "https://www.univpm.it");
 		try {
 			linkService.getById(link1.getId());
@@ -77,7 +77,7 @@ public class TestLinkService {
 		LocalDate data1 = LocalDate.of(2021, 10, 10); 		
 		User user = userService.create("marioR", "marioR", "mario", "rossi", "admin");
 		Car car = carService.create((long)1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
-		Documentazione doc1 = documentazioneService.create("TITOLO", user, "DESCRIZIONE", data1, (float) 900.10, car);
+		Documentazione doc1 = documentazioneService.create((long) 1, "TITOLO", user, "DESCRIZIONE", data1, (float) 900.10, car);
 		Link link1=linkService.create("DESCRIZIONE", doc1, "https://www.univpm.it");
 		
 		System.out.println(" LINK HASHCODE " + linkService.hashCode()); 

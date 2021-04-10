@@ -54,7 +54,7 @@ public class TestDocumentazioneService {
 		LocalDate data1 = LocalDate.of(2021, 10, 10); 		
 		User user = userService.create("marioR", "marioR", "mario", "rossi", "admin");
 		Car car = carService.create((long)1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
-		Documentazione doc1 = documentazioneService.create("TITOLO", user, "DESCRIZIONE", data1, (float) 900.10, car);
+		Documentazione doc1 = documentazioneService.create((long) 1, "TITOLO", user, "DESCRIZIONE", data1, (float) 900.10, car);
 		
 		System.out.println("Lunghezza : "+documentazioneService.getAll().size());
 
@@ -80,7 +80,7 @@ public class TestDocumentazioneService {
 		LocalDate data1 = LocalDate.of(2021, 10, 10); 		
 		User user = userService.create("marioR", "marioR", "mario", "rossi", "admin");
 		Car car = carService.create((long)1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
-		Documentazione doc1 = documentazioneService.create("TITOLO", user, "DESCRIZIONE", data1, (float) 900.10, car);
+		Documentazione doc1 = documentazioneService.create((long) 1, "TITOLO", user, "DESCRIZIONE", data1, (float) 900.10, car);
 
 		try {
 			documentazioneService.getById(doc1.getId()); 
@@ -102,7 +102,7 @@ public class TestDocumentazioneService {
 		LocalDate data1 = LocalDate.of(2021, 10, 10); 		
 		User user = userService.create("marioR", "marioR", "mario", "rossi", "admin");
 		Car car = carService.create((long)1, "AX311TY", "FIAT", "DUCATO", "X1LS22111", 3000, "Emergenza", 2, "DIESEL");
-		Documentazione doc1 = documentazioneService.create("TITOLO", user, "DESCRIZIONE", data1, (float) 900.10, car);
+		Documentazione doc1 = documentazioneService.create((long) 1, "TITOLO", user, "DESCRIZIONE", data1, (float) 900.10, car);
 		assertEquals(documentazioneService.getAll().size(),1);
 		doc1.setCosto((float) 900.30);
 		documentazioneService.update(doc1);

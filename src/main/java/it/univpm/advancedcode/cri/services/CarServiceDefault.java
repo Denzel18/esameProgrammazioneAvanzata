@@ -67,13 +67,25 @@ public class CarServiceDefault implements CarService {
     /**
 	 * Funzione per trovare un veicolo dalla targa
 	 * 
-	 * @param name dell'archivio
-	 * @return archivio con il nome cercato
+	 * @param targa targa del veicolo
+	 * @return veicolo ricercato 
 	 */
 	@Transactional(readOnly=true)
 	@Override
 	public Car getByTarga(String targa) {
 		return this.carRepository.getByTarga(targa);
+	}
+
+	/**
+	 * Funzione per trovare un veicolo dal ID
+	 * 
+	 * @param id id del veicolo
+	 * @return veicolo ricercato 
+	 */
+	@Transactional(readOnly=true)
+	@Override
+	public Car getById(long veicolo_id) {
+		return this.carRepository.getById(veicolo_id); 
 	}
 	
     /**

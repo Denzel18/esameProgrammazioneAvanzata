@@ -7,7 +7,6 @@ it/univpm/advancedcode/cri/controllers/GlobalDefaultExceptionHandler.class
 it/univpm/advancedcode/cri/services/CarService.class
 it/univpm/advancedcode/cri/model/dao/DocumentazioneDao.class
 it/univpm/advancedcode/cri/model/dao/FileDao.class
-it/univpm/advancedcode/cri/controllers/GuestController.class
 it/univpm/advancedcode/cri/services/DocumentazioneServiceDefault.class
 it/univpm/advancedcode/cri/app/WebInit.class
 it/univpm/advancedcode/cri/services/ManutenzioneService.class
