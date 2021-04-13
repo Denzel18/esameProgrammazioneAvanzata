@@ -15,9 +15,7 @@
 <div class="container row h-100 mx-auto">
 	<div class="row h-100 justify-content-center align-items-center mx-auto">
 	<div class="card">
-	    <form action="<c:url value="/login" />" method="POST">
-	        <!-- <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72"
-	             height="72">  -->
+		<form action="<c:url value="/login" />" method="POST">
 	        <div class="card-header">
 	        	<h1 class="h3 font-weight-normal text-center">Login</h1>
 	        </div>

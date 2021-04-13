@@ -79,25 +79,28 @@ public class UserServiceDefault implements UserService, UserDetailsService {
 	public User findUserByUsername (String username) {
 		return this.userRepository.findUserByUsername(username);
 	}
-	
-	
+
+	/**
+	 * Metodo Load User By Username
+	 */
 	@Transactional(readOnly = true)
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		User user = userRepository.findUserByUsername(username);
-		org.springframework.security.core.userdetails.User.UserBuilder builder;
-
+		org.springframework.security.core.userdetails.User.UserBuilder builder; 
 		if (user != null) {
+			String role ="driver";
 			builder = org.springframework.security.core.userdetails.User.withUsername(username);
 			builder.password(user.getPassword());
-			String role = "user";
-			if (user.getRuolo() == "admin") {
-				role = "admin";
-			}else if(user.getRuolo() == "driver") {
-				role = "driver";
-			}else {
-				role = "account";
-			}
+			// if (user.getRuolo().equals("account")) {
+			// 	role = "account";
+			// }
+			// if(user.getRuolo().equals("driver")){
+			// 	role = "driver";
+			// }
+			// if(user.getRuolo().equals("admin")) {
+			// 	role = "admin";
+			// }
 			builder.roles(role);
 		} else {
 			throw new UsernameNotFoundException("User not found.");
@@ -108,10 +111,8 @@ public class UserServiceDefault implements UserService, UserDetailsService {
 	
 	/**
 	 * Setter per la dipendenza verso l'UserDao
-	 * 
 	 * @param userDao bean userDao
 	 */
-	
 	@Autowired
 	public void setUserRepository(UserDao userDao) {
 		this.userRepository = userDao;

@@ -1,6 +1,7 @@
 package it.univpm.advancedcode.cri.test.unit.Service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -75,6 +76,23 @@ public class TestUserService {
 
 
 		assertEquals(userService.findAll().size(),0);
+	}
+
+
+	@Test
+	public void testGetRuolo() {
+			User user1 = userService.create("mario1", "12345678", "Mario", "Rossi", "driver");
+			User user2 = userService.create("mario2", "12345678", "Paolo", "Baggio", "admin");
+			User user3 = userService.create("mario3", "12345678", "Paolo", "fffff", "account");
+
+
+			try {
+				assertEquals(user1.getRuolo(),"driver");
+				assertEquals(user2.getRuolo(),"admin");
+				assertEquals(user3.getRuolo(),"account");
+			} catch(Exception e) {
+				fail("Exception not excepted: "+e.getMessage());
+			}
 	}
 
 }

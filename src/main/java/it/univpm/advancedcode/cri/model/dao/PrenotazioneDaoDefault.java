@@ -4,10 +4,14 @@ import java.time.*;
 
 import java.util.List;
 
+import org.hibernate.tuple.UpdateTimestampGeneration;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Repository;
 import it.univpm.advancedcode.cri.model.entities.Prenotazione;
 import it.univpm.advancedcode.cri.model.entities.User;
 import it.univpm.advancedcode.cri.model.entities.Car;
+
+import it.univpm.advancedcode.cri.model.dao.UserDao;
 
 
 @Repository("prenotazioneDao")
@@ -72,14 +76,8 @@ public class PrenotazioneDaoDefault extends DefaultDao implements PrenotazioneDa
 
 	@Override
 	public List<Prenotazione> getPrenotazioneByUtente(String username) {
-
-		return getSession().
-				createQuery(
-						"select p.* "
-								+ "from Prenotazione p, User u "
-								+ "where p.user = u.username"
-								+ "order by p.id desc", Prenotazione.class).
-				getResultList();
+		User utente = getSession().find(User.class, username);
+		return (List<Prenotazione>) getSession().createQuery("from Prenotazione p where p.utente =:username").setParameter("username", utente).getResultList();
 	}
 
 	/**

@@ -3,7 +3,7 @@
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
-<!--<sec:authorize access="isAuthenticated()" var="isAuth"/>-->
+<!-- <sec:authorize access="isAuthenticated()" var="isAuth"/> -->
 <c:url value="/prenotazione/new" var="newPrenotazione_url"/>
 
 <div class="col-md-12 mb-4">

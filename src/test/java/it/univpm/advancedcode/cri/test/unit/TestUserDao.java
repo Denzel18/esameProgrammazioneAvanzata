@@ -90,6 +90,32 @@ public class TestUserDao {
 		}
 	}
 
+
+	@Test
+	public void testGetRuolo() {
+		try (AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(DataServiceConfigTest.class)) {
+			SessionFactory sf = ctx.getBean("sessionFactory", SessionFactory.class);
+			UserDao userDao=ctx.getBean("userDao",UserDao.class);
+
+			Session s=sf.openSession();
+			userDao.setSession(s);
+
+			s.beginTransaction();
+			User user1 = userDao.create("mario1", "12345678", "Mario", "Rossi", "driver");
+			User user2 = userDao.create("mario2", "12345678", "Paolo", "Baggio", "admin");
+			User user3 = userDao.create("mario3", "12345678", "Paolo", "fffff", "account");
+			s.getTransaction().commit();
+
+			try {
+				assertEquals(user1.getRuolo(),"driver");
+				assertEquals(user2.getRuolo(),"admin");
+				assertEquals(user3.getRuolo(),"account");
+			} catch(Exception e) {
+				fail("Exception not excepted: "+e.getMessage());
+			}
+		}
+	}
+
 	@BeforeEach
 	void setUp() throws Exception {
 	}

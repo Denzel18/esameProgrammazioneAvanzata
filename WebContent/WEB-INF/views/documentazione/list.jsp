@@ -5,7 +5,7 @@
 
 
 
-<!--<sec:authorize access="isAuthenticated()" var="isAuth"/>-->
+<!-- <sec:authorize access="isAuthenticated()" var="isAuth"/> -->
 <script type="text/javascript">
     $('#myModal').on('shown.bs.modal', function () {
         $('#myInput').trigger('focus')

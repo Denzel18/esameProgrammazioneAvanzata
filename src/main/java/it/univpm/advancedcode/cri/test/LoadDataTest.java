@@ -132,7 +132,7 @@ public class LoadDataTest {
 				LocalTime t1 = LocalTime.of(17, 39);
 				LocalTime t2 = LocalTime.of(18, 39);
 				Prenotazione p1 = prenotazioneDao.create(1, data_1, data_2, t1, t2, "Descrizione", c1, user1);
-				Prenotazione p2 = prenotazioneDao.create(1, data_1, data_2, t1, t2, "Descrizione", c2, user2);
+				Prenotazione p2 = prenotazioneDao.create(1, data_1, data_2, t1, t2, "Descrizione", c2, user5);
 
 				//MANUTENZIONI 
 				Manutenzione m1 = manutenzioneDao.create(1, "STRAORDINARIA", (float) 90.00, c1); 

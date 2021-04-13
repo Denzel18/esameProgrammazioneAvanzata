@@ -45,6 +45,37 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
      * @param http HttpSecurity
      * @throws Exception eventuale eccezione generata
      */
+    // @Override
+    // protected void configure(HttpSecurity http) throws Exception {
+
+    //     http.authorizeRequests().
+    //     antMatchers("/sign_up").not().authenticated().
+    //     antMatchers("/").permitAll().
+    //     antMatchers("/about").permitAll().
+    //     antMatchers("/contacts").permitAll().
+    //     antMatchers("/disclaimer").permitAll().
+    //     antMatchers("/cri").permitAll().
+    //     antMatchers("/users").hasAnyRole("admin").
+    //     antMatchers("/user/?**/**").hasAnyRole("admin").
+    //     antMatchers("/documentazioni").hasAnyRole("admin","account").
+    //     antMatchers("/documentazione/?**/**").hasAnyRole("admin","account").
+    //     antMatchers("/manutenzioni").hasAnyRole("admin","account").
+    //     antMatchers("/manutenzione/?**/**").hasAnyRole("admin","account").
+    //     antMatchers("/allegati/?**").hasAnyRole("admin","account").
+    //     antMatchers("/prenotazioni").hasAnyRole("admin","account").
+    //     antMatchers("/myprenotazioni").hasAnyRole("driver")
+    //     antMatchers("/prenotazione/?**").hasAnyRole("admin","account","driver").
+    //     antMatchers("/cars").hasAnyRole("admin","account").
+    //     antMatchers("/car/**").hasAnyRole("admin","account").
+    //     and().formLogin().loginPage("/login").defaultSuccessUrl("/cri")
+    //     .failureUrl("/login?error=true").permitAll().
+    //     and().logout().logoutSuccessUrl("/cri")
+    //     .invalidateHttpSession(true).permitAll().
+    //     and().csrf().disable();
+
+    // }
+
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
@@ -54,9 +85,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         antMatchers("/**").permitAll().
         antMatchers("/**/**").permitAll().
         antMatchers("/**/**/**").permitAll().
-        and().formLogin().loginPage("/login").defaultSuccessUrl("/")
+        and().formLogin().loginPage("/login").defaultSuccessUrl("/cri")
         .failureUrl("/login?error=true").permitAll().
-        and().logout().logoutSuccessUrl("/")
+        and().logout().logoutSuccessUrl("/cri")
         .invalidateHttpSession(true).permitAll().
         and().csrf().disable();
 

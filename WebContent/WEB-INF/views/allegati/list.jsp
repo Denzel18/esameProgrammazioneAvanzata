@@ -3,7 +3,7 @@
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
-<!--<sec:authorize access="hasRole('admin')" var="isAdmin"/>-->
+<!-- <sec:authorize access="hasRole('admin')" var="isAdmin"/> -->
 
 <div class="col-md-12 mb-4">
     <div class="row">

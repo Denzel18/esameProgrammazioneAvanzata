@@ -4,27 +4,29 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <sec:authorize access="hasRole('admin')" var="isAdmin"/>
-<sec:authorize access="hasRole('user')" var="isUser"/>
+<sec:authorize access="hasRole('driver')" var="isDriver"/>
+<sec:authorize access="hasRole('account')" var="isAccount"/>
 <sec:authorize access="!isAuthenticated()" var="isNoAuth"/>
 <sec:authorize access="isAuthenticated()" var="isAuth"/>
 
 
-<c:url value="/" var="home_url"/>
+<c:url value="/cri" var="home_url"/>
 <c:url value="/about" var="about_us_url"/>
-<c:url value="/tags" var="tags_url"/>
-<c:url value="/archives" var="archives_url"/>
-<c:url value="/profile" var="profile_url"/>
-<c:url value="/posts" var="my_posts_url"/>
-<c:url value="/comments" var="my_comments_url"/>
 <c:url value="/login" var="login_url"/>
 <c:url value="/logout" var="logout_url"/>
 <c:url value="/sign_up" var="sign_up_url"/>
 <c:url value="/contacts" var="contacts_us_url"/>
 <c:url value="/disclaimer" var="disclaimer_url"/>
+
 <c:url value="/users" var="users_url"/>
-<c:url value="/attachments" var="attachments_url"/>
-<c:url value="/posts/manage" var="all_posts_url"/>
-<c:url value="/comments/manage" var="all_comments_url"/>
+
+<c:url value="/documentazioni" var="docs_url"/>
+<c:url value="/allegati" var="allegati_url"/>
+
+
+<!-- DRIVER -->
+<c:url value="/profile" var="profile_url"/>
+<c:url value="/myprenotazioni" var="bookings_driver_url"/>
 
 <c:if test="${isNoAuth}">
     <!-- Navigation -->
@@ -60,11 +62,13 @@
     </nav>
     <hr/>
 </c:if>
+
+
 <c:if test="${isDriver}">
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="${home_url}">AdvProgCommunity</a>
+            <a class="navbar-brand" href="${home_url}">Advanced Code</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive2"
                     aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -85,19 +89,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="${disclaimer_url}">Disclaimer</a>
                     </li>
-                    <li class="navbar-item">
-                        <div class="btn-group">
-                            <a role="button" href="" class="btn nav-link dropdown-toggle"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">I tuoi contenuti</a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="${my_comments_url}">I tuoi commenti</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="${my_posts_url}">I tuoi post</a>
-                            </div>
-                        </div>
+                    <li>
+                        <a class="nav-link" href="${bookings_driver_url}">Prenotazioni</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="${profile_url}"><sec:authentication property="principal.username"/></a>
+                        <a class="nav-link" href="${profile_url}"><sec:authentication property="principal.username"/></a
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="${logout_url}">Logout</a>
@@ -112,7 +108,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="${home_url}">AdvProgCommunity</a>
+            <a class="navbar-brand" href="${home_url}">Advanced Code</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive3"
                     aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -180,7 +176,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="${home_url}">AdvProgCommunity</a>
+            <a class="navbar-brand" href="${home_url}">Advanced Code</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive3"
                     aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>

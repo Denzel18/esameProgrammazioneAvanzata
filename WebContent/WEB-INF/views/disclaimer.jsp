@@ -35,21 +35,7 @@
 					eleifend. Nam sodales leo id magna lacinia rhoncus. Curabitur
 					volutpat justo at velit feugiat tempus. Sed eu tincidunt neque.
 					Curabitur at elementum augue. Integer lacinia blandit ornare.
-					Mauris lobortis egestas faucibus. Pellentesque fel is mauris,
-					ullamcorper at feugiat vitae, luctus quis nisi. Nunc a risus leo.
-					Mauris dictum ante vel nisl porttitor aliquet. Etiam tristique nisi
-					a nibh consequat, sed tristique ipsum tristique. Aenean turpis
-					nisi, gravida id rhoncus in, sodales vitae massa. Cras eu convall
-					is ligula. Aliquam erat volutpat. Duis sed felis lacinia, maximus
-					turpis a, laoreet enim. Pellentesque habitant morbi tristique
-					senectus et netus et malesuada fames ac turpis egestas. Nulla ut
-					lorem a enim venenatis tempor volutpat id nibh. Aenean id nisl
-					bibendum, blandit libero ut, h endrerit risus. Nunc ac felis enim.
-					Etiam luctus, elit a convallis consequat, tortor sapien vulputate
-					urna, eget congue dui lectus eu urna. Nam rutrum augue massa, sit
-					amet volutpat massa eleifend sed. Donec elementum justo eu orci
-					vestibulum iaculis. Pellentesque vitae euismod lacus, id pharetra
-					lectus.</p>
+					</p>
 			</div>
 
 			<!-- /.col-md-4 -->

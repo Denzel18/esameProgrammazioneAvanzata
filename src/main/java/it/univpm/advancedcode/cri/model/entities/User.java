@@ -140,15 +140,36 @@ public class User implements Serializable {
 
 
 	/**
-	 * Getter della proprietà admin.
-	 *
-	 * @return se l'utente è un admin o meno
+	 * Getter della proprietà ruolo.
+	 * @return se il ruolo dell'utente
 	 */
 	@Column(name = "ruolo")
 	public String getRuolo() {
 		return this.ruolo; 
 	}
 	
+	// public boolean isDriver(){
+	// 	boolean check = false; 
+	// 	if(this.ruolo == "driver")
+	// 		check = true; 
+	// 	return check; 
+	// }
+
+	// public boolean isAdmin(){
+	// 	boolean check = false; 
+	// 	if(this.ruolo == "admin")
+	// 		check = true; 
+	// 	return check; 
+	// }
+
+	// public boolean isAccount(){
+	// 	boolean check = false; 
+	// 	if(this.ruolo == "account")
+	// 		check = true; 
+	// 	return check; 
+	// }
+
+
 	/** 
 	 * Setter per la proprietà firstname dell'User 
 	 * @param firstname: nome dell'utente da settare
