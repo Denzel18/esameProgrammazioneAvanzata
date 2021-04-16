@@ -144,8 +144,8 @@ public class User implements Serializable {
 	 * @return se il ruolo dell'utente
 	 */
 	@Column(name = "ruolo")
-	public String getRuolo() {
-		return this.ruolo; 
+	public String getRuolo(){
+		return this.ruolo;
 	}
 	
 	// public boolean isDriver(){
@@ -211,7 +211,6 @@ public class User implements Serializable {
 	 * @param admin specifico se l'utente è un admin o meno
 	 */
 	public void setRuolo(String ruolo) {
-		if((ruolo == "admin")|| (ruolo == "account") || (ruolo == "driver"))
 			this.ruolo = ruolo;
 	}
 	/** 
@@ -222,4 +221,15 @@ public class User implements Serializable {
 	public void setUsername(String username) {
 		this.username = username;
 	}
+
+	public String toString(){
+		String s = "";
+		s+=" Nome : "+getFirstname()+" ";
+		s+=" Cognome : "+getLastname()+"";
+		s+=" Ruolo : "+getRuolo()+" ";
+		s+=" username : "+getUsername()+" ";
+		s+=" password : "+getPassword()+" ";
+		return s; 
+	}
+
 }

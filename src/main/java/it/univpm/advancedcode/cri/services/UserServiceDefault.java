@@ -89,18 +89,18 @@ public class UserServiceDefault implements UserService, UserDetailsService {
 		User user = userRepository.findUserByUsername(username);
 		org.springframework.security.core.userdetails.User.UserBuilder builder; 
 		if (user != null) {
-			String role ="driver";
+			String role ="";
 			builder = org.springframework.security.core.userdetails.User.withUsername(username);
 			builder.password(user.getPassword());
-			// if (user.getRuolo().equals("account")) {
-			// 	role = "account";
-			// }
-			// if(user.getRuolo().equals("driver")){
-			// 	role = "driver";
-			// }
-			// if(user.getRuolo().equals("admin")) {
-			// 	role = "admin";
-			// }
+			if (user.getRuolo().equals("account")) {
+				role = "account";
+			}
+			if(user.getRuolo().equals("driver")){
+				role = "driver";
+			}
+			if(user.getRuolo().equals("admin")) {
+				role = "admin";
+			}
 			builder.roles(role);
 		} else {
 			throw new UsernameNotFoundException("User not found.");

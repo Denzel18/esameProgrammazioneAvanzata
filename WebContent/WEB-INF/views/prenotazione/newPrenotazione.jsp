@@ -3,41 +3,55 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <c:url value="/prenotazione/new/save/" var="action_url"/>
-<div class="col">
-    <%--@elvariable id="prenotazione" type="it.univpm.advancedcode.cri.model.entities.Prenotazione"--%>
-    <hr>
-    <form:form name="modulo" action="${action_url}" method="POST" modelAttribute="prenotazione" enctype="multipart/form-data">
-        <h1 class="h3 mb-3 font-weight-normals">Inserisci prenotazione</h1>
-        <p class="text-danger">TUTTI I CAMPI SONO OBBLIGATORI</p>
 
+<div class="card mb-5">
+    <form:form name="modulo" class="form-signin" action="${action_url}" method="POST" modelAttribute="user" enctype="multipart/form-data">
+       		<h1 class="h3 mb-3 font-weight-normal">Inserisci prenotazione</h1>
+       	</div>
+        
+        <div class="card-body">
+        	<p class="text-danger">* Campo obbligatorio.</p>
+	        <div class="form-group">
+	        	<label>Data Inizio(DD/MM/YY)*</label>
+	        	<input type="text" name="dataInizio" value="00/00/00" class="form-control mt-2" />
+	        </div>
+            <div class="form-group">
+	        	<label>Data Fine(DD/MM/YY)*</label>
+	        	<input type="text" name="dataFine" value="00/00/00" class="form-control mt-2" />
+	        </div>
+            <div class="form-group">
+	        	<label>Ora Inizio(HH:MM)*</label>
+	        	<input type="text" name="oraInizio" value="00:00" class="form-control mt-2" onclick="controlloData()" />
+	        </div>
+            <div class="form-group">
+	        	<label>Ora Fine(HH:MM)*</label>
+	        	<input type="text" name="oraFine" value="00:00" class="form-control mt-2" />
+	        </div>
+			<div class="form-group">
+	        	<label>Descrizione*</label>
+	        	<input type="text" name="descrizione" value="desc..." class="form-control mt-2" onclick="controlloOra()"/>
+	        </div>
 
-        <form:label path="dataInizio">Data Inizio</form:label>
-        <form:input type="date" path="dataInizio" class="form-control mt-2" />
-
-        <form:label path="dataFine">Data Fine</form:label>
-        <form:input type="date" path="dataFine" class="form-control mt-2" />
-
-        <form:label path="oraInizio">Ora Inizio</form:label>
-        <form:input type="time" path="oraInizio" class="form-control mt-2" onclick="controlloData()"/>
-
-        <form:label path="oraFine">Ora Fine</form:label>
-        <form:input type="time" path="oraFine" class="form-control mt-2" />
-
-        <form:label path="descrizione">Descrizione</form:label>
-        <form:input path="descrizione" class="form-control mt-2" onclick="controlloOra()"/>
-
-        <form:label path="utente">Utente(username)</form:label>
-        <form:input path="utente" class="form-control mt-2" />
-
-        <form:label path="veicolo">Veicolo</form:label>
-        <form:input path="veicolo" class="form-control mt-2" />
-
-        <div class="d-flex justify-content-center">
-            <input onclick="controlloAltriCampi()" type="submit" value="Inserisci"
-                class="mt-3 btn btn-primary col-4" />
+			<div class="form-group">
+				<label>Utente*</label>
+		        <input type="text" name="utente"  value ="${user}" class="form-control mt-2" disabled="disabled"/>
+				<p id=name_err></p>
+			</div>
+	        
+			<div class="form-group">
+		        <label>Veicolo*</label>
+                <select name="veicolo">
+                    <c:forEach items="${allCars}" var="car">
+                        <option value="${car.id}">${car.targa}</option>
+                    </c:forEach>
+                </select>
+			</div>
+					
+			<div class="d-flex justify-content-center">
+				<input class="btn btn-primary col-3" type="submit" value="Inserisci" onclick="controlloAltriCampi()"/>
+			</div>
         </div>
     </form:form>
-    <hr>
 </div>
 
 

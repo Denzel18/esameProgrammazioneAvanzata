@@ -40,7 +40,7 @@
 				style="resize:none" rows="4" />
 			<br>
  
-			<label>Seleziona il/i veicolo <select name="veicolo_id"
+			<label>Seleziona il veicolo <select name="veicolo_id"
 				multiple class="custom-select">
 					<c:choose>
 						<c:when test="${not empty carsDocumentazione}">
@@ -63,6 +63,7 @@
 					</c:choose>
 			</select><br>
 			</label> 
+			<br>
 			<label>Seleziona utente <select name="username"
 				multiple class="custom-select">
 					<c:choose>

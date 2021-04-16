@@ -278,7 +278,7 @@ public class AdminController {
             (user.getUsername() == null || user.getUsername().equals("")) || 
             (user.getRuolo() == null || user.getRuolo().equals("")) ||
             (user.getPassword() == null || user.getPassword().equals(""))){
-            String strMessage = "Non hai inserito i campi obbligatori !"; 
+            String strMessage = "Non hai inserito i campi obbligatori ! "+user.toString(); 
             return "redirect:/users/?errorMessage=" + strMessage; 
         }
         
@@ -356,7 +356,7 @@ public class AdminController {
 	 * @param uiModel modello associato alla vista
 	 * @return nome della vista da visualizzare
 	 */
-	@GetMapping(value = "/prenotazioni_admin")
+	@GetMapping(value = "/prenotazioni_admin_show")
 	public String showPrenotazioni(@RequestParam(value = "successMessage", required = false) String successMessage,
 			@RequestParam(value = "errorMessage", required = false) String errorMessage,
 			Model uiModel) {
@@ -379,7 +379,7 @@ public class AdminController {
 	 * @param uiModel modello associato alla vista
 	 * @return nome della vista da visualizzare
 	 */
-	@GetMapping(value = "/manutenzioni_admin")
+	@GetMapping(value = "/manutenzioni_admin_show")
 	public String showManutenzioni(@RequestParam(value = "successMessage", required = false) String successMessage,
 			@RequestParam(value = "errorMessage", required = false) String errorMessage,
 			Model uiModel) {
@@ -402,7 +402,7 @@ public class AdminController {
 	 * @param uiModel modello associato alla vista
 	 * @return nome della vista da visualizzare
 	 */
-	@GetMapping(value = "/documentazioni_admin")
+	@GetMapping(value = "/documentazioni_admin_show")
 	public String showDocumentazioni(@RequestParam(value = "successMessage", required = false) String successMessage,
 			@RequestParam(value = "errorMessage", required = false) String errorMessage,
 			Model uiModel) {

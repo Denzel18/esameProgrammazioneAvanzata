@@ -33,7 +33,7 @@
 
 			<div class="form-group">
 		        <label>Ruolo</label>
-				<select id="cars" name="ruolo">
+				<select id="ruolo" name="ruolo" class="form-control mt-2">
 					<option value="admin">Admin</option>
 					<option value="driver">Driver</option>
 					<option value="account">Account</option>

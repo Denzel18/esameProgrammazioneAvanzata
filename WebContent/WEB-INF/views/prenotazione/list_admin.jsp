@@ -35,10 +35,7 @@
                     <th scope="col">Ora Fine</th>
                     <th scope="col">Descrizione</th>
                     <th scope="col">Utente</th>
-                    <th scope="col">Targa</th>
-                    <th scope="col">Visualizza</th>
-                    <th scope="col">Modifica</th>
-                    <th scope="col">Elimina</th>
+                    <th scope="col">Veicolo</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -51,20 +48,10 @@
                         <td>${prenotazione.descrizione}</td>
                         <td>${prenotazione.utente.username}</td>
                         <td>${prenotazione.veicolo.targa}</td>
-                        <td><a class="btn btn-info" href="<c:url value="/prenotazione/${prenotazione.id}"/>"><i class="fa fa-info"></i></a></td>
-                        <td><a class="btn btn-info" href="<c:url value="/prenotazione/edit/${prenotazione.id}"/>"><i class="fa fa-edit"></i></a></td>
-                        <td><a class="btn btn-danger"
-                            href="<c:url value="/prenotazione/delete/${prenotazione.id}"/>"/
-                            title="Elimina Prenotazione"
-                            onclick='return confirm("Sei sicuro di voler eliminare la prenotazione : \"${prenotazione.id}\"?");'>
-                             <i class="fa fa-trash"></i></a></td>
-
                     </tr>
                 </c:forEach>
                 </tbody>
             </table>
         </div>
-        <div class="text-center mb-4">
-            <a type="button" class="btn btn-success" href="${newPrenotazione_url}">Aggiungi un nuovo prenotazione</a>
-   	    </div>
     </div>
+</div>

@@ -4,6 +4,8 @@ import java.time.Duration;
 import java.time.Period;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +19,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import it.univpm.advancedcode.cri.model.entities.Car;
 import it.univpm.advancedcode.cri.model.entities.Prenotazione;
 import it.univpm.advancedcode.cri.model.entities.User;
+import it.univpm.advancedcode.cri.services.CarService;
 import it.univpm.advancedcode.cri.services.PrenotazioneService;
 import it.univpm.advancedcode.cri.services.UserService;
 
@@ -26,9 +30,14 @@ import it.univpm.advancedcode.cri.services.UserService;
 
 @Controller
 public class DriverController {
+
+    @Autowired
+	private HttpServletRequest request;
+
     private final Logger logger = LoggerFactory.getLogger(DriverController.class);
     private UserService userService;
     private PrenotazioneService prenotazioneService; 
+    private CarService carService; 
 
     /**
      * Setter per la proprietà riferita al Service dell'entità User
@@ -45,6 +54,15 @@ public class DriverController {
     @Autowired
     public void setPrenotazioneService(PrenotazioneService prenotazioneService) {
     	this.prenotazioneService = prenotazioneService;
+    }
+
+    /**
+     * Setter per la proprietà riferita al Service dell'entità Prenotazione
+     * @param prenotazioneService Service dell'entità User da settare
+     */
+    @Autowired
+    public void setCarService(CarService carService) {
+    	this.carService = carService;
     }
 
 
@@ -88,7 +106,7 @@ public class DriverController {
 	 * @param uiModel modello associato alla vista
 	 * @return nome della vista da visualizzare
 	 */
-	@GetMapping(value = "/myprenotazioni")
+	@GetMapping(value = "/prenotazioni")
 	public String showDriverPrenotazioni(@RequestParam(value = "successMessage", required = false) String successMessage,
 			@RequestParam(value = "errorMessage", required = false) String errorMessage,
 			Model uiModel, Authentication auth) {
@@ -115,12 +133,12 @@ public class DriverController {
         if((selectedPrenotazione != null) || (selectedPrenotazione.getUtente().getUsername().equals(auth.getName()))){
             this.prenotazioneService.delete(selectedPrenotazione);
             strMessage = "La prenotazione relativa alla data:  \"" + selectedPrenotazione.getDataInizio() + "\" %C3%A8 stato cancellata correttamente!";
-            return "redirect:/prenotazioni/?successMessage=" + strMessage;
+            return "redirect:/ prenotazioni/?successMessage=" + strMessage;
             // fare controlli su prenotazione ...
         }else{
             strMessage = "La prenotazione non può essere cancellata, ci sono problemi"+
             "Non pu%C3%B2 essere cancellata!";
-            return "redirect:/prenotazioni/?errorMessage=" + strMessage;
+            return "redirect:/ prenotazioni/?errorMessage=" + strMessage;
         }
 	}
 
@@ -128,33 +146,42 @@ public class DriverController {
     /**
 	 * Metodo " GET " per la creazione di una prenotazione 
 	 * @param uiModel modello associato
+     * @param authentication x accedere a utente logato
 	 * @return nome della vista
 	 */
 	@GetMapping(value = "/prenotazione/new")
-	public String newPrenotazione(Model uiModel) {
+	public String newPrenotazione(Model uiModel, Authentication authentication) {
 		logger.info("Creating a new prenotazione...");
+        List<Car> allCars = carService.getAll(); 
+        User user = userService.findUserByUsername(authentication.getName());
 		uiModel.addAttribute("prenotazione", new Prenotazione());
+        uiModel.addAttribute("allCars", allCars);
+        uiModel.addAttribute("user", user.getUsername());
+        uiModel.addAttribute("titlePageForm", "Inserisci un nuova prenotazione");
 		return "prenotazione.new";
 	}
 
 
 	@PostMapping(value = "/prenotazione/new/save")
-	public String savePrenotazione(@ModelAttribute("prenotazione") Prenotazione prenotazione, BindingResult bindingResult, Model uiModel) {
-		logger.info("Saving a new prenotazione...");
-        if(
-            (prenotazione.getDataInizio().toString() == null) || 
+    public String savePrenotazione(@ModelAttribute("prenotazione") Prenotazione prenotazione, BindingResult bindingResult, Model uiModel, 
+    @RequestParam(value = "veicolo", required = false) long veicolo_id, 
+    @RequestParam(value = "utente", required = false) String username) {
+
+        User utente = userService.findUserByUsername(username);
+        Car veicolo = carService.getById(veicolo_id);
+        logger.info("Saving a new prenotazione...");
+
+
+        if((prenotazione.getDataInizio().toString() == null) || 
             (prenotazione.getDataFine().toString() == null) ||
             (prenotazione.getOraInizio().toString() == null) ||
-            (prenotazione.getOraFine().toString() == null) //||
-            //(prenotazione.getDescrizione().equals("") || prenotazione.getDescrizione() == null ) ||
-            //(prenotazione.getVeicolo() == null) ||
-            //(prenotazione.getUtente() == null)){
-        ){    
+            (prenotazione.getOraFine().toString() == null) ||
+            (prenotazione.getDescrizione().equals("") || prenotazione.getDescrizione() == null )){    
             String strMessage = "Non hai inserito i campi obbligatori !"; 
-            return "redirect:/prenotazioni/?errorMessage=" + strMessage;                 
-
-
-            
+            return "redirect:/prenotazioni/?errorMessage=" + strMessage;    
+        }else if(veicolo == null || utente == null){
+            String strMessage = "Non hai inserito i campi obbligatori _!"; 
+            return "redirect:/prenotazioni/?errorMessage=" + strMessage;  
         }else if(Period.between(prenotazione.getDataInizio(),prenotazione.getDataFine()).getDays() < 0){
             String strMessage = "Le date inserite non sono corrette !"; 
             return "redirect:/prenotazioni/?errorMessage=" + strMessage; 
@@ -163,15 +190,15 @@ public class DriverController {
             return "redirect:/prenotazioni/?errorMessage=" + strMessage; 
         }
 
-		try {
+     try {
             this.prenotazioneService.create(prenotazione.getId(), prenotazione.getDataInizio(), 
             prenotazione.getDataFine(), prenotazione.getOraInizio(), prenotazione.getOraFine(), 
-            prenotazione.getDescrizione(), prenotazione.getVeicolo(), prenotazione.getUtente());
-			String strMessage = "La prenotazione :  \"" + prenotazione.getId() + "\" %C3%A8 stata salvato correttamente!";
-			return "redirect:/prenotazioni/?successMessage=" + strMessage;
-		} catch (RuntimeException e) {
-			return "redirect:/prenotazioni/?errorMessage=" + e.getMessage();
-		}
+            prenotazione.getDescrizione(), veicolo,utente);
+         String strMessage = "La prenotazione :  \"" + prenotazione.getDescrizione() + "\" %C3%A8 stata salvato correttamente!";
+         return "redirect:/prenotazioni/?successMessage=" + strMessage;
+     } catch (RuntimeException e) {
+         return "redirect:/prenotazioni/?errorMessage=" + e.getMessage();
+     }
     }
     
     /**
@@ -232,9 +259,16 @@ public class DriverController {
      */
 
     @PostMapping(value = "/prenotazione/edit/save", consumes = "multipart/form-data")
-	public String saveEditPrenotazione(@ModelAttribute("prenotazione") Prenotazione prenotazione, BindingResult br, Model uiModel) {
+	public String saveEditPrenotazione(@ModelAttribute("prenotazione") Prenotazione prenotazione, BindingResult br, Model uiModel,
+    @RequestParam(value = "veicolo", required = false) long veicolo_id, 
+    @RequestParam(value = "utente", required = false) String username) {
+
+        User utente = userService.findUserByUsername(username);
+        Car veicolo = carService.getById(veicolo_id); 
 		logger.info("Saving the edited prenotazione...");
 		try {
+            prenotazione.setVeicolo(veicolo);
+            prenotazione.setUtente(utente);
 			this.prenotazioneService.update(prenotazione);
 			String strMessage = "La prenotazione %C3%A8 stata salvato correttamente!";
 			return "redirect:/prenotazioni?successMessage=" + strMessage;

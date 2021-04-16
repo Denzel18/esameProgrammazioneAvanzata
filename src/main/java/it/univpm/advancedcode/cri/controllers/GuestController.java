@@ -33,22 +33,22 @@ import it.univpm.advancedcode.cri.services.UserService;
 @Controller
 public class GuestController {
     private final Logger logger = LoggerFactory.getLogger(GuestController.class);
-    private UserService userService;
+    // private UserService userService;
 
-    @Autowired
-    private HttpServletRequest request;
+    // @Autowired
+    // private HttpServletRequest request;
     
 
 
                 
-    /**
-     * Setter per la proprietà riferita al Service dell'entità User
-     * @param userService Service dell'entità User da settare
-     */
-    @Autowired
-    public void setUserService(UserService userService) {
-    	this.userService = userService;
-    }
+    // /**
+    //  * Setter per la proprietà riferita al Service dell'entità User
+    //  * @param userService Service dell'entità User da settare
+    //  */
+    // @Autowired
+    // public void setUserService(UserService userService) {
+    // 	this.userService = userService;
+    // }
     
     /**
      * Metodo per la visualizzazione della pagina statica about_us

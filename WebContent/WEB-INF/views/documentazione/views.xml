@@ -7,6 +7,10 @@
         <put-attribute name="body" value="/WEB-INF/views/documentazione/list.jsp"/>
         <put-attribute name="pageTitle" value="Lista Documentazione"/>
     </definition>
+    <definition extends="default" name="documentazioni.list_admin">
+        <put-attribute name="body" value="/WEB-INF/views/documentazione/list_admin.jsp"/>
+        <put-attribute name="pageTitle" value="Lista Documentazione"/>
+    </definition>
     <definition extends="default" name="documentazione.new">
         <put-attribute name="body" value="/WEB-INF/views/documentazione/form.jsp"/>
         <put-attribute name="pageTitle" value="Nuovo Documento"/>

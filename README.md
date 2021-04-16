@@ -40,7 +40,7 @@ CRUD = CREATE, READ, UPDATE, DELETE
 SHOW = LIST 
 
 ### Admin User 
-1. SHOW VEICOLI 
+1. CRUD VEICOLI 
 2. CRUD USER 
 3. SHOW PRENOTAZIONI 
 4. SHOW MANUTENZIONI 
@@ -50,13 +50,13 @@ SHOW = LIST
 ### Account User 
 1. CRUD VEICOLI 
 2. CRUD DOCUMENTAZIONI & ALLEGATI RELATIVI  
-3. SHOW PRENOTAZIONI 
+3. CRUD PRENOTAZIONI 
 4. CRUD MANUTENZIONI 
 5. PROFILE
 
 ### Driver User 
 1. PROFILE 
-2. CRUD PRENOTAZIONI
+2. CRUD PRENOTAZIONI (personali)
 
 ## MAPPA DELLE PAGINE 
 #### PRENOTAZIONI 
@@ -79,8 +79,7 @@ SHOW = LIST
 - /documentazione/new/save : SAVE documentazione (salvataggio)
 - /documentazione/edit/${DOCUMENTO_ID} : UPDATE documentazione
 - /documentazione/delete/${DOCUMENTO_ID} : DELETE documentazione 
-
-***In maniera analoga si procede per allegato, link e file (singolare operazione, plurale lista)***
+- ***In maniera analoga si procede per allegato, link e file (singolare operazione, plurale lista)***
 
 #### CAR 
 - /cars : SHOW veicoli 

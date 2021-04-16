@@ -10,6 +10,7 @@
 <sec:authorize access="isAuthenticated()" var="isAuth"/>
 
 
+<!-- HOME PAGE -->
 <c:url value="/cri" var="home_url"/>
 <c:url value="/about" var="about_us_url"/>
 <c:url value="/login" var="login_url"/>
@@ -18,15 +19,25 @@
 <c:url value="/contacts" var="contacts_us_url"/>
 <c:url value="/disclaimer" var="disclaimer_url"/>
 
-<c:url value="/users" var="users_url"/>
-
-<c:url value="/documentazioni" var="docs_url"/>
-<c:url value="/allegati" var="allegati_url"/>
-
-
 <!-- DRIVER -->
 <c:url value="/profile" var="profile_url"/>
-<c:url value="/myprenotazioni" var="bookings_driver_url"/>
+<c:url value="/prenotazioni" var="bookings_driver_url"/>
+
+<!-- ADMIN -->
+<c:url value="/profile" var="profile_url"/>
+<c:url value="/users" var="users_admin_url"/>
+<c:url value="/cars_admin" var="cars_admin_url"/>
+<c:url value="/documentazioni_admin_show" var="docs_admin_url"/>
+<c:url value="/manutenzioni_admin_show" var="man_admin_url"/>
+<c:url value="/prenotazioni_admin_show" var="pre_admin_url"/>
+
+<!-- ACCOUNT -->
+<c:url value="/profile" var="profile_url"/>
+<c:url value="/documentazioni_account" var="docs_account_url"/>
+<c:url value="/cars_account" var="cars_account_url"/>
+<c:url value="/manutenzioni_account" var="man_account_url"/>
+<c:url value="/prenotazioni_account" var="pre_account_url"/>
+
 
 <c:if test="${isNoAuth}">
     <!-- Navigation -->
@@ -68,7 +79,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="${home_url}">Advanced Code</a>
+            <a class="navbar-brand" href="${home_url}">Advanced CODE</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive2"
                     aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -108,7 +119,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="${home_url}">Advanced Code</a>
+            <a class="navbar-brand" href="${home_url}">Advanced CODE</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive3"
                     aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -132,30 +143,17 @@
                     <li class="navbar-item">
                         <div class="btn-group">
                             <a role="button" href="" class="btn nav-link dropdown-toggle"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">I tuoi contenuti</a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="${my_comments_url}">I tuoi commenti</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="${my_posts_url}">I tuoi post</a>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="navbar-item">
-                        <div class="btn-group">
-                            <a role="button" href="" class="btn nav-link dropdown-toggle"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Gestisci</a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="${attachments_url}">Gestisci Allegati</a>
+                                <a class="dropdown-item" href="${man_admin_url}">Visualizza Manutenzioni</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="${archives_url}">Gestisci Archivi</a>
+                                <a class="dropdown-item" href="${pre_admin_url}">Visualizza Prenotazioni</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="${all_comments_url}">Gestisci Commenti</a>
+                                <a class="dropdown-item" href="${docs_admin_url}">Visualizza Documentazioni</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="${all_posts_url}">Gestisci Post</a>
+                                <a class="dropdown-item" href="${cars_admin_url}">Gestisci Veicoli</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="${tags_url}">Gestisci Tag</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="${users_url}">Gestisci Utenti</a>
+                                <a class="dropdown-item" href="${users_admin_url}">Gestisci Utenti</a>
                             </div>
                         </div>
                     </li>
@@ -176,7 +174,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="${home_url}">Advanced Code</a>
+            <a class="navbar-brand" href="${home_url}">Advanced CODE</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive3"
                     aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -200,30 +198,15 @@
                     <li class="navbar-item">
                         <div class="btn-group">
                             <a role="button" href="" class="btn nav-link dropdown-toggle"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">I tuoi contenuti</a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="${my_comments_url}">I tuoi commenti</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="${my_posts_url}">I tuoi post</a>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="navbar-item">
-                        <div class="btn-group">
-                            <a role="button" href="" class="btn nav-link dropdown-toggle"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Gestisci</a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="${attachments_url}">Gestisci Allegati</a>
+                               <div class="dropdown-menu">
+                                <a class="dropdown-item" href="${man_account_url}">Gestisci Manutenzioni</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="${archives_url}">Gestisci Archivi</a>
+                                <a class="dropdown-item" href="${pre_account_url}">Gestisci Prenotazioni</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="${all_comments_url}">Gestisci Commenti</a>
+                                <a class="dropdown-item" href="${docs_account_url}">Gestisci Documentazioni</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="${all_posts_url}">Gestisci Post</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="${tags_url}">Gestisci Tag</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="${users_url}">Gestisci Utenti</a>
+                                <a class="dropdown-item" href="${cars_account_url}">Gestisci Veicoli</a>
                             </div>
                         </div>
                     </li>

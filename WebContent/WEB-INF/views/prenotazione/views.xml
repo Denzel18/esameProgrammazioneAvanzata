@@ -7,6 +7,10 @@
         <put-attribute name="body" value="/WEB-INF/views/prenotazione/list.jsp"/>
         <put-attribute name="pageTitle" value="Lista prenotazioni"/>
     </definition>
+    <definition extends="default" name="prenotazioni.list_admin">
+        <put-attribute name="body" value="/WEB-INF/views/prenotazione/list_admin.jsp"/>
+        <put-attribute name="pageTitle" value="Lista prenotazioni"/>
+    </definition>
     <definition extends="default" name="prenotazione.new">
         <put-attribute name="body" value="/WEB-INF/views/prenotazione/newPrenotazione.jsp"/>
         <put-attribute name="pageTitle" value="Nuova Prenotazione"/>
