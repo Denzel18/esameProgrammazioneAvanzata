@@ -311,6 +311,11 @@ public class DriverController {
         Car veicolo = carService.getById(veicolo_id); 
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy");
+        if(dataInizio.contains("-")){
+            formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        }else{
+            formatter = DateTimeFormatter.ofPattern("dd/MM/yy");
+        }
         DateTimeFormatter formatterTime = DateTimeFormatter.ofPattern("HH:mm");
         LocalDate data_Inizio = LocalDate.parse(dataInizio,formatter);
         LocalDate data_Fine = LocalDate.parse(dataFine,formatter);	

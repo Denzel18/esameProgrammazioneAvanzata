@@ -33,7 +33,18 @@
                 <th scope="col">Cognome</th>
             </tr>
             <tr>
-                <td>${user.imageProfile}</td>
+                <td>
+                <c:if test="${not empty user.imageProfile}">
+                    <img
+                    src="<c:url value="/files/profile_pictures/${user.imageProfile}"/>"
+                        alt="Immagine profilo" class="img-thumbnail mx-auto">
+                </c:if>
+                <c:if test="${empty user.imageProfile}">
+                    <img
+                        src="<c:url value="/files/profile_pictures/default.jpg"/>"
+                        alt="Immagine profilo" class="img-thumbnail mx-auto">
+                </c:if>
+                </td>
                 <td>${user.username}</td>
                 <td>${user.firstname}</td>
                 <td>${user.lastname}</td>

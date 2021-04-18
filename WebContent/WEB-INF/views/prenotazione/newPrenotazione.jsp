@@ -27,7 +27,7 @@
 			<form:input path="descrizione" type="text" name="descrizione" value="Descrizione..." class="form-control mt-2" />
 
             <form:label path="utente">Utente*</form:label>
-            <form:input path="utente" type="text" name="utente"  value ="${user}" class="form-control mt-2" disabled="disabled" />
+            <form:input path="utente" type="text" name="utente"  value ="${user}" class="form-control mt-2" readonly="true" />
 	        
             <form:label name="veicolo" path="veicolo">VEICOLO(TARGA)</form:label>
             <form:select name="veicolo" path="veicolo" class="form-control mt-2" >

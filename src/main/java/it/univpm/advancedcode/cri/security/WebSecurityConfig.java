@@ -45,46 +45,39 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
      * @param http HttpSecurity
      * @throws Exception eventuale eccezione generata
      */
-    // @Override
-    // protected void configure(HttpSecurity http) throws Exception {
-
-    //     http.authorizeRequests().
-    //     antMatchers("/sign_up").not().authenticated().
-    //     antMatchers("/").permitAll().
-    //     antMatchers("/about").permitAll().
-    //     antMatchers("/contacts").permitAll().
-    //     antMatchers("/disclaimer").permitAll().
-    //     antMatchers("/cri").permitAll().
-    //     antMatchers("/users").hasAnyRole("admin").
-    //     antMatchers("/user/?**/**").hasAnyRole("admin").
-    //     antMatchers("/documentazioni").hasAnyRole("admin","account").
-    //     antMatchers("/documentazione/?**/**").hasAnyRole("admin","account").
-    //     antMatchers("/manutenzioni").hasAnyRole("admin","account").
-    //     antMatchers("/manutenzione/?**/**").hasAnyRole("admin","account").
-    //     antMatchers("/allegati/?**").hasAnyRole("admin","account").
-    //     antMatchers("/prenotazioni").hasAnyRole("admin","account").
-    //     antMatchers("/myprenotazioni").hasAnyRole("driver")
-    //     antMatchers("/prenotazione/?**").hasAnyRole("admin","account","driver").
-    //     antMatchers("/cars").hasAnyRole("admin","account").
-    //     antMatchers("/car/**").hasAnyRole("admin","account").
-    //     and().formLogin().loginPage("/login").defaultSuccessUrl("/cri")
-    //     .failureUrl("/login?error=true").permitAll().
-    //     and().logout().logoutSuccessUrl("/cri")
-    //     .invalidateHttpSession(true).permitAll().
-    //     and().csrf().disable();
-
-    // }
-
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
         http.authorizeRequests().
         antMatchers("/sign_up").not().authenticated().
         antMatchers("/").permitAll().
-        antMatchers("/**").permitAll().
-        antMatchers("/**/**").permitAll().
-        antMatchers("/**/**/**").permitAll().
+        antMatchers("/about").permitAll().
+        antMatchers("/contacts").permitAll().
+        antMatchers("/disclaimer").permitAll().
+        antMatchers("/cri").permitAll().
+        antMatchers("/profile").hasAnyRole("driver","admin","account").
+        antMatchers("/myprenotazioni").hasAnyRole("driver").
+        antMatchers("/prenotazioni").hasAnyRole("account").
+        antMatchers("/prenotazione/?**/").hasAnyRole("account","driver").
+        antMatchers("/prenotazione/?**/**/").hasAnyRole("account","driver").
+        antMatchers("/cars_admin").hasAnyRole("admin").
+        antMatchers("/cars_admin/?**/").hasAnyRole("admin").
+        antMatchers("/prenotazioni_admin_show").hasAnyRole("admin").
+        antMatchers("/documentazioni_admin_show").hasAnyRole("admin").
+        antMatchers("/manutenzioni_admin_show").hasAnyRole("admin").
+        antMatchers("/users").hasAnyRole("admin").
+        antMatchers("/user/?**/**/").hasAnyRole("admin").
+        antMatchers("/car/?**/").hasAnyRole("admin","account").
+        antMatchers("/car/?**/**/").hasAnyRole("admin","account").
+        antMatchers("/documentazioni").hasAnyRole("admin","account").
+        antMatchers("/documentazione/?**/").hasAnyRole("account").
+        antMatchers("/documentazione/?**/**/").hasAnyRole("account").
+        antMatchers("/manutenzioni").hasAnyRole("account").
+        antMatchers("/manutenzione/?**/").hasAnyRole("account").
+        antMatchers("/manutenzione/?**/**").hasAnyRole("account").
+        antMatchers("/allegati/").hasAnyRole("account").
+        antMatchers("/allegato/?**").hasAnyRole("account").
+        antMatchers("/allegato/?**/**").hasAnyRole("account").
         and().formLogin().loginPage("/login").defaultSuccessUrl("/cri")
         .failureUrl("/login?error=true").permitAll().
         and().logout().logoutSuccessUrl("/cri")
@@ -92,4 +85,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         and().csrf().disable();
 
     }
+
+
+    // @Override
+    // protected void configure(HttpSecurity http) throws Exception {
+
+    //     http.authorizeRequests().
+    //     antMatchers("/sign_up").not().authenticated().
+    //     antMatchers("/").permitAll().
+    //     antMatchers("/**").permitAll().
+    //     antMatchers("/**/**").permitAll().
+    //     antMatchers("/**/**/**").permitAll().
+    //     and().formLogin().loginPage("/login").defaultSuccessUrl("/cri")
+    //     .failureUrl("/login?error=true").permitAll().
+    //     and().logout().logoutSuccessUrl("/cri")
+    //     .invalidateHttpSession(true).permitAll().
+    //     and().csrf().disable();
+
+    // }
 }

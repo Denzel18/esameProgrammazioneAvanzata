@@ -15,10 +15,6 @@
         <put-attribute name="body" value="/WEB-INF/views/about.jsp"/>
         <put-attribute name="pageTitle" value="Chi Siamo"/>
     </definition>
-    <definition extends="default" name="sign_up">
-        <put-attribute name="body" value="/WEB-INF/views/sign_up.jsp"/>
-        <put-attribute name="pageTitle" value="Registrati"/>
-    </definition>
     <definition extends="default" name="contact_us">
         <put-attribute name="body" value="/WEB-INF/views/contacts.jsp"/>
         <put-attribute name="pageTitle" value="Contatti"/>
@@ -27,21 +23,5 @@
         <put-attribute name="body" value="/WEB-INF/views/disclaimer.jsp"/>
         <put-attribute name="pageTitle" value="Disclaimer"/>
     </definition>
-
-    <!-- USERS -->
-    <definition extends="default" name="disclaimer">
-        <put-attribute name="body" value="/WEB-INF/views/disclaimer.jsp"/>
-        <put-attribute name="pageTitle" value="Disclaimer"/>
-    </definition>
-    <definition extends="default" name="disclaimer">
-        <put-attribute name="body" value="/WEB-INF/views/disclaimer.jsp"/>
-        <put-attribute name="pageTitle" value="Disclaimer"/>
-    </definition>
-    <definition extends="default" name="disclaimer">
-        <put-attribute name="body" value="/WEB-INF/views/disclaimer.jsp"/>
-        <put-attribute name="pageTitle" value="Disclaimer"/>
-    </definition>
-
-
 
 </tiles-definitions>
