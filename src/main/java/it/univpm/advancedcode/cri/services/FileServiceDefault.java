@@ -74,8 +74,7 @@ public class FileServiceDefault implements FileService {
 	/**
 	 * Metodo per creare un file
 	 * @param description: descrizione del file 
-	 * @param hide: visibilità del file
-	 * @param post: post a cui il file è associato
+	 * @param documento: documento a cui il file è associato
 	 * @param name: nome del file
 	 * @param noDownloadable: flag per indicare se il file è scaricabile o meno
 	 */

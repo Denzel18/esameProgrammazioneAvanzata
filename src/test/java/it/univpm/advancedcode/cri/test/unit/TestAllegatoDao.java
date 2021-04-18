@@ -30,6 +30,10 @@ public class TestAllegatoDao {
 	private final static String DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras " +
 			"tempus magna vel posuere cursus.";
 
+	
+	/** 
+	 * @throws ParseException
+	 */
 	@Test
 	void deleteAllegato() throws ParseException {
 		try (AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(DataServiceConfigTest.class)) {
@@ -82,6 +86,10 @@ public class TestAllegatoDao {
 		}
 	}
 
+	
+	/** 
+	 * @throws ParseException
+	 */
 	@Test
 	void findAllegatoById() throws ParseException {
 		try (AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(DataServiceConfigTest.class)) {
@@ -132,14 +140,26 @@ public class TestAllegatoDao {
 		}
 	}
 
+	
+	/** 
+	 * @throws Exception
+	 */
 	@BeforeEach
 	void setUp() throws Exception {
 	}
 
+	
+	/** 
+	 * @throws Exception
+	 */
 	@AfterEach
 	void tearDown() throws Exception {
 	}
 
+	
+	/** 
+	 * @throws ParseException
+	 */
 	@Test
 	void updateAttachment() throws ParseException {
 		try (AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(DataServiceConfigTest.class)) {

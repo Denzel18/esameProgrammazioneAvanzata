@@ -36,6 +36,10 @@ public class TestUserDao {
 		} 
 	}
 
+	
+	/** 
+	 * @param DataServiceConfigTest.class)
+	 */
 	@Test public void createAndUpdate() { try (AnnotationConfigApplicationContext
 			ctx = new AnnotationConfigApplicationContext(DataServiceConfigTest.class)) {
 		SessionFactory sf = ctx.getBean("sessionFactory", SessionFactory.class);
@@ -116,10 +120,18 @@ public class TestUserDao {
 		}
 	}
 
+	
+	/** 
+	 * @throws Exception
+	 */
 	@BeforeEach
 	void setUp() throws Exception {
 	}
 
+	
+	/** 
+	 * @throws Exception
+	 */
 	@AfterEach
 	void tearDown() throws Exception {
 	}

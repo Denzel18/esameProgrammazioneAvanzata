@@ -24,6 +24,10 @@ import it.univpm.advancedcode.cri.model.entities.Prenotazione;
 import it.univpm.advancedcode.cri.model.entities.User;
 
 public class LoadDataTest {
+	
+	/** 
+	 * @param args
+	 */
 	public static void main(String... args) {
 
 		try (AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(

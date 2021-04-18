@@ -33,11 +33,19 @@ excludeFilters  = {@ComponentScan.Filter(
 public class WebConfig implements WebMvcConfigurer {
 
 
+	
+	/** 
+	 * @return String
+	 */
 	@Bean
 	public String appName() {
 		return "Cri App";
 	}
 
+	
+	/** 
+	 * @param registry
+	 */
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/css/**").addResourceLocations("/WEB-INF/css/")
@@ -54,6 +62,10 @@ public class WebConfig implements WebMvcConfigurer {
 		.setCachePeriod(31556926);
 	}
 
+	
+	/** 
+	 * @return MultipartResolver
+	 */
 	@Bean
 	public MultipartResolver multipartResolver() {
 		org.springframework.web.multipart.commons.CommonsMultipartResolver multipartResolver = new org.springframework.web.multipart.commons.CommonsMultipartResolver();
@@ -61,6 +73,10 @@ public class WebConfig implements WebMvcConfigurer {
 		return multipartResolver;
 	}
 
+	
+	/** 
+	 * @return UrlBasedViewResolver
+	 */
 	//Bean che carica la definizione delle viste sotto forma di tiles
 	@Bean
 	UrlBasedViewResolver tilesViewResolver() {
@@ -69,6 +85,10 @@ public class WebConfig implements WebMvcConfigurer {
 		return tilesViewResolver;
 	}
 
+	
+	/** 
+	 * @return TilesConfigurer
+	 */
 	//Configuratore dei tiles, necessario per il precedente
 	@Bean
 	TilesConfigurer tilesConfigurer() {
@@ -84,6 +104,10 @@ public class WebConfig implements WebMvcConfigurer {
 		return tilesConfigurer;
 	}
 
+	
+	/** 
+	 * @return DateFormatter
+	 */
 	//Formattatore per le date
 	@Bean
 	public DateFormatter dateFormatter() {
@@ -92,12 +116,20 @@ public class WebConfig implements WebMvcConfigurer {
 
 
 
+	
+	/** 
+	 * @param registry
+	 */
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(localeChangeInterceptor());
 		registry.addInterceptor(webChangeInterceptor());
 	}
 
+	
+	/** 
+	 * @return LocaleChangeInterceptor
+	 */
 	@Bean
 	LocaleChangeInterceptor localeChangeInterceptor() {
 		LocaleChangeInterceptor interceptor = new LocaleChangeInterceptor();
@@ -106,6 +138,10 @@ public class WebConfig implements WebMvcConfigurer {
 	}
 
 
+	
+	/** 
+	 * @return CookieLocaleResolver
+	 */
 	//Componente che va a settare il Locale di default
 	@Bean
 	CookieLocaleResolver localeResolver() {
@@ -117,11 +153,19 @@ public class WebConfig implements WebMvcConfigurer {
 	}
 
 
+	
+	/** 
+	 * @return ResourceBundleThemeSource
+	 */
 	@Bean
 	ResourceBundleThemeSource themeSource() {
 		return new ResourceBundleThemeSource();
 	}
 
+	
+	/** 
+	 * @return WebContentInterceptor
+	 */
 	@Bean
 	WebContentInterceptor webChangeInterceptor() {
 		// allow/disallow handling of http methods; prepare the request
@@ -132,12 +176,20 @@ public class WebConfig implements WebMvcConfigurer {
 	}
 
 
+	
+	/** 
+	 * @param registry
+	 */
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
 		registry.addRedirectViewController("/", "/cri");
 	}
 
 
+	
+	/** 
+	 * @return MultipartConfigElement
+	 */
 	@Bean
 	public MultipartConfigElement multipartConfigElement() {
 		return new MultipartConfigElement("");

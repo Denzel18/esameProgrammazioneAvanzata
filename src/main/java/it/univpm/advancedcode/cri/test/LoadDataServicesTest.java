@@ -27,6 +27,11 @@ public class LoadDataServicesTest {
 
 	private final static String TITLE = "Lorem ipsum dolor sit amet.";
 
+	
+	/** 
+	 * @param args
+	 * @throws ParseException
+	 */
 	public static void main(String... args) throws ParseException {
 
 		try (AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(

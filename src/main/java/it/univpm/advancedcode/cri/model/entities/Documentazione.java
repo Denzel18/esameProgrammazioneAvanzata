@@ -71,7 +71,7 @@ Documentazione implements Serializable {
 
 	 /**
      * Getter allegati
-     * @return allegati del post
+     * @return allegati del documento
      */
     @OneToMany(fetch = FetchType.EAGER, orphanRemoval = true, mappedBy = "documento")
     public Set<Allegato> getAllegati() {
@@ -80,7 +80,7 @@ Documentazione implements Serializable {
 
     /**
      * Setter allegati
-     * @param allegati allegati del post da settare
+     * @param allegati allegati del documento da settare
      */
     public void setAllegati(Set<Allegato> allegati) {
         this.allegati = allegati;
@@ -169,6 +169,10 @@ Documentazione implements Serializable {
 		this.descrizione = descrizione;
 	}
 
+	
+	/** 
+	 * @param documento_id
+	 */
 	public void setDocumento_id(long documento_id) {
 		this.id = documento_id;
 	}

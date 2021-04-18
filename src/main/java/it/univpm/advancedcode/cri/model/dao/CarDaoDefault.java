@@ -50,6 +50,11 @@ public class CarDaoDefault extends DefaultDao implements CarDao {
 		//return getSession().find(Car.class, targa);
 	}
 
+	
+	/** 
+	 * @param id
+	 * @return Car
+	 */
 	@Override
 	public Car getById(long id) {
 		return (Car) getSession().createQuery("from Car c where c.id="+"'"+id+"'").uniqueResult();

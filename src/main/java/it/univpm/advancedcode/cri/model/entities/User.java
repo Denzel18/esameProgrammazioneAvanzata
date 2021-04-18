@@ -222,6 +222,10 @@ public class User implements Serializable {
 		this.username = username;
 	}
 
+	
+	/** 
+	 * @return String
+	 */
 	public String toString(){
 		String s = "";
 		s+=" Nome : "+getFirstname()+" ";

@@ -170,7 +170,12 @@ public class DriverController {
 		return "prenotazione.new";
 	}
 
-	@PostMapping(value = "/prenotazione/new/save")
+	
+    /** 
+     * @param @ModelAttribute("prenotazione"
+     * @return String
+     */
+    @PostMapping(value = "/prenotazione/new/save")
     public String savePrenotazione(@ModelAttribute("prenotazione") Prenotazione prenotazione, BindingResult bindingResult, Model uiModel, 
     @RequestParam(value = "veicolo", required = false) long veicolo_id, 
     //-------DATA INIZIO------//

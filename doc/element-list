@@ -1,3 +1,9 @@
+it.univpm.advancedcode.cri.app
+it.univpm.advancedcode.cri.controllers
+it.univpm.advancedcode.cri.model.dao
 it.univpm.advancedcode.cri.model.entities
+it.univpm.advancedcode.cri.security
+it.univpm.advancedcode.cri.services
+it.univpm.advancedcode.cri.test
 it.univpm.advancedcode.cri.test.unit
 it.univpm.advancedcode.cri.test.unit.Service

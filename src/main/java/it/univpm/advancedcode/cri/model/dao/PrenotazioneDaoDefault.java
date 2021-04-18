@@ -74,6 +74,11 @@ public class PrenotazioneDaoDefault extends DefaultDao implements PrenotazioneDa
 		return getSession().find(Prenotazione.class, id);
 	}
 
+	
+	/** 
+	 * @param username
+	 * @return List<Prenotazione>
+	 */
 	@Override
 	public List<Prenotazione> getPrenotazioneByUtente(String username) {
 		User utente = getSession().find(User.class, username);

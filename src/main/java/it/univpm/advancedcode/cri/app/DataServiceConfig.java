@@ -29,6 +29,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class DataServiceConfig {
     private static final Logger logger = LoggerFactory.getLogger(DataServiceConfig.class);
 
+    
+    /** 
+     * @return DataSource
+     */
     @Bean
     public DataSource dataSource() {
         try {
@@ -48,11 +52,19 @@ public class DataServiceConfig {
         }
     }
 
+    
+    /** 
+     * @return PasswordEncoder
+     */
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
+    
+    /** 
+     * @return Properties
+     */
     @Bean
     protected Properties hibernateProperties() {
         Properties hibernateProp = new Properties();
@@ -68,6 +80,13 @@ public class DataServiceConfig {
         return hibernateProp;
     }
 
+    
+    /** 
+     * @param dataSource
+     * @param hibernateProperties
+     * @return SessionFactory
+     * @throws IOException
+     */
     @Bean
     @Autowired
     public SessionFactory sessionFactory(DataSource dataSource, Properties hibernateProperties) throws IOException {
@@ -80,6 +99,12 @@ public class DataServiceConfig {
         return sessionFactoryBean.getObject();
     }
 
+    
+    /** 
+     * @param sessionFactory
+     * @return PlatformTransactionManager
+     * @throws IOException
+     */
     @Bean
     @Autowired
     public PlatformTransactionManager transactionManager(SessionFactory sessionFactory) throws IOException {

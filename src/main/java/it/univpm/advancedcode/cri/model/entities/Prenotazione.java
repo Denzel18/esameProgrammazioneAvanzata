@@ -160,6 +160,10 @@ public class Prenotazione implements Serializable {
 		this.oraInizio = oraInzio;
 	}
 
+	
+	/** 
+	 * @return String
+	 */
 	public String toString(){
 		String s=""; 
 		s+=" "+this.getDescrizione();

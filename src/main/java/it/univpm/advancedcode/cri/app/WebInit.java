@@ -10,6 +10,10 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 
 public class WebInit extends AbstractAnnotationConfigDispatcherServletInitializer {
 
+	
+	/** 
+	 * @return Class<?>[]
+	 */
 	//Livello di configurazione principale
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
@@ -20,6 +24,10 @@ public class WebInit extends AbstractAnnotationConfigDispatcherServletInitialize
 		};
 	}
 
+	
+	/** 
+	 * @return Class<?>[]
+	 */
 	//Livello di configurazione di singola servlet
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
@@ -29,12 +37,20 @@ public class WebInit extends AbstractAnnotationConfigDispatcherServletInitialize
 		
 	}
 
+	
+	/** 
+	 * @return String[]
+	 */
 	@Override
 	protected String[] getServletMappings() {
 		// as the <servlet-mapping>...</servlet-mapping> element in web.xml
 		return new String[] {"/"};
 	}
 	
+	
+	/** 
+	 * @return Filter[]
+	 */
 	@Override
 	protected Filter[] getServletFilters() {
 		CharacterEncodingFilter cef = new CharacterEncodingFilter();

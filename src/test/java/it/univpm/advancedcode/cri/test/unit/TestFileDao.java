@@ -27,6 +27,10 @@ import it.univpm.advancedcode.cri.test.DataServiceConfigTest;
 
 public class TestFileDao {
 	
+	
+	/** 
+	 * @throws ParseException
+	 */
 	@Test
 	void createAndDelete() throws ParseException {
 		try (AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(DataServiceConfigTest.class)) {
@@ -68,6 +72,10 @@ public class TestFileDao {
 		}
 	}
 
+	
+	/** 
+	 * @throws ParseException
+	 */
 	@Test
 	void createAndFind() throws ParseException {
 		try (AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(DataServiceConfigTest.class)) {
@@ -107,6 +115,10 @@ public class TestFileDao {
 			}
 		}
 	
+	
+	/** 
+	 * @throws ParseException
+	 */
 	@Test
 	void createAndUpdate() throws ParseException {
 		try (AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(DataServiceConfigTest.class)) {
@@ -134,12 +146,12 @@ public class TestFileDao {
 			assertEquals(fileDao.getByName("documento1_file1.jpg").getName(),"documento1_file1.jpg");
 			
 			s.beginTransaction();
-			a.setName("post1_modifica.jpg");
+			a.setName("documento1_modifica.jpg");
 			fileDao.update(a);
 			s.getTransaction().commit();
 			
 			assertEquals(fileDao.getAll().size(),1);
-			assertEquals(fileDao.getByName("post1_modifica.jpg").getName(),"post1_modifica.jpg");
+			assertEquals(fileDao.getByName("documento1_modifica.jpg").getName(),"documento1_modifica.jpg");
 		}
 	}
 		
@@ -154,10 +166,18 @@ public class TestFileDao {
 		}
 	}
 		
+	
+	/** 
+	 * @throws Exception
+	 */
 	@BeforeEach
 	void setUp() throws Exception {
 	}
 	
+	
+	/** 
+	 * @throws Exception
+	 */
 	@AfterEach
 	void tearDown() throws Exception {
 	}	

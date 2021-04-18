@@ -61,9 +61,8 @@ public class DocumentazioneServiceDefault implements DocumentazioneService {
 
 
     /**
-     * Funzione per eliminare il post specificato.
-     *
-     * @param post post da eliminare
+     * Funzione per eliminare il documento specificato.
+     * @param documento documento da eliminare
      */
     @Transactional
     @Override
@@ -114,9 +113,9 @@ public class DocumentazioneServiceDefault implements DocumentazioneService {
     }
 
     /**
-     * Setter per la proprietà che si riferisce al DAO dell'entità Post.
+     * Setter per la proprietà che si riferisce al DAO dell'entità Documento.
      *
-     * @param postRepository DAO dell'entità Post da settare
+     * @param documentazioneRepository DAO dell'entità Documento da settare
      */
     @Autowired
     public void setDocumentazioneRepository(DocumentazioneDao documentazioneRepository) {

@@ -11,19 +11,35 @@ public abstract class DefaultDao {
     private SessionFactory sessionFactory;
     private Session session;
 
+    
+    /** 
+     * @return SessionFactory
+     */
     public SessionFactory getSessionFactory() {
         return sessionFactory;
     }
 
+    
+    /** 
+     * @param sessionFactory
+     */
     @Resource(name = "sessionFactory")
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 
+    
+    /** 
+     * @param session
+     */
     public void setSession(Session session) {
         this.session = session;
     }
 
+    
+    /** 
+     * @return Session
+     */
     public Session getSession() {
         // shared session exists
         Session session = this.session;

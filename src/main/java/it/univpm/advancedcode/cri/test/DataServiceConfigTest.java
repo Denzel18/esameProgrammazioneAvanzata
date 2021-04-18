@@ -13,6 +13,10 @@ import java.util.Properties;
 @EnableTransactionManagement
 public class DataServiceConfigTest extends DataServiceConfig {
 
+    
+    /** 
+     * @return Properties
+     */
     @Bean
     @Override
     protected Properties hibernateProperties() {

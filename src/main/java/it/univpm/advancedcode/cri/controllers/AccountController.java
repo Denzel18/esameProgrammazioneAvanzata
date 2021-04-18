@@ -480,7 +480,7 @@ public class AccountController {
 	*/
 	@GetMapping(value = "/documentazione/new")
 	public String newDocumento(Model uiModel, Authentication auth) {
-		logger.info("Creating a new post");
+		logger.info("Creating a new documento");
 
 		List<Car> cars = carService.getAll();
 		//User user = userService.findUserByUsername(auth.getName());

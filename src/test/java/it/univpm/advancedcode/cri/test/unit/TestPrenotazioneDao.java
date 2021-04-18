@@ -27,6 +27,10 @@ import it.univpm.advancedcode.cri.test.DataServiceConfigTest;
 
 public class TestPrenotazioneDao {
 
+	
+	/** 
+	 * @throws ParseException
+	 */
 	@Test
 	public void createAndDelete() throws ParseException {
   		try (AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(DataServiceConfigTest.class)) {
@@ -71,7 +75,11 @@ public class TestPrenotazioneDao {
   		}
 	}
 
-  	@Test
+  	
+	  /** 
+	   * @throws ParseException
+	   */
+	  @Test
   	public void createAndFind() throws ParseException {
         try (AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(DataServiceConfigTest.class)) {
 			SessionFactory sf = ctx.getBean("sessionFactory", SessionFactory.class);			
@@ -110,7 +118,11 @@ public class TestPrenotazioneDao {
 			}
   	}
   	
-  	@Test
+  	
+	  /** 
+	   * @throws ParseException
+	   */
+	  @Test
 	public void createAndUpdate() throws ParseException {
 		try (AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(DataServiceConfigTest.class)) {
 			SessionFactory sf = ctx.getBean("sessionFactory", SessionFactory.class);			
@@ -149,10 +161,18 @@ public class TestPrenotazioneDao {
   		}
   	}
  
+	
+	/** 
+	 * @throws Exception
+	 */
 	@BeforeEach
   	void setUp() throws Exception {
   	}
 
+	
+	/** 
+	 * @throws Exception
+	 */
 	@AfterEach
   	void tearDown() throws Exception {
   	}

@@ -10,6 +10,7 @@ La gestione del parco mezzi è in capo a 3 tipologie di utenti:
 * Utente Admin
 * Utente Account(amministrativo)
 * Utente Driver 
+
 Ciascuna categorie di utenti avrà permessi e operazione diversificate. 
 
 ## Installazione
@@ -95,14 +96,17 @@ SHOW = LIST
 - /user/edit/${USERNAME} : UPDATE user 
 - /user/delete/${USERNAME} : DELETE user 
 
-## DOCUMENTAZIONE 
-**Fare il check della documentazione !!!***
-
+## Test Applicazione 
+- utente ADMIN - username: "admin" pwd: "admin"
+- utente DRIVER - username: "driver" pwd: "driver"
+- utente ACCOUNT - username: "account" pwd: "account"
+## Documentazione 
 [Link alla documentazione](https://gitlab.com/bernovschi.denis/esameprogrammazioneavanzata/-/tree/master/doc)
 
-***Ancora in fase di sviluppo***
+## Modello DB
+[Link Modello DB](https://gitlab.com/bernovschi.denis/esameprogrammazioneavanzata/-/tree/master/CRI_DB.png)
 
-[Link Modello DB](https://www.google.com)
+![Modello DB](CRI_DB.png)
 
 
 
