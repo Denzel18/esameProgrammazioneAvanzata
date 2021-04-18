@@ -26,10 +26,10 @@
             <br>
 			
             <form:label path="veicolo">VEICOLO(TARGA)</form:label>
-			<form:input value="${manutenzione.veicolo.targa}" path="veicolo" class="form-control mt-2" />
+			<form:input value="${manutenzione.veicolo.targa}" path="veicolo" class="form-control mt-2" disabled="disabled" />
 
 			<div class="d-flex justify-content-center">
-				<input type="submit" value="Inserisci"
+				<input type="submit" value="Aggiorna"
 					class="mt-3 btn btn-primary col-4" />
 			</div>
     </form:form>

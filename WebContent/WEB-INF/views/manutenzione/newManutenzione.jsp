@@ -17,15 +17,19 @@
             <br>
 
 			<form:label path="tipoManutenzione">Tipo Manutenzione</form:label>
-            <form:select path="tipoManutenzione" >
+            <form:select path="tipoManutenzione" class="form-control mt-2">
                 <option value="Straordinaria" selected="selected">Manutenzione Straordinaria</option>
                 <option value="Ordinaria">Manutenzione Ordinaria </option>
             </form:select>
 
             <br>
 			
-            <form:label path="veicolo">VEICOLO(TARGA)</form:label>
-			<form:input path="veicolo" class="form-control mt-2" />
+            <form:label name="veicolo" path="veicolo">VEICOLO(TARGA)</form:label>
+            <form:select name="veicolo" path="veicolo" class="form-control mt-2" >
+                <c:forEach items="${allCars}" var="car">
+                    <option value="${car.id}">${car.targa}</option>
+                </c:forEach>
+            </form:select>
 
 			<div class="d-flex justify-content-center">
 				<input type="submit" value="Inserisci"

@@ -159,6 +159,17 @@ public class Prenotazione implements Serializable {
 	public void setOraInizio(LocalTime oraInzio) {
 		this.oraInizio = oraInzio;
 	}
+
+	public String toString(){
+		String s=""; 
+		s+=" "+this.getDescrizione();
+		s+=" "+this.getDataFine();
+		s+=" "+this.getDataInizio();
+		s+=" "+this.getOraFine();
+		s+=" "+this.getOraInizio();
+		return s; 
+
+	}
 	
     
 }

@@ -21,7 +21,7 @@
 
 <!-- DRIVER -->
 <c:url value="/profile" var="profile_url"/>
-<c:url value="/prenotazioni" var="bookings_driver_url"/>
+<c:url value="/myprenotazioni" var="bookings_driver_url"/>
 
 <!-- ADMIN -->
 <c:url value="/profile" var="profile_url"/>
@@ -33,10 +33,10 @@
 
 <!-- ACCOUNT -->
 <c:url value="/profile" var="profile_url"/>
-<c:url value="/documentazioni_account" var="docs_account_url"/>
-<c:url value="/cars_account" var="cars_account_url"/>
-<c:url value="/manutenzioni_account" var="man_account_url"/>
-<c:url value="/prenotazioni_account" var="pre_account_url"/>
+<c:url value="/documentazioni" var="docs_account_url"/>
+<c:url value="/cars" var="cars_account_url"/>
+<c:url value="/manutenzioni" var="man_account_url"/>
+<c:url value="/prenotazioni" var="pre_account_url"/>
 
 
 <c:if test="${isNoAuth}">

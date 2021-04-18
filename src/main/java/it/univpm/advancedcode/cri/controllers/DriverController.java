@@ -1,7 +1,10 @@
 package it.univpm.advancedcode.cri.controllers;
 
 import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -30,9 +33,6 @@ import it.univpm.advancedcode.cri.services.UserService;
 
 @Controller
 public class DriverController {
-
-    @Autowired
-	private HttpServletRequest request;
 
     private final Logger logger = LoggerFactory.getLogger(DriverController.class);
     private UserService userService;
@@ -106,7 +106,7 @@ public class DriverController {
 	 * @param uiModel modello associato alla vista
 	 * @return nome della vista da visualizzare
 	 */
-	@GetMapping(value = "/prenotazioni")
+	@GetMapping(value = "/myprenotazioni")
 	public String showDriverPrenotazioni(@RequestParam(value = "successMessage", required = false) String successMessage,
 			@RequestParam(value = "errorMessage", required = false) String errorMessage,
 			Model uiModel, Authentication auth) {
@@ -126,19 +126,28 @@ public class DriverController {
 	 * @return nome della vista da visualizzare
 	 */
 	@GetMapping(value = "/prenotazione/delete/{id}")
-	public String deletePrenotazione(@PathVariable("id") Long id, Authentication auth) {
+	public String deletePrenotazione(@PathVariable("id") Long id, Authentication authentication) {
 		logger.info("Deleting booking with id \"" + id + "\"...");
+        User loggedUser = userService.findUserByUsername(authentication.getName());
+        String redirect = "redirect:/prenotazioni/"; 
+        if(loggedUser.getRuolo().equals("driver")){
+            redirect =  "redirect:/myprenotazioni/";
+        }
+        if(loggedUser.getRuolo().equals("account")){
+            redirect = "redirect:/prenotazioni/"; 
+        }
+
         Prenotazione selectedPrenotazione = this.prenotazioneService.getById(id); 
 		String strMessage;
-        if((selectedPrenotazione != null) || (selectedPrenotazione.getUtente().getUsername().equals(auth.getName()))){
+        if(selectedPrenotazione != null){
             this.prenotazioneService.delete(selectedPrenotazione);
             strMessage = "La prenotazione relativa alla data:  \"" + selectedPrenotazione.getDataInizio() + "\" %C3%A8 stato cancellata correttamente!";
-            return "redirect:/ prenotazioni/?successMessage=" + strMessage;
+            return redirect+"?successMessage=" + strMessage;
             // fare controlli su prenotazione ...
         }else{
             strMessage = "La prenotazione non può essere cancellata, ci sono problemi"+
             "Non pu%C3%B2 essere cancellata!";
-            return "redirect:/ prenotazioni/?errorMessage=" + strMessage;
+            return redirect+"?successMessage=" + strMessage;
         }
 	}
 
@@ -161,44 +170,70 @@ public class DriverController {
 		return "prenotazione.new";
 	}
 
-
 	@PostMapping(value = "/prenotazione/new/save")
     public String savePrenotazione(@ModelAttribute("prenotazione") Prenotazione prenotazione, BindingResult bindingResult, Model uiModel, 
     @RequestParam(value = "veicolo", required = false) long veicolo_id, 
-    @RequestParam(value = "utente", required = false) String username) {
+    //-------DATA INIZIO------//
+    @RequestParam(value = "dataInizio", required = true) String dataInizio,
+    //-------DATA FINE------//
+    @RequestParam(value = "dataFine", required = true) String dataFine,
+    //-------ORA INIZIO------//    
+    @RequestParam(value = "oraInizio", required = true) String oraInizio,
+    //-------ORA INIZIO------//    
+    @RequestParam(value = "oraFine", required = true) String oraFine,
+    @RequestParam(value = "utente", required = false) String username, Authentication authentication) {
 
         User utente = userService.findUserByUsername(username);
         Car veicolo = carService.getById(veicolo_id);
         logger.info("Saving a new prenotazione...");
 
-
-        if((prenotazione.getDataInizio().toString() == null) || 
-            (prenotazione.getDataFine().toString() == null) ||
-            (prenotazione.getOraInizio().toString() == null) ||
-            (prenotazione.getOraFine().toString() == null) ||
-            (prenotazione.getDescrizione().equals("") || prenotazione.getDescrizione() == null )){    
-            String strMessage = "Non hai inserito i campi obbligatori !"; 
-            return "redirect:/prenotazioni/?errorMessage=" + strMessage;    
-        }else if(veicolo == null || utente == null){
-            String strMessage = "Non hai inserito i campi obbligatori _!"; 
-            return "redirect:/prenotazioni/?errorMessage=" + strMessage;  
-        }else if(Period.between(prenotazione.getDataInizio(),prenotazione.getDataFine()).getDays() < 0){
-            String strMessage = "Le date inserite non sono corrette !"; 
-            return "redirect:/prenotazioni/?errorMessage=" + strMessage; 
-        }else if(Duration.between(prenotazione.getOraInizio(),prenotazione.getOraFine()).isNegative()){
-            String strMessage = "Gli orari inseriti non sono corretti !"; 
-            return "redirect:/prenotazioni/?errorMessage=" + strMessage; 
+        User loggedUser = userService.findUserByUsername(authentication.getName());
+        String redirect = "redirect:/prenotazioni/"; 
+        if(loggedUser.getRuolo().equals("driver")){
+            redirect =  "redirect:/myprenotazioni/";
+        }
+        if(loggedUser.getRuolo().equals("account")){
+            redirect = "redirect:/prenotazioni/"; 
         }
 
-     try {
-            this.prenotazioneService.create(prenotazione.getId(), prenotazione.getDataInizio(), 
-            prenotazione.getDataFine(), prenotazione.getOraInizio(), prenotazione.getOraFine(), 
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy");
+        DateTimeFormatter formatterTime = DateTimeFormatter.ofPattern("HH:mm");
+        LocalDate data_Inizio = LocalDate.parse(dataInizio,formatter);
+        LocalDate data_Fine = LocalDate.parse(dataFine,formatter);	
+        LocalTime ora_Inizio = LocalTime.parse(oraInizio, formatterTime);
+        LocalTime ora_Fine = LocalTime.parse(oraFine, formatterTime);
+
+        prenotazione.setDataInizio(data_Inizio);
+        prenotazione.setDataFine(data_Fine);
+        prenotazione.setOraInizio(ora_Inizio);
+        prenotazione.setOraFine(ora_Fine);
+
+        if ((prenotazione.getDataInizio() == null) ||
+            (prenotazione.getDataFine() == null) ||
+            (prenotazione.getOraFine() == null) ||
+            (prenotazione.getOraInizio() == null) ||
+            (prenotazione.getDescrizione().equals("") || prenotazione.getDescrizione() == null )){    
+            String strMessage = "Non hai inserito i campi obbligatori !"+prenotazione.toString(); 
+            return redirect+"?errorMessage=" + strMessage;    
+        }else if(veicolo == null || utente == null){
+            String strMessage = "Non hai inserito i campi obbligatori _!"; 
+            return redirect+"?errorMessage=" + strMessage;  
+        }else if(Period.between(prenotazione.getDataInizio(),prenotazione.getDataFine()).getDays() < 0){
+            String strMessage = "Le date inserite non sono corrette !"; 
+            return redirect+"?errorMessage=" + strMessage; 
+        }else if(Duration.between(prenotazione.getOraInizio(),prenotazione.getOraFine()).isNegative()){
+            String strMessage = "Gli orari inseriti non sono corretti !"; 
+            return redirect+"?errorMessage=" + strMessage; 
+        }
+
+        try {
+            this.prenotazioneService.create(prenotazione.getId(), data_Inizio, data_Fine, ora_Inizio, ora_Fine, 
             prenotazione.getDescrizione(), veicolo,utente);
-         String strMessage = "La prenotazione :  \"" + prenotazione.getDescrizione() + "\" %C3%A8 stata salvato correttamente!";
-         return "redirect:/prenotazioni/?successMessage=" + strMessage;
-     } catch (RuntimeException e) {
-         return "redirect:/prenotazioni/?errorMessage=" + e.getMessage();
-     }
+            String strMessage = "La prenotazione :  \"" + prenotazione.getDescrizione() + "\" %C3%A8 stata salvato correttamente!";
+            return redirect+"?successMessage=" + strMessage;
+        }catch (RuntimeException e) {
+            return redirect+"?errorMessage=" + e.getMessage();
+        }
     }
     
     /**
@@ -261,26 +296,50 @@ public class DriverController {
     @PostMapping(value = "/prenotazione/edit/save", consumes = "multipart/form-data")
 	public String saveEditPrenotazione(@ModelAttribute("prenotazione") Prenotazione prenotazione, BindingResult br, Model uiModel,
     @RequestParam(value = "veicolo", required = false) long veicolo_id, 
-    @RequestParam(value = "utente", required = false) String username) {
+    @RequestParam(value = "utente", required = false) String username,
+        //-------DATA INIZIO------//
+        @RequestParam(value = "dataInizio", required = true) String dataInizio,
+        //-------DATA FINE------//
+        @RequestParam(value = "dataFine", required = true) String dataFine,
+        //-------ORA INIZIO------//    
+        @RequestParam(value = "oraInizio", required = true) String oraInizio,
+        //-------ORA INIZIO------//    
+        @RequestParam(value = "oraFine", required = true) String oraFine,
+    Authentication authentication) {
 
         User utente = userService.findUserByUsername(username);
         Car veicolo = carService.getById(veicolo_id); 
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy");
+        DateTimeFormatter formatterTime = DateTimeFormatter.ofPattern("HH:mm");
+        LocalDate data_Inizio = LocalDate.parse(dataInizio,formatter);
+        LocalDate data_Fine = LocalDate.parse(dataFine,formatter);	
+        LocalTime ora_Inizio = LocalTime.parse(oraInizio, formatterTime);
+        LocalTime ora_Fine = LocalTime.parse(oraFine, formatterTime);
+
+        User loggedUser = userService.findUserByUsername(authentication.getName());
+        String redirect = "redirect:/prenotazioni/"; 
+        if(loggedUser.getRuolo().equals("driver")){
+            redirect =  "redirect:/myprenotazioni/";
+        }
+        if(loggedUser.getRuolo().equals("account")){
+            redirect = "redirect:/prenotazioni/"; 
+        }
+
 		logger.info("Saving the edited prenotazione...");
 		try {
             prenotazione.setVeicolo(veicolo);
             prenotazione.setUtente(utente);
+            prenotazione.setDataInizio(data_Inizio);
+            prenotazione.setDataFine(data_Fine);
+            prenotazione.setOraInizio(ora_Inizio);
+            prenotazione.setOraFine(ora_Fine);
 			this.prenotazioneService.update(prenotazione);
 			String strMessage = "La prenotazione %C3%A8 stata salvato correttamente!";
-			return "redirect:/prenotazioni?successMessage=" + strMessage;
+			return redirect+"?successMessage=" + strMessage;
 		} catch (RuntimeException e) {
-			return "redirect:/prenotazioni?errorMessage=" + e.getMessage();
+			return redirect+"?errorMessage=" + e.getMessage();
 		}
 	}
-
-
-
-  
-
-
 
 }
